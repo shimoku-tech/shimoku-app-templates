@@ -105,7 +105,7 @@ low_conversion = low_conversion_occurrences / total_occurrences
 
 prediction_indicators_data = [
     {
-        'description': f"{100 * high_conversion:2f}% of total {total_occurrences}",
+        'description': f"{100 * high_conversion:.2f}% of total {total_occurrences}",
         'title': 'High conversion (#)',
         'value': int(total_occurrences * high_conversion),
         'color': 'success',
@@ -120,7 +120,7 @@ prediction_indicators_data = [
         "target_path": 'www.shimoku.com',
     },
     {
-        'description': f"{100 * moderate_conversion:2f}% of total {total_occurrences}",
+        'description': f"{100 * moderate_conversion:.2f}% of total {total_occurrences}",
         'title': 'Moderate conversion (#)',
         'value': int(total_occurrences * moderate_conversion),
         'color': 'warning',
@@ -135,7 +135,7 @@ prediction_indicators_data = [
         "target_path": 'www.shimoku.com',
     },
     {
-        "description": f"{100 * low_conversion:2f}% of total {total_occurrences}",
+        "description": f"{100 * low_conversion:.2f}% of total {total_occurrences}",
         "title": 'Low conversion (#)',
         "value": int(total_occurrences * low_conversion),
         "color": 'error',
