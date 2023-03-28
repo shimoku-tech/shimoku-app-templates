@@ -40,6 +40,7 @@ test_dic = df_test.to_dict(orient='records')
 X_test = dv.transform(test_dic)
 test_prediction = model.predict_proba(X_test)[:, 1]
 
+#------------------ PREDICTION TABLE ------------------#
 binary_prediction_table = pd.DataFrame({
     'Lead ID': df_test['Lead Number'].values,
     'Probability': [round(100 * p, 2) for p in test_prediction],
@@ -53,11 +54,13 @@ binary_prediction_table = pd.DataFrame({
                                 for i in range(len(test_prediction))],
 })
 
+#---------------- FEATURE IMPORTANCE -----------------#
 feature_importance = pd.DataFrame({
     'Feature': dv.feature_names_,
     'Importance (%)': model.coef_[0]
 })
 
+#-------------------- PAGE HEADER ---------------------#
 prediction_header = (
     "<head>"
     "<style>"  # Styles title
@@ -90,6 +93,7 @@ prediction_header = (
     "</div>"
 )
 
+#----------------- GENERAL INDICATORS -----------------#
 total_occurrences = len(binary_prediction_table)
 high_conversion_occurrences = len(binary_prediction_table[binary_prediction_table['Lead Scoring'] == 'High'])
 moderate_conversion_occurrences = len(binary_prediction_table[binary_prediction_table['Lead Scoring'] == 'Medium'])
@@ -173,6 +177,7 @@ table_explanaiton = (
     "</a>"
 )
 
+#------------------- DOUGHNUT CHART -------------------#
 distribution_header = (
     '<div style="width:100%; height:90px; "><h4>Lead distribution according to % scoring prediction</h4>'
     '<p>Total and disaggregated distribution and porcentage</p></div>'
@@ -222,6 +227,7 @@ doughnut_chart_options = f"""
     }};      
     """
 
+#-------------- NEXT BEST PRODUCT INDICATORS --------------#
 next_best_product_header = (
     '<div style="width:100%; height:90px; "><h4>Next best product prediction</h4>'
     '<p>Products with a high probability of conversion for each lead</p></div>'
@@ -247,6 +253,7 @@ product_recommendation_indicators = [
     }
 ]
 
+#----------------- NEXT BEST PRODUCT TABLE -----------------#
 product_recommendation_table = binary_prediction_table[['Lead ID', 'Probability', 'Lead Scoring']]
 
 product_recommendation_table.loc['Next Best Product'] = \
