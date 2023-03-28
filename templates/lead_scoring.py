@@ -34,7 +34,7 @@ s.plt.html(html=prediction_header, menu_path=menu_path, order=0)
 for i in range(3):
     order = s.plt.indicator(
         data=prediction_indicators_data[i * 2:i * 2 + 2],
-        menu_path=menu_path, order=1, rows_size=1, cols_size=12,
+        menu_path=menu_path, order=i*2+1, rows_size=1, cols_size=12,
         value="value", header='title',
         footer='description', color='color', variant='variant'
     )
@@ -96,7 +96,7 @@ s.plt.indicator(
 s.plt.table(
     data=product_recommendation_table[:200], menu_path=menu_path, order=17,
     filter_columns=['Lead Scoring'], search_columns=['Lead ID', 'Next Best Product'],
-    label_columns=label_columns,
+    label_columns=label_columns, value_suffixes={'Probability': '%'}
 )
 
 #-------------------- EXECUTE ALL TASKS --------------------#

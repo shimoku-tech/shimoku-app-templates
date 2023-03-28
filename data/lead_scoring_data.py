@@ -105,7 +105,7 @@ low_conversion = low_conversion_occurrences / total_occurrences
 
 prediction_indicators_data = [
     {
-        'description': f"{100 * high_conversion}% of total {total_occurrences}",
+        'description': f"{100 * high_conversion:2f}% of total {total_occurrences}",
         'title': 'High conversion (#)',
         'value': int(total_occurrences * high_conversion),
         'color': 'success',
@@ -120,7 +120,7 @@ prediction_indicators_data = [
         "target_path": 'www.shimoku.com',
     },
     {
-        'description': f"{100 * moderate_conversion}% of total {total_occurrences}",
+        'description': f"{100 * moderate_conversion:2f}% of total {total_occurrences}",
         'title': 'Moderate conversion (#)',
         'value': int(total_occurrences * moderate_conversion),
         'color': 'warning',
@@ -135,7 +135,7 @@ prediction_indicators_data = [
         "target_path": 'www.shimoku.com',
     },
     {
-        "description": f"{100 * low_conversion}% of total {total_occurrences}",
+        "description": f"{100 * low_conversion:2f}% of total {total_occurrences}",
         "title": 'Low conversion (#)',
         "value": int(total_occurrences * low_conversion),
         "color": 'error',
@@ -254,9 +254,9 @@ product_recommendation_indicators = [
 ]
 
 #----------------- NEXT BEST PRODUCT TABLE -----------------#
-product_recommendation_table = binary_prediction_table[['Lead ID', 'Probability', 'Lead Scoring']]
+product_recommendation_table = binary_prediction_table[['Lead ID', 'Probability', 'Lead Scoring']].copy(deep=True)
 
-product_recommendation_table.loc['Next Best Product'] = \
+product_recommendation_table['Next Best Product'] = \
     [f"{['Autos', 'New life', 'Health', 'House'][np.random.choice([0, 1, 2, 3], p=[0.4, 0.3, 0.2, 0.1])]} " \
      f"({random.randint(1, 100)}%)"
      for i in range(len(product_recommendation_table))]
