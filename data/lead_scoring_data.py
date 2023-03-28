@@ -118,6 +118,50 @@ def get_data(leads_data_path: str) -> Dict:
         },
     ]
 
+    doughnut_chart_data = f"""
+        {{
+            tooltip: {{
+            trigger: 'item'
+        }},
+        legend: {{
+            top: '5%',
+            left: 'center'
+        }},
+        series: [
+        {{
+            name: 'Access From',
+            type: 'pie',
+            radius: ['40%', '70%'],
+            avoidLabelOverlap: false,
+            itemStyle: {{
+                borderRadius: 0,
+                borderColor: '#fff',
+                borderWidth: 0
+            }},
+            label: {{
+                show: false,
+                position: 'center'
+            }},
+            emphasis: {{
+                label: {{
+                show: false,
+                fontSize: '40',
+                fontWeight: 'bold'
+            }}
+          }},
+          labelLine: {{
+            show: false
+          }},
+          data: [
+            {{ value: {high_conversion_occurrences}, name: 'High > 75%' }},
+            {{ value: {moderate_conversion_occurrences}, name: 'Medium [50% - 75%]' }},
+            {{ value: {low_conversion_occurrences}, name: 'Low < 50%' }}
+          ]
+        }}
+      ]
+    }};      
+    """
+
     #-------------- NEXT BEST PRODUCT INDICATORS --------------#
     product_recommendation_indicators = [
         {
@@ -151,13 +195,7 @@ def get_data(leads_data_path: str) -> Dict:
     return {
         'binary_prediction_table': binary_prediction_table,
         'feature_importance': feature_importance,
-        'total_occurrences': total_occurrences,
-        'high_conversion_occurrences': high_conversion_occurrences,
-        'moderate_conversion_occurrences': moderate_conversion_occurrences,
-        'low_conversion_occurrences': low_conversion_occurrences,
-        'high_conversion': high_conversion,
-        'moderate_conversion': moderate_conversion,
-        'low_conversion': low_conversion,
+        'doughnut_chart_data': doughnut_chart_data,
         'prediction_indicators': prediction_indicators,
         'product_recommendation_indicators': product_recommendation_indicators,
         'product_recommendation_table': product_recommendation_table,

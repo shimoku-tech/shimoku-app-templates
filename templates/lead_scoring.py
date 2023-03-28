@@ -124,53 +124,9 @@ def distribution_header(shimoku_client: shimoku.Client, menu_path: str, order: i
 
 
 def distribution_chart(shimoku_client: shimoku.Client, menu_path: str, order: int,
-                       high_conversion_occurrences: int, moderate_conversion_occurrences: int,
-                       low_conversion_occurrences: int):
-    doughnut_chart_options = f"""
-            {{
-                tooltip: {{
-                trigger: 'item'
-            }},
-            legend: {{
-                top: '5%',
-                left: 'center'
-            }},
-            series: [
-            {{
-                name: 'Access From',
-                type: 'pie',
-                radius: ['40%', '70%'],
-                avoidLabelOverlap: false,
-                itemStyle: {{
-                    borderRadius: 0,
-                    borderColor: '#fff',
-                    borderWidth: 0
-                }},
-                label: {{
-                    show: false,
-                    position: 'center'
-                }},
-                emphasis: {{
-                    label: {{
-                    show: false,
-                    fontSize: '40',
-                    fontWeight: 'bold'
-                }}
-              }},
-              labelLine: {{
-                show: false
-              }},
-              data: [
-                {{ value: {high_conversion_occurrences}, name: 'High > 75%' }},
-                {{ value: {moderate_conversion_occurrences}, name: 'Medium [50% - 75%]' }},
-                {{ value: {low_conversion_occurrences}, name: 'Low < 50%' }}
-              ]
-            }}
-          ]
-        }};      
-        """
+                       doughnut_chart_data: Dict):
     shimoku_client.plt.free_echarts(
-        raw_options=doughnut_chart_options,
+        raw_options=doughnut_chart_data,
         menu_path=menu_path, order=order, cols_size=5, rows_size=2
     )
 
@@ -236,10 +192,7 @@ def main():
     general_indicators(          s, menu_path, 1, data['prediction_indicators'])
     prediction_table(            s, menu_path, 7, data['binary_prediction_table'])
     distribution_header(         s, menu_path, 10)
-    distribution_chart(          s, menu_path, 11,
-                                 data['high_conversion_occurrences'],
-                                 data['moderate_conversion_occurrences'],
-                                 data['low_conversion_occurrences'])
+    distribution_chart(          s, menu_path, 11, data['doughnut_chart_data'])
     feature_importance_chart(    s, menu_path, 12, data['feature_importance'])
     next_best_product_header(    s, menu_path, 13)
     next_best_product_indicators(s, menu_path, 14, data['product_recommendation_indicators'])
