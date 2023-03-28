@@ -489,14 +489,14 @@ def main():
         verbosity='INFO',
     )
     menu_path = 'Forms In Tabs'
-    # s.plt.delete_path(menu_path)
-    #
-    # #----------------- CREATE DASHBOARD TASKS -----------------#
-    # create_header(         s, menu_path)
-    # first_step_tab(        s, menu_path)
-    # change_steps_tab_order(s, menu_path)
-    # second_step_tab(       s, menu_path)
-    # results_tab(           s, menu_path)
+    s.plt.delete_path(menu_path)
+
+    #----------------- CREATE DASHBOARD TASKS -----------------#
+    create_header(         s, menu_path)
+    first_step_tab(        s, menu_path)
+    change_steps_tab_order(s, menu_path)
+    second_step_tab(       s, menu_path)
+    results_tab(           s, menu_path)
     results_aae_tab(       s, menu_path)
 
     #----------------------- ORDER TABS -----------------------#
