@@ -33,7 +33,7 @@ def title_for_tab(title: str, image: str):
 
 #--------------------DASHBOARD FUNCTIONS--------------------#
 def create_header(shimoku_client: shimoku.Client, menu_path: str):
-    html = (
+    header = (
         "<head>"
         "<style>.hero-block"
         "{display: flex; align-items: center; padding: 24px; background-color:transparent;}"
@@ -66,7 +66,7 @@ def create_header(shimoku_client: shimoku.Client, menu_path: str):
     )
 
     shimoku_client.plt.html(
-        html=html,
+        html=header,
         menu_path=menu_path,
         order=0, cols_size=12,
     )
