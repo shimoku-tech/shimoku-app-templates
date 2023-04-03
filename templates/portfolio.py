@@ -28,11 +28,14 @@ environment: str = getenv('ENVIRONMENT')
 
 
 s = shimoku.Client(
-    config={'access_token': api_key},
+    access_token=api_key,
     universe_id=universe_id,
     environment=environment,
+    business_id=business_id,
+    async_execution=True,
+    verbosity='INFO',
 )
-s.plt.set_business(business_id=business_id)
+
 menu_path: str = 'Portfolio'
 create_rt_indicators: bool = True
 
