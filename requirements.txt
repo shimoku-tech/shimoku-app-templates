@@ -1,2 +1,3 @@
 shimoku-api-python
 shimoku-components-catalog
+scikit-learn

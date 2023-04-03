@@ -32,9 +32,9 @@ data_indicator_real_time_time_session = [
 data_html_summary = create_h1_title(title='Summary', subtitle='Results 28 days previous')
 
 data_line_sessions_date = [
-    {'date': 1, 'Sessions': 360},
-    {'date': 2, 'Sessions': 164},
-    {'date': 3, 'Sessions': 132},
+    {'date': 0, 'Sessions': 360},
+    {'date': 1, 'Sessions': 164},
+    {'date': 2, 'Sessions': 132},
     {'date': 3, 'Sessions': 214},
     {'date': 4, 'Sessions': 301},
     {'date': 5, 'Sessions': 105},
