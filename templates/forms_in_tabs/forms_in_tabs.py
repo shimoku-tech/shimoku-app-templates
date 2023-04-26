@@ -330,7 +330,7 @@ def results_tab(shimoku_client: shimoku.Client, menu_path: str):
     except RuntimeError:
         shimoku_client.activity.create_activity(menu_path=menu_path, activity_name='Mock Activity')
 
-    shimoku_client.activity.button_execute_activity(
+    shimoku_client.plt.button_execute_activity(
         menu_path=menu_path, order=0,
         activity_name='Mock Activity',
         label='Calculate Results',
@@ -463,7 +463,7 @@ def results_aae_tab(shimoku_client: shimoku.Client, menu_path: str):
         show_values=['factor 1'],
     )
 
-    shimoku_client.activity.button_execute_activity(
+    shimoku_client.plt.button_execute_activity(
         menu_path=menu_path, order=12,
         activity_name='Mock Activity',
         label='Calculate Results',
