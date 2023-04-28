@@ -1,7 +1,6 @@
 from typing import Any
 from os import getenv
 from shimoku_api_python import Client
-import datetime
 import pandas as pd
 import numpy as np
 
@@ -56,6 +55,12 @@ product_names = ["Cheeseburger", "Fried Chicken", "Pasta Carbonara", "Caesar Sal
                  "Seafood Paella", "Pad Thai", "Chicken Katsu Curry", "Spicy Tuna Roll", "Sushi Platter"]
 
 def human_format(num):
+    """
+    Format long nombers with letter exponentials
+    Ex: 999999 -> 999K
+    """
+
+    # https://stackoverflow.com/a/45846841
     num = float('{:.3g}'.format(num))
     magnitude = 0
     while abs(num) >= 1000:
