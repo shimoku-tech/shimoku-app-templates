@@ -55,28 +55,6 @@ product_names = ["Cheeseburger", "Fried Chicken", "Pasta Carbonara", "Caesar Sal
                  "Beef Tacos", "Vegetable Stir Fry", "Spinach and Ricotta Ravioli", "Cobb Salad", "Chicken Caesar Wrap",
                  "Seafood Paella", "Pad Thai", "Chicken Katsu Curry", "Spicy Tuna Roll", "Sushi Platter"]
 
-# Date utils
-def get_last_week_dates(start_date: datetime.date):
-    """
-    Get these dates
-    - beginning of the week
-    - end of the week
-    """
-
-    # Date is fixed for testing with the csv
-    # change later to .now()
-    # today = datetime.datetime.now()
-
-    # Get last week reference date
-    lastweek_dtref = start_date - datetime.timedelta(weeks=1)
-
-    # Get the beginning date of the week (monday)
-    lastweek_start = lastweek_dtref - datetime.timedelta(days=lastweek_dtref.weekday())
-    # End of the week (sunday)
-    lastweek_end = lastweek_start + datetime.timedelta(days=6)
-
-    return (lastweek_start, lastweek_end)
-
 def human_format(num):
     num = float('{:.3g}'.format(num))
     magnitude = 0
