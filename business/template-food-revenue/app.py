@@ -113,8 +113,13 @@ def kpis(shimoku: Client, order: int, dfs: dict[str, pd.DataFrame], tabs_index, 
 
         data: pd.DataFrame = filter_data(df, origin)
 
+        # number of orders
         orders_kpi = data['order_id'].nunique()
+
+        # revenue made
         revenue = data['prod_billing'].sum()
+
+        # How many products were sold
         prod_sold = data['quantity'].sum()
 
         return {
@@ -151,6 +156,8 @@ def kpis(shimoku: Client, order: int, dfs: dict[str, pd.DataFrame], tabs_index, 
             common_data['icon'] = "Line/arrow-up"
             common_data['value'] = f"{human_format(kpi_diff)}"
 
+        # Default indicator parameter, extend via the 'options'
+        # parameter
         indicator_opts={
             'cols_size': 3,
             'rows_size': 1,
@@ -178,8 +185,6 @@ def kpis(shimoku: Client, order: int, dfs: dict[str, pd.DataFrame], tabs_index, 
     html_opts = {
         'tabs_index': tabs_index,
         'cols_size': 12,
-        # 'rows_size': 2,
-        # 'padding': "0, 2, 0, 2",
         'menu_path': periodpath,
     }
 
@@ -720,11 +725,11 @@ def setup_dashboard(shimoku: Client):
 
 if __name__ == "__main__":
 
-    # Read data
+    # Read the data
     cw_data = pd.read_csv('data/cw_data.csv')
     lw_data = pd.read_csv('data/lw_data.csv')
 
-    # Grouping the df's in a dict
+    # Group the dfs in a dict, this will be convenient for later
     dfs = {
         # Current week data
         'cw_data': cw_data,
