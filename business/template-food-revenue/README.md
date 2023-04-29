@@ -46,12 +46,12 @@ The dashboard uses a variety of charts and components that are builtin and one t
 </p>
 
 ## Generating data
-The data was randomly generated using the `generate_dfs` function located in `utils.py`
+The data was randomly generated using the `generate_dfs` function located in `data.py`
 
 If you want to generate new dataframes please import and run the function
 
 ```python
-from utils import generate_dfs
+from data import generate_dfs
 # updates .csv files in data/ folder with new data
 generate_dfs()
 ```
