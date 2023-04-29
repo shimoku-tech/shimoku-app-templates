@@ -2,8 +2,31 @@ import pandas as pd
 import numpy as np
 import datetime
 
-from app import origins, product_names
+# Constants
+origins = ['web', 'app_mobile', 'store']
+product_names = ["Cheeseburger", "Fried Chicken", "Pasta Carbonara", "Caesar Salad", "Fish and Chips",
+                 "Beef Stroganoff", "Pizza Margherita", "Grilled Salmon", "Taco Salad", "Crispy Calamari",
+                 "Shrimp Scampi", "Garlic Bread", "Sizzling Fajitas", "Chicken Teriyaki", "French Onion Soup",
+                 "Miso Ramen", "Crab Cakes", "Lobster Bisque", "Crispy Tofu Bowl", "Philly Cheesesteak",
+                 "Beef Tacos", "Vegetable Stir Fry", "Spinach and Ricotta Ravioli", "Cobb Salad", "Chicken Caesar Wrap",
+                 "Seafood Paella", "Pad Thai", "Chicken Katsu Curry", "Spicy Tuna Roll", "Sushi Platter"]
 
+# Constant importable objects
+def get_data():
+    """
+    Reads csv in the data/ folder
+    """
+
+    cw_data = pd.read_csv('data/cw_data.csv')
+    lw_data = pd.read_csv('data/lw_data.csv')
+    return {
+        # Current week data
+        'cw_data': cw_data,
+        # Last week data
+        'lw_data': lw_data
+    }
+
+# Data generation
 def gen_df(date_range, origins: list[str], product_names: list[str]):
     """
     Generates a Dataframe with random data
