@@ -4,7 +4,7 @@ import pandas as pd
 
 from typing import List, Dict, Union
 from os import getenv
-from data.lead_scoring_data import get_data
+from aux import get_data
 
 
 #--------------------AUXILIARY FUNCTIONS--------------------#
@@ -169,7 +169,7 @@ def next_best_product_table(shimoku_client: shimoku.Client, menu_path: str, orde
 
 def main():
     #--------------- GET THE DATA DICTIONARY ----------------#
-    data = get_data('../data/Leads.csv')
+    data = get_data('data/Leads.csv')
 
     #----------------- CLIENT INITIALIZATION ----------------#
     api_key: str = getenv('API_TOKEN')
