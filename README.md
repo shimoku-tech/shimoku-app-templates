@@ -1,7 +1,6 @@
-# Shimoku Api Python
+# Shimoku App Templates
 
 ![License](https://img.shields.io/github/license/shimoku-tech/shimoku-api-python)
-[![PyPI version](https://badge.fury.io/py/shimoku-api-python.svg)](https://badge.fury.io/py/shimoku-api-python)
 [![Medium](https://img.shields.io/badge/follow%20on-Medium-12100E.svg?style=flat&logo=medium)](https://medium.com/@shimoku)
 
 Shimoku allows you to build Data Products in hours and create Predictive Analytics Products with Artificial Intelligence capabilities.
@@ -15,8 +14,9 @@ Description
 
 You can create Data Apps such as the following with the templates you will find herein:
 
-.. image:: https://1111601832-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FUlHTfmIZY46Z1EDfyGMz%2Fuploads%2FTzDDL6apz1McHyo1wSus%2Fimage.png?alt=media&token=4362db93-0adc-4593-879b-7e58e0fa5e65
-
+<p align="center">
+  <img src="img/readme-img.png">
+</p>
 
 Note
 ====
