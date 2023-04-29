@@ -1,4 +1,4 @@
-# Shimoku Api Python
+# Shimoku App Templates
 
 ![License](https://img.shields.io/github/license/shimoku-tech/shimoku-api-python)
 [![Medium](https://img.shields.io/badge/follow%20on-Medium-12100E.svg?style=flat&logo=medium)](https://medium.com/@shimoku)
