@@ -8,7 +8,7 @@ import pandas as pd
 
 import shimoku_api_python as shimoku
 
-from data.portfolio_data import (
+from aux import (
     data_html_real_time, data_indicator_real_time_events,
     data_indicator_real_time_time_session,
     data_html_summary, data_line_sessions_date,
@@ -164,7 +164,7 @@ s.plt.html(
     order=16, rows_size=1, cols_size=12,
 )
 
-df = pd.read_csv('../data/portfolio_predictive_line.csv')
+df = pd.read_csv('data/portfolio_predictive_line.csv')
 df['date'] = pd.to_datetime(df['date']).dt.date
 min_date: str = '2022-06-12'
 s.plt.predictive_line(
