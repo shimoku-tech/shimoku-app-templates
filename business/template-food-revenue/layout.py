@@ -6,7 +6,7 @@ import numpy as np
 from shimoku_api_python import Client
 # Local imports
 from transform import filter_by_origin, human_format
-from data import origins, get_data
+from utils import origins, get_data
 
 # --- Tabs Configuration ---
 periodpath = "Food"
@@ -79,17 +79,21 @@ def kpis(shimoku: Client, order: int, dfs: dict[str, pd.DataFrame], tabs_index, 
             'products_sold': prod_sold,
         }
 
-    # Global data
-
+    # Calculate kpis for each week period
     cw_kpis = calculate_kpis(dfs['cw_data'])
     lw_kpis = calculate_kpis(dfs['lw_data'])
 
     def plot_indicator(data: dict[str, Any], kpi_name: str, order: int, options={}):
+        """
+        Plots the indicators to the dashboard
+        """
+
         cw_kpi = cw_kpis[kpi_name]
         lw_kpi = lw_kpis[kpi_name]
 
         kpi_diff = cw_kpi - lw_kpi
 
+        # Put difference in the footer
         common_data = {
             'align': 'center',
             'value': human_format(cw_kpi),
@@ -191,7 +195,7 @@ def kpis(shimoku: Client, order: int, dfs: dict[str, pd.DataFrame], tabs_index, 
 
 def stacked_bar_sales(shimoku: Client, order: int, dfs: dict[str,pd.DataFrame], origins: list[str]):
     """
-    Plot a stacked bar chart compare revenues of the week by origin
+    Plots a stacked bar chart that compare revenues of the week by origin
     """
 
     def get_stack_data(origin: str, period: str):
@@ -246,40 +250,14 @@ def stacked_bar_sales(shimoku: Client, order: int, dfs: dict[str,pd.DataFrame], 
         basedfs.loc[:, 'Store'] = basedfs['Store'].map('{:.2f}'.format)
 
         menupath = periodpath
-        # tabs_index = origin_tabs_map['all']['tab_index']
-
 
         tabs_index=(stackbar_tab_group, week_colname)
         next_order=order
 
-
         shimoku.plt.stacked_barchart(
             subtitle=week_colname,
             data=basedfs,
-            # filters={
-            #     'order': 0,
-            #     'filter_cols': 'week',
-            # },
             show_values=[False],
-            # Options not working
-            option_modifications={
-                # 'yAxis': {
-                #     'type': 'value',
-                #     'fontFamily': 'Rubik',
-                #     'axisLabel': {
-                #         'formatter': '{value} €',
-                #     },
-                # },
-                # 'optionModifications': {
-                #     'yAxis': {
-                #         'type': 'value',
-                #         'fontFamily': 'Rubik',
-                #         'axisLabel': {
-                #             'formatter': '{value} €',
-                #         },
-                #     },
-                # }
-            },
             x='Day',
             order=next_order,
             cols_size=12,
@@ -301,7 +279,6 @@ def stacked_bar_sales(shimoku: Client, order: int, dfs: dict[str,pd.DataFrame], 
     next_order+=1
 
     for week in wn.keys():
-        # Future warning: two stacked bar chars are not goin to work for more than two weeks
         next_order+=plot_stacked(next_order, week)
         next_order+=1
 
@@ -311,9 +288,8 @@ def product_type_table(shimoku: Client, order: int, dfs: dict[str,pd.DataFrame],
     """
     The table shows the revenue
     """
-    def get_products_packs(column: str, rn_cols: dict[str,str]):
+    def get_products_data(column: str, rn_cols: dict[str,str]):
         """
-        Aggregate product and packs table
         """
         aggregations = {
             'revenue': ('prod_billing', 'sum'),
@@ -382,7 +358,7 @@ def product_type_table(shimoku: Client, order: int, dfs: dict[str,pd.DataFrame],
 
 
     # Products
-    table = get_products_packs(
+    table = get_products_data(
         column='product_name', rn_cols={'product_name': 'Product'}
     )
 
@@ -443,7 +419,7 @@ def top_ten_winners(shimoku: Client, order: int, dfs: dict[str,pd.DataFrame], or
     def plot_chart(agg_col:str, tab: str, order:int):
         def group_rev(df: pd.DataFrame):
             """
-            Filters data by origin, then groups and sums the products by revenue
+            Filters data by origin, then groups and sums the products by revenue or quantity
             """
             return filter_by_origin(df, origin).groupby('product_name', as_index=False).agg(
                 {agg_col: "sum"}
@@ -452,7 +428,7 @@ def top_ten_winners(shimoku: Client, order: int, dfs: dict[str,pd.DataFrame], or
         cw_rev = group_rev(dfs['cw_data'])
         lw_rev = group_rev(dfs['lw_data'])
 
-        # Join tables, to compare revenues over weeks
+        # Join tables, to compare revenues over cw & lw
         df = pd.merge(cw_rev, lw_rev, on='product_name', how='outer')
 
         # Rename columns
@@ -491,7 +467,6 @@ def top_ten_winners(shimoku: Client, order: int, dfs: dict[str,pd.DataFrame], or
 
         next_order = order
 
-        # Experimental: Bar chart with neg values
         positiveDataOps = {
             'label': {
                 'position': 'right',
@@ -524,7 +499,7 @@ def top_ten_winners(shimoku: Client, order: int, dfs: dict[str,pd.DataFrame], or
             },
         }
 
-        # Format to 0 decimals
+        # Assign neg and positive values
         series_data_neg = [{
             'value': val,
             **negDataOps,
@@ -535,10 +510,12 @@ def top_ten_winners(shimoku: Client, order: int, dfs: dict[str,pd.DataFrame], or
             **positiveDataOps,
         } for val in list(df_winners['Diff'])]
 
+        # Join neg and positive options together
         series_data = series_data_neg + series_data_pos
 
         y_data = list(df_loosers['Product name']) + list(df_winners['Product name'])
 
+        # Set general echarts options
         options = {
             'title': {
                 'text': f"Top 10 Winners and Losers"
@@ -604,7 +581,6 @@ def top_ten_winners(shimoku: Client, order: int, dfs: dict[str,pd.DataFrame], or
             tabs_index=(top_ten_tabgroup, tab),
             cols_size=12,
             rows_size=5,
-            # padding="0, 1, 0, 1"
         )
 
         return next_order
@@ -654,14 +630,16 @@ def configure_tabs(shimoku: Client):
     Configure Tabs
     """
 
-    # --- Assing child tabs to parent tabs ---
+    # --- Assign child tabs to parent tabs ---
+
+    # The origin tabs as children of periodtabs
     shimoku.plt.insert_tabs_group_in_tab(
         menu_path=periodpath,
         parent_tab_index=period_tabs['WoW']['tab_index'],
         child_tabs_group=pt_tab_group,
     )
 
-    # Stacked bar chart
+    # The stacked bar chart as child of the origin tabs
     shimoku.plt.insert_tabs_group_in_tab(
         menu_path=periodpath,
         parent_tab_index=origin_tabs_map['all']['tab_index'],
@@ -734,7 +712,7 @@ def plot_dashboard(shimoku: Client):
 
                 order += kpis(shimoku, order, dfs, tabs_index, origin)
                 order += 1
-
+                # Only plot the stacked bar chart in all tab
                 if origin == "all":
                     shimoku.plt.html(
                         menu_path=periodpath,
