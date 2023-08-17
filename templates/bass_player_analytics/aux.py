@@ -62,18 +62,20 @@ def calculate_fft_df(song_data: Tuple[np.ndarray, float], n_samples: int) -> pd.
     return pd.DataFrame({'amplitude': mean_fft_values, 'frequency': freq_ranges})
 
 
-def calculate_chroma_df(song_data: Tuple[np.ndarray, float], n_samples: int) -> List[List]:
+def calculate_chroma_df(song_data: Tuple[np.ndarray, float], n_samples: int) -> pd.DataFrame:
     """  Calculates the chroma of a song in n_samples parts"""
     song, sr = song_data
     song_length_s = librosa.get_duration(y=song, sr=sr)
     times = [f'{int(t // 60)}:{int(t % 60)}.{int((t % 1) * n_samples)}'
              for t in [song_length_s / n_samples * i for i in range(n_samples)]]
     chroma = librosa.feature.chroma_stft(y=song, sr=sr)
-    chroma_data = []
+    chroma_data = pd.DataFrame(columns=['time', 'pitch', 'amplitude'])
     pitches = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'Bb', 'B']
     for pitch, row in zip(pitches, chroma):
         grouped_row = np.array_split(row, n_samples)
-        chroma_data.extend([[t, pitch, round(float(np.mean(group)), 2)] for t, group in zip(times, grouped_row)])
+        aux_df = pd.DataFrame([{'time': t, 'pitch': pitch, 'amplitude': round(float(np.mean(group)), 2)}
+                               for t, group in zip(times, grouped_row)])
+        chroma_data = pd.concat([chroma_data, aux_df], ignore_index=True)
 
     return chroma_data
 
@@ -183,6 +185,7 @@ def get_data(n_samples: int) -> Dict:
             'left': 'center',
         },
         'series': [{
+            'data': '#set_data#',
             'type': 'heatmap',
             'label': {'show': False},
             'animation': False,

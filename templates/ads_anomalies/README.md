@@ -1,4 +1,4 @@
-# Ads anomalies monitoring (v.0.18)
+# Ads anomalies monitoring (v.1.1)
 
 This dashboard serves as an example of what can be plotted with the Shimoku SDK, its based on the context of Ads monitoring.
 

@@ -15,7 +15,7 @@ Description
 You can create Data Apps such as the following with the templates you will find herein:
 
 <p align="center">
-  <img src="img/readme-img.png">
+  <img src="templates/portfolio/img/portfolio.png">
 </p>
 
 Note

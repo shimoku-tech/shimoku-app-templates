@@ -1,323 +1,223 @@
-"""Backoffice to review the businesses, apps, reports in an Universe
+"""Backoffice to review the workspaces, menu_paths, components in an Universe
 """
 
 from os import getenv
-import logger
+import logging
 from collections import Counter
-import json
 from typing import List, Dict, Tuple
+from tenacity import RetryError
+from copy import copy
 
 import datetime as dt
 import pandas as pd
 
 import shimoku_api_python as shimoku
 
-
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 logging.basicConfig(
-    stream=stdout,
     datefmt='%Y-%m-%d %H:%M',
     format='%(asctime)s | %(levelname)s | %(message)s'
 )
 
-api_key: str = getenv('API_TOKEN')
-universe_id: str = getenv('UNIVERSE_ID')
-environment: str = getenv('ENVIRONMENT')
-
-
-s = shimoku.Client(
-    config={'access_token': api_key},
-    universe_id=universe_id,
-    environment=environment,
-)
-menu_path: str = 'Backoffice'
-
 
 def set_overview_page(
-    businesses: List[Dict],
-    app_types: List[Dict],
-    apps: List[Dict],
-    reports: List[Dict],
+    s: shimoku.Client, workspaces: List[Dict], menu_paths: List[Dict], components: List[Dict], dashboard_id: str
 ):
-    menu_path_: str = f'{menu_path}/overview'
+    s.plt.change_path('Overview')
     data_overview_alert_indicator: List[Dict] = [
         {
-            "description": "Number of Businesses",
-            "title": "Businesses",
-            "value": len(businesses),
+            "description": "Number of Workspaces",
+            "title": "Workspaces",
+            "value": len(workspaces),
             "color": "warning-background",
-            "targetPath": f"/{menu_path_seed}/business-detail",
+            "targetPath": f"{dashboard_id}/backoffice/workspaces-detail",
         },
         {
-            "description": "Number of different apps",
-            "title": "Apps types",
-            "value": len(app_types),
+            "description": "Number of Menu paths",
+            "title": "Menu paths",
+            "value": len(menu_paths),
             "color": "warning-background",
-            "targetPath": f"/{menu_path_seed}/app-type-detail",
+            "targetPath": f"{dashboard_id}/backoffice/menu-paths-detail",
         },
         {
-            "description": "Number of Apps",
-            "title": "Apps",
-            "value": len(apps),
+            "description": "Number of Components",
+            "title": "Components",
+            "value": len(components),
             "color": "warning-background",
-            "targetPath": f"/{menu_path_seed}/apps-detail",
-        },
-        {
-            "description": "Number of Reports",
-            "title": "Reports",
-            "value": len(reports),
-            "color": "warning-background",
-            "targetPath": f"/{menu_path_seed}/reports-detail",
+            "targetPath": f"{dashboard_id}/backoffice/components-detail",
         },
     ]
 
-    s.plt.alert_indicator(
-        data=data_overview_alert_indicator,
-        menu_path=menu_path_,
-        order=0,
-        value='value',
-        header='title',
-        footer='description',
-        color='color',
-        target_path='targetPath',
-    )
+    s.plt.indicator(data=data_overview_alert_indicator, order=0)
 
     data_overview_indicator = [
         {
-            "description": "Average apps per business",
-            "title": "Average apps per business",
-            "value": f'{round(len(apps) / len(businesses), 2)}',
+            "description": "Average menu paths per workspace",
+            "title": "Average menu_paths per workspace",
+            "value": f'{round(len(menu_paths) / len(workspaces), 2)}',
         },
         {
-            "description": "Average reports per app",
-            "title": "Average reports per app",
-            "value": f'{round(len(reports) / len(apps), 2)}',
+            "description": "Average components per menu path",
+            "title": "Average components per menu_path",
+            "value": f'{round(len(components) / len(menu_paths), 2)}',
         },
         {
-            "description": "Average reports per business",
-            "title": "Average reports per business",
-            "value": f'{round(len(reports) / len(businesses), 2)}',
+            "description": "Average components per workspace",
+            "title": "Average components per workspace",
+            "value": f'{round(len(components) / len(workspaces), 2)}',
         },
     ]
 
-    s.plt.indicator(
-        data=data_overview_indicator,
-        menu_path=menu_path_,
-        order=1,
-        value='value',
-        header='title',
-        footer='description',
-    )
+    s.plt.indicator(data=data_overview_indicator, order=3)
 
 
-def set_business_detail(
-    businesses: List[Dict],
-    apps: List[Dict],
-):
-    menu_path_: str = f'{menu_path}/business-detail'
-    df_ = pd.DataFrame(apps)
-    apps_by_business = df_.groupby('appBusinessId')['id'].count().to_dict()
-    for business_ in businesses:
-        try:
-            business_['apps number'] = apps_by_business[business_['id']]
-        except KeyError:
-            business_['apps number'] = 0
-        business_['universe_id'] = business_['universe']['id']
+def set_workspace_detail(s: shimoku.Client, workspaces: List[Dict]):
+    s.plt.change_path('Workspaces Detail')
+    for workspace_ in workspaces:
+        workspace_['menu_paths number'] = len(s.workspaces.get_workspace_menu_paths(workspace_['id']))
 
+    cols_to_keep: List[str] = ['id', 'name', 'menu_paths number']
+    workspace_df = pd.DataFrame(workspaces)
+    workspace_df = workspace_df[cols_to_keep]
+
+    s.plt.table(data=workspace_df, order=0)
+
+
+def set_menu_paths_detail(s: shimoku.Client, menu_paths: List[Dict]):
+    s.plt.change_path('Menu Paths Detail')
+
+    menu_paths_df: pd.DataFrame = pd.DataFrame(menu_paths)
     cols_to_keep: List[str] = [
-        'id',
-        'name',
-        'apps number',
-        'universe_id',
+        'id', 'name', 'order', 'hidePath', 'showBreadcrumb', 'showHistoryNavigation',
     ]
-    business_df = pd.DataFrame(businesses)
-    business_df = business_df[cols_to_keep]
-
-    filter_columns: List[str] = []
-    s.plt.table(
-        data=business_df,
-        menu_path=menu_path_,
-        order=0,
-        filter_columns=filter_columns,
-    )
+    menu_paths_df = menu_paths_df[cols_to_keep]
+    s.plt.table(data=menu_paths_df, order=0)
 
 
-def set_app_type_detail(
-    app_types: List[Dict],
-    apps: List[Dict],
-):
-    menu_path_: str = f'{menu_path}/app-type-detail'
-    for app_ in apps:
-        app_['app_type_id'] = app_['type']['id']
-    df_ = pd.DataFrame(apps)
-    apps_by_type = df_.groupby('app_type_id')['id'].count().to_dict()
-    for app_type in app_types:
-        try:
-            app_type['apps number'] = apps_by_type[app_type['id']]
-        except KeyError:
-            app_type['apps number'] = 0
-        app_type['universe_id'] = app_type['universe']['id']
-
-    cols_to_keep: List[str] = [
-        'id',
-        'name',
-        'apps number',
-        'universe_id',
-    ]
-    app_types_df = pd.DataFrame(app_types)
-    app_types_df = app_types_df[cols_to_keep]
-
-    filter_columns: List[str] = []
-    s.plt.table(
-        data=app_types_df,
-        menu_path=menu_path_,
-        order=0,
-        filter_columns=filter_columns,
-    )
-
-
-def set_apps_detail(
-    apps: List[Dict],
-    reports: List[Dict],
-):
-    menu_path_: str = f'{menu_path}/apps-detail'
-    df_ = pd.DataFrame(reports)
-    reports_by_apps = df_.groupby('appId')['id'].count().to_dict()
-    data_error: List[str] = []
-    for app_ in apps:
-        try:
-            app_['apps number'] = reports_by_apps[app_['id']]
-        except KeyError:
-            # TODO this is to make an indicator
-            data_error: List[str] = data_error + [app_['id']]
-
-    filter_columns: List[str] = []
-    apps_df: pd.DataFrame = pd.DataFrame(apps)
-    cols_to_keep: List[str] = [
-        'id', 'appBusinessId', 'createdAt',
-    ]
-    apps_df = apps_df[cols_to_keep]
-    s.plt.table(
-        data=apps_df,
-        menu_path=menu_path_,
-        order=0,
-        filter_columns=filter_columns,
-    )
-
-
-def set_report_detail(reports: List[Dict]):
-    if not reports:
+def set_component_detail(s: shimoku.Client, components: List[Dict]):
+    if not components:
         return
 
-    menu_path_: str = f'{menu_path}/reports-detail'
-    report_types: List[str] = [
-        json.loads(report['dataFields'])['type'].capitalize()
-        if report["reportType"] == 'ECHARTS'
-        else report["reportType"].lower().capitalize()
-        if report["reportType"]
+    s.plt.change_path('Components Detail')
+
+    component_types: List[str] = [
+        component['dataFields']['type'].capitalize()
+        if component["reportType"] == 'ECHARTS'
+        else component["reportType"].lower().capitalize()
+        if component["reportType"]
         else 'Table'
-        for report in reports
+        for component in components
     ]
 
-    data = dict(Counter(report_types))
+    data = dict(Counter(component_types))
     df = pd.DataFrame(data, index=[0]).T.reset_index()
-    df.columns = ['report_type', 'count']
+    df.columns = ['component_type', 'count']
     s.plt.bar(
         data=df,
-        title='Total number of reports by type in your apps',
-        x='report_type', y=['count'],
-        x_axis_name='Report Type', y_axis_name='Count',
-        menu_path=menu_path_,
+        title='Total number of components by type in your menu_paths',
+        x='component_type', y=['count'],
+        x_axis_name='Component Type', y_axis_name='Count',
         order=0,
     )
 
-    filter_columns: List[str] = []
-    reports_df: pd.DataFrame = pd.DataFrame(reports)
+    components_df: pd.DataFrame = pd.DataFrame(components)
     cols_to_keep: List[str] = [
-        'id', 'appId', 'path', 'grid', 'createdAt', 'reportType',
+        'id', 'order', 'path', 'reportType',
     ]
-    reports_df = reports_df[cols_to_keep]
-    reports_df = reports_df.fillna('-')
-    s.plt.table(
-        data=reports_df,
-        menu_path=menu_path_,
-        order=1,
-        title='All reports detail',
-        filter_columns=filter_columns,
-    )
+    components_df = components_df[cols_to_keep]
+    components_df = components_df.fillna('-')
+    s.plt.table(data=components_df, order=1, title='All components detail')
 
 
-def get_data() -> Tuple[List[str]]:
-    businesses: List[Dict] = self.universe.get_universe_businesses()
+def get_data(s: shimoku.Client) -> Tuple[List[dict], List[dict], List[dict]]:
+    non_permitted_workspaces = open('non_permitted_workspaces.txt', 'a+')
+    read_non_permitted_workspaces = open('non_permitted_workspaces.txt', 'r')
+    npw_l = read_non_permitted_workspaces.readlines()
+    read_non_permitted_workspaces.close()
+    new_non_permitted_workspaces = []
+    workspaces: List[Dict] = s.universes.get_universe_workspaces(uuid=s.universe_id)
+    menu_paths: List[Dict] = []
+    components: List[Dict] = []
 
-    bo_business = [
-        business for business in businesses
-        if business['name'] == menu_path_seed
-    ]
-    if not bo_business:
-        bo_business = self.business.create_business(name=menu_path_seed)
-    else:
-        bo_business = bo_business[0]
-    business_id: str = bo_business['id']
-    s.plt.set_business(business_id)
-
-    app_types: List[Dict] = self.universe.get_universe_app_types()
-
-    apps: List[Dict] = []
-    for business in businesses:
-        apps_temp: List[Dict] = self.business.get_business_apps(business['id'])
-        apps = apps + apps_temp
-
-    reports: List[Dict] = []
-    for app in apps:
-        try:
-            reports_temp = self.app.get_app_reports(
-                business_id=app['appBusinessId'],
-                app_id=app['id'],
-            )
-        except Exception as e:
+    for workspace in copy(workspaces):
+        if workspace['id'] + '\n' in npw_l:
+            workspaces.remove(workspace)
             continue
-        reports = reports + reports_temp
+        try:
+            menu_paths_temp: List[Dict] = s.workspaces.get_workspace_menu_paths(uuid=workspace['id'])
+            menu_paths.extend(menu_paths_temp)
+        except RetryError as e:
+            new_non_permitted_workspaces.append(workspace['id'])
+            logger.warning(f"No access permission to workspace {workspace['id']}")
+            continue
 
-    return businesses, app_types, apps, reports
+        s.set_workspace(workspace['id'])
+        for menu_path in menu_paths_temp:
+            try:
+                components_temp = s.menu_paths.get_menu_path_components(uuid=menu_path['id'])
+            except RetryError as e:
+                new_non_permitted_workspaces.append(workspace['id'])
+                workspaces.remove(workspace)
+                logger.warning(f"No access permission to menu_path {menu_path['id']}")
+                continue
+            components.extend(components_temp)
+
+    if new_non_permitted_workspaces:
+        new_non_permitted_workspaces = [f'{workspace}\n' for workspace in new_non_permitted_workspaces]
+        non_permitted_workspaces.writelines(new_non_permitted_workspaces)
+
+    non_permitted_workspaces.close()
+
+    return workspaces, menu_paths, components
 
 
 def main():
     logger.info('Shimoku Backoffice - It takes about 5 minutes to be processed')
+
+    access_token: str = getenv('API_TOKEN')
+    universe_id: str = getenv('UNIVERSE_ID')
+    environment: str = getenv('ENVIRONMENT')
+    workspace_id: str = getenv('WORKSPACE_ID')
+
+    s = shimoku.Client(
+        access_token=access_token,
+        universe_id=universe_id,
+        environment=environment,
+        verbosity='INFO',
+        async_execution=True,
+    )
+    s.reuse_data_sets()
     start_time = dt.datetime.now()
 
-    businesses, app_types, apps, reports = get_data()
+    workspaces, menu_paths, components = get_data(s)
     logger.info('Data retrieved')
 
-    set_overview_page(
-        businesses=businesses,
-        app_types=app_types,
-        apps=apps,
-        reports=reports,
-    )
+    s.set_workspace(workspace_id)
+    if not s.boards.get_board(name='Default Name'):
+        s.boards.create_board(name='Default Name')
+    dashboard_id = s.boards.get_board(name='Default Name')['id']
+
+    s.set_menu_path('Backoffice')
+    s.plt.clear_menu_path()
+
+    set_overview_page(s, workspaces, menu_paths, components, dashboard_id)
     logger.info('Page "Overview" created')
 
-    set_business_detail(
-        businesses=businesses,
-        apps=apps,
-    )
-    logger.info('Page "Business detail" created')
+    set_workspace_detail(s, workspaces)
+    logger.info('Page "Workspace detail" created')
 
-    set_app_type_detail(
-        app_types=app_types,
-        apps=apps,
-    )
-    logger.info('Page "Apptype detail" created')
+    set_menu_paths_detail(s, menu_paths)
+    logger.info('Page "Menu paths detail" created')
 
-    set_apps_detail(
-        apps=apps,
-        reports=reports,
-    )
-    logger.info('Page "Apps detail" created')
-
-    set_report_detail(reports=reports)
-    logger.info('Page "Report detail" created')
+    set_component_detail(s, components)
+    logger.info('Page "Component detail" created')
 
     end_time = dt.datetime.now()
     logger.info(f'Execution time: {end_time - start_time}')
+
+    s.run()
+
+
+if __name__ == '__main__':
+    main()
