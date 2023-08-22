@@ -1,4 +1,4 @@
-# BassPlayer Analytics Dashboard (SDK v.0.20)
+# BassPlayer Analytics Dashboard (SDK v.1.1)
 
 This dashboard showcases a lot of the available features of the Shimoku SDK. It includes extensive use of bentoboxes,
 tabs, modals, iframes, echarts, and more.

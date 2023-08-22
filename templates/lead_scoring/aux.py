@@ -78,7 +78,7 @@ def get_data(leads_data_path: str) -> Dict:
             'title': 'High conversion (#)',
             'value': int(total_occurrences * high_conversion),
             'color': 'success',
-            "target_path": 'www.shimoku.com',
+            "targetPath": 'www.shimoku.com',
         },
         {
             'description': '% of leads that will purchase within 120 days. Time saved: 80%',
@@ -86,14 +86,14 @@ def get_data(leads_data_path: str) -> Dict:
             'value': '85%',
             'color': 'success',
             'variant': 'contained',
-            "target_path": 'www.shimoku.com',
+            "targetPath": 'www.shimoku.com',
         },
         {
             'description': f"{100 * moderate_conversion:.2f}% of total {total_occurrences}",
             'title': 'Moderate conversion (#)',
             'value': int(total_occurrences * moderate_conversion),
             'color': 'warning',
-            "target_path": 'www.shimoku.com',
+            "targetPath": 'www.shimoku.com',
         },
         {
             'description': '% of leads that will purchase within 120 days. Time saved: 70%',
@@ -101,7 +101,7 @@ def get_data(leads_data_path: str) -> Dict:
             'value': '40%',
             'color': 'warning',
             'variant': 'contained',
-            "target_path": 'www.shimoku.com',
+            "targetPath": 'www.shimoku.com',
         },
         {
             "description": f"{100 * low_conversion:.2f}% of total {total_occurrences}",
@@ -166,7 +166,7 @@ def get_data(leads_data_path: str) -> Dict:
     product_recommendation_indicators = [
         {
             "color": "warning",
-            "backgroundImage": "https://cdn-mx.comparabien.com/s3fs-public/styles/blog_full/public/field/image/seguro%20de%20auto.png?itok=be2ewUsJ",
+            "backgroundImage": "https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/freerangepexels00938-image-kwvx0t9j.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=c1efe8c454d88010fe6ff98c8746397d",
             "variant": "outlined", "description": "", "title": "Autos (# prospects)",
             "align": "left", "value": int(len(test_prediction) * 0.4)
         },
@@ -177,7 +177,7 @@ def get_data(leads_data_path: str) -> Dict:
         },
         {
             "color": "warning",
-            "backgroundImage": "https://s3.amazonaws.com/s3.timetoast.com/public/uploads/photos/11439948/SALUD-P%C3%9ABLICA-Y-GESTI%C3%93N-SANITARIA.jpg",
+            "backgroundImage": "https://i.ibb.co/Vw4f63j/SALUD-P-BLICA-Y-GESTI-N-SANITARIA-2.jpg",
             "variant": "outlined", "description": "", "title": "Health (# prospects)",
             "align": "left", "value": int(len(test_prediction) * 0.2)
         }
