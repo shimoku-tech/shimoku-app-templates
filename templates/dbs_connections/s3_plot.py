@@ -1,26 +1,11 @@
-import io
 from os import getenv, environ
 
 import boto3
 import pandas as pd
-import shimoku_api_python as shimoku
+from aux import init_sdk
 
-
-def init_sdk() -> shimoku.Client:
-    api_key: str = getenv('API_TOKEN')
-    universe_id: str = getenv('UNIVERSE_ID')
-
-    return shimoku.Client(
-        access_token=api_key,
-        universe_id=universe_id, business_id=business_id,
-        environment='production',
-        verbosity='INFO',
-        async_execution=async_exec,
-    )
-
-
-os.environ["AWS_ACCESS_KEY_ID"] = os.getenv('AWS_ACCESS_KEY_ID')
-os.environ["AWS_SECRET_ACCESS_KEY"] = os.getenv('AWS_SECRET_ACCESS_KEY')
+environ["AWS_ACCESS_KEY_ID"] = getenv('AWS_ACCESS_KEY_ID')
+environ["AWS_SECRET_ACCESS_KEY"] = getenv('AWS_SECRET_ACCESS_KEY')
 bucket = 'my_bucket'
 filename = 'filename.csv'
 

@@ -1,5 +1,5 @@
 # Core python libraries
-from typing import Any
+from typing import Any, Tuple
 # Third party
 import pandas as pd
 import numpy as np
@@ -52,7 +52,8 @@ wn = {
 }
 # --- End Tabs Configuration ---
 
-def kpis(shimoku: Client, order: int, dfs: dict[str, pd.DataFrame], tabs_index, origin=""):
+
+def kpis(s: Client, order: int, dfs: dict[str, pd.DataFrame], origin=""):
     """
     Indicators
     """
@@ -83,10 +84,12 @@ def kpis(shimoku: Client, order: int, dfs: dict[str, pd.DataFrame], tabs_index, 
     cw_kpis = calculate_kpis(dfs['cw_data'])
     lw_kpis = calculate_kpis(dfs['lw_data'])
 
-    def plot_indicator(data: dict[str, Any], kpi_name: str, order: int, options={}):
+    def plot_indicator(data: dict[str, Any], kpi_name: str, order: int, options=None):
         """
         Plots the indicators to the dashboard
         """
+        if options is None:
+            options = {}
 
         cw_kpi = cw_kpis[kpi_name]
         lw_kpi = lw_kpis[kpi_name]
@@ -99,7 +102,7 @@ def kpis(shimoku: Client, order: int, dfs: dict[str, pd.DataFrame], tabs_index, 
             'value': human_format(cw_kpi),
             'icon': '',
             'bigIcon': '',
-            'footer': f"CW {human_format(cw_kpi)} - SPLW {human_format(lw_kpi)}"
+            'description': f"CW {human_format(cw_kpi)} - SPLW {human_format(lw_kpi)}"
         }
 
         if kpi_diff < 0:
@@ -113,87 +116,58 @@ def kpis(shimoku: Client, order: int, dfs: dict[str, pd.DataFrame], tabs_index, 
 
         # Default indicator parameter, extend via the 'options'
         # parameter
-        indicator_opts={
-            'cols_size': 3,
-            'rows_size': 1,
-            'value': 'value',
-            'color': 'color',
-            'header': 'title',
-            'align': 'align',
-            'footer': 'footer',
-            'icon': 'icon',
-            'big_icon': 'bigIcon',
-            'tabs_index': tabs_index,
-            'menu_path': periodpath,
-            **options,
-        }
-
-        shimoku.plt.indicator(
-            data={
-                **data,
-                **common_data,
-            },
+        s.plt.indicator(
+            data={**data, **common_data},
             order=order,
-            **indicator_opts,
+            cols_size=3,
+            rows_size=1,
+            **options
         )
-
-    html_opts = {
-        'tabs_index': tabs_index,
-        'cols_size': 12,
-        'menu_path': periodpath,
-    }
 
     next_order = order
 
     # Current week
-    title="CW - Current Week status Vs SPLW - Same Period Last Week"
+    title = "CW - Current Week status Vs SPLW - Same Period Last Week"
 
-    shimoku.plt.html(
-        order=next_order,
-        html=shimoku.html_components.panel(
+    s.plt.html(
+        order=next_order, cols_size=12,
+        html=s.html_components.panel(
             text=title,
             href="",
         ),
-        **html_opts,
     )
 
     hash_tag = "(#)"
-    next_order+= 1
+    next_order += 1
     plot_indicator(
-        data={
-            'title': f"Orders {hash_tag}",
-        },
+        data={'title': f"Orders {hash_tag}"},
         kpi_name='orders',
         order=next_order,
-        options={
-            'padding':'0, 0, 0, 2'
-        },
+        options={'padding': '0, 0, 0, 2'}
     )
 
-    next_order+= 1
+    next_order += 1
     plot_indicator(
-        data={
-            'title': f"Revenue (€)",
-        },
+        data={'title': f"Revenue (€)"},
         kpi_name='revenue',
         order=next_order,
     )
 
-    next_order+= 1
+    next_order += 1
     plot_indicator(
-        data={
-            'title': f"Products sold {hash_tag}",
-        },
+        data={'title': f"Products sold {hash_tag}"},
         kpi_name='products_sold',
         order=next_order,
-        options={
-            'padding':'0, 2, 0, 0'
-        },
+        options={'padding': '0, 2, 0, 0'},
     )
 
-    return next_order
+    return next_order+1
 
-def stacked_bar_sales(shimoku: Client, order: int, dfs: dict[str,pd.DataFrame], origins: list[str]):
+
+def stacked_bar_sales(
+    s: Client, order: int, dfs: dict[str, pd.DataFrame],
+    origins: list[str], parent_tabs_index: tuple[str, str]
+):
     """
     Plots a stacked bar chart that compare revenues of the week by origin
     """
@@ -221,14 +195,14 @@ def stacked_bar_sales(shimoku: Client, order: int, dfs: dict[str,pd.DataFrame], 
 
         return grouped_data
 
-    def plot_stacked(order: int, week: str):
+    def plot_stacked(week: str):
         """
         Plots the stacked bar chart
         """
 
         # Build data
         basedfs = pd.DataFrame(data={
-            'Day': ['Monday', 'Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+            'Day': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
         })
 
         week_colname = wn[week]['colname']
@@ -249,46 +223,31 @@ def stacked_bar_sales(shimoku: Client, order: int, dfs: dict[str,pd.DataFrame], 
         basedfs.loc[:, 'App mobile'] = basedfs['App mobile'].map('{:.2f}'.format)
         basedfs.loc[:, 'Store'] = basedfs['Store'].map('{:.2f}'.format)
 
-        menupath = periodpath
-
-        tabs_index=(stackbar_tab_group, week_colname)
-        next_order=order
-
-        shimoku.plt.stacked_barchart(
-            subtitle=week_colname,
+        s.plt.stacked_bar(
+            title=week_colname,
             data=basedfs,
-            show_values=[False],
             x='Day',
-            order=next_order,
+            order=0,
             cols_size=12,
-            menu_path=menupath,
-            tabs_index=tabs_index,
         )
-        return next_order
 
-    next_order=order
-
-    # Position the tabs above of the stacked bar
-    shimoku.plt.update_tabs_group_metadata(
-        order=next_order,
-        menu_path=periodpath,
-        group_name=stackbar_tab_group,
-        just_labels=True,
-        sticky=False,
+    s.plt.set_tabs_index(
+        tabs_index=(stackbar_tab_group, list(wn.keys())[0]), just_labels=True,
+        sticky=False, order=order, parent_tabs_index=parent_tabs_index
     )
-    next_order+=1
-
     for week in wn.keys():
-        next_order+=plot_stacked(next_order, week)
-        next_order+=1
+        s.plt.change_current_tab(week)
+        plot_stacked(week)
 
-    return next_order
+    s.plt.set_tabs_index(tabs_index=parent_tabs_index)
+    return order + 1
 
-def product_type_table(shimoku: Client, order: int, dfs: dict[str,pd.DataFrame], tabs_index: tuple[str, str], origin: str) -> int:
+
+def product_type_table(s: Client, order: int, dfs: dict[str, pd.DataFrame], origin: str) -> int:
     """
     The table shows the revenue
     """
-    def get_products_data(column: str, rn_cols: dict[str,str]):
+    def get_products_data(column: str, rn_cols: dict[str, str]):
         """
         """
         aggregations = {
@@ -356,7 +315,6 @@ def product_type_table(shimoku: Client, order: int, dfs: dict[str,pd.DataFrame],
             inplace=True)
         return pt_table_plan
 
-
     # Products
     table = get_products_data(
         column='product_name', rn_cols={'product_name': 'Product'}
@@ -365,45 +323,39 @@ def product_type_table(shimoku: Client, order: int, dfs: dict[str,pd.DataFrame],
     # Reorder columns
     table = table[['Product', 'Revenue SPLW (€)', 'Revenue CW (€)', 'Rev Growth', 'Rev Change', 'Quantity SPLW', 'Quantity CW', 'Qty Growth', 'Qty Change', 'Origin']]
 
-    next_order = order
-    shimoku.plt.html(
-        menu_path=periodpath,
-        order=next_order,
-        tabs_index=tabs_index,
-        html=shimoku.html_components.panel(
+    s.plt.html(
+        order=order,
+        html=s.html_components.panel(
             text="Compare the last two weeks, see which products grew in revenue",
             href=""
         )
     )
 
     color_dict = {
-        'Up': ('active', 'filled', 'rounded'),
-        'Down': ('error', 'filled', 'rounded'),
-        'No change': ('neutral', 'filled', 'rounded'),
+        'Up': 'active',
+        'Down': 'error',
+        'No change': 'neutral',
     }
 
     base_filters = ['Rev Change']
-    next_order+=1
-    shimoku.plt.table(
+    s.plt.table(
         data=table,
-        filter_columns= base_filters + ['Origin'] if origin == "all" else base_filters,
-        search_columns=['Product'],
+        categorical_columns=base_filters + ['Origin'] if origin == "all" else base_filters,
         menu_path=periodpath,
-        order=next_order,
-        tabs_index=tabs_index,
-        value_suffixes={
-            'Rev Growth': " %",
-            'Qty Growth': " %",
-        },
+        order=order+1,
         label_columns={
             'Qty Change': color_dict,
             'Rev Change': color_dict,
         },
     )
 
-    return next_order
+    return order+2
 
-def top_ten_winners(shimoku: Client, order: int, dfs: dict[str,pd.DataFrame], origin: str):
+
+def top_ten_winners(
+    s: Client, order: int, dfs: dict[str, pd.DataFrame],
+    origin: str
+) -> int:
     """
     Top 10 Product Winners WoW & Top 10 Product Losers WoW
 
@@ -415,15 +367,12 @@ def top_ten_winners(shimoku: Client, order: int, dfs: dict[str,pd.DataFrame], or
     tabs_index = origin_tabs_map[origin]['tab_index']
     menupath = periodpath
 
-
-    def plot_chart(agg_col:str, tab: str, order:int):
+    def plot_chart(agg_col: str, tab: str, order: int):
         def group_rev(df: pd.DataFrame):
             """
             Filters data by origin, then groups and sums the products by revenue or quantity
             """
-            return filter_by_origin(df, origin).groupby('product_name', as_index=False).agg(
-                {agg_col: "sum"}
-            )
+            return filter_by_origin(df, origin).groupby('product_name', as_index=False).agg({agg_col: "sum"})
 
         cw_rev = group_rev(dfs['cw_data'])
         lw_rev = group_rev(dfs['lw_data'])
@@ -453,10 +402,10 @@ def top_ten_winners(shimoku: Client, order: int, dfs: dict[str,pd.DataFrame], or
         df.sort_values(['Diff'], ascending=False, inplace=True)
 
         # Skip those products that had the same revenue in
-        df.query(f"Diff != 0",inplace=True)
+        df.query(f"Diff != 0", inplace=True)
 
         qty = 10
-        df_winners = df.query(f"Diff > 0").head(n=qty) # Top 10 best revenue
+        df_winners = df.query(f"Diff > 0").head(n=qty)  # Top 10 best revenue
 
         # Top 10 worst revenue
         df_loosers = df.query(f" Diff < 0 & cw_rev > 0").tail(n=qty)
@@ -539,19 +488,19 @@ def top_ten_winners(shimoku: Client, order: int, dfs: dict[str,pd.DataFrame], or
             },
             'xAxis': {
                 'type': 'value',
-                'axisLine': { 'show': False },
+                'axisLine': {'show': False},
                 'position': 'top',
-                'axisLabel': { 'show': False },
+                'axisLabel': {'show': False},
                 'splitLine': {
                     'show': False,
                 }
             },
             'yAxis': {
                 'type': 'category',
-                'axisLine': { 'show': True },
-                'axisLabel': { 'show': False },
-                'axisTick': { 'show': False },
-                'splitLine': { 'show': False },
+                'axisLine': {'show': True},
+                'axisLabel': {'show': False},
+                'axisTick': {'show': False},
+                'splitLine': {'show': False},
                 'data': y_data,
             },
             'series': [
@@ -565,122 +514,45 @@ def top_ten_winners(shimoku: Client, order: int, dfs: dict[str,pd.DataFrame], or
                         'width': 270,
                         'overflow': 'truncate',
                         # 'formatter': '{b}, {c} €',
-                        'formatter': '{b}\n{c} €' if tab=="Revenue (€)" else '{b}\n{c}',
+                        'formatter': '{b}\n{c} €' if tab == "Revenue (€)" else '{b}\n{c}',
                     },
                     'data': series_data,
                 }
             ]
-        };
+        }
 
-        next_order=order
-        shimoku.plt.free_echarts(
-            data=df_loosers[:1], # Dummy data
+        next_order = order
+        s.plt.free_echarts(
+            data=[{}],
             options=options,
             order=next_order,
-            menu_path=menupath,
-            tabs_index=(top_ten_tabgroup, tab),
             cols_size=12,
             rows_size=5,
         )
 
         return next_order
 
-    next_order=order
-    shimoku.plt.html(
-        html=shimoku.html_components.panel(
+    s.plt.set_tabs_index(tabs_index)
+    s.plt.html(
+        html=s.html_components.panel(
             text="Products that didn't sold this current week, are not shown.",
             symbol_name="info",
             href="",
-        ),
-        order=next_order,
-        menu_path=menupath,
-        tabs_index=tabs_index,
+        ), order=order,
     )
-    next_order+=1
-
-    # Save this value for later use
-    stackbar_tabs_order=next_order
-
-    # Increment one, because tabs is going to occupy this place
-    next_order+=1
 
     # Plot charts
-    next_order+=plot_chart(agg_col="prod_billing", tab="Revenue (€)", order=next_order)
-    next_order+=1
-    next_order+=plot_chart(agg_col="quantity", tab="Units Sold", order=next_order)
+    s.plt.set_tabs_index((top_ten_tabgroup, "Revenue (€)"), order=order+1,
+                         just_labels=True, sticky=False, parent_tabs_index=tabs_index)
+    plot_chart(agg_col="prod_billing", tab="Revenue (€)", order=0)
+    s.plt.change_current_tab("Units Sold")
+    plot_chart(agg_col="quantity", tab="Units Sold", order=0)
 
-    # Do tab work
-    shimoku.plt.insert_tabs_group_in_tab(
-        menu_path=periodpath,
-        parent_tab_index=tabs_index,
-        child_tabs_group=top_ten_tabgroup,
-    )
+    s.plt.set_tabs_index(tabs_index)
+    return order+2
 
-    shimoku.plt.update_tabs_group_metadata(
-        order=stackbar_tabs_order,
-        menu_path=periodpath,
-        group_name=top_ten_tabgroup,
-        just_labels=True,
-        sticky=False,
-    )
-    return next_order
 
-def configure_tabs(shimoku: Client):
-    """
-    Configure Tabs
-    """
-
-    # --- Assign child tabs to parent tabs ---
-
-    # The origin tabs as children of periodtabs
-    shimoku.plt.insert_tabs_group_in_tab(
-        menu_path=periodpath,
-        parent_tab_index=period_tabs['WoW']['tab_index'],
-        child_tabs_group=pt_tab_group,
-    )
-
-    # The stacked bar chart as child of the origin tabs
-    shimoku.plt.insert_tabs_group_in_tab(
-        menu_path=periodpath,
-        parent_tab_index=origin_tabs_map['all']['tab_index'],
-        child_tabs_group=stackbar_tab_group,
-    )
-
-    # --- End Assing tabs to parent tabs ---
-
-    # Configure period tabs styles
-    shimoku.plt.update_tabs_group_metadata(
-        order=1,
-        menu_path=periodpath,
-        group_name=pt_tab_group,
-        just_labels=True,
-        sticky=False,
-    )
-
-    # --- Order Tabs ---
-    shimoku.plt.change_tabs_group_internal_order(
-        group_name=pt_tab_group,
-        menu_path=periodpath,
-        tabs_list=[
-            origin_tabs_map['all']['tab_index'][1],
-            origin_tabs_map['web']['tab_index'][1],
-            origin_tabs_map['app_mobile']['tab_index'][1],
-            origin_tabs_map['store']['tab_index'][1],
-        ]
-    )
-
-    shimoku.plt.change_tabs_group_internal_order(
-        group_name=period_group,
-        menu_path=periodpath,
-        tabs_list=[
-            period_tabs['WoW']['tab_index'][1],
-            period_tabs['MoM']['tab_index'][1],
-            period_tabs['YoY']['tab_index'][1],
-        ]
-    )
-    # --- End Order Tabs ---
-
-def plot_dashboard(shimoku: Client):
+def plot_dashboard(s: Client):
     """
     Main function, plots the dashboard
     """
@@ -691,46 +563,38 @@ def plot_dashboard(shimoku: Client):
     # Get origins including the special 'all'
     all_origins = ['all'] + origins
 
+    s.set_menu_path(periodpath)
+    s.plt.clear_menu_path()
     for period in period_tabs.keys():
         period_tab_index = period_tabs[period]['tab_index']
+        s.plt.set_tabs_index(period_tabs[period]['tab_index'], order=0)
 
         if period != "WoW":
             # dummy stuff, so the other tabs are visible
-            shimoku.plt.html(
-                menu_path=periodpath,
+            s.plt.html(
                 order=1,
-                tabs_index=period_tab_index,
-                html=shimoku.html_components.panel(
+                html=s.html_components.panel(
                     text=f"{period_tab_index[1]}",
                     href="",
                 )
             )
         if period == "WoW":
-            order = 2
             for origin in all_origins:
                 tabs_index = origin_tabs_map[origin]['tab_index']
-
-                order += kpis(shimoku, order, dfs, tabs_index, origin)
-                order += 1
+                s.plt.set_tabs_index(tabs_index, order=2, parent_tabs_index=period_tabs[period]['tab_index'],
+                                     sticky=False, just_labels=True)
+                order = kpis(s, 1, dfs, origin)
                 # Only plot the stacked bar chart in all tab
                 if origin == "all":
-                    shimoku.plt.html(
-                        menu_path=periodpath,
+                    s.plt.html(
                         order=order,
-                        tabs_index=tabs_index,
-                        html=shimoku.html_components.panel(
+                        html=s.html_components.panel(
                             text="Revenue Week Over Week",
                             href="",
                         )
                     )
-                    order+=1
+                    stacked_bar_sales(s, order+1, dfs, origins, tabs_index)
 
-                    # No need no increment order after stacked_bar is plotted
-                    # it already does it inside the function
-                    order+=stacked_bar_sales(shimoku, order, dfs, origins)
+                order = top_ten_winners(s, order+2, dfs, origin)
 
-                order+=top_ten_winners(shimoku, order, dfs, origin)
-                order+=1
-
-                # the table will go into a all 'tab'
-                order+=product_type_table(shimoku, order, dfs, tabs_index, origin)
+                product_type_table(s, order, dfs, origin)

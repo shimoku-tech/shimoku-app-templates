@@ -1,4 +1,4 @@
-# Food Revenue dashboard
+# Food Revenue dashboard (SDK v.1.1)
 
 This dashboard serves as an example of what can be plotted with the Shimoku SDK, its based on the context of a restaurant which has an interest on its generated revenue over the span of two weeks, the current week (cw) and last week (lw).
 
