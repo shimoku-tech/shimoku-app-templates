@@ -1,2 +1,0 @@
-python-dotenv==1.0.0
-shimoku-api-python==1.1.1
