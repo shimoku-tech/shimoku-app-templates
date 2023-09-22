@@ -19,6 +19,7 @@
 The project is a Cross Selling template. It leverages a Shimoku SDK (v.1.1.1) and utility functions to access and manipulate data in a workspace. 
 It offers features such as plotting dashboards, loading and transforming data, and displaying tables. 
 The project aims to optimize reusability, provide reliable and scalable software solutions.
+
 ---
 
 ## 📦 Features
