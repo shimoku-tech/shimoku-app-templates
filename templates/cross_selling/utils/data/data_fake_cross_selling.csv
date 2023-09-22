@@ -1,0 +1,125 @@
+Lead ID,Lead Scoring,Probability,Drivers,Barriers,Product
+1,High,90.4,Edad 15% 35 - Ingresos 25% >35k,Localización -10% Rural - Último Contacto -5% Hace 1 mes,Salud
+1,Medium,60.2,Años Socio 12% 5 - Comercial Asignado 8% Sí,Edad -8% 35 - Ingresos -2% <30k,Auto
+1,Low,40.1,Localización 10% Urbana - Último Contacto 5% Reciente,Edad -15% 35 - Años Socio -5% 5,Hogar
+1,High,80.3,Edad 20% 35 - Ingresos 15% >35k,Localización -12% Rural - Último Contacto -3% Hace 1 mes,Vida
+2,High,85.4,Edad 18% 40 - Ingresos 22% >40k,Localización -9% Rural - Último Contacto -4% Hace 1 mes,Salud
+2,Medium,55.2,Años Socio 11% 4 - Comercial Asignado 7% Sí,Edad -7% 40 - Ingresos -3% <25k,Auto
+2,Low,35.1,Localización 9% Urbana - Último Contacto 6% Reciente,Edad -14% 40 - Años Socio -6% 4,Hogar
+2,High,75.3,Edad 19% 40 - Ingresos 16% >40k,Localización -11% Rural - Último Contacto -2% Hace 1 mes,Vida
+3,High,88.4,Edad 17% 45 - Ingresos 21% >45k,Localización -8% Rural - Último Contacto -3% Hace 1 mes,Salud
+3,Medium,50.2,Años Socio 10% 3 - Comercial Asignado 6% Sí,Edad -6% 45 - Ingresos -4% <20k,Auto
+3,Low,30.1,Localización 8% Urbana - Último Contacto 7% Reciente,Edad -13% 45 - Años Socio -7% 3,Hogar
+3,High,70.3,Edad 18% 45 - Ingresos 17% >45k,Localización -10% Rural - Último Contacto -1% Hace 1 mes,Vida
+4,High,87.4,Edad 16% 50 - Ingresos 20% >50k,Localización -7% Rural - Último Contacto -2% Hace 1 mes,Salud
+4,Medium,45.2,Años Socio 9% 2 - Comercial Asignado 5% Sí,Edad -5% 50 - Ingresos -5% <15k,Auto
+4,Low,25.1,Localización 7% Urbana - Último Contacto 8% Reciente,Edad -12% 50 - Años Socio -8% 2,Hogar
+4,High,65.3,Edad 17% 50 - Ingresos 18% >50k,Localización -9% Rural - Último Contacto -1% Hace 1 mes,Vida
+5,High,86.4,Edad 15% 55 - Ingresos 19% >55k,Localización -6% Rural - Último Contacto -1% Hace 1 mes,Salud
+5,Medium,40.2,Años Socio 8% 1 - Comercial Asignado 4% Sí,Edad -4% 55 - Ingresos -6% <10k,Auto
+5,Low,20.1,Localización 6% Urbana - Último Contacto 9% Reciente,Edad -11% 55 - Años Socio -9% 1,Hogar
+5,High,60.3,Edad 16% 55 - Ingresos 19% >55k,Localización -8% Rural - Último Contacto -1% Hace 1 mes,Vida
+6,High,85.4,Edad 14% 60 - Ingresos 18% >60k,Localización -5% Rural - Último Contacto -1% Hace 1 mes,Salud
+6,Medium,55.2,Años Socio 11% 4 - Comercial Asignado 7% Sí,Edad -7% 60 - Ingresos -3% <25k,Auto
+6,Low,35.1,Localización 9% Urbana - Último Contacto 6% Reciente,Edad -14% 60 - Años Socio -6% 4,Hogar
+6,High,75.3,Edad 19% 60 - Ingresos 16% >60k,Localización -11% Rural - Último Contacto -2% Hace 1 mes,Salud
+7,High,84.4,Edad 13% 65 - Ingresos 17% >65k,Localización -4% Rural - Último Contacto -1% Hace 1 mes,Salud
+7,Medium,50.2,Años Socio 10% 3 - Comercial Asignado 6% Sí,Edad -6% 65 - Ingresos -4% <20k,Auto
+7,Low,30.1,Localización 8% Urbana - Último Contacto 7% Reciente,Edad -13% 65 - Años Socio -7% 3,Hogar
+7,High,70.3,Edad 18% 65 - Ingresos 17% >65k,Localización -10% Rural - Último Contacto -1% Hace 1 mes,Salud
+8,High,83.4,Edad 12% 70 - Ingresos 16% >70k,Localización -3% Rural - Último Contacto -1% Hace 1 mes,Salud
+8,Medium,45.2,Años Socio 9% 2 - Comercial Asignado 5% Sí,Edad -5% 70 - Ingresos -5% <15k,Auto
+8,Low,25.1,Localización 7% Urbana - Último Contacto 8% Reciente,Edad -12% 70 - Años Socio -8% 2,Hogar
+8,High,65.3,Edad 17% 70 - Ingresos 18% >70k,Localización -9% Rural - Último Contacto -1% Hace 1 mes,Salud
+9,High,82.4,Edad 11% 75 - Ingresos 15% >75k,Localización -2% Rural - Último Contacto -1% Hace 1 mes,Salud
+9,Medium,40.2,Años Socio 8% 1 - Comercial Asignado 4% Sí,Edad -4% 75 - Ingresos -6% <10k,Auto
+9,Low,20.1,Localización 6% Urbana - Último Contacto 9% Reciente,Edad -11% 75 - Años Socio -9% 1,Hogar
+9,High,60.3,Edad 16% 75 - Ingresos 19% >75k,Localización -8% Rural - Último Contacto -1% Hace 1 mes,Salud
+10,High,81.4,Edad 10% 80 - Ingresos 14% >80k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Salud
+10,Medium,35.2,Años Socio 7% 1 - Comercial Asignado 3% Sí,Edad -3% 80 - Ingresos -7% <5k,Auto
+10,Low,15.1,Localización 5% Urbana - Último Contacto 10% Reciente,Edad -10% 80 - Años Socio -10% 1,Hogar
+10,High,55.3,Edad 15% 80 - Ingresos 20% >80k,Localización -7% Rural - Último Contacto -1% Hace 1 mes,Salud
+11,High,80.4,Edad 9% 85 - Ingresos 13% >85k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Salud
+11,Medium,30.2,Años Socio 6% 1 - Comercial Asignado 2% Sí,Edad -2% 85 - Ingresos -8% <1k,Auto
+11,Low,10.1,Localización 4% Urbana - Último Contacto 11% Reciente,Edad -9% 85 - Años Socio -11% 1,Hogar
+11,High,50.3,Edad 14% 85 - Ingresos 21% >85k,Localización -6% Rural - Último Contacto -1% Hace 1 mes,Salud
+12,High,79.4,Edad 8% 90 - Ingresos 12% >90k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Salud
+12,Medium,25.2,Años Socio 5% 1 - Comercial Asignado 1% Sí,Edad -1% 90 - Ingresos -9% <500,Auto
+12,Low,5.1,Localización 3% Urbana - Último Contacto 12% Reciente,Edad -8% 90 - Años Socio -12% 1,Hogar
+12,High,45.3,Edad 13% 90 - Ingresos 22% >90k,Localización -5% Rural - Último Contacto -1% Hace 1 mes,Salud
+13,High,78.4,Edad 7% 95 - Ingresos 11% >95k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Salud
+13,Medium,20.2,Años Socio 4% 1 - Comercial Asignado 1% Sí,Edad -1% 95 - Ingresos -10% <100,Auto
+13,Low,0.1,Localización 2% Urbana - Último Contacto 13% Reciente,Edad -7% 95 - Años Socio -13% 1,Hogar
+13,High,40.3,Edad 12% 95 - Ingresos 23% >95k,Localización -4% Rural - Último Contacto -1% Hace 1 mes,Salud
+14,High,77.4,Edad 6% 100 - Ingresos 10% >100k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Salud
+14,Medium,15.2,Años Socio 3% 1 - Comercial Asignado 1% Sí,Edad -1% 100 - Ingresos -11% <10,Auto
+14,Low,0.1,Localización 1% Urbana - Último Contacto 14% Reciente,Edad -6% 100 - Años Socio -14% 1,Hogar
+14,High,35.3,Edad 11% 100 - Ingresos 24% >100k,Localización -3% Rural - Último Contacto -1% Hace 1 mes,Salud
+15,High,76.4,Edad 5% 105 - Ingresos 9% >105k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Salud
+15,Medium,10.2,Años Socio 2% 1 - Comercial Asignado 1% Sí,Edad -1% 105 - Ingresos -12% <1,Auto
+15,Low,0.1,Localización 1% Urbana - Último Contacto 15% Reciente,Edad -5% 105 - Años Socio -15% 1,Hogar
+15,High,30.3,Edad 10% 105 - Ingresos 25% >105k,Localización -2% Rural - Último Contacto -1% Hace 1 mes,Salud
+16,High,75.4,Edad 4% 110 - Ingresos 8% >110k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Salud
+16,Medium,5.2,Años Socio 1% 1 - Comercial Asignado 1% Sí,Edad -1% 110 - Ingresos -13% <10,Auto
+16,Low,0.1,Localización 1% Urbana - Último Contacto 16% Reciente,Edad -4% 110 - Años Socio -16% 1,Hogar
+16,High,25.3,Edad 9% 110 - Ingresos 26% >110k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Salud
+17,High,74.4,Edad 3% 115 - Ingresos 7% >115k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Salud
+17,Medium,0.2,Años Socio 1% 1 - Comercial Asignado 1% Sí,Edad -1% 115 - Ingresos -14% <1,Auto
+17,Low,0.1,Localización 1% Urbana - Último Contacto 17% Reciente,Edad -3% 115 - Años Socio -17% 1,Hogar
+17,High,20.3,Edad 8% 115 - Ingresos 27% >115k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Salud
+18,High,73.4,Edad 2% 120 - Ingresos 6% >120k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Salud
+18,Medium,0.2,Años Socio 1% 1 - Comercial Asignado 1% Sí,Edad -1% 120 - Ingresos -15% <1,Auto
+18,Low,0.1,Localización 1% Urbana - Último Contacto 18% Reciente,Edad -2% 120 - Años Socio -18% 1,Hogar
+18,High,15.3,Edad 7% 120 - Ingresos 28% >120k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Salud
+19,High,72.4,Edad 1% 125 - Ingresos 5% >125k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Salud
+19,Medium,0.2,Años Socio 1% 1 - Comercial Asignado 1% Sí,Edad -1% 125 - Ingresos -16% <1,Auto
+19,Low,0.1,Localización 1% Urbana - Último Contacto 19% Reciente,Edad -1% 125 - Años Socio -19% 1,Hogar
+19,High,10.3,Edad 6% 125 - Ingresos 29% >125k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Salud
+20,High,71.4,Edad 0% 130 - Ingresos 4% >130k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Salud
+20,Medium,0.2,Años Socio 1% 1 - Comercial Asignado 1% Sí,Edad -1% 130 - Ingresos -17% <1,Auto
+20,Low,0.1,Localización 1% Urbana - Último Contacto 20% Reciente,Edad 0% 130 - Años Socio -20% 1,Hogar
+20,High,93.5,Edad 5% 130 - Ingresos 30% >130k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Dental
+21,High,94.1,Localización 1% Urbana - Último Contacto 15% Reciente,Edad -5% 105 - Años Socio -15% 1,Dental
+21,High,93.6,Edad 10% 105 - Ingresos 25% >105k,Localización -2% Rural - Último Contacto -1% Hace 1 mes,Dental
+21,High,94.2,Edad 4% 110 - Ingresos 8% >110k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Dental
+22,High,93.7,Años Socio 1% 1 - Comercial Asignado 1% Sí,Edad -1% 110 - Ingresos -13% <10,Dental
+22,High,94.3,Localización 1% Urbana - Último Contacto 16% Reciente,Edad -4% 110 - Años Socio -16% 1,Dental
+22,High,93.8,Edad 9% 110 - Ingresos 26% >110k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Dental
+23,High,94.4,Edad 3% 115 - Ingresos 7% >115k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Dental
+23,High,93.9,Años Socio 1% 1 - Comercial Asignado 1% Sí,Edad -1% 115 - Ingresos -14% <1,Dental
+23,High,94.5,Localización 1% Urbana - Último Contacto 17% Reciente,Edad -3% 115 - Años Socio -17% 1,Dental
+24,High,93.10,Edad 8% 115 - Ingresos 27% >115k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Dental
+24,High,94.6,Edad 2% 120 - Ingresos 6% >120k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Dental
+24,High,93.11,Edad 17% 50 - Ingresos 18% >50k,Localización -9% Rural - Último Contacto -1% Hace 1 mes,Dental
+25,High,94.7,Edad 15% 55 - Ingresos 19% >55k,Localización -6% Rural - Último Contacto -1% Hace 1 mes,Dental
+25,High,93.12,Edad 7% 120 - Ingresos 28% >120k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Dental
+25,High,94.8,Edad 7% 120 - Ingresos 28% >120k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Dental
+26,High,93.13,Edad 7% 120 - Ingresos 28% >120k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Dental
+26,High,94.9,Edad 15% 55 - Ingresos 19% >55k,Localización -6% Rural - Último Contacto -1% Hace 1 mes,Dental
+26,High,93.14,Edad 15% 55 - Ingresos 19% >55k,Localización -6% Rural - Último Contacto -1% Hace 1 mes,Dental
+27,High,94.10,Edad 15% 55 - Ingresos 19% >55k,Localización -6% Rural - Último Contacto -1% Hace 1 mes,Dental
+27,High,93.15,Edad 15% 55 - Ingresos 19% >55k,Localización -6% Rural - Último Contacto -1% Hace 1 mes,Familiar
+27,High,94.11,Edad 15% 55 - Ingresos 19% >55k,Localización -6% Rural - Último Contacto -1% Hace 1 mes,Familiar
+28,High,93.16,Edad 17% 50 - Ingresos 18% >50k,Localización -9% Rural - Último Contacto -1% Hace 1 mes,Familiar
+28,High,93.6,Edad 17% 50 - Ingresos 18% >50k,Localización -9% Rural - Último Contacto -1% Hace 1 mes,Familiar
+28,High,94.2,Edad 17% 50 - Ingresos 18% >50k,Localización -9% Rural - Último Contacto -1% Hace 1 mes,Familiar
+29,High,93.7,Edad 8% 115 - Ingresos 27% >115k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Familiar
+29,High,94.3,Edad 8% 115 - Ingresos 27% >115k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Familiar
+29,High,93.8,Edad 8% 115 - Ingresos 27% >115k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Familiar
+30,High,94.4,Edad 8% 115 - Ingresos 27% >115k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Hogar
+30,High,93.9,Edad 17% 50 - Ingresos 18% >50k,Localización -9% Rural - Último Contacto -1% Hace 1 mes,Hogar
+30,High,94.5,Edad 17% 50 - Ingresos 18% >50k,Localización -9% Rural - Último Contacto -1% Hace 1 mes,Hogar
+31,High,93.10,Edad 17% 50 - Ingresos 18% >50k,Localización -9% Rural - Último Contacto -1% Hace 1 mes,Hogar
+31,High,94.6,Edad 8% 115 - Ingresos 27% >115k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Hogar
+31,High,93.11,Edad 2% 120 - Ingresos 6% >120k,Localización -1% Rural - Último Contacto -1% Hace 1 mes,Hogar
+32,High,94.7,Edad 19% 40 - Ingresos 16% >40k,Localización -11% Rural - Último Contacto -2% Hace 1 mes,Hogar
+32,High,93.12,Edad 19% 40 - Ingresos 16% >40k,Localización -11% Rural - Último Contacto -2% Hace 1 mes,Hogar
+32,High,94.8,Edad 19% 40 - Ingresos 16% >40k,Localización -11% Rural - Último Contacto -2% Hace 1 mes,Salud
+33,High,93.13,Edad 19% 40 - Ingresos 16% >40k,Localización -11% Rural - Último Contacto -2% Hace 1 mes,Salud
+33,High,94.9,Edad 19% 40 - Ingresos 16% >40k,Localización -11% Rural - Último Contacto -2% Hace 1 mes,Auto
+33,High,93.14,Edad 19% 40 - Ingresos 16% >40k,Localización -11% Rural - Último Contacto -2% Hace 1 mes,Hogar
+34,High,94.10,Edad 15% 35 - Ingresos 25% >35k,Localización -10% Rural - Último Contacto -5% Hace 1 mes,Salud
+34,High,93.15,Edad 15% 35 - Ingresos 25% >35k,Localización -10% Rural - Último Contacto -5% Hace 1 mes,Salud
+34,High,94.11,Edad 15% 35 - Ingresos 25% >35k,Localización -10% Rural - Último Contacto -5% Hace 1 mes,Auto
+35,High,93.16,Edad 15% 35 - Ingresos 25% >35k,Localización -10% Rural - Último Contacto -5% Hace 1 mes,Hogar
+35,High,94.12,Edad 15% 35 - Ingresos 25% >35k,Localización -10% Rural - Último Contacto -5% Hace 1 mes,Salud
