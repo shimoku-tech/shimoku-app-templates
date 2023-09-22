@@ -9,11 +9,7 @@
 - [🚀 Getting Started](#-getting-started)
     - [🔧 Installation](#-installation)
     - [🤖 Running ](#-running-)
-    - [🧪 Tests](#-tests)
-- [🛣 Roadmap](#-roadmap)
 - [🤝 Contributing](#-contributing)
-- [📄 License](#-license)
-- [👏 Acknowledgments](#-acknowledgments)
 
 ---
 
@@ -71,7 +67,7 @@ repo
 
 | File                                            | Summary                                                                                                                                                                                                                                   |
 | ---                                             | ---                                                                                                                                                                                                                                       |
-| [app.py](https://github.com/./blob/main/app.py) | This code creates a Shimoku Client instance, sets the workspace, deletes workspace menu paths, and plots a dashboard. It utilizes a Shimoku API library and various utility functions for accessing and manipulating data in a workspace. |
+| [app.py](https://github.com/shimoku-tech/shimoku-app-templates/blob/template-cross-selling/templates/cross_selling/app.py) | This code creates a Shimoku Client instance, sets the workspace, deletes workspace menu paths, and plots a dashboard. It utilizes a Shimoku API library and various utility functions for accessing and manipulating data in a workspace. |
 
 </details>
 
@@ -79,11 +75,10 @@ repo
 
 | File                                                              | Summary                                                                                                                                                                                                                                                                                                |
 | ---                                                               | ---                                                                                                                                                                                                                                                                                                    |
-| [layout.py](https://github.com/./blob/main/utils/layout.py)       | The code sets up a dashboard for a specific board in Shimoku. It uses the Shimoku client instance and computes predictions using the PredictionsPage class. The board is specified using a name, and the predictions are computed using the PredictionsPage instance.                                  |
-| [utils.py](https://github.com/./blob/main/utils/utils.py)         | The code includes functions for formatting a number, reading a CSV file into a DataFrame, and a class representing a collection of DataFrames. The purpose is to provide core functionalities for data analysis, such as formatting, reading, and managing data.                                       |
-| [transform.py](https://github.com/./blob/main/utils/transform.py) | This code provides functions to count occurrences of values in a specified column of a DataFrame, including an option to filter the DataFrame based on another column value. Additionally, there is a function to convert a DataFrame to a dictionary of indicator product data.                       |
-| [settings.py](https://github.com/./blob/main/utils/settings.py)   | This code loads environment variables using `dotenv`. It initializes credentials and settings required for the Shimoku Dashboard API. It also sets up the name of the workspace and specifies the folder and file name for the data used in the project.                                               |
-| [__init__ .py](https://github.com/./blob/main/utils/__init__ .py) | This code implements core functionalities for a web application. It includes features like user authentication, data storage and retrieval from a database, handling of CRUD operations on various data models, and integration with third-party APIs for payment processing and social media sharing. |
+| [layout.py](https://github.com/shimoku-tech/shimoku-app-templates/blob/template-cross-selling/templates/cross_selling/utils/layout.py)       | The code sets up a dashboard for a specific board in Shimoku. It uses the Shimoku client instance and computes predictions using the PredictionsPage class. The board is specified using a name, and the predictions are computed using the PredictionsPage instance.                                  |
+| [utils.py](https://github.com/shimoku-tech/shimoku-app-templates/blob/template-cross-selling/templates/cross_selling/utils/utils.py)         | The code includes functions for formatting a number, reading a CSV file into a DataFrame, and a class representing a collection of DataFrames. The purpose is to provide core functionalities for data analysis, such as formatting, reading, and managing data.                                       |
+| [transform.py](https://github.com/shimoku-tech/shimoku-app-templates/blob/template-cross-selling/templates/cross_selling/utils/transform.py) | This code provides functions to count occurrences of values in a specified column of a DataFrame, including an option to filter the DataFrame based on another column value. Additionally, there is a function to convert a DataFrame to a dictionary of indicator product data.                       |
+| [settings.py](https://github.com/shimoku-tech/shimoku-app-templates/blob/template-cross-selling/templates/cross_selling/utils/settings.py)   | This code loads environment variables using `dotenv`. It initializes credentials and settings required for the Shimoku Dashboard API. It also sets up the name of the workspace and specifies the folder and file name for the data used in the project.                                               |
 
 </details>
 
@@ -91,8 +86,7 @@ repo
 
 | File                                                                        | Summary                                                                                                                                                                                                                                                                                                                                          |
 | ---                                                                         | ---                                                                                                                                                                                                                                                                                                                                              |
-| [predictions.py](https://github.com/./blob/main/utils/paths/predictions.py) | This code defines a Tech Lead class called PredictionsPage, which has methods for loading and transforming data, plotting indicators, creating headings, and displaying tables. It uses the Shimoku API and other utility functions to generate a Predictions page with product recommendations based on lead scoring.                           |
-| [__init__ .py](https://github.com/./blob/main/utils/paths/__init__ .py)     | The code provides core functionalities such as data management, algorithm implementation, error handling, and user interface integration. It optimizes performance via efficient data structures and parallel processing. It incorporates modular design, easy extensibility, and thorough testing for reliable and scalable software solutions. |
+| [predictions.py](https://github.com/shimoku-tech/shimoku-app-templates/blob/template-cross-selling/templates/cross_selling/utils/paths/predictions.py) | This code defines a Tech Lead class called PredictionsPage, which has methods for loading and transforming data, plotting indicators, creating headings, and displaying tables. It uses the Shimoku API and other utility functions to generate a Predictions page with product recommendations based on lead scoring.                           |
 
 </details>
 
@@ -100,11 +94,9 @@ repo
 
 | File                                                                         | Summary                                                                                                                                                                                                                                                                                                                                     |
 | ---                                                                          | ---                                                                                                                                                                                                                                                                                                                                         |
-| [header.py](https://github.com/./blob/main/utils/components/header.py)       | The code generates a page header HTML with a title and subtitle. It includes styling for the title and subtitle, as well as an icon. The function takes the title and subtitle as inputs and returns the HTML code for the page header.                                                                                                     |
-| [__init__ .py](https://github.com/./blob/main/utils/components/__init__ .py) | The code includes core functionalities such as user authentication, data storage/retrieval, and data manipulation. It efficiently manages user access and permissions, securely stores data, and provides robust APIs for interacting with the data. Error handling and logging mechanisms ensure smooth functionality and maintainability. |
+| [header.py](https://github.com/shimoku-tech/shimoku-app-templates/blob/template-cross-selling/templates/cross_selling/utils/components/header.py)       | The code generates a page header HTML with a title and subtitle. It includes styling for the title and subtitle, as well as an icon. The function takes the title and subtitle as inputs and returns the HTML code for the page header.                                                                                                     |
 
 </details>
-
 ---
 
 ## 🚀 Getting Started
@@ -139,7 +131,7 @@ pip install -r requirements.txt
 SHIMOKU_TOKEN=
 UNIVERSE_ID=
 WORKSPACE_ID=
-``
+```
 
 ### 🤖 Running
 
