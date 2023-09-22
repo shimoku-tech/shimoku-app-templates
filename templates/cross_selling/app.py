@@ -15,7 +15,7 @@ if __name__ == "__main__":
     s = Shimoku.Client(
         access_token=access_token,
         universe_id=universe_id,
-        verbosity="INFO",
+        verbosity='INFO',
     )
 
     # Set the workspace for the Shimoku Client using the provided UUID.
