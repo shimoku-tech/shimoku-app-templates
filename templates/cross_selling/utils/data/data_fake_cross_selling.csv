@@ -1,0 +1,211 @@
+Lead ID,Lead Scoring,Probability,Drivers,Barriers,Product
+1,High,76.37,Edad 30% 50 - Ingresos 12% 8k - Años_Socio 25% 6,Comercial_Asignado -2% No - Localización -50% Rural - Último_Contacto -48% Hace 18 meses,Salud
+1,Medium,67.78,Edad 25% 50 - Ingresos 18% 8k - Comercial_Asignado 7% Sí,Años_Socio -3% 6 - Localización -40% Urbana - Último_Contacto -35% Hace 18 meses,Auto
+1,High,91.33,Ingresos 20% 8k - Años_Socio 15% 6 - Comercial_Asignado 5% Sí,Edad -1% 50 - Localización -45% Urbana - Último_Contacto -14% Hace 18 meses,Hogar
+1,Low,31.68,Edad 18% 50 - Comercial_Asignado 10% Sí - Localización 2% Rural,Ingresos -5% 8k - Años_Socio -8% 6 - Último_Contacto -32% Hace 18 meses,Vida
+1,Low,15.64,Ingresos 22% 8k - Años_Socio 7% 6 - Último_Contacto 1% Hace 18 meses,Edad -20% 50 - Comercial_Asignado -15% No - Localización -42% Urbana,Familiar
+1,Medium,63.79,Edad 22% 50 - Localización 30% Rural - Último_Contacto 4% Hace 18 meses,Ingresos -17% 8k - Años_Socio -9% 6 - Comercial_Asignado -6% Sí,Dental
+1,Medium,52.41,Edad 21% 50 - Comercial_Asignado 8% Sí - Último_Contacto 6% Hace 18 meses,Ingresos -13% 8k - Años_Socio -12% 6 - Localización -38% Urbana,Vida
+1,High,76.27,Ingresos 24% 8k - Comercial_Asignado 3% Sí - Localización 1% Rural,Edad -16% 50 - Años_Socio -10% 6 - Último_Contacto -10% Hace 18 meses,Viaje
+1,Medium,58.62,Años_Socio 17% 6 - Comercial_Asignado 9% Sí - Localización 3% Rural,Años_Socio -17% 6 - Comercial_Asignado -9% Sí - Localización -3% Rural,Mascotas
+1,Low,13.4,Edad 19% 50 - Localización 29% Rural - Último_Contacto 2% Hace 18 meses,Ingresos -1% 8k - Años_Socio -21% 6 - Comercial_Asignado -18% No,Empresarial
+1,Low,7.15,Ingresos 23% 8k - Años_Socio 5% 6 - Comercial_Asignado 1% No,Edad -11% 50 - Localización -41% Urbana - Último_Contacto -7% Hace 18 meses,Personal
+1,Medium,61.68,Edad 13% 50 - Localización 28% Rural - Último_Contacto 5% Hace 18 meses,Ingresos -21% 8k - Años_Socio -4% 6 - Comercial_Asignado -13% Sí,Ciberseguridad
+1,Low,26.93,Ingresos 10% 8k - Años_Socio 14% 6 - Localización 31% Rural,Edad -9% 50 - Comercial_Asignado -16% No - Último_Contacto -9% Hace 18 meses,Ingresos
+1,High,81.16,Edad 15% 50 - Comercial_Asignado 11% Sí - Localización 8% Rural,Ingresos -6% 8k - Años_Socio -19% 6 - Último_Contacto -3% Hace 18 meses,Jubilación
+1,Low,29.99,Ingresos 8% 8k - Comercial_Asignado 14% No - Último_Contacto 11% Hace 18 meses,Edad -2% 50 - Años_Socio -20% 6 - Localización -36% Urbana,Accidentes
+1,High,85.94,Edad 14% 50 - Localización 27% Rural - Último_Contacto 13% Hace 18 meses,Ingresos -4% 8k - Años_Socio -16% 6 - Comercial_Asignado -12% Sí,Responsabilidad
+1,High,76.49,Ingresos 9% 8k - Años_Socio 13% 6 - Localización 32% Rural,Edad -8% 50 - Comercial_Asignado -17% No - Último_Contacto -12% Hace 18 meses,Robo
+1,Medium,58.51,Edad 12% 50 - Comercial_Asignado 6% Sí - Localización 5% Rural,Ingresos -3% 8k - Años_Socio -22% 6 - Último_Contacto -15% Hace 18 meses,Protección
+1,High,94.85,Ingresos 7% 8k - Años_Socio 20% 6 - Comercial_Asignado 2% Sí,Edad -6% 50 - Localización -35% Urbana - Último_Contacto -16% Hace 18 meses,Salud Mental
+1,Low,10.96,Edad 11% 50 - Localización 26% Rural - Último_Contacto 14% Hace 18 meses,Ingresos -1% 8k - Años_Socio -21% 6 - Comercial_Asignado -18% No,Desempleo
+1,High,96.21,Ingresos 6% 8k - Comercial_Asignado 5% Sí - Último_Contacto 10% Hace 18 meses,Edad -1% 50 - Años_Socio -23% 6 - Localización -34% Urbana,Estudiantil
+2,Medium,64.39,Edad 30% 68 - Ingresos 12% 35k - Años_Socio 25% 5,Comercial_Asignado -2% No - Localización -50% Rural - Último_Contacto -48% Hace 19 meses,Salud
+2,Low,18.39,Edad 25% 68 - Ingresos 18% 35k - Comercial_Asignado 7% Sí,Años_Socio -3% 5 - Localización -40% Urbana - Último_Contacto -35% Hace 19 meses,Auto
+2,High,89.94,Ingresos 20% 35k - Años_Socio 15% 5 - Comercial_Asignado 5% Sí,Edad -1% 68 - Localización -45% Urbana - Último_Contacto -14% Hace 19 meses,Hogar
+2,High,76.6,Edad 18% 68 - Comercial_Asignado 10% Sí - Localización 2% Rural,Ingresos -5% 35k - Años_Socio -8% 5 - Último_Contacto -32% Hace 19 meses,Vida
+2,Medium,58.05,Ingresos 22% 35k - Años_Socio 7% 5 - Último_Contacto 1% Hace 19 meses,Edad -20% 68 - Comercial_Asignado -15% No - Localización -42% Urbana,Familiar
+2,Medium,52.29,Edad 22% 68 - Localización 30% Rural - Último_Contacto 4% Hace 19 meses,Ingresos -17% 35k - Años_Socio -9% 5 - Comercial_Asignado -6% Sí,Dental
+2,High,96.86,Edad 21% 68 - Comercial_Asignado 8% Sí - Último_Contacto 6% Hace 19 meses,Ingresos -13% 35k - Años_Socio -12% 5 - Localización -38% Urbana,Vida
+2,Low,21.33,Ingresos 24% 35k - Comercial_Asignado 3% Sí - Localización 1% Rural,Edad -16% 68 - Años_Socio -10% 5 - Último_Contacto -10% Hace 19 meses,Viaje
+2,Medium,59.67,Años_Socio 17% 5 - Comercial_Asignado 9% Sí - Localización 3% Rural,Edad -7% 68 - Ingresos -23% 35k - Último_Contacto -8% Hace 19 meses,Mascotas
+2,High,92.5,Edad 19% 68 - Localización 29% Rural - Último_Contacto 2% Hace 19 meses,Edad -9% 68 - Localización -29% Rural - Último_Contacto -2% Hace 19 meses,Empresarial
+2,High,96.91,Ingresos 23% 35k - Años_Socio 5% 5 - Comercial_Asignado 1% No,Ingresos -14% 35k - Años_Socio -11% 5 - Comercial_Asignado -4% Sí,Personal
+2,High,77.92,Edad 13% 68 - Localización 28% Rural - Último_Contacto 5% Hace 19 meses,Edad -11% 68 - Localización -41% Urbana - Último_Contacto -7% Hace 19 meses,Ciberseguridad
+2,Low,39.78,Ingresos 10% 35k - Años_Socio 14% 5 - Localización 31% Rural,Ingresos -21% 35k - Años_Socio -4% 5 - Comercial_Asignado -13% Sí,Ingresos
+2,High,83.98,Edad 15% 68 - Comercial_Asignado 11% Sí - Localización 8% Rural,Ingresos -3% 35k - Años_Socio -22% 5 - Último_Contacto -15% Hace 19 meses,Jubilación
+2,Low,35.91,Ingresos 8% 35k - Comercial_Asignado 14% No - Último_Contacto 11% Hace 19 meses,Edad -6% 68 - Localización -35% Urbana - Último_Contacto -16% Hace 19 meses,Accidentes
+2,High,92.67,Edad 14% 68 - Localización 27% Rural - Último_Contacto 13% Hace 19 meses,Edad -1% 68 - Años_Socio -23% 5 - Localización -34% Urbana,Responsabilidad
+2,Low,15.36,Ingresos 9% 35k - Años_Socio 13% 5 - Localización 32% Rural,Ingresos -6% 35k - Comercial_Asignado -5% Sí - Último_Contacto -10% Hace 19 meses,Robo
+2,Low,18.95,Edad 12% 68 - Comercial_Asignado 6% Sí - Localización 5% Rural,Edad -12% 68 - Comercial_Asignado -6% Sí - Localización -5% Rural,Protección
+2,Medium,59.61,Ingresos 7% 35k - Años_Socio 20% 5 - Comercial_Asignado 2% Sí,Ingresos -1% 35k - Años_Socio -21% 5 - Comercial_Asignado -18% No,Salud Mental
+2,Low,3.57,Edad 11% 68 - Localización 26% Rural - Último_Contacto 14% Hace 19 meses,Edad -11% 68 - Localización -26% Rural - Último_Contacto -14% Hace 19 meses,Desempleo
+2,Low,5.45,Ingresos 6% 35k - Comercial_Asignado 5% Sí - Último_Contacto 10% Hace 19 meses,Ingresos -6% 35k - Comercial_Asignado -5% Sí - Último_Contacto -10% Hace 19 meses,Estudiantil
+3,Low,15.31,Edad 30% 75 - Ingresos 12% 83k - Años_Socio 25% 1,Comercial_Asignado -2% No - Localización -50% Rural - Último_Contacto -48% Hace 25 meses,Salud
+3,Medium,59.43,Edad 25% 75 - Ingresos 18% 83k - Comercial_Asignado 7% Sí,Años_Socio -3% 1 - Localización -40% Urbana - Último_Contacto -35% Hace 25 meses,Auto
+3,Low,35.65,Ingresos 20% 83k - Años_Socio 15% 1 - Comercial_Asignado 5% Sí,Edad -1% 75 - Localización -45% Urbana - Último_Contacto -14% Hace 25 meses,Hogar
+3,High,93.24,Edad 18% 75 - Comercial_Asignado 10% Sí - Localización 2% Rural,Ingresos -5% 83k - Años_Socio -8% 1 - Último_Contacto -32% Hace 25 meses,Vida
+3,High,82.1,Ingresos 22% 83k - Años_Socio 7% 1 - Último_Contacto 1% Hace 25 meses,Edad -20% 75 - Comercial_Asignado -15% No - Localización -42% Urbana,Familiar
+3,Medium,59.44,Edad 22% 75 - Localización 30% Rural - Último_Contacto 4% Hace 25 meses,Ingresos -17% 83k - Años_Socio -9% 1 - Comercial_Asignado -6% Sí,Dental
+3,High,77.03,Edad 21% 75 - Comercial_Asignado 8% Sí - Último_Contacto 6% Hace 25 meses,Ingresos -13% 83k - Años_Socio -12% 1 - Localización -38% Urbana,Vida
+3,Low,13.48,Ingresos 24% 83k - Comercial_Asignado 3% Sí - Localización 1% Rural,Edad -16% 75 - Años_Socio -10% 1 - Último_Contacto -10% Hace 25 meses,Viaje
+3,High,85.73,Años_Socio 17% 1 - Comercial_Asignado 9% Sí - Localización 3% Rural,Edad -7% 75 - Ingresos -23% 83k - Último_Contacto -8% Hace 25 meses,Mascotas
+3,Medium,55.99,Edad 19% 75 - Localización 29% Rural - Último_Contacto 2% Hace 25 meses,Ingresos -14% 83k - Años_Socio -11% 1 - Comercial_Asignado -4% Sí,Empresarial
+3,Medium,51.3,Ingresos 23% 83k - Años_Socio 5% 1 - Comercial_Asignado 1% No,Edad -11% 75 - Localización -41% Urbana - Último_Contacto -7% Hace 25 meses,Personal
+3,Low,37.86,Edad 13% 75 - Localización 28% Rural - Último_Contacto 5% Hace 25 meses,Ingresos -21% 83k - Años_Socio -4% 1 - Comercial_Asignado -13% Sí,Ciberseguridad
+3,High,94.3,Ingresos 10% 83k - Años_Socio 14% 1 - Localización 31% Rural,Edad -9% 75 - Comercial_Asignado -16% No - Último_Contacto -9% Hace 25 meses,Ingresos
+3,Medium,56.2,Edad 15% 75 - Comercial_Asignado 11% Sí - Localización 8% Rural,Edad -15% 75 - Comercial_Asignado -11% Sí - Localización -8% Rural,Jubilación
+3,High,96.09,Ingresos 8% 83k - Comercial_Asignado 14% No - Último_Contacto 11% Hace 25 meses,Ingresos -6% 83k - Comercial_Asignado -5% Sí - Último_Contacto -10% Hace 25 meses,Accidentes
+3,High,93.58,Edad 14% 75 - Localización 27% Rural - Último_Contacto 13% Hace 25 meses,Edad -13% 75 - Localización -28% Rural - Último_Contacto -5% Hace 25 meses,Responsabilidad
+3,High,76.75,Ingresos 9% 83k - Años_Socio 13% 1 - Localización 32% Rural,Ingresos -9% 83k - Años_Socio -13% 1 - Localización -32% Rural,Robo
+3,Low,20.37,Edad 12% 75 - Comercial_Asignado 6% Sí - Localización 5% Rural,Edad -12% 75 - Comercial_Asignado -6% Sí - Localización -5% Rural,Protección
+3,High,81.08,Ingresos 7% 83k - Años_Socio 20% 1 - Comercial_Asignado 2% Sí,Ingresos -3% 83k - Años_Socio -22% 1 - Último_Contacto -15% Hace 25 meses,Salud Mental
+3,Low,28.29,Edad 11% 75 - Localización 26% Rural - Último_Contacto 14% Hace 25 meses,Edad -11% 75 - Localización -26% Rural - Último_Contacto -14% Hace 25 meses,Desempleo
+3,High,77.76,Ingresos 6% 83k - Comercial_Asignado 5% Sí - Último_Contacto 10% Hace 25 meses,Ingresos -6% 83k - Comercial_Asignado -5% Sí - Último_Contacto -10% Hace 25 meses,Estudiantil
+4,Medium,57.38,Edad 30% 50 - Ingresos 12% 54k - Años_Socio 25% 20,Comercial_Asignado -2% Sí - Localización -50% Urbana - Último_Contacto -48% Hace 10 meses,Salud
+4,Low,36.87,Edad 25% 50 - Ingresos 18% 54k - Comercial_Asignado 7% No,Años_Socio -3% 20 - Localización -40% Rural - Último_Contacto -35% Hace 10 meses,Auto
+4,Medium,64.0,Ingresos 20% 54k - Años_Socio 15% 20 - Comercial_Asignado 5% No,Edad -1% 50 - Localización -45% Rural - Último_Contacto -14% Hace 10 meses,Hogar
+4,Low,17.66,Edad 18% 50 - Comercial_Asignado 10% No - Localización 2% Urbana,Ingresos -5% 54k - Años_Socio -8% 20 - Último_Contacto -32% Hace 10 meses,Vida
+4,Medium,61.84,Ingresos 22% 54k - Años_Socio 7% 20 - Último_Contacto 1% Hace 10 meses,Edad -20% 50 - Comercial_Asignado -15% Sí - Localización -42% Rural,Familiar
+4,High,83.53,Edad 22% 50 - Localización 30% Urbana - Último_Contacto 4% Hace 10 meses,Ingresos -17% 54k - Años_Socio -9% 20 - Comercial_Asignado -6% No,Dental
+4,High,98.53,Edad 21% 50 - Comercial_Asignado 8% No - Último_Contacto 6% Hace 10 meses,Ingresos -13% 54k - Años_Socio -12% 20 - Localización -38% Rural,Vida
+4,Low,32.59,Ingresos 24% 54k - Comercial_Asignado 3% Sí - Localización 1% Urbana,Edad -16% 50 - Años_Socio -10% 20 - Último_Contacto -10% Hace 10 meses,Viaje
+4,Low,49.92,Años_Socio 17% 20 - Comercial_Asignado 9% No - Localización 3% Urbana,Edad -7% 50 - Ingresos -23% 54k - Último_Contacto -8% Hace 10 meses,Mascotas
+4,High,81.19,Edad 19% 50 - Localización 29% Rural - Último_Contacto 2% Hace 10 meses,Ingresos -14% 54k - Años_Socio -11% 20 - Comercial_Asignado -4% No,Empresarial
+4,Medium,63.88,Ingresos 23% 54k - Años_Socio 5% 20 - Comercial_Asignado 1% Sí,Edad -11% 50 - Localización -41% Urbana - Último_Contacto -7% Hace 10 meses,Personal
+4,High,90.85,Edad 13% 50 - Localización 28% Rural - Último_Contacto 5% Hace 10 meses,Ingresos -21% 54k - Años_Socio -4% 20 - Comercial_Asignado -13% No,Ciberseguridad
+4,Medium,55.31,Ingresos 10% 54k - Años_Socio 14% 20 - Localización 31% Rural,Edad -9% 50 - Comercial_Asignado -16% Sí - Último_Contacto -9% Hace 10 meses,Ingresos
+4,High,94.15,Edad 15% 50 - Comercial_Asignado 11% No - Localización 8% Rural,Ingresos -6% 54k - Años_Socio -19% 20 - Último_Contacto -3% Hace 10 meses,Jubilación
+4,Medium,63.82,Ingresos 8% 54k - Comercial_Asignado 14% Sí - Último_Contacto 11% Hace 10 meses,Edad -2% 50 - Años_Socio -20% 20 - Localización -36% Urbana,Accidentes
+4,High,97.28,Edad 2% 50 - Años_Socio 20% 20 - Localización 36% Urbana,Ingresos -4% 54k - Años_Socio -16% 20 - Comercial_Asignado -12% No,Responsabilidad
+4,Low,24.25,Ingresos 9% 54k - Años_Socio 13% 20 - Localización 32% Rural,Edad -8% 50 - Comercial_Asignado -17% Sí - Último_Contacto -12% Hace 10 meses,Robo
+4,Low,15.7,Edad 12% 50 - Comercial_Asignado 6% No - Localización 5% Rural,Ingresos -3% 54k - Años_Socio -22% 20 - Último_Contacto -15% Hace 10 meses,Protección
+4,Medium,72.16,Ingresos 7% 54k - Años_Socio 20% 20 - Comercial_Asignado 2% Sí,Edad -6% 50 - Localización -35% Urbana - Último_Contacto -16% Hace 10 meses,Salud Mental
+4,High,94.37,Edad 11% 50 - Localización 26% Rural - Último_Contacto 14% Hace 10 meses,Ingresos -1% 54k - Años_Socio -23% 20 - Comercial_Asignado -18% No,Desempleo
+4,Medium,57.14,Ingresos 6% 54k - Comercial_Asignado 5% Sí - Último_Contacto 10% Hace 10 meses,Edad -1% 50 - Años_Socio -24% 20 - Localización -34% Urbana,Estudiantil
+5,High,97.36,Edad 30% 25 - Ingresos 25% 86k - Años_Socio 24% 10,Comercial_Asignado -6% No - Localización -12% Rural - Último_Contacto -3% Hace 31 meses,Salud
+5,Low,01.01,Edad 28% 25 - Ingresos 20% 86k - Comercial_Asignado 2% Sí,Años_Socio -5% 10 - Localización -8% Rural - Último_Contacto -6% Hace 31 meses,Auto
+5,High,94.77,Ingresos 22% 86k - Años_Socio 19% 10 - Comercial_Asignado 8% Sí,Edad -1% 25 - Localización -14% Rural - Último_Contacto -9% Hace 31 meses,Hogar
+5,Low,10.04,Edad 26% 25 - Comercial_Asignado 4% Sí - Localización 3% Rural,Ingresos -10% 86k - Años_Socio -7% 10 - Último_Contacto -18% Hace 31 meses,Vida
+5,Low,12.97,Ingresos 21% 86k - Años_Socio 16% 10 - Último_Contacto 4% Hace 31 meses,Edad -4% 25 - Comercial_Asignado -11% No - Localización -10% Rural,Familiar
+5,High,99.36,Edad 27% 25 - Localización 15% Rural - Último_Contacto 5% Hace 31 meses,Localización -15% Rural - Último_Contacto -5% Hace 31 meses,Dental
+5,Low,44.22,Edad 29% 25 - Comercial_Asignado 7% Sí - Último_Contacto 1% Hace 31 meses,Ingresos -12% 86k - Años_Socio -11% 10 - Localización -7% Rural,Vida
+5,High,95.49,Ingresos 23% 86k - Comercial_Asignado 9% Sí - Localización 2% Rural,Años_Socio -13% 10 - Último_Contacto -11% Hace 31 meses,Viaje
+5,High,87.76,Años_Socio 18% 10 - Comercial_Asignado 10% Sí - Localización 1% Rural,Comercial_Asignado -14% No - Último_Contacto -7% Hace 31 meses,Mascotas
+5,Medium,53.71,Edad 24% 25 - Localización 13% Rural - Último_Contacto 2% Hace 31 meses,Comercial_Asignado -5% Sí - Localización -5% Rural,Empresarial
+5,High,81.57,Ingresos 24% 86k - Años_Socio 17% 10 - Comercial_Asignado 3% No,Años_Socio -6% 10 - Comercial_Asignado -13% Sí,Personal
+5,Low,28.25,Edad 23% 25 - Localización 16% Rural - Último_Contacto 6% Hace 31 meses,Años_Socio -15% 10 - Localización -19% Rural,Ciberseguridad
+5,High,95.02,Ingresos 20% 86k - Años_Socio 13% 10 - Localización 9% Rural,Comercial_Asignado -3% No - Último_Contacto -5% Hace 31 meses,Ingresos
+5,Medium,71.73,Edad 22% 25 - Comercial_Asignado 5% Sí - Localización 5% Rural,Comercial_Asignado -12% Sí - Localización -6% Rural,Jubilación
+5,Low,20.97,Ingresos 18% 86k - Años_Socio 14% 10 - Comercial_Asignado 1% No,Comercial_Asignado -1% No - Localización -9% Rural,Accidentes
+5,High,79.9,Edad 21% 25 - Localización 14% Rural - Último_Contacto 3% Hace 31 meses,Comercial_Asignado -4% Sí - Último_Contacto -8% Hace 31 meses,Responsabilidad
+5,High,78.15,Ingresos 19% 86k - Años_Socio 12% 10 - Localización 4% Rural,Comercial_Asignado -14% No - Último_Contacto -11% Hace 31 meses,Robo
+5,Medium,74.56,Edad 20% 25 - Comercial_Asignado 6% Sí - Localización 6% Rural,Comercial_Asignado -6% Sí - Localización -6% Rural,Protección
+5,Medium,74.63,Ingresos 17% 86k - Años_Socio 15% 10 - Comercial_Asignado 4% Sí,Comercial_Asignado -4% Sí - Localización -2% Rural,Salud Mental
+5,High,77.59,Edad 19% 25 - Localización 11% Rural - Último_Contacto 7% Hace 31 meses,Comercial_Asignado -12% Sí - Localización -17% Rural,Desempleo
+5,Low,43.39,Ingresos 16% 86k - Comercial_Asignado 3% No - Último_Contacto 5% Hace 31 meses,Edad -10% 25 - Años_Socio -16% 10 - Localización -19% Rural,Estudiantil
+6,Medium,55.81,Edad 30% 51 - Ingresos 15% 2k - Años_Socio 23% 14,Comercial_Asignado -9% No - Localización -36% Urbana - Último_Contacto -7% Hace 15 meses,Salud
+6,High,88.0,Edad 25% 51 - Ingresos 22% 2k - Comercial_Asignado 8% Sí,Años_Socio -12% 14 - Localización -30% Rural - Último_Contacto -8% Hace 15 meses,Auto
+6,High,96.49,Ingresos 20% 2k - Años_Socio 17% 14 - Comercial_Asignado 7% Sí,Edad -7% 51 - Localización -40% Rural - Último_Contacto -10% Hace 15 meses,Hogar
+6,High,77.57,Edad 18% 51 - Comercial_Asignado 12% Sí - Localización 2% Urbana,Ingresos -6% 2k - Años_Socio -9% 14 - Último_Contacto -13% Hace 15 meses,Vida
+6,High,89.09,Ingresos 22% 2k - Años_Socio 6% 14 - Último_Contacto 1% Hace 15 meses,Edad -20% 51 - Comercial_Asignado -10% No - Localización -35% Rural,Familiar
+6,Medium,57.9,Edad 22% 51 - Localización 32% Urbana - Último_Contacto 4% Hace 15 meses,Ingresos -17% 2k - Años_Socio -8% 14 - Comercial_Asignado -5% Sí,Dental
+6,High,90.29,Edad 21% 51 - Comercial_Asignado 11% Sí - Último_Contacto 6% Hace 15 meses,Ingresos -13% 2k - Años_Socio -7% 14 - Localización -28% Rural,Vida
+6,Low,7.13,Ingresos 24% 2k - Comercial_Asignado 3% Sí - Localización 1% Urbana,Edad -16% 51 - Años_Socio -10% 14 - Último_Contacto -11% Hace 15 meses,Viaje
+6,Low,42.77,Años_Socio 15% 14 - Comercial_Asignado 9% Sí - Localización 3% Urbana,Edad -5% 51 - Ingresos -23% 2k - Último_Contacto -9% Hace 15 meses,Mascotas
+6,Medium,57.7,Edad 19% 51 - Localización 29% Rural - Último_Contacto 2% Hace 15 meses,Ingresos -14% 2k - Años_Socio -4% 14 - Comercial_Asignado -13% Sí,Empresarial
+6,Medium,56.77,Ingresos 23% 2k - Años_Socio 3% 14 - Comercial_Asignado 1% No,Edad -11% 51 - Localización -31% Urbana - Último_Contacto -5% Hace 15 meses,Personal
+6,High,77.17,Edad 13% 51 - Localización 28% Rural - Último_Contacto 3% Hace 15 meses,Ingresos -21% 2k - Años_Socio -5% 14 - Comercial_Asignado -15% Sí,Ciberseguridad
+6,Medium,59.85,Ingresos 10% 2k - Años_Socio 12% 14 - Localización 27% Rural,Edad -9% 51 - Comercial_Asignado -16% No - Último_Contacto -14% Hace 15 meses,Ingresos
+6,Low,06.03,Edad 15% 51 - Comercial_Asignado 12% Sí - Localización 7% Rural,Ingresos -6% 2k - Años_Socio -11% 14 - Último_Contacto -12% Hace 15 meses,Jubilación
+6,Low,43.03,Ingresos 8% 2k - Comercial_Asignado 14% No - Último_Contacto 11% Hace 15 meses,Edad -2% 51 - Años_Socio -13% 14 - Localización -26% Rural,Accidentes
+6,Medium,61.05,Edad 14% 51 - Localización 23% Urbana - Último_Contacto 13% Hace 15 meses,Ingresos -4% 2k - Años_Socio -4% 14 - Comercial_Asignado -14% Sí,Responsabilidad
+6,Low,35.46,Ingresos 9% 2k - Años_Socio 10% 14 - Localización 25% Rural,Edad -8% 51 - Comercial_Asignado -17% No - Último_Contacto -12% Hace 15 meses,Robo
+6,High,98.89,Edad 12% 51 - Comercial_Asignado 6% Sí - Localización 6% Rural,Ingresos -3% 2k - Años_Socio -3% 14 - Último_Contacto -15% Hace 15 meses,Protección
+6,Low,8.0,Ingresos 7% 2k - Años_Socio 9% 14 - Comercial_Asignado 2% Sí,Edad -6% 51 - Localización -24% Urbana - Último_Contacto -11% Hace 15 meses,Salud Mental
+6,High,76.3,Edad 11% 51 - Localización 21% Rural - Último_Contacto 12% Hace 15 meses,Ingresos -1% 2k - Años_Socio -8% 14 - Comercial_Asignado -18% No,Desempleo
+6,High,98.66,Ingresos 6% 2k - Comercial_Asignado 5% Sí - Último_Contacto 10% Hace 15 meses,Edad -1% 51 - Años_Socio -7% 14 - Localización -22% Urbana,Estudiantil
+7,Medium,73.34,Edad 30% 96 - Ingresos 10% 48k - Años_Socio 15% 14,Comercial_Asignado -5% Sí - Localización -35% Rural - Último_Contacto -5% Hace 12 meses,Salud
+7,High,89.63,Edad 25% 96 - Ingresos 15% 48k - Comercial_Asignado 8% No,Años_Socio -2% 14 - Localización -32% Rural - Último_Contacto -7% Hace 12 meses,Auto
+7,Low,45.41,Ingresos 20% 48k - Años_Socio 12% 14 - Comercial_Asignado 3% No,Edad -3% 96 - Localización -33% Rural - Último_Contacto -8% Hace 12 meses,Hogar
+7,High,83.47,Edad 18% 96 - Comercial_Asignado 6% No - Localización 4% Rural,Ingresos -8% 48k - Años_Socio -10% 14 - Último_Contacto -9% Hace 12 meses,Vida
+7,Medium,61.76,Ingresos 22% 48k - Años_Socio 9% 14 - Último_Contacto 1% Hace 12 meses,Edad -1% 96 - Comercial_Asignado -7% Sí - Localización -34% Urbana,Familiar
+7,Low,2.56,Edad 22% 96 - Localización 29% Rural - Último_Contacto 2% Hace 12 meses,Ingresos -17% 48k - Años_Socio -8% 14 - Comercial_Asignado -4% No,Dental
+7,High,87.23,Edad 21% 96 - Comercial_Asignado 9% No - Último_Contacto 4% Hace 12 meses,Ingresos -13% 48k - Años_Socio -7% 14 - Localización -31% Rural,Vida
+7,High,87.99,Ingresos 24% 48k - Comercial_Asignado 2% No - Localización 3% Rural,Edad -2% 96 - Años_Socio -11% 14 - Último_Contacto -6% Hace 12 meses,Viaje
+7,Medium,67.59,Años_Socio 17% 14 - Comercial_Asignado 1% Sí - Localización 1% Rural,Edad -8% 96 - Ingresos -11% 48k - Último_Contacto -10% Hace 12 meses,Mascotas
+7,Medium,70.94,Edad 8% 96 - Ingresos 11% 48k - Último_Contacto 10% Hace 12 meses,Ingresos -14% 48k - Años_Socio -6% 14 - Comercial_Asignado -5% No,Empresarial
+7,High,99.13,Edad 19% 96 - Localización 27% Rural - Último_Contacto 3% Hace 12 meses,Edad -11% 96 - Localización -28% Urbana - Último_Contacto -12% Hace 12 meses,Personal
+7,Low,44.69,Ingresos 23% 48k - Años_Socio 5% 14 - Comercial_Asignado 1% Sí,Ingresos -21% 48k - Años_Socio -4% 14 - Comercial_Asignado -13% No,Ciberseguridad
+7,Medium,56.75,Edad 11% 96 - Localización 28% Urbana - Último_Contacto 12% Hace 12 meses,Edad -9% 96 - Comercial_Asignado -15% Sí - Último_Contacto -11% Hace 12 meses,Ingresos
+7,High,77.97,Edad 13% 96 - Localización 30% Rural - Último_Contacto 7% Hace 12 meses,Ingresos -6% 48k - Años_Socio -12% 14 - Último_Contacto -8% Hace 12 meses,Jubilación
+7,High,94.81,Ingresos 10% 48k - Años_Socio 13% 14 - Localización 2% Rural,Edad -3% 96 - Años_Socio -10% 14 - Localización -5% Urbana,Accidentes
+7,High,77.04,Edad 15% 96 - Comercial_Asignado 11% No - Localización 7% Rural,Ingresos -4% 48k - Años_Socio -9% 14 - Comercial_Asignado -12% No,Responsabilidad
+7,Low,5.88,Ingresos 8% 48k - Comercial_Asignado 14% Sí - Último_Contacto 5% Hace 12 meses,Edad -7% 96 - Comercial_Asignado -16% Sí - Último_Contacto -9% Hace 12 meses,Robo
+7,High,82.12,Edad 14% 96 - Localización 26% Rural - Último_Contacto 6% Hace 12 meses,Ingresos -3% 48k - Años_Socio -8% 14 - Último_Contacto -10% Hace 12 meses,Protección
+7,Low,47.51,Ingresos 9% 48k - Años_Socio 11% 14 - Localización 1% Rural,Edad -6% 96 - Localización -4% Urbana - Último_Contacto -13% Hace 12 meses,Salud Mental
+7,High,96.26,Edad 12% 96 - Comercial_Asignado 7% No - Localización 6% Rural,Ingresos -1% 48k - Años_Socio -7% 14 - Comercial_Asignado -17% No,Desempleo
+7,Low,23.37,Ingresos 7% 48k - Años_Socio 10% 14 - Comercial_Asignado 2% Sí,Edad -2% 96 - Años_Socio -9% 14 - Localización -3% Urbana,Estudiantil
+8,Low,16.56,Edad 30% 51 - Ingresos 12% 97k - Años_Socio 25% 15,Comercial_Asignado -2% Sí - Localización -50% Urbana - Último_Contacto -48% Hace 21 meses,Salud
+8,Medium,65.6,Edad 25% 51 - Ingresos 18% 97k - Comercial_Asignado 7% No,Años_Socio -3% 15 - Localización -40% Rural - Último_Contacto -35% Hace 21 meses,Auto
+8,Low,42.78,Ingresos 20% 97k - Años_Socio 15% 15 - Comercial_Asignado 5% No,Edad -1% 51 - Localización -45% Rural - Último_Contacto -14% Hace 21 meses,Hogar
+8,Low,44.18,Edad 18% 51 - Comercial_Asignado 10% No - Localización 2% Urbana,Ingresos -5% 97k - Años_Socio -8% 15 - Último_Contacto -32% Hace 21 meses,Vida
+8,Low,10.86,Ingresos 22% 97k - Años_Socio 7% 15 - Último_Contacto 1% Hace 21 meses,Edad -20% 51 - Comercial_Asignado -15% Sí - Localización -42% Rural,Familiar
+8,Medium,51.89,Edad 20% 51 - Comercial_Asignado 15% Sí - Localización 42% Rural,Ingresos -17% 97k - Años_Socio -9% 15 - Comercial_Asignado -6% No,Dental
+8,Low,18.71,Edad 22% 51 - Localización 30% Urbana - Último_Contacto 4% Hace 21 meses,Ingresos -13% 97k - Años_Socio -12% 15 - Localización -38% Rural,Vida
+8,High,77.9,Ingresos 17% 97k - Años_Socio 9% 15 - Comercial_Asignado 6% No,Edad -16% 51 - Años_Socio -10% 15 - Último_Contacto -10% Hace 21 meses,Viaje
+8,High,89.69,Años_Socio 17% 15 - Comercial_Asignado 9% No - Localización 3% Urbana,Edad -7% 51 - Ingresos -23% 97k - Último_Contacto -8% Hace 21 meses,Mascotas
+8,Medium,57.9,Edad 7% 51 - Ingresos 23% 97k - Último_Contacto 8% Hace 21 meses,Ingresos -14% 97k - Años_Socio -11% 15 - Comercial_Asignado -4% No,Empresarial
+8,High,75.4,Edad 19% 51 - Localización 29% Rural - Último_Contacto 2% Hace 21 meses,Edad -11% 51 - Localización -41% Rural - Último_Contacto -7% Hace 21 meses,Personal
+8,Low,13.33,Ingresos 14% 97k - Años_Socio 11% 15 - Comercial_Asignado 4% No,Ingresos -21% 97k - Años_Socio -4% 15 - Comercial_Asignado -13% No,Ciberseguridad
+8,High,94.38,Ingresos 23% 97k - Años_Socio 5% 15 - Comercial_Asignado 1% Sí,Edad -9% 51 - Comercial_Asignado -16% Sí - Último_Contacto -9% Hace 21 meses,Ingresos
+8,Medium,66.39,Edad 11% 51 - Localización 41% Rural - Último_Contacto 7% Hace 21 meses,Ingresos -6% 97k - Años_Socio -19% 15 - Último_Contacto -3% Hace 21 meses,Jubilación
+8,Medium,69.33,Edad 13% 51 - Localización 28% Urbana - Último_Contacto 5% Hace 21 meses,Edad -2% 51 - Años_Socio -20% 15 - Localización -36% Rural,Accidentes
+8,Low,25.55,Ingresos 8% 97k - Comercial_Asignado 14% Sí - Último_Contacto 11% Hace 21 meses,Ingresos -4% 97k - Años_Socio -16% 15 - Comercial_Asignado -12% No,Responsabilidad
+8,High,98.33,Edad 2% 51 - Años_Socio 20% 15 - Localización 36% Rural,Edad -8% 51 - Comercial_Asignado -17% Sí - Último_Contacto -12% Hace 21 meses,Robo
+8,Medium,69.86,Edad 14% 51 - Localización 27% Urbana - Último_Contacto 13% Hace 21 meses,Ingresos -3% 97k - Años_Socio -22% 15 - Último_Contacto -15% Hace 21 meses,Protección
+8,High,93.59,Ingresos 9% 97k - Años_Socio 13% 15 - Localización 32% Rural,Edad -6% 51 - Localización -35% Rural - Último_Contacto -16% Hace 21 meses,Salud Mental
+8,High,85.5,Edad 8% 51 - Comercial_Asignado 17% Sí - Último_Contacto 12% Hace 21 meses,Ingresos -1% 97k - Años_Socio -21% 15 - Comercial_Asignado -18% Sí,Desempleo
+8,High,75.51,Ingresos 6% 97k - Comercial_Asignado 5% No - Último_Contacto 10% Hace 21 meses,Ingresos -1% 97k - Años_Socio -23% 15 - Localización -34% Rural,Estudiantil
+9,Low,11.18,Edad 30% 30 - Ingresos 18% 73k - Años_Socio 25% 2,Comercial_Asignado -2% No - Localización -50% Urbana - Último_Contacto -48% Hace 26 meses,Salud
+9,High,88.48,Edad 25% 30 - Ingresos 17% 73k - Comercial_Asignado 7% Sí,Años_Socio -3% 2 - Localización -40% Rural - Último_Contacto -35% Hace 26 meses,Auto
+9,Low,19.32,Ingresos 20% 73k - Años_Socio 15% 2 - Comercial_Asignado 5% Sí,Edad -1% 30 - Localización -45% Rural - Último_Contacto -14% Hace 26 meses,Hogar
+9,High,93.85,Edad 18% 30 - Comercial_Asignado 10% Sí - Localización 2% Urbana,Ingresos -5% 73k - Años_Socio -8% 2 - Último_Contacto -32% Hace 26 meses,Vida
+9,Medium,62.17,Ingresos 22% 73k - Años_Socio 7% 2 - Último_Contacto 1% Hace 26 meses,Ingresos -22% 73k - Años_Socio -7% 2 - Último_Contacto -1% Hace 26 meses,Familiar
+9,Low,14.1,Edad 22% 30 - Localización 30% Urbana - Último_Contacto 4% Hace 26 meses,Edad -20% 30 - Comercial_Asignado -15% No - Localización -42% Rural,Dental
+9,Medium,62.16,Edad 21% 30 - Comercial_Asignado 8% Sí - Último_Contacto 6% Hace 26 meses,Ingresos -17% 73k - Años_Socio -9% 2 - Comercial_Asignado -6% Sí,Vida
+9,Low,16.5,Ingresos 24% 73k - Comercial_Asignado 3% Sí - Localización 1% Urbana,Edad -16% 30 - Años_Socio -10% 2 - Último_Contacto -10% Hace 26 meses,Viaje
+9,Medium,50.92,Años_Socio 17% 2 - Comercial_Asignado 9% Sí - Localización 3% Urbana,Años_Socio -17% 2 - Comercial_Asignado -9% Sí - Localización -3% Urbana,Mascotas
+9,High,94.8,Edad 19% 30 - Localización 29% Rural - Último_Contacto 2% Hace 26 meses,Ingresos -14% 73k - Años_Socio -11% 2 - Comercial_Asignado -4% Sí,Empresarial
+9,High,84.8,Ingresos 23% 73k - Años_Socio 5% 2 - Comercial_Asignado 1% No,Ingresos -23% 73k - Años_Socio -5% 2 - Comercial_Asignado -1% No,Personal
+9,Low,3.64,Edad 13% 30 - Localización 28% Urbana - Último_Contacto 5% Hace 26 meses,Edad -11% 30 - Localización -41% Rural - Último_Contacto -7% Hace 26 meses,Ciberseguridad
+9,Low,46.58,Ingresos 10% 73k - Años_Socio 14% 2 - Localización 31% Rural,Edad -13% 30 - Localización -28% Urbana - Último_Contacto -5% Hace 26 meses,Ingresos
+9,High,98.03,Edad 15% 30 - Comercial_Asignado 11% Sí - Localización 8% Rural,Ingresos -21% 73k - Años_Socio -4% 2 - Comercial_Asignado -13% Sí,Jubilación
+9,Medium,60.16,Ingresos 8% 73k - Comercial_Asignado 14% No - Último_Contacto 11% Hace 26 meses,Ingresos -8% 73k - Comercial_Asignado -14% No - Último_Contacto -11% Hace 26 meses,Accidentes
+9,High,88.95,Edad 14% 30 - Localización 27% Rural - Último_Contacto 13% Hace 26 meses,Edad -2% 30 - Años_Socio -20% 2 - Localización -36% Urbana,Responsabilidad
+9,Medium,59.56,Ingresos 9% 73k - Años_Socio 13% 2 - Localización 32% Rural,Edad -14% 30 - Localización -27% Rural - Último_Contacto -13% Hace 26 meses,Robo
+9,High,90.85,Edad 12% 30 - Comercial_Asignado 6% Sí - Localización 5% Rural,Ingresos -9% 73k - Años_Socio -13% 2 - Localización -32% Rural,Protección
+9,Medium,74.85,Ingresos 7% 73k - Años_Socio 20% 2 - Comercial_Asignado 2% Sí,Edad -8% 30 - Comercial_Asignado -17% No - Último_Contacto -12% Hace 26 meses,Salud Mental
+9,High,77.54,Edad 11% 30 - Localización 26% Rural - Último_Contacto 14% Hace 26 meses,Edad -12% 30 - Comercial_Asignado -6% Sí - Localización -5% Rural,Desempleo
+9,Low,11.66,Ingresos 6% 73k - Comercial_Asignado 5% Sí - Último_Contacto 10% Hace 26 meses,Ingresos -6% 73k - Comercial_Asignado -5% Sí - Último_Contacto -10% Hace 26 meses,Estudiantil
+10,Low,7.32,Edad 30% 60 - Ingresos 12% 83k - Años_Socio 25% 0,Comercial_Asignado -2% No - Localización -50% Rural - Último_Contacto -48% Hace 14 meses,Salud
+10,Medium,65.71,Edad 25% 60 - Ingresos 18% 83k - Comercial_Asignado 7% Sí,Años_Socio -3% 0 - Localización -40% Urbana - Último_Contacto -35% Hace 14 meses,Auto
+10,High,97.75,Ingresos 20% 83k - Años_Socio 15% 0 - Comercial_Asignado 5% Sí,Edad -1% 60 - Localización -45% Urbana - Último_Contacto -14% Hace 14 meses,Hogar
+10,Medium,68.31,Edad 18% 60 - Comercial_Asignado 10% Sí - Localización 2% Rural,Ingresos -5% 83k - Años_Socio -8% 0 - Último_Contacto -32% Hace 14 meses,Vida
+10,High,86.74,Ingresos 22% 83k - Años_Socio 7% 0 - Último_Contacto 1% Hace 14 meses,Edad -20% 60 - Comercial_Asignado -15% No - Localización -42% Urbana,Familiar
+10,Low,1.71,Edad 22% 60 - Localización 30% Rural - Último_Contacto 4% Hace 14 meses,Ingresos -17% 83k - Años_Socio -9% 0 - Comercial_Asignado -6% Sí,Dental
+10,High,85.22,Edad 21% 60 - Comercial_Asignado 8% Sí - Último_Contacto 6% Hace 14 meses,Ingresos -13% 83k - Años_Socio -12% 0 - Localización -38% Urbana,Vida
+10,Low,1.42,Ingresos 24% 83k - Comercial_Asignado 3% Sí - Localización 1% Rural,Ingresos -24% 83k - Comercial_Asignado -3% Sí - Localización -1% Rural,Viaje
+10,Low,37.82,Años_Socio 17% 0 - Comercial_Asignado 9% Sí - Localización 3% Rural,Edad -7% 60 - Ingresos -23% 83k - Último_Contacto -8% Hace 14 meses,Mascotas
+10,High,76.25,Edad 19% 60 - Localización 29% Rural - Último_Contacto 2% Hace 14 meses,Edad -19% 60 - Localización -29% Rural - Último_Contacto -2% Hace 14 meses,Empresarial
+10,Medium,54.31,Ingresos 23% 83k - Años_Socio 5% 0 - Comercial_Asignado 1% No,Ingresos -23% 83k - Años_Socio -5% 0 - Comercial_Asignado -1% No,Personal
+10,High,93.77,Edad 13% 60 - Localización 28% Rural - Último_Contacto 5% Hace 14 meses,Edad -13% 60 - Localización -28% Rural - Último_Contacto -5% Hace 14 meses,Ciberseguridad
+10,Low,40.21,Ingresos 10% 83k - Años_Socio 14% 0 - Localización 31% Rural,Ingresos -10% 83k - Años_Socio -14% 0 - Localización -31% Rural,Ingresos
+10,Low,9.5,Edad 15% 60 - Comercial_Asignado 11% Sí - Localización 8% Rural,Edad -15% 60 - Comercial_Asignado -11% Sí - Localización -8% Rural,Jubilación
+10,Medium,67.23,Ingresos 8% 83k - Comercial_Asignado 14% No - Último_Contacto 11% Hace 14 meses,Ingresos -8% 83k - Comercial_Asignado -14% No - Último_Contacto -11% Hace 14 meses,Accidentes
+10,Medium,60.77,Edad 14% 60 - Localización 27% Rural - Último_Contacto 13% Hace 14 meses,Edad -14% 60 - Localización -27% Rural - Último_Contacto -13% Hace 14 meses,Responsabilidad
+10,High,99.07,Ingresos 9% 83k - Años_Socio 13% 0 - Localización 32% Rural,Ingresos -9% 83k - Años_Socio -13% 0 - Localización -32% Rural,Robo
+10,Medium,60.66,Edad 12% 60 - Comercial_Asignado 6% Sí - Localización 5% Rural,Edad -12% 60 - Comercial_Asignado -6% Sí - Localización -5% Rural,Protección
+10,Low,47.15,Ingresos 7% 83k - Años_Socio 20% 0 - Comercial_Asignado 2% Sí,Ingresos -7% 83k - Años_Socio -20% 0 - Comercial_Asignado -2% Sí,Salud Mental
+10,Low,46.38,Edad 11% 60 - Localización 26% Rural - Último_Contacto 14% Hace 14 meses,Edad -11% 60 - Localización -26% Rural - Último_Contacto -14% Hace 14 meses,Desempleo
+10,Medium,63.61,Ingresos 6% 83k - Comercial_Asignado 5% Sí - Último_Contacto 10% Hace 14 meses,Ingresos -6% 83k - Comercial_Asignado -5% Sí - Último_Contacto -10% Hace 14 meses,Estudiantil
