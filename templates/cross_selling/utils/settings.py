@@ -17,5 +17,6 @@ data_file = "data_fake_cross_selling"
 
 # Variable types
 nominal = ["Localización", "Comercial_Asignado"]
+numerical = ["Edad", "Años_Socio"]
+
 # numerical = ['Edad', 'Años_Socio', 'Ingresos', 'Último_Contacto']
-numerical = ["Edad", "Años_Socio", "Último_Contacto"]

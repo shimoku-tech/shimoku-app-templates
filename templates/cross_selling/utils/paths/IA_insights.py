@@ -135,7 +135,6 @@ class InsightsPage:
             order=self.order,
         )
 
-        print("NOMINAL")
 
         for i in nominal:
             self.shimoku.plt.set_tabs_index(
@@ -159,9 +158,7 @@ class InsightsPage:
                     pass
 
             x = Counter(count)
-            print(i, x)
             x = list(x.items())
-            print(i, x)
 
             x = {"value_feature": [i[0] for i in x], "Probability": [i[1] for i in x]}
 
@@ -185,7 +182,6 @@ class InsightsPage:
 
         self.shimoku.plt.pop_out_of_tabs_group()
 
-        print("NUMERICA")
         for i in numerical:
             self.shimoku.plt.set_tabs_index(
                 tabs_index=("partial_dependence_numerica", i),
@@ -210,7 +206,6 @@ class InsightsPage:
             x = [
                 {"Variable": k, "Probability": v} for k, v in x.items()
             ]  # {'date': dt.date(2021, 1, 1), 'new': 4, 'vac': 5},
-            print(i, x)
 
             self.shimoku.plt.line(
                 data=x,
@@ -260,7 +255,7 @@ class InsightsPage:
     def compute(self):
         list_of_products = self.dataframe["Product"].unique()
 
-        for i in tqdm(list_of_products[:3]):
+        for i in tqdm(list_of_products):
             # menu path set up
             self.shimoku.set_menu_path(self.menu_path, i)
 
