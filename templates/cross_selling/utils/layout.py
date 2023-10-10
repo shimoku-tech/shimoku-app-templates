@@ -2,6 +2,7 @@ from utils.paths.predictions import PredictionsPage
 from utils.paths.IA_insights import InsightsPage
 from utils.paths.IA_insights_filters import InsightsPageFilters
 
+
 def plot_dashboard(shimoku):
     """
     Plot a dashboard for a given Shimoku client instance.

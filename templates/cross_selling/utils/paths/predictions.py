@@ -388,9 +388,7 @@ class PredictionsPage:
         other_values_sum = sum([x["value"] for x in other_values])
         highest_values = list(sorted_data.values())[:3]
 
-        total_value = sum(
-            item["value"] for item in highest_values + other_values
-        )
+        total_value = sum(item["value"] for item in highest_values + other_values)
 
         # Calculate and format percentage values for the items.
         for item in highest_values + other_values:
