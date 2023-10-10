@@ -42,9 +42,7 @@ def count_column_values_with_filter(df, column, filter_column, filter_value):
     if filter_column not in df.columns:
         raise ValueError(f"Column {filter_column} not in dataframe")
     return (
-        df[df[filter_column] == filter_value]
-        .groupby(by=column)
-        .agg({column: "count"})
+        df[df[filter_column] == filter_value].groupby(by=column).agg({column: "count"})
     )
 
 
