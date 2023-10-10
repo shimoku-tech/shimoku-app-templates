@@ -1,5 +1,6 @@
 import os
 import shimoku_api_python as Shimoku
+import pandas as pd
 
 from tqdm import tqdm
 from collections import Counter
@@ -44,6 +45,8 @@ class InsightsPageFilters:
         # Set the menu path for Shimoku.
         self.shimoku.set_menu_path(self.menu_path)
 
+        self.shimoku.reuse_data_sets()
+
     def load_transform_data(self):
         """
         Load and transform data using an instance of the 'DFs' class.
@@ -70,7 +73,7 @@ class InsightsPageFilters:
             data_list.append({"feature": feature, "importance": importance})
         return data_list
 
-    def feature_importance(self, df_product):
+    def feature_importance(self, df_product, product):
         """
         Feature importance chart
         """
@@ -135,66 +138,58 @@ class InsightsPageFilters:
             order=self.order,
         )
 
-        print("NOMINAL")
-
+        nominal_data_dict = []
         for i in nominal:
-            self.shimoku.plt.set_tabs_index(
-                tabs_index=("partial_dependence_nominal", i),
-                # parent_tabs_index=(products_tab_group, "All"),
-                sticky=False,
-                just_labels=True,
-                order=self.order,
-            )
-            self.order += 1
+            # If you want to uncomment the block below in the future:
+            # self.shimoku.plt.set_tabs_index(
+            #     tabs_index=("partial_dependence_nominal", i),
+            #     # parent_tabs_index=(products_tab_group, "All"),
+            #     sticky=False,
+            #     just_labels=True,
+            #     order=self.order,
+            # )
+            # self.order += 1
 
             count = []
             for index, row in df_product.iterrows():
                 x1 = self.string_to_dict(row["Drivers"])
                 x2 = self.string_to_dict(row["Barriers"])
-                x = {**x1, **x2}
+                combined_dict = {**x1, **x2}
                 try:
-                    x = x[i]["val"]
-                    count.append(x)
+                    val = combined_dict[i]["val"]
+                    count.append(val)
                 except KeyError:
                     pass
 
-            x = Counter(count)
-            print(i, x)
-            x = list(x.items())
-            print(i, x)
+            count_freq = Counter(count)
+            count_items = list(count_freq.items())
 
-            x = {"value_feature": [i[0] for i in x], "Probability": [i[1] for i in x]}
+            dict_entries = [{"value_feature": j, "Probability": k, "Feature": i} for j, k in count_items]
+            for entry in dict_entries:
+                nominal_data_dict.append(entry)
 
-            self.shimoku.plt.bar(
-                # title="Nominal features",
-                data=x,
-                x="value_feature",
-                #    y=["Probability"],
-                #  menu_path=menu_path,
-                #   filters={
-                #       'order': filter_order,
-                #        'filter_cols': [
-                #            "feature",
-                #        ],
-                #    },
-                order=self.order,
-                #    tabs_index=tabs_index,
-                cols_size=12,
-            )
-            self.order += 1
+        self.shimoku.plt.set_shared_data(dfs={f'nominal_data_{product}': pd.DataFrame(nominal_data_dict)})
+        self.shimoku.plt.filter(order=self.order, data=f'nominal_data_{product}', field='Feature')
+        self.order += 1
 
-        self.shimoku.plt.pop_out_of_tabs_group()
+        self.shimoku.plt.bar(
+            data=f'nominal_data_{product}',
+            x="value_feature",
+            order=self.order,
+            cols_size=12,
+        )
+        self.order += 1
 
-        print("NUMERICA")
+        numerical_data_dict = []
         for i in numerical:
-            self.shimoku.plt.set_tabs_index(
-                tabs_index=("partial_dependence_numerica", i),
-                # parent_tabs_index=(products_tab_group, "All"),
-                sticky=False,
-                just_labels=True,
-                order=self.order,
-            )
-            self.order += 1
+            # self.shimoku.plt.set_tabs_index(
+            #     tabs_index=("partial_dependence_numerica", i),
+            #     # parent_tabs_index=(products_tab_group, "All"),
+            #     sticky=False,
+            #     just_labels=True,
+            #     order=self.order,
+            # )
+            # self.order += 1
 
             count = []
             for index, row in df_product.iterrows():
@@ -207,30 +202,24 @@ class InsightsPageFilters:
                 except KeyError:
                     pass
             x = Counter(count)  # {'Rural': 6, 'Urbana': 4}
-            x = [
-                {"Variable": k, "Probability": v} for k, v in x.items()
-            ]  # {'date': dt.date(2021, 1, 1), 'new': 4, 'vac': 5},
-            print(i, x)
+            count_items = list(x.items())
+            dict_entries = [{"Variable": j, "Probability": k, "Feature": i} for j, k in count_items]
 
-            self.shimoku.plt.line(
-                data=x,
-                y=["Probability"],
-                x="Variable",
-                # index=list(x.keys()),
-                #    menu_path=menu_path,
-                order=self.order,
-                #    tabs_index=tabs_index,
-                #  filters={
-                #         'order': filter_order,
-                #       'filter_cols': [
-                #            "feature",
-                #       ],
-                #    },
-                cols_size=12,
-            )
-            self.order += 1
+            for entry in dict_entries:
+                numerical_data_dict.append(entry)
 
-        self.shimoku.plt.pop_out_of_tabs_group()
+        self.shimoku.plt.set_shared_data(dfs={f'numerical_data_{product}': pd.DataFrame(numerical_data_dict)})
+        self.shimoku.plt.filter(order=self.order, data=f'numerical_data_{product}', field='Feature')
+        self.order += 1
+
+        self.shimoku.plt.line(
+            data=f'numerical_data_{product}',
+            y=["Probability"],
+            x="Variable",
+            order=self.order,
+            cols_size=12,
+        )
+        self.order += 1
 
     @staticmethod
     def extract_number(s):
@@ -260,10 +249,10 @@ class InsightsPageFilters:
     def compute(self):
         list_of_products = self.dataframe["Product"].unique()
 
-        for i in tqdm(list_of_products[:3]):
+        for product in tqdm(list_of_products):
             # menu path set up
-            self.shimoku.set_menu_path(self.menu_path, i)
+            self.shimoku.set_menu_path(self.menu_path, product)
 
             # just keep the i product
-            df_product = self.dataframe[self.dataframe["Product"] == i]
-            self.feature_importance(df_product)
+            df_product = self.dataframe[self.dataframe["Product"] == product]
+            self.feature_importance(df_product, product)
