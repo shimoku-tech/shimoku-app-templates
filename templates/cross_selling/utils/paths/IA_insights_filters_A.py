@@ -15,7 +15,7 @@ from utils.transform import (
 )
 
 
-class InsightsPage:
+class InsightsPageFiltersA:
     def __init__(self, shimoku: Shimoku.Client, board: dict):
         """
         Initialize an instance of the 'YourClassName' class.
@@ -135,7 +135,6 @@ class InsightsPage:
             order=self.order,
         )
 
-        print("NOMINAL")
 
         for i in nominal:
             self.shimoku.plt.set_tabs_index(
