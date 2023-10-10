@@ -1,5 +1,6 @@
 from utils.paths.predictions import PredictionsPage
-from utils.paths.insights import InsightsPage
+from utils.paths.IA_insights import InsightsPage
+from utils.paths.IA_insights_filters import InsightsPageFilters
 
 def plot_dashboard(shimoku):
     """
@@ -23,11 +24,15 @@ def plot_dashboard(shimoku):
 
     # Create an instance of the PredictionsPage class, passing the Shimoku client
     # instance and the board object as arguments.
-    # # # # # pp = PredictionsPage(shimoku, board)
+    pp = PredictionsPage(shimoku, board)
 
-    # # # # # # Compute predictions using the PredictionsPage instance.
-    # # # # # pp.compute()
-
+    # Compute predictions using the PredictionsPage instance.
+    pp.compute()
 
     ia = InsightsPage(shimoku, board)
     ia.compute()
+
+    # Compute predictions using the PredictionsPage instance with filters
+
+    iaf = InsightsPageFilters(shimoku, board)
+    iaf.compute()

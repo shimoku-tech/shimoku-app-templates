@@ -31,7 +31,7 @@ class PredictionsPage:
 
         # Derive a menu path from the file name.
         self.menu_path = (
-            os.path.basename(__file__).replace(".py", "").capitalize()
+            os.path.basename(__file__).replace(".py", "").replace("_", " ").title()
         )
 
         # Load and transform data using the 'load_tranform_data' method.

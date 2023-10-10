@@ -2,6 +2,9 @@ import os
 import shimoku_api_python as Shimoku
 
 from tqdm import tqdm
+from collections import Counter
+from utils.settings import nominal
+from utils.settings import numerical
 from utils.utils import DFs
 from utils.components.header import create_title_name_head
 from utils.utils import format_number
@@ -12,7 +15,7 @@ from utils.transform import (
 )
 
 
-class InsightsPage:
+class InsightsPageFilters:
     def __init__(self, shimoku: Shimoku.Client, board: dict):
         """
         Initialize an instance of the 'YourClassName' class.
@@ -32,7 +35,7 @@ class InsightsPage:
 
         # Derive a menu path from the file name.
         self.menu_path = (
-            os.path.basename(__file__).replace(".py", "").capitalize()
+            os.path.basename(__file__).replace(".py", "").replace("_", " ").title()
         )
 
         # Load and transform data using the 'load_tranform_data' method.
@@ -111,6 +114,132 @@ class InsightsPage:
         )
         self.order+=1
 
+        # Partial dependance section
+
+        self.shimoku.plt.html(
+            html=self.shimoku.html_components.create_h1_title(
+                title="Partial Dependence",
+                subtitle="Measures the relationship between every feature and the churn probability, at a global level",
+            ),
+            order=self.order,
+        )
+        self.order+=1
+
+        self.shimoku.plt.html(
+            html=self.shimoku.html_components.create_h1_title(
+                title="",
+                subtitle="Nominal features",
+            ),
+            order=self.order,
+
+        )
+        
+        print("NOMINAL")
+
+        
+
+        for i in nominal:
+
+            self.shimoku.plt.set_tabs_index(
+                tabs_index=('partial_dependence_nominal', i),
+                # parent_tabs_index=(products_tab_group, "All"),
+                sticky=False,
+                just_labels=True,
+                order=self.order,
+            )
+            self.order+=1
+
+            count = []
+            for index, row in df_product.iterrows():
+
+                x1 = self.string_to_dict(row['Drivers'])
+                x2 = self.string_to_dict(row['Barriers'])
+                x = {**x1, **x2}
+                try:
+                    x = x[i]['val']
+                    count.append(x)
+                except KeyError:
+                    pass
+            
+            x = Counter(count)
+            print(i, x)
+            x = list(x.items())
+            print(i, x)
+
+            x = {'value_feature': [i[0] for i in x], 'Probability': [i[1] for i in x]}
+
+            self.shimoku.plt.bar(
+                # title="Nominal features",
+                data=x,
+                x="value_feature",
+            #    y=["Probability"],
+              #  menu_path=menu_path,
+             #   filters={
+             #       'order': filter_order,
+            #        'filter_cols': [
+            #            "feature",
+            #        ],
+            #    },
+                order=self.order,
+            #    tabs_index=tabs_index,
+                cols_size=12
+            )
+            self.order+=1
+
+        self.shimoku.plt.pop_out_of_tabs_group()
+
+        print("NUMERICA")
+        for i in numerical:
+
+            self.shimoku.plt.set_tabs_index(
+                tabs_index=('partial_dependence_numerica', i),
+                # parent_tabs_index=(products_tab_group, "All"),
+                sticky=False,
+                just_labels=True,
+                order=self.order,
+            )
+            self.order+=1
+
+            count = []
+            for index, row in df_product.iterrows():
+                x1 = self.string_to_dict(row['Drivers'])
+                x2 = self.string_to_dict(row['Barriers'])
+                x = {**x1, **x2}
+                try:
+                    x = x[i]['val']
+                    count.append(x)
+                except KeyError:
+                    pass
+            x = Counter(count) #{'Rural': 6, 'Urbana': 4}
+            x = [{"Variable" : k, "Probability" : v} for k,v in x.items()] #{'date': dt.date(2021, 1, 1), 'new': 4, 'vac': 5},
+            print(i, x)
+
+
+            self.shimoku.plt.line(
+                data=x,
+                y=["Probability"],
+                x="Variable",
+                #index=list(x.keys()),
+            #    menu_path=menu_path,
+                order=self.order,
+            #    tabs_index=tabs_index,
+              #  filters={
+           #         'order': filter_order,
+             #       'filter_cols': [
+            #            "feature",
+             #       ],
+            #    },
+                cols_size=12,
+            )
+            self.order+=1
+            
+        self.shimoku.plt.pop_out_of_tabs_group()
+
+    @staticmethod
+    def extract_number(s):
+        """Extrae todos los números de una cadena y los une."""
+        return int("".join([char for char in s if char.isdigit()]))
+
 
     @staticmethod
     def string_to_dict(s):
@@ -132,7 +261,7 @@ class InsightsPage:
             result[name] = {'prob': prob, 'val': val}
         return result
     
-    def compute(self, filter=False):
+    def compute(self):
         
         list_of_products = self.dataframe['Product'].unique()
 
