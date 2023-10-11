@@ -1,5 +1,6 @@
 import os
 import shimoku_api_python as Shimoku
+import pandas as pd
 
 from tqdm import tqdm
 from collections import Counter
@@ -43,6 +44,7 @@ class InsightsPageFiltersA:
 
         # Set the menu path for Shimoku.
         self.shimoku.set_menu_path(self.menu_path)
+        self.shimoku.reuse_data_sets()
 
     def load_transform_data(self):
         """
@@ -134,7 +136,6 @@ class InsightsPageFiltersA:
             ),
             order=self.order,
         )
-
 
         for i in nominal:
             self.shimoku.plt.set_tabs_index(
@@ -253,12 +254,77 @@ class InsightsPageFiltersA:
         return result
 
     def compute(self):
+
         list_of_products = self.dataframe["Product"].unique()
+        
+        # Feature importance
+        
+        # Parse of dicts
+        self.dataframe['Drivers'] = self.dataframe['Drivers'].apply(self.string_to_dict)
+        self.dataframe['Barriers'] = self.dataframe['Barriers'].apply(self.string_to_dict)
 
-        for i in tqdm(list_of_products):
-            # menu path set up
-            self.shimoku.set_menu_path(self.menu_path, i)
+        self.shimoku.plt.html(
+            html=self.shimoku.html_components.create_h1_title(
+                title="Feature Importance",
+                subtitle="Weight of each feature in the probability for cross selling",
+            ),
+            order=self.order,
+        )
+        self.order += 1
 
-            # just keep the i product
-            df_product = self.dataframe[self.dataframe["Product"] == i]
-            self.feature_importance(df_product)
+        feature_importance_data = []
+        
+        for product in list_of_products:
+
+            df_product_filter = self.dataframe[self.dataframe["Product"] == product]
+
+            all_variables = []
+
+            for index, row in df_product_filter.iterrows():
+                x1 = self.extract_features_from_dict(row["Drivers"])
+                x2 = self.extract_features_from_dict(row["Barriers"])
+                all_variables.extend(x1)
+                all_variables.extend(x2)
+
+            # Initialize dictionaries for sum and count of each feature's importance
+            sum_importances = {}
+            count_features = {}
+
+            # Iterate over the dictionaries in all_variables
+            for item in all_variables:
+                feature = item['feature']
+                importance = item['importance']
+                
+                # Accumulate importance and count for each feature
+                sum_importances[feature] = sum_importances.get(feature, 0) + importance
+                count_features[feature] = count_features.get(feature, 0) + 1
+
+            # Calculate the average importance for each feature
+            average_importances = {feature: sum_importances[feature] / count_features[feature] for feature in sum_importances}
+
+            # Convert to the desired format
+            result = [{'feature': feature, 'importance': average_importances[feature]} for feature in average_importances]
+
+            for i in result:
+               i['product'] = product
+
+            #order by importance descendent
+            result = sorted(result, key=lambda x: x["importance"])[::-1]
+
+            feature_importance_data.extend(result)
+
+        self.shimoku.plt.set_shared_data(dfs={f'feature_importance': pd.DataFrame(feature_importance_data)})
+        self.shimoku.plt.filter(order=self.order, data=f'feature_importance', field='product')
+        self.order += 1
+
+        self.shimoku.plt.horizontal_bar(
+            data='feature_importance',
+            x=["feature"],
+            y=["importance"],
+            order=self.order,
+            cols_size=12,
+        )
+        self.order += 1
+
+        #######
+
