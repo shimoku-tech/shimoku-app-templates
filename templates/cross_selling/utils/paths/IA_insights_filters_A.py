@@ -72,162 +72,6 @@ class InsightsPageFiltersA:
             data_list.append({"feature": feature, "importance": importance})
         return data_list
 
-    def feature_importance(self, df_product):
-        """
-        Feature importance chart
-        """
-
-        self.shimoku.plt.html(
-            html=self.shimoku.html_components.create_h1_title(
-                title="Feature Importance",
-                subtitle="Weight of each feature in the probability for cross selling",
-            ),
-            order=self.order,
-        )
-        self.order += 1
-
-        all_variables = []
-
-        for index, row in df_product.iterrows():
-            drivers = self.string_to_dict(row["Drivers"])
-            barriers = self.string_to_dict(row["Barriers"])
-
-            all_variables.extend(self.extract_features_from_dict(drivers))
-            all_variables.extend(self.extract_features_from_dict(barriers))
-
-        # If you need to eliminate duplicates
-        final_data = []
-        seen_features = set()
-        for item in all_variables:
-            if item["feature"] not in seen_features:
-                seen_features.add(item["feature"])
-                final_data.append(item)
-
-        # Ordenar final_data de menor a mayor importancia
-        sorted_final_data = sorted(final_data, key=lambda x: x["importance"])
-        sorted_final_data = sorted_final_data[::-1]  # Invertir la lista
-
-        # Usar data_list para plotear la barra
-        self.shimoku.plt.horizontal_bar(
-            data=sorted_final_data,
-            x="feature",
-            # y no es necesario si solo estás usando una columna de 'Probability'
-            x_axis_name="Category",
-            order=self.order,  # Asegúrate de tener definido self.order en algún lugar de tu clase
-            cols_size=12,
-        )
-        self.order += 1
-
-        # Partial dependance section
-
-        self.shimoku.plt.html(
-            html=self.shimoku.html_components.create_h1_title(
-                title="Partial Dependence",
-                subtitle="Measures the relationship between every feature and the churn probability, at a global level",
-            ),
-            order=self.order,
-        )
-        self.order += 1
-
-        self.shimoku.plt.html(
-            html=self.shimoku.html_components.create_h1_title(
-                title="",
-                subtitle="Nominal features",
-            ),
-            order=self.order,
-        )
-
-        for i in nominal:
-            self.shimoku.plt.set_tabs_index(
-                tabs_index=("partial_dependence_nominal", i),
-                # parent_tabs_index=(products_tab_group, "All"),
-                sticky=False,
-                just_labels=True,
-                order=self.order,
-            )
-            self.order += 1
-
-            count = []
-            for index, row in df_product.iterrows():
-                x1 = self.string_to_dict(row["Drivers"])
-                x2 = self.string_to_dict(row["Barriers"])
-                x = {**x1, **x2}
-                try:
-                    x = x[i]["val"]
-                    count.append(x)
-                except KeyError:
-                    pass
-
-            x = Counter(count)
-            x = list(x.items())
-
-            x = {"value_feature": [i[0] for i in x], "Probability": [i[1] for i in x]}
-
-            self.shimoku.plt.bar(
-                # title="Nominal features",
-                data=x,
-                x="value_feature",
-                #    y=["Probability"],
-                #  menu_path=menu_path,
-                #   filters={
-                #       'order': filter_order,
-                #        'filter_cols': [
-                #            "feature",
-                #        ],
-                #    },
-                order=self.order,
-                #    tabs_index=tabs_index,
-                cols_size=12,
-            )
-            self.order += 1
-
-        self.shimoku.plt.pop_out_of_tabs_group()
-
-        for i in numerical:
-            self.shimoku.plt.set_tabs_index(
-                tabs_index=("partial_dependence_numerica", i),
-                # parent_tabs_index=(products_tab_group, "All"),
-                sticky=False,
-                just_labels=True,
-                order=self.order,
-            )
-            self.order += 1
-
-            count = []
-            for index, row in df_product.iterrows():
-                x1 = self.string_to_dict(row["Drivers"])
-                x2 = self.string_to_dict(row["Barriers"])
-                x = {**x1, **x2}
-                try:
-                    x = x[i]["val"]
-                    count.append(x)
-                except KeyError:
-                    pass
-            x = Counter(count)  # {'Rural': 6, 'Urbana': 4}
-            x = [
-                {"Variable": k, "Probability": v} for k, v in x.items()
-            ]  # {'date': dt.date(2021, 1, 1), 'new': 4, 'vac': 5},
-
-            self.shimoku.plt.line(
-                data=x,
-                y=["Probability"],
-                x="Variable",
-                # index=list(x.keys()),
-                #    menu_path=menu_path,
-                order=self.order,
-                #    tabs_index=tabs_index,
-                #  filters={
-                #         'order': filter_order,
-                #       'filter_cols': [
-                #            "feature",
-                #       ],
-                #    },
-                cols_size=12,
-            )
-            self.order += 1
-
-        self.shimoku.plt.pop_out_of_tabs_group()
-
     @staticmethod
     def extract_number(s):
         """Extrae todos los números de una cadena y los une."""
@@ -253,34 +97,64 @@ class InsightsPageFiltersA:
             result[name] = {"prob": prob, "val": val}
         return result
 
-    def compute(self):
+    def headings(self, title, subtitle):
+        """
+        Create and display headings for the Predictions page.
 
-        list_of_products = self.dataframe["Product"].unique()
-        
-        # Feature importance
-        
-        # Parse of dicts
-        self.dataframe['Drivers'] = self.dataframe['Drivers'].apply(self.string_to_dict)
-        self.dataframe['Barriers'] = self.dataframe['Barriers'].apply(self.string_to_dict)
-
+        Returns:
+            bool: True if the headings are successfully displayed, False otherwise.
+        """
+        # Create and display the main title and subtitle.
         self.shimoku.plt.html(
-            html=self.shimoku.html_components.create_h1_title(
-                title="Feature Importance",
-                subtitle="Weight of each feature in the probability for cross selling",
+            html=create_title_name_head(
+                title=title,
+                subtitle=subtitle,
             ),
             order=self.order,
         )
+
         self.order += 1
 
-        feature_importance_data = []
-        
-        for product in list_of_products:
+        return True
 
-            df_product_filter = self.dataframe[self.dataframe["Product"] == product]
+    def compute(self):
+        list_of_products = self.dataframe["Product"].unique()
 
+        self.dataframe["Drivers"] = self.dataframe["Drivers"].apply(self.string_to_dict)
+        self.dataframe["Barriers"] = self.dataframe["Barriers"].apply(
+            self.string_to_dict
+        )
+
+        self.headings(title="AI Insights", subtitle="Exaplainbility per product")
+
+        for product in list_of_products[:2]:
+            # Init for every iteration
             all_variables = []
 
-            for index, row in df_product_filter.iterrows():
+            # Filter by product
+            df_product_filtered = self.dataframe[self.dataframe["Product"] == product]
+
+            # Create a tab per product
+            self.shimoku.plt.set_tabs_index(
+                tabs_index=("product_tab", product),
+                sticky=False,
+                just_labels=True,
+                order=self.order,
+            )
+            self.order += 1
+
+            # Feature importance section
+
+            self.shimoku.plt.html(
+                html=self.shimoku.html_components.create_h1_title(
+                    title=f"Feature Importance",
+                    subtitle="Weight of each feature in the probability for cross selling",
+                ),
+                order=self.order,
+            )
+            self.order += 1
+
+            for _, row in df_product_filtered.iterrows():
                 x1 = self.extract_features_from_dict(row["Drivers"])
                 x2 = self.extract_features_from_dict(row["Barriers"])
                 all_variables.extend(x1)
@@ -292,39 +166,142 @@ class InsightsPageFiltersA:
 
             # Iterate over the dictionaries in all_variables
             for item in all_variables:
-                feature = item['feature']
-                importance = item['importance']
-                
+                feature = item["feature"]
+                importance = item["importance"]
+
                 # Accumulate importance and count for each feature
                 sum_importances[feature] = sum_importances.get(feature, 0) + importance
                 count_features[feature] = count_features.get(feature, 0) + 1
 
             # Calculate the average importance for each feature
-            average_importances = {feature: sum_importances[feature] / count_features[feature] for feature in sum_importances}
+            average_importances = {
+                feature: sum_importances[feature] / count_features[feature]
+                for feature in sum_importances
+            }
 
-            # Convert to the desired format
-            result = [{'feature': feature, 'importance': average_importances[feature]} for feature in average_importances]
+            # Convert to the desired format round to 1 decimal average_importances[feature]
+            result = [
+                {
+                    "feature": feature,
+                    "importance": round(average_importances[feature], 1),
+                }
+                for feature in average_importances
+            ]
 
-            for i in result:
-               i['product'] = product
-
-            #order by importance descendent
+            # order by importance descendent
             result = sorted(result, key=lambda x: x["importance"])[::-1]
 
-            feature_importance_data.extend(result)
+            self.shimoku.plt.horizontal_bar(
+                data=result,
+                x=["feature"],
+                y=["importance"],
+                order=self.order,
+                cols_size=12,
+            )
+            self.order += 1
 
-        self.shimoku.plt.set_shared_data(dfs={f'feature_importance': pd.DataFrame(feature_importance_data)})
-        self.shimoku.plt.filter(order=self.order, data=f'feature_importance', field='product')
-        self.order += 1
+            # Partial Dependence
+            self.shimoku.plt.html(
+                html=self.shimoku.html_components.create_h1_title(
+                    title=f"Partial Dependence",
+                    subtitle="Measures the relationship between every feature and the cross selling probability",
+                ),
+                order=self.order,
+            )
+            self.order += 1
 
-        self.shimoku.plt.horizontal_bar(
-            data='feature_importance',
-            x=["feature"],
-            y=["importance"],
-            order=self.order,
-            cols_size=12,
-        )
-        self.order += 1
+            self.shimoku.plt.html(
+                html=self.shimoku.html_components.create_h1_title(
+                    title="",
+                    subtitle="Nominal features",
+                ),
+                order=self.order,
+            )
+            self.order += 1
 
-        #######
+            nominal_data = []
+            for i in nominal:
+                print(nominal.index(i), "nominal")
 
+                count = []
+                for _, row in df_product_filtered.iterrows():
+                    x1 = row["Drivers"]
+                    x2 = row["Barriers"]
+                    x = {**x1, **x2}
+                    try:
+                        x = x[i]["val"]
+                        count.append(x)
+                    except KeyError:
+                        pass
+
+                x = Counter(count)
+                x = [
+                    {"Feature": key, "Probability": value, "Feature": i}
+                    for key, value in x.items()
+                ]
+                nominal_data.extend(x)
+
+            self.shimoku.plt.set_shared_data(
+                dfs={f"nominal_data_{product}": pd.DataFrame(nominal_data)}
+            )
+            self.shimoku.plt.filter(
+                order=self.order, data=f"nominal_data_{product}", field="Feature"
+            )
+            self.order += 1
+
+            self.shimoku.plt.bar(
+                data=f"nominal_data_{product}",
+                y=["Probability"],
+                x=["Feature"],
+                order=self.order,
+                cols_size=12,
+            )
+            self.order += 1
+
+            self.shimoku.plt.html(
+                html=self.shimoku.html_components.create_h1_title(
+                    title="",
+                    subtitle="Numerical features",
+                ),
+                order=self.order,
+            )
+            self.order += 1
+
+            numerical_data = []
+            for i in numerical:
+                count = []
+                for _, row in df_product_filtered.iterrows():
+                    x1 = row["Drivers"]
+                    x2 = row["Barriers"]
+                    x = {**x1, **x2}
+                    try:
+                        x = x[i]["val"]
+                        count.append(x)
+                    except KeyError:
+                        pass
+                x = Counter(count)  # {'Rural': 6, 'Urbana': 4}
+                x = [
+                    {"Variable": k, "Probability": v, "Feature": i}
+                    for k, v in x.items()
+                ]
+                numerical_data.extend(x)
+
+            self.shimoku.plt.set_shared_data(
+                dfs={f"numerical_data_{product}": pd.DataFrame(numerical_data)}
+            )
+
+            self.shimoku.plt.filter(
+                order=self.order, data=f"numerical_data_{product}", field="Feature"
+            )
+            self.order += 1
+
+            self.shimoku.plt.line(
+                data=f"numerical_data_{product}",
+                y=["Probability"],
+                x=["Variable"],
+                order=self.order,
+                cols_size=12,
+            )
+            self.order += 1
+
+            self.shimoku.plt.pop_out_of_tabs_group()

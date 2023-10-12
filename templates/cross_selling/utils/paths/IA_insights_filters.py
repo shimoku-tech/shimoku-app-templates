@@ -164,16 +164,23 @@ class InsightsPageFilters:
             count_freq = Counter(count)
             count_items = list(count_freq.items())
 
-            dict_entries = [{"value_feature": j, "Probability": k, "Feature": i} for j, k in count_items]
+            dict_entries = [
+                {"value_feature": j, "Probability": k, "Feature": i}
+                for j, k in count_items
+            ]
             for entry in dict_entries:
                 nominal_data_dict.append(entry)
 
-        self.shimoku.plt.set_shared_data(dfs={f'nominal_data_{product}': pd.DataFrame(nominal_data_dict)})
-        self.shimoku.plt.filter(order=self.order, data=f'nominal_data_{product}', field='Feature')
+        self.shimoku.plt.set_shared_data(
+            dfs={f"nominal_data_{product}": pd.DataFrame(nominal_data_dict)}
+        )
+        self.shimoku.plt.filter(
+            order=self.order, data=f"nominal_data_{product}", field="Feature"
+        )
         self.order += 1
 
         self.shimoku.plt.bar(
-            data=f'nominal_data_{product}',
+            data=f"nominal_data_{product}",
             x="value_feature",
             order=self.order,
             cols_size=12,
@@ -203,17 +210,23 @@ class InsightsPageFilters:
                     pass
             x = Counter(count)  # {'Rural': 6, 'Urbana': 4}
             count_items = list(x.items())
-            dict_entries = [{"Variable": j, "Probability": k, "Feature": i} for j, k in count_items]
+            dict_entries = [
+                {"Variable": j, "Probability": k, "Feature": i} for j, k in count_items
+            ]
 
             for entry in dict_entries:
                 numerical_data_dict.append(entry)
 
-        self.shimoku.plt.set_shared_data(dfs={f'numerical_data_{product}': pd.DataFrame(numerical_data_dict)})
-        self.shimoku.plt.filter(order=self.order, data=f'numerical_data_{product}', field='Feature')
+        self.shimoku.plt.set_shared_data(
+            dfs={f"numerical_data_{product}": pd.DataFrame(numerical_data_dict)}
+        )
+        self.shimoku.plt.filter(
+            order=self.order, data=f"numerical_data_{product}", field="Feature"
+        )
         self.order += 1
 
         self.shimoku.plt.line(
-            data=f'numerical_data_{product}',
+            data=f"numerical_data_{product}",
             y=["Probability"],
             x="Variable",
             order=self.order,
