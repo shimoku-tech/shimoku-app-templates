@@ -15,13 +15,13 @@ if __name__ == "__main__":
     s = Shimoku.Client(
         access_token=access_token,
         universe_id=universe_id,
-        verbosity='INFO',
+        verbosity="INFO",
     )
 
     # Set the workspace for the Shimoku Client using the provided UUID.
     s.set_workspace(uuid=workspace_id)
 
-    # Delete all workspace menu paths associated with the provided UUID.
+    # # Delete all workspace menu paths associated with the provided UUID.
     s.workspaces.delete_all_workspace_menu_paths(uuid=workspace_id)
 
     # Plot the dashboard using the Shimoku Client instance.
