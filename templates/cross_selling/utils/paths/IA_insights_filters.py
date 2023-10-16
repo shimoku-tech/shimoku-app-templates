@@ -38,7 +38,7 @@ class InsightsPageFilters:
         self.order = 0
 
         # Derive a menu path from the file name.
-        self.menu_path = "IA Insights"
+        self.menu_path = "AI Insights"
 
         # Load and transform data using the 'load_tranform_data' method.
         self.dataframe = self.load_transform_data()
@@ -207,16 +207,25 @@ class InsightsPageFilters:
                 for feature in sum_importances
             }
 
-            # Convert to the desired format round to 1 decimal average_importances[feature]
+            # Calculate the total importance to scale everything so that it sums up to 100
+            total_importance = sum(average_importances.values())
+
+            # Adjust the importance of each feature to ensure the sum is 100
+            scaled_importances = {
+                feature: (average_importances[feature] / total_importance) * 100 
+                for feature in average_importances
+            }
+
+            # Convert to the desired format and round to 1 decimal point
             result = [
                 {
                     "feature": feature,
-                    "importance": round(average_importances[feature], 1),
+                    "importance": round(scaled_importances[feature], 1),
                 }
-                for feature in average_importances
+                for feature in scaled_importances
             ]
 
-            # order by importance descendent
+            # Order by importance in descending order
             result = sorted(result, key=lambda x: x["importance"])[::-1]
 
             self.shimoku.plt.horizontal_bar(
@@ -249,7 +258,6 @@ class InsightsPageFilters:
 
             nominal_data = []
             for i in nominal:
-                print(i)
                 count = []
                 for _, row in df_product_filtered.iterrows():
                     x1 = row["Drivers"]
@@ -267,13 +275,6 @@ class InsightsPageFilters:
                     for key, value in x.items()
                 ]
                 nominal_data.extend(x)
-
-
-            # Order the elements of the list x, following the order of result list
-            
-            print("list to use as reference to sort", result)
-            print("list to sort", nominal_data)
-
 
             # Create a dictionary to map features to their importances
             feature_importance_dict = {item['feature']: item['importance'] for item in result}
@@ -309,7 +310,6 @@ class InsightsPageFilters:
 
             numerical_data = []
             for i in numerical:
-                print(i)
                 count = []
                 for _, row in df_product_filtered.iterrows():
                     x1 = row["Drivers"]
