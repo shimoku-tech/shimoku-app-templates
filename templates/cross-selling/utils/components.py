@@ -29,7 +29,7 @@ def create_title_name_head(title: str, subtitle: str) -> str:
         "<div class='component-title'>"
         "<div class='big-icon-banner'></div>"
         "<div class='text-block'>"
-        "<h1>"+title+"</h1>"
+        "<h1>" + title + "</h1>"
         "<p class='base-white'>"
         f"{subtitle}</p>"
         "</div>"
@@ -37,8 +37,9 @@ def create_title_name_head(title: str, subtitle: str) -> str:
     )
     return html
 
+
 def download_button(button_url: str):
-    css="""
+    css = """
     .download_btn{
         display: flex;
         justify-content: flex-end;
@@ -71,8 +72,9 @@ def download_button(button_url: str):
     """
     return html
 
+
 def craft_html(css: str, html: str):
-    html=f"""
+    html = f"""
         <head>
             <style>
                 {css}
@@ -83,7 +85,8 @@ def craft_html(css: str, html: str):
 
     return html
 
-modals_css="""
+
+modals_css = """
 .modal-article .h-top-space {
     margin-top: 30px;
 }
@@ -95,11 +98,12 @@ modals_css="""
 }
 """
 
+
 def info_modal_predicted():
     """
     Modal content for page Predicted opportunities
     """
-    html="""
+    html = """
     <article class="modal-article">
         <h4>Probability</h4>
         <p>La probabilidad de recomendación de un producto para cada usuario se define de la siguiente manera: <code>Probability = Drivers + Barriers + Base value</code></p>
@@ -115,7 +119,8 @@ def info_modal_predicted():
 Este valor actúa como un punto de partida o valor de referencia y los drivers and barriers nos dicen cómo se aleja la predicción de ese punto de partida debido a la presencia (o ausencia) de ciertas características de usuario.</p>
     </article>
     """
-    return craft_html(modals_css,html)
+    return craft_html(modals_css, html)
+
 
 def info_modal_ai_insights():
     """
@@ -132,14 +137,14 @@ def info_modal_ai_insights():
         </p>
     </article>
     """
-    return craft_html(modals_css,html)
+    return craft_html(modals_css, html)
+
 
 def modal_partial_dependence():
-
     html = """
     <article class="modal-article">
         <h4>Definición de categorías en features</h4>
         <p><b>idSex</b>: 0 = 1 Mutua; 1 = 2 Mutua</p>
     </article>
     """
-    return craft_html(modals_css,html)
+    return craft_html(modals_css, html)
