@@ -11,37 +11,33 @@ from dotenv import load_dotenv
 
 from transformations.get_predictions_table import get_predictions_table_simple
 
-load_dotenv() 
+from dotenv import load_dotenv
 
 
 if __name__ == "__main__":
-
-
+    load_dotenv()
     # Tranfromations
 
-    get_predictions_table_simple()  
-
+    get_predictions_table_simple()
 
     # Create the client
-    api_key: str = getenv('API_TOKEN')
+    api_key: str = getenv("API_TOKEN")
     config = {
-        'access_token': api_key,
+        "access_token": api_key,
     }
 
     shimoku = Client(
         config=config,
-        universe_id=getenv('UNIVERSE_ID'),
+        universe_id=getenv("UNIVERSE_ID"),
         verbosity="INFO",
         async_execution=True,
     )
 
-    shimoku.set_workspace(getenv('WORKSPACE_ID'))
+    shimoku.set_workspace(getenv("WORKSPACE_ID"))
 
-
-    shimoku.workspaces.delete_all_workspace_menu_paths(uuid=getenv('WORKSPACE_ID'))
-    shimoku.workspaces.delete_all_workspace_boards(uuid=getenv('WORKSPACE_ID'))
+    shimoku.workspaces.delete_all_workspace_menu_paths(uuid=getenv("WORKSPACE_ID"))
+    shimoku.workspaces.delete_all_workspace_boards(uuid=getenv("WORKSPACE_ID"))
     plot_dashboard(shimoku)
-
 
     # shimoku.activate_sequential_execution()
 
