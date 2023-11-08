@@ -9,16 +9,13 @@ from shimoku_api_python import Client
 from layout import plot_dashboard
 from dotenv import load_dotenv
 
-from transformations.get_predictions_table import get_predictions_table_simple
+from transformations.get_predictions_table import get_predictions_table
 
 from dotenv import load_dotenv
 
-
 if __name__ == "__main__":
+    # Load env variables
     load_dotenv()
-    # Tranfromations
-
-    get_predictions_table_simple()
 
     # Create the client
     api_key: str = getenv("API_TOKEN")
@@ -37,9 +34,11 @@ if __name__ == "__main__":
 
     shimoku.workspaces.delete_all_workspace_menu_paths(uuid=getenv("WORKSPACE_ID"))
     shimoku.workspaces.delete_all_workspace_boards(uuid=getenv("WORKSPACE_ID"))
-    plot_dashboard(shimoku)
+    
+    # Tranfromations
+    get_predictions_table()
 
-    # shimoku.activate_sequential_execution()
+    plot_dashboard(shimoku)
 
     # Execute all plots in asynchronous mode
     shimoku.activate_async_execution()

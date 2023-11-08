@@ -7,9 +7,9 @@ from utils.utils import DFs, format_number, read_json
 from utils.components import (
     create_title_name_head,
     info_modal_predicted,
-    info_modal_ai_insights,
-    modal_partial_dependence,
 )
+
+from utils.utils import DFs
 
 # Third
 from shimoku_api_python import Client
@@ -22,8 +22,6 @@ def plot_indicator_list(shimoku: Client, order: int, indicator_product_data):
     """
     Plot a list of HIGH indicators
     """
-    print(indicator_product_data)
-
     next_order = order
 
     # Directly iterate through the list associated with the key "pepe"
@@ -43,29 +41,29 @@ def plot_indicator_list(shimoku: Client, order: int, indicator_product_data):
     return next_order
 
 
+def make_indicator(
+    product_name: str, value_lead_scoring, total_high: int, extra_options={}
+):
+    """
+    Construct indicator dict for the indicator section
+    """
+    percentage = (value_lead_scoring / total_high) * 100
+    perc_formatted = round(percentage, ndigits=0)
+
+    return {
+        "title": f"{product_name}",
+        "value": f"{format_number(value_lead_scoring)} ({'{:.0f}'.format(perc_formatted)} %)",
+        "color": "success",
+        "percentage": perc_formatted,
+        "align": "left",
+        "variant": "topColor",
+        **extra_options,
+    }
+
 def get_indicators_by_bussniess(dfs: DFs, board: dict):
     """
     Gets the indicators by product name since product categories have been removed.
     """
-
-    def make_indicator(
-        product_name: str, value_lead_scoring, total_high: int, extra_options={}
-    ):
-        """
-        Construct indicator dict for the indicator section
-        """
-        percentage = (value_lead_scoring / total_high) * 100
-        perc_formatted = round(percentage, ndigits=0)
-
-        return {
-            "title": f"{product_name}",
-            "value": f"{format_number(value_lead_scoring)} ({'{:.0f}'.format(perc_formatted)} %)",
-            "color": "success",
-            "percentage": perc_formatted,
-            "align": "left",
-            "variant": "topColor",
-            **extra_options,
-        }
 
     # Count the number of 'High' lead scoring by product name
     high_scoring_per_product = (
@@ -74,8 +72,6 @@ def get_indicators_by_bussniess(dfs: DFs, board: dict):
         .agg({"lead_scoring": "count"})
     )
     
-    print(high_scoring_per_product)
-
     # Build indicators per product
     indicators_summary = []
     hidden_indicators = []
@@ -144,7 +140,6 @@ def get_indicators_by_bussniess(dfs: DFs, board: dict):
         "hidden_indicators": hidden_indicators,
     }
 
-
 def hidden_indicators_page(shimoku: Client, indicator_product_data):
     """
     Detailed page of all the product indicators
@@ -208,229 +203,228 @@ def info_btn(
 
 path_name_predicted_page = "Predicted opportunities"
 
+def headings(shimoku, order: int):
+    next_order = order
+
+    shimoku.plt.html(
+        html=create_title_name_head(
+            title="Predictions",
+            subtitle="Cross Selling",
+        ),
+        order=next_order,
+    )
+
+    next_order += 1
+    return next_order
+
+def indicators(shimoku, order: int, indicators_summary, dfs: DFs):
+    """
+    Indicators section
+    """
+    next_order = order
+
+    common_indicator_settings = {
+        "align": "center",
+        "variant": "topColor",
+    }
+
+    # Total rows High, Medium and LOW probability
+    lead_scoring_agg = dfs.df_recommender_table.groupby(by="lead_scoring").agg(
+        {"lead_scoring": "count"}
+    )
+
+    # General indicators
+    shimoku.plt.html(
+        html=shimoku.html_components.create_h1_title(
+            title="Total opportunities",
+            subtitle="",
+        ),
+        order=next_order,
+    )
+    next_order += 1
+
+    # description prefix
+    desc_prefix = "Oportunidades"
+    next_order += shimoku.plt.indicator(
+        data=[
+            {
+                "title": "HIGH",
+                "value": format_number(lead_scoring_agg["lead_scoring"]["High"]),
+                "color": "success",
+                "description": f"{desc_prefix} con una probabilidad de éxito mayor del 75%",
+                **common_indicator_settings,
+            },
+            {
+                "title": "MEDIUM",
+                "value": format_number(lead_scoring_agg["lead_scoring"]["Medium"]),
+                "color": "warning",
+                "description": f"{desc_prefix} con una probabilidad de éxito de entre el 50% y el 75%",
+                **common_indicator_settings,
+            },
+            {
+                "title": "LOW",
+                "value": format_number(lead_scoring_agg["lead_scoring"]["Low"]),
+                "color": "error",
+                "description": f"{desc_prefix} con una probabilidad de éxito menor del 50%",
+                # 'info': 'abc',
+                **common_indicator_settings,
+            },
+        ],
+        order=next_order,
+    )
+
+    shimoku.plt.html(
+        html=shimoku.html_components.create_h1_title(
+            title="Product opportunities",
+            subtitle="Basado en Lead Scoring High",
+        ),
+        order=next_order,
+    )
+    next_order += 1
+
+    # Indicators per product category
+
+    next_order += plot_indicator_list(
+        shimoku, order=next_order, indicator_product_data=indicators_summary
+    )
+
+    return next_order
+
+def table_simple(shimoku, order: int, dfs: DFs):
+    """
+    Product Recommender table
+    """
+    # shimoku.plt.change_current_tab("Simple")
+    next_order = order
+
+    # define order of the columns
+    df_premodel_cols = [
+        "sPerson",
+        "Edad",
+        "product_name",
+        "lead_scoring",
+        "probabilidad_compra",
+        "_base_values_x",
+        "positive_impact_factors",
+        "negative_impact_factors",
+    ]
+
+    df_table = dfs.df_recommender_table[df_premodel_cols].copy()
+    df_table["_base_values_x"] = df_table["_base_values_x"] * 100
+    df_table["_base_values_x"] = df_table["_base_values_x"].round(decimals=1)
+
+    df_table = df_table.rename(
+        # Add a more readble name
+        columns={
+            "lead_scoring": "Lead Scoring",
+            "probabilidad_compra": "Probability (%)",
+            "product_name": "Product",
+            "_base_values_x": "Base value",
+            "positive_impact_factors": "Drivers",
+            "negative_impact_factors": "Barriers",
+            "etapa_vida": "Etapa Vida",
+        },
+    ).astype(
+        # Convert to string because the frontend add dots
+        # to large integers
+        {"sPerson": "str"}
+    )
+
+    # Replace NaN values of factors with the empty string
+    df_table["Drivers"] = df_table["Drivers"].fillna("")
+    df_table["Barriers"] = df_table["Barriers"].fillna("")
+
+    # do this computation later on the csv file via jupyter-lab, if it takes too long
+    df_table["Probability (%)"] = df_table["Probability (%)"].round(decimals=1)
+
+    # Common settings for the columns of the table
+    common_col_options = {}
+
+    data = df_table.sort_values("Probability (%)", ascending=False)
+
+    impact_factors_col_with = 450
+
+    shimoku.plt.table(
+        order=next_order,
+        data=data,
+        page_size_options=[10, 20],
+        rows_size=4,
+        categorical_columns=[
+            "Lead Scoring",
+            "Empresa",
+            "Alternativo RETA",
+            "Product",
+            "Etapa Vida",
+        ],
+        label_columns={
+            ("Probability (%)", "outlined"): {
+                (0, 50): "error",
+                (50, 75): "warning",
+                (75, 100): "success",
+            },
+            ("Lead Scoring", "filled"): {
+                "Low": "error",
+                "Medium": "warning",
+                "High": "success",
+            },
+            ("Alternativo RETA", "outlined"): {
+                "si": "success",
+                "no": "error",
+            },
+        },
+        columns_options={
+            "Product": {
+                "width": 100,
+            },
+            "Probability (%)": {
+                "width": 150,
+            },
+            "Lead Scoring": {
+                "width": 200,
+            },
+            "Drivers": {
+                "width": impact_factors_col_with,
+            },
+            "Barriers": {
+                "width": impact_factors_col_with,
+            },
+            "Base value": {
+                "with": 200,
+            },
+        },
+    )
+
+    next_order += 1
+
+    return next_order
+
+def table(shimoku, order: int, dfs: DFs):
+    next_order = order
+
+    shimoku.plt.html(
+        html=shimoku.html_components.create_h1_title(
+            title="Leads data",
+            subtitle="Per user and products",
+        ),
+        order=next_order,
+    )
+    next_order += 1
+
+    next_order += table_simple(shimoku, next_order, dfs)
+
+    return next_order
 
 def predictions_page(shimoku: Client, dfs: DFs, indicators_summary):
+    """
+    Predictions page sections and plots
+    """
+    dfs = DFs()
     shimoku.set_menu_path(name=path_name_predicted_page)
-
     order = 0
-
-    def headings(order: int):
-        next_order = order
-
-        shimoku.plt.html(
-            html=create_title_name_head(
-                title="Predictions",
-                subtitle="Cross Selling",
-            ),
-            order=next_order,
-        )
-
-        next_order += 1
-        return next_order
-
-    def indicators(order: int):
-        """
-        Indicators section
-        """
-        next_order = order
-
-        common_indicator_settings = {
-            "align": "center",
-            "variant": "topColor",
-        }
-
-        # Total rows High, Medium and LOW probability
-        lead_scoring_agg = dfs.df_recommender_table.groupby(by="lead_scoring").agg(
-            {"lead_scoring": "count"}
-        )
-
-        # General indicators
-        shimoku.plt.html(
-            html=shimoku.html_components.create_h1_title(
-                title="Total opportunities",
-                subtitle="",
-            ),
-            order=next_order,
-        )
-        next_order += 1
-
-        # description prefix
-        desc_prefix = "Oportunidades"
-        next_order += shimoku.plt.indicator(
-            data=[
-                {
-                    "title": "HIGH",
-                    "value": format_number(lead_scoring_agg["lead_scoring"]["High"]),
-                    "color": "success",
-                    "description": f"{desc_prefix} con una probabilidad de éxito mayor del 75%",
-                    **common_indicator_settings,
-                },
-                {
-                    "title": "MEDIUM",
-                    "value": format_number(lead_scoring_agg["lead_scoring"]["Medium"]),
-                    "color": "warning",
-                    "description": f"{desc_prefix} con una probabilidad de éxito de entre el 50% y el 75%",
-                    **common_indicator_settings,
-                },
-                {
-                    "title": "LOW",
-                    "value": format_number(lead_scoring_agg["lead_scoring"]["Low"]),
-                    "color": "error",
-                    "description": f"{desc_prefix} con una probabilidad de éxito menor del 50%",
-                    # 'info': 'abc',
-                    **common_indicator_settings,
-                },
-            ],
-            order=next_order,
-        )
-
-        shimoku.plt.html(
-            html=shimoku.html_components.create_h1_title(
-                title="Product opportunities",
-                subtitle="Basado en Lead Scoring High",
-            ),
-            order=next_order,
-        )
-        next_order += 1
-
-        # Indicators per product category
-
-        next_order += plot_indicator_list(
-            shimoku, order=next_order, indicator_product_data=indicators_summary
-        )
-
-        return next_order
-
-    def table_simple(order: int):
-        """
-        Product Recommender table
-        """
-        # shimoku.plt.change_current_tab("Simple")
-        next_order = order
-
-        # define order of the columns
-        df_premodel_cols = [
-            "sPerson",
-            "Edad",
-            "product_name",
-            "lead_scoring",
-            "probabilidad_compra",
-            "_base_values_x",
-            "positive_impact_factors",
-            "negative_impact_factors",
-        ]
-        df_table = dfs.df_recommender_table[df_premodel_cols]
-        df_table["_base_values_x"] = df_table["_base_values_x"] * 100
-        df_table["_base_values_x"] = df_table["_base_values_x"].round(decimals=1)
-
-        df_table = df_table.rename(
-            # Add a more readble name
-            columns={
-                "lead_scoring": "Lead Scoring",
-                "probabilidad_compra": "Probability (%)",
-                "product_name": "Product",
-                "_base_values_x": "Base value",
-                "positive_impact_factors": "Drivers",
-                "negative_impact_factors": "Barriers",
-                "etapa_vida": "Etapa Vida",
-            },
-        ).astype(
-            # Convert to string because the frontend add dots
-            # to large integers
-            {"sPerson": "str"}
-        )
-
-        # Replace NaN values of factors with the empty string
-        df_table["Drivers"] = df_table["Drivers"].fillna("")
-        df_table["Barriers"] = df_table["Barriers"].fillna("")
-
-        # do this computation later on the csv file via jupyter-lab, if it takes too long
-        df_table["Probability (%)"] = df_table["Probability (%)"].round(decimals=1)
-
-        # Common settings for the columns of the table
-        common_col_options = {}
-
-        data = df_table.sort_values("Probability (%)", ascending=False)
-
-        impact_factors_col_with = 450
-
-        shimoku.plt.table(
-            order=next_order,
-            data=data,
-            page_size_options=[10, 20],
-            rows_size=4,
-            categorical_columns=[
-                "Lead Scoring",
-                "Empresa",
-                "Alternativo RETA",
-                "Product",
-                "Etapa Vida",
-            ],
-            label_columns={
-                ("Probability (%)", "outlined"): {
-                    (0, 50): "error",
-                    (50, 75): "warning",
-                    (75, 100): "success",
-                },
-                ("Lead Scoring", "filled"): {
-                    "Low": "error",
-                    "Medium": "warning",
-                    "High": "success",
-                },
-                ("Alternativo RETA", "outlined"): {
-                    "si": "success",
-                    "no": "error",
-                },
-            },
-            columns_options={
-                "Product": {
-                    "width": 300,
-                },
-                "Probability (%)": {
-                    "width": 150,
-                },
-                "Lead Scoring": {
-                    "width": 100,
-                },
-                "Drivers": {
-                    "width": impact_factors_col_with,
-                },
-                "Barriers": {
-                    "width": impact_factors_col_with,
-                },
-                "Etapa Vida": {
-                    "width": 230,
-                },
-                "Base value": {
-                    "with": 195,
-                },
-            },
-        )
-
-        next_order += 1
-
-        return next_order
-
-    def table(order: int):
-        next_order = order
-
-        shimoku.plt.html(
-            html=shimoku.html_components.create_h1_title(
-                title="Leads data",
-                subtitle="Per user and products",
-            ),
-            order=next_order,
-        )
-        next_order += 1
-
-        next_order += table_simple(next_order)
-
-        return next_order
-
-    order += headings(order)
-    order += indicators(order)
+    order += headings(shimoku, order)
+    order += indicators(shimoku, order, indicators_summary, dfs)
     order += info_btn(shimoku, order, info_modal_predicted)
-    order += table(order)
+    order += table(shimoku, order, dfs)
 
     shimoku.pop_out_of_menu_path()
 
@@ -446,5 +440,6 @@ def plot_dashboard(shimoku: Client, min_plot: int = 0, max_plot: int = 0):
     # Get indicators shared across pages
     biz_indicators = get_indicators_by_bussniess(dfs, board)
 
+    # Plot pages
     hidden_indicators_page(shimoku, biz_indicators["hidden_indicators"])
     predictions_page(shimoku, dfs, biz_indicators["indicators_summary"])
