@@ -38,6 +38,7 @@ if __name__ == "__main__":
     # Tranfromations
     get_predictions_table()
 
+    # Plot in workspace
     plot_dashboard(shimoku)
 
     # Execute all plots in asynchronous mode

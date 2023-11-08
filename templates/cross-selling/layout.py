@@ -380,7 +380,7 @@ def table_simple(shimoku, order: int, dfs: DFs):
                 "width": 150,
             },
             "Lead Scoring": {
-                "width": 200,
+                "width": 130,
             },
             "Drivers": {
                 "width": impact_factors_col_with,
