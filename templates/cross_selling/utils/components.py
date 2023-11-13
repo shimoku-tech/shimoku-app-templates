@@ -1,3 +1,15 @@
+modals_css = """
+.modal-article .h-top-space {
+    margin-top: 30px;
+}
+.modal-article .ordered-list {
+    margin-top: 5px;
+}
+.modal-article .ordered-list li {
+    margin-top: 5px;
+}
+"""
+
 def create_title_name_head(title: str, subtitle: str) -> str:
     """
     Función que genera el encabezado de la page
@@ -39,6 +51,17 @@ def create_title_name_head(title: str, subtitle: str) -> str:
 
 
 def craft_html(css: str, html: str):
+    """
+    Combines the given CSS and HTML strings into a single HTML string 
+    with the CSS included in a <style> tag in the <head> section.
+
+    Args:
+        css (str): The CSS string to include in the <style> tag.
+        html (str): The HTML string to include in the <body> section.
+
+    Returns:
+        str: The combined HTML string.
+    """
     html = f"""
         <head>
             <style>
@@ -49,19 +72,6 @@ def craft_html(css: str, html: str):
     """
 
     return html
-
-
-modals_css = """
-.modal-article .h-top-space {
-    margin-top: 30px;
-}
-.modal-article .ordered-list {
-    margin-top: 5px;
-}
-.modal-article .ordered-list li {
-    margin-top: 5px;
-}
-"""
 
 
 def info_modal_predicted():

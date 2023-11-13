@@ -1,4 +1,3 @@
-
 from transformations.get_predictions_table import get_predicted_opportunities
 from utils.utils import DFs, format_number
 from shimoku_api_python import Client
@@ -6,70 +5,93 @@ from utils.components import create_title_name_head
 from typing import Callable
 from utils.components import info_modal_predicted
 
-# Main dashboard
+
 class Dashboard:
-    
-    # Init Dashboard class
+    """
+    A class used to represent a Dashboard for displaying various data visualizations.
+
+    Attributes:
+        board_name (str): Name of the dashboard.
+        dfs (DFs): An instance of a DFs class for handling data frames.
+        shimoku (Client): An instance of a Client class for Shimoku API interactions.
+    """
+
     def __init__(self, shimoku: Client):
-        self.board_name = "Cross Selling" 
-        self.dfs = DFs()
-        self.shimoku = shimoku
-        self.shimoku.set_board(name=self.board_name)
+        """
+        The constructor for the Dashboard class.
 
-    # Data transformations
+        Parameters:
+            shimoku (Client): An instance of a Client class for Shimoku API interactions.
+        """
+        self.board_name = "Cross Selling"  # Name of the dashboard
+        self.dfs = DFs()  # DataFrames handler
+        self.shimoku = shimoku  # Shimoku client instance
+        self.shimoku.set_board(name=self.board_name)  # Setting up the board in Shimoku
+
     def transform(self):
-        get_predicted_opportunities()
+        """
+        Perform data transformations.
 
-    # Plotting dashboard pages
+        This method is responsible for handling any data transformations
+        required before plotting the data on the dashboard.
+        """
+        get_predicted_opportunities()  # Function call to get predicted opportunities
+
     def plot(self):
-
-        hi = HiddenIndicatorsPage(self.shimoku)
-        hi.plot()
-
-        pp = PredictionsPage(self.shimoku)
-        pp.plot()
-
-
-
-    # Utils
-    def get_indicators_by_bussniess_v1(self, board_id):
         """
-        Gets the indicators by product name since product categories have been removed.
-        """
+        Plot the dashboard pages.
 
-        # Count the number of 'High' lead scoring by product name
+        This method handles the plotting of various pages in the dashboard.
+        It creates instances of different page classes and calls their plot methods.
+        """
+        hi = HiddenIndicatorsPage(self.shimoku)  # Instance of HiddenIndicatorsPage
+        hi.plot()  # Plotting the hidden indicators page
+
+        pp = PredictionsPage(self.shimoku)  # Instance of PredictionsPage
+        pp.plot()  # Plotting the predictions page
+
+    def get_indicators_by_business(self, board_id):
+        """
+        Gets the indicators by product name.
+
+        This method counts the number of 'High' lead scoring by product name and
+        creates indicators for each product. Products beyond the top three are
+        grouped into 'Other products'.
+
+        Parameters:
+            board_id: The board identifier used for creating hidden indicator links.
+
+        Returns:
+            A dictionary containing summaries of visible and hidden indicators.
+        """
+        # Count 'High' lead scoring by product name
         high_scoring_per_product = (
-            self.dfs.df_recommender_table.query(f"lead_scoring=='High'")
-            .groupby(by="product_name")
+            self.dfs.df_recommender_table.query("lead_scoring=='High'")
+            .groupby("product_name")
             .agg({"lead_scoring": "count"})
         )
 
-        # Build indicators per product
         indicators_summary = []
         hidden_indicators = []
 
         total_high = high_scoring_per_product["lead_scoring"].sum()
 
-        # Sort within the dataframe
+        # Sort the dataframe by lead scoring
         high_scoring_per_product_sorted = high_scoring_per_product.sort_values(
             "lead_scoring", ascending=False
         )
 
         high_group_size = len(high_scoring_per_product_sorted)
-
-        # Used only after the third product
-        scoring_accumulator = 0
+        scoring_accumulator = (
+            0  # Accumulator for scores of products beyond the top three
+        )
 
         for product_count, (product_name, row) in enumerate(
             high_scoring_per_product_sorted.iterrows()
         ):
             value_lead_scoring = row["lead_scoring"]
-
             extra_options = {}
 
-            # Only the first three products are allowed to be displayed,
-            # the rest are grouped into one product called 'Other products'
-            # And saved to another list to be plotted in a hidden path
             if product_count > 2:
                 scoring_accumulator += value_lead_scoring
                 hidden_indicators.append(
@@ -80,24 +102,13 @@ class Dashboard:
                     )
                 )
 
-                # If it is the last product
                 if product_count == high_group_size - 1:
-                    # Override the product_name
                     product_name = "Otros productos"
-
-                    # Override the scoring_accumulator
                     value_lead_scoring = scoring_accumulator
-
-                    # Add a link to the indicator
-                    extra_options = {
-                        "targetPath": f"{board_id}/hidden-indicators",
-                    }
-
+                    extra_options = {"targetPath": f"{board_id}/hidden-indicators"}
                 else:
-                    # Skip the iteration so we don't create a new entry in the indicators_summary array
                     continue
 
-            # Make indicator data
             indicators_summary.append(
                 self.make_indicator(
                     product_name,
@@ -114,14 +125,14 @@ class Dashboard:
 
     def plot_indicator_list(self, indicator_product_data):
         """
-        Plot a list of HIGH indicators
+        Plots a list of HIGH indicators.
+
+        Parameters:
+            indicator_product_data: Data of the product indicators to be plotted.
         """
-        # Directly iterate through the list associated with the key "pepe"
         for idx, indicator_data in enumerate(indicator_product_data):
-            # Pop not needed key
-            indicator_data.pop(
-                "percentage", None
-            )  # Use None to avoid KeyError if 'percentage' does not exist
+            # Remove 'percentage' key if it exists
+            indicator_data.pop("percentage", None)
 
             self.shimoku.plt.indicator(
                 data=indicator_data,
@@ -137,50 +148,81 @@ class Dashboard:
         product_name: str, value_lead_scoring, total_high: int, **kwargs
     ):
         """
-        Construct indicator dict for the indicator section
-        """
+        Constructs an indicator dictionary for the indicator section.
 
+        Parameters:
+            product_name (str): Name of the product.
+            value_lead_scoring: The lead scoring value of the product.
+            total_high (int): The total high score across all products.
+            **kwargs: Additional keyword arguments to be included in the indicator.
+
+        Returns:
+            A dictionary representing the indicator with various attributes.
+        """
         percentage = (value_lead_scoring / total_high) * 100
-        perc_formatted = round(percentage, ndigits=0)
+        perc_formatted = round(percentage)
 
         indicator_dict = {
-            "title": f"{product_name}",
-            "value": f"{format_number(value_lead_scoring)} ({'{:.0f}'.format(perc_formatted)} %)",
+            "title": product_name,
+            "value": f"{format_number(value_lead_scoring)} ({perc_formatted:.0f}%)",
             "color": "success",
             "percentage": perc_formatted,
             "align": "left",
             "variant": "topColor",
         }
 
-        # Merge kwargs into the indicator_dict
         indicator_dict.update(kwargs)
 
         return indicator_dict
 
 
 class PredictionsPage(Dashboard):
+    """
+    A class representing a page for displaying predictions within a dashboard.
+
+    Inherits from the Dashboard class and is used to display prediction-related
+    indicators and data tables.
+
+    Attributes:
+        order (int): Order of elements to be plotted.
+        menu_path (str): Path of the menu in the dashboard.
+    """
 
     def __init__(self, shimoku):
+        """
+        Initializes the PredictionsPage with a shimoku client instance.
 
-        # init as a dougther class of Dashboard
+        Parameters:
+            shimoku: An instance of the Shimoku client.
+        """
         super().__init__(shimoku)
-        self.order = 0
-        self.menu_path="Predicted opportunities"
-        self.shimoku.set_menu_path(name=self.menu_path)
+        self.order = 0  # Initialize order of plotting elements
+        self.menu_path = "Predicted opportunities"  # Set the menu path for this page
+        self.shimoku.set_menu_path(name=self.menu_path)  # Set the menu path in Shimoku
 
     def plot(self):
+        """
+        Plots the predictions page.
 
+        This method retrieves indicators, plots headings, indicators, info buttons,
+        and a data table. It also navigates out of the menu path after plotting.
+        """
         board_id = self.shimoku.boards.get_board(name=self.board_name)["id"]
-        indicators_ = self.get_indicators_by_bussniess_v1(board_id)
+        indicators = self.get_indicators_by_business(board_id)
 
         self.headings()
-        self.indicators(indicators_)
+        self.indicators(indicators)
         self.info_btn(info_modal_predicted)
         self.table()
         self.shimoku.pop_out_of_menu_path()
 
-    # Utils 
     def headings(self):
+        """
+        Plots the headings for the predictions page.
+
+        Returns:
+            True if the operation is successful.
+        """
         self.shimoku.plt.html(
             html=create_title_name_head(
                 title="Predictions",
@@ -193,20 +235,22 @@ class PredictionsPage(Dashboard):
 
     def indicators(self, indicators):
         """
-        Indicators section
-        """
+        Plots the indicators section on the predictions page.
 
+        Parameters:
+            indicators: Data for the indicators to be plotted.
+        """
         common_indicator_settings = {
             "align": "center",
             "variant": "topColor",
         }
 
-        # Total rows High, Medium and LOW probability
-        lead_scoring_agg = self.dfs.df_recommender_table.groupby(by="lead_scoring").agg(
+        # Aggregate lead scoring data
+        lead_scoring_agg = self.dfs.df_recommender_table.groupby("lead_scoring").agg(
             {"lead_scoring": "count"}
         )
 
-        # General indicators
+        # Plot general indicators
         self.shimoku.plt.html(
             html=self.shimoku.html_components.create_h1_title(
                 title="Total opportunities",
@@ -216,28 +260,24 @@ class PredictionsPage(Dashboard):
         )
         self.order += 1
 
-        # description prefix
         desc_prefix = "Oportunidades"
         self.shimoku.plt.indicator(
             data=[
                 {
                     "title": "HIGH",
                     "value": format_number(lead_scoring_agg["lead_scoring"]["High"]),
-                    "color": "success",
                     "description": f"{desc_prefix} con una probabilidad de éxito mayor del 75%",
                     **common_indicator_settings,
                 },
                 {
                     "title": "MEDIUM",
                     "value": format_number(lead_scoring_agg["lead_scoring"]["Medium"]),
-                    "color": "warning",
                     "description": f"{desc_prefix} con una probabilidad de éxito de entre el 50% y el 75%",
                     **common_indicator_settings,
                 },
                 {
                     "title": "LOW",
                     "value": format_number(lead_scoring_agg["lead_scoring"]["Low"]),
-                    "color": "error",
                     "description": f"{desc_prefix} con una probabilidad de éxito menor del 50%",
                     **common_indicator_settings,
                 },
@@ -246,49 +286,57 @@ class PredictionsPage(Dashboard):
         )
         self.order += 3
 
+        # Plot product opportunity indicators
         self.shimoku.plt.html(
             html=self.shimoku.html_components.create_h1_title(
                 title="Product opportunities",
-                subtitle="Basado en Lead Scoring High",
+                subtitle="Based on Lead Scoring High",
             ),
             order=self.order,
         )
         self.order += 1
 
-        # Indicators per product category
-        self.plot_indicator_list(indicator_product_data=indicators["indicators_summary"])
+        self.plot_indicator_list(
+            indicator_product_data=indicators["indicators_summary"]
+        )
 
         return True
 
-    def info_btn(self,
-        modal_html_fn: Callable[[], str],
-        modal_name="info_modal",
-    ):
+    def info_btn(self, modal_html_fn: Callable[[], str], modal_name="info_modal"):
+        """
+        Creates an info button with a modal on the predictions page.
+
+        Parameters:
+            modal_html_fn: A callable function that returns HTML content for the modal.
+            modal_name (str): The name of the modal.
+        """
         self.shimoku.plt.modal_button(
             label="Info",
             order=self.order,
             modal=modal_name,
             cols_size=1,
-            # push to the right
             padding="0, 0, 0, 11",
         )
         self.order += 1
 
-        # Begin modal content
         self.shimoku.plt.set_modal(modal_name=modal_name)
         modal_order = 0
         self.shimoku.plt.html(
             order=modal_order,
             html=modal_html_fn(),
         )
-
-        # End Modal content
         self.shimoku.plt.pop_out_of_modal()
 
         return True
 
     def table(self):
+        """
+        Plots a table of leads data on the predictions page.
 
+        This method prepares and displays a table showing various details about leads,
+        including personal information, product details, and scoring metrics.
+        """
+        # Plot the title for the leads data section
         self.shimoku.plt.html(
             html=self.shimoku.html_components.create_h1_title(
                 title="Leads data",
@@ -298,7 +346,7 @@ class PredictionsPage(Dashboard):
         )
         self.order += 1
 
-        # define order of the columns
+        # Define the order of the columns for the table
         df_premodel_cols = [
             "sPerson",
             "Edad",
@@ -310,12 +358,13 @@ class PredictionsPage(Dashboard):
             "negative_impact_factors",
         ]
 
+        # Prepare the data frame for the table
         df_table = self.dfs.df_recommender_table[df_premodel_cols].copy()
         df_table["_base_values_x"] = df_table["_base_values_x"] * 100
         df_table["_base_values_x"] = df_table["_base_values_x"].round(decimals=1)
 
+        # Rename columns for readability and convert types as needed
         df_table = df_table.rename(
-            # Add a more readble name
             columns={
                 "lead_scoring": "Lead Scoring",
                 "purchase_probability": "Probability (%)",
@@ -323,28 +372,23 @@ class PredictionsPage(Dashboard):
                 "_base_values_x": "Base value",
                 "positive_impact_factors": "Drivers",
                 "negative_impact_factors": "Barriers",
-                "etapa_vida": "Etapa Vida",
-            },
-        ).astype(
-            # Convert to string because the frontend add dots
-            # to large integers
-            {"sPerson": "str"}
-        )
+            }
+        ).astype({"sPerson": "str"})
 
-        # Replace NaN values of factors with the empty string
+        # Replace NaN values in 'Drivers' and 'Barriers' columns with empty strings
         df_table["Drivers"] = df_table["Drivers"].fillna("")
         df_table["Barriers"] = df_table["Barriers"].fillna("")
 
-        # do this computation later on the csv file via jupyter-lab, if it takes too long
+        # Round 'Probability (%)' to one decimal place
         df_table["Probability (%)"] = df_table["Probability (%)"].round(decimals=1)
 
-        # Common settings for the columns of the table
-        common_col_options = {}
-
+        # Sort data by 'Probability (%)' in descending order
         data = df_table.sort_values("Probability (%)", ascending=False)
 
-        impact_factors_col_with = 450
+        # Width setting for 'Drivers' and 'Barriers' columns
+        impact_factors_col_width = 450
 
+        # Plot the table with specified settings
         self.shimoku.plt.table(
             order=self.order,
             data=data,
@@ -374,44 +418,55 @@ class PredictionsPage(Dashboard):
                 },
             },
             columns_options={
-                "Product": {
-                    "width": 100,
-                },
-                "Probability (%)": {
-                    "width": 150,
-                },
-                "Lead Scoring": {
-                    "width": 130,
-                },
-                "Drivers": {
-                    "width": impact_factors_col_with,
-                },
-                "Barriers": {
-                    "width": impact_factors_col_with,
-                },
-                "Base value": {
-                    "with": 200,
-                },
+                "Product": {"width": 100},
+                "Probability (%)": {"width": 150},
+                "Lead Scoring": {"width": 130},
+                "Drivers": {"width": impact_factors_col_width},
+                "Barriers": {"width": impact_factors_col_width},
+                "Base value": {"width": 200},
             },
         )
 
         self.order += 1
 
 
-
 class HiddenIndicatorsPage(Dashboard):
+    """
+    A class representing a page of hidden indicators within a dashboard.
+
+    Inherits from the Dashboard class and is used to display indicators that are
+    not immediately visible on the main dashboard page.
+
+    Attributes:
+        order (int): Order of elements to be plotted.
+        menu_path (str): Path of the menu in the dashboard.
+    """
 
     def __init__(self, shimoku):
+        """
+        Initializes the HiddenIndicatorsPage with a shimoku client instance.
+
+        Parameters:
+            shimoku: An instance of the Shimoku client.
+        """
         super().__init__(shimoku)
-        self.order = 0
-        self.menu_path="Hidden indicators"
-        self.shimoku.set_menu_path(name=self.menu_path)
-    
+        self.order = 0  # Initialize order of plotting elements
+        self.menu_path = "Hidden indicators"  # Set the menu path for this page
+        self.shimoku.set_menu_path(name=self.menu_path)  # Set the menu path in Shimoku
+
     def plot(self):
+        """
+        Plots the hidden indicators page.
 
+        This method retrieves hidden indicators and plots them on the page.
+        It also sets the title and hides the menu path after plotting.
+        """
+        # Retrieve the board ID using the board name
         board_id = self.shimoku.boards.get_board(name=self.board_name)["id"]
-        indicators_ = self.get_indicators_by_bussniess_v1(board_id)
+        # Get indicators by business logic
+        indicators = self.get_indicators_by_business(board_id)
 
+        # Plot the title for the hidden indicators section
         self.shimoku.plt.html(
             html=self.shimoku.html_components.create_h1_title(
                 title="Otros productos",
@@ -419,14 +474,16 @@ class HiddenIndicatorsPage(Dashboard):
             ),
             order=self.order,
         )
-        self.order += 1
+        self.order += 1  # Increment the order for the next plot element
 
-        self.plot_indicator_list(indicator_product_data=indicators_["hidden_indicators"])
+        # Plot the list of hidden indicators
+        self.plot_indicator_list(indicator_product_data=indicators["hidden_indicators"])
 
-        # Hide the menu path
+        # Hide the menu path after plotting
         self.shimoku.menu_paths.update_menu_path(
             name=self.menu_path,
             hide_path=True,
         )
 
+        # Navigate out of the current menu path
         self.shimoku.pop_out_of_menu_path()
