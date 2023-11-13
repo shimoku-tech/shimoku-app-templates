@@ -266,19 +266,19 @@ class PredictionsPage(Dashboard):
                 {
                     "title": "HIGH",
                     "value": format_number(lead_scoring_agg["lead_scoring"]["High"]),
-                    "description": f"{desc_prefix} con una probabilidad de éxito mayor del 75%",
+                    "description": f"{desc_prefix} with a success probability greater than 75%",
                     **common_indicator_settings,
                 },
                 {
                     "title": "MEDIUM",
                     "value": format_number(lead_scoring_agg["lead_scoring"]["Medium"]),
-                    "description": f"{desc_prefix} con una probabilidad de éxito de entre el 50% y el 75%",
+                    "description": f"{desc_prefix} with a success probability between 50% and 75%",
                     **common_indicator_settings,
                 },
                 {
                     "title": "LOW",
                     "value": format_number(lead_scoring_agg["lead_scoring"]["Low"]),
-                    "description": f"{desc_prefix} con una probabilidad de éxito menor del 50%",
+                    "description": f"{desc_prefix} with a success probability of less than 50%",
                     **common_indicator_settings,
                 },
             ],
