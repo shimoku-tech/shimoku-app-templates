@@ -36,6 +36,8 @@ class Dashboard:
         required before plotting the data on the dashboard.
         """
         get_predicted_opportunities()  # Function call to get predicted opportunities
+        return True
+
 
     def plot(self):
         """
@@ -49,6 +51,7 @@ class Dashboard:
 
         pp = PredictionsPage(self.shimoku)  # Instance of PredictionsPage
         pp.plot()  # Plotting the predictions page
+        return True
 
     def get_indicators_by_business(self, board_id):
         """
@@ -428,7 +431,8 @@ class PredictionsPage(Dashboard):
         )
 
         self.order += 1
-
+        
+        return True
 
 class HiddenIndicatorsPage(Dashboard):
     """
@@ -487,3 +491,5 @@ class HiddenIndicatorsPage(Dashboard):
 
         # Navigate out of the current menu path
         self.shimoku.pop_out_of_menu_path()
+
+        return True

@@ -34,6 +34,7 @@ def to_csv(df: pd.DataFrame, name: str, **kwargs):
         **kwargs: Additional keyword arguments to pass to DataFrame.to_csv().
     """
     df.to_csv(f"{data_folder}/{name}.csv", index=False, **kwargs)
+    return True
 
 
 def format_number(number) -> str:
