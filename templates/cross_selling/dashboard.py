@@ -268,18 +268,21 @@ class PredictionsPage(Dashboard):
             data=[
                 {
                     "title": "HIGH",
+                    "color": "success",
                     "value": format_number(lead_scoring_agg["lead_scoring"]["High"]),
                     "description": f"{desc_prefix} with a success probability greater than 75%",
                     **common_indicator_settings,
                 },
                 {
                     "title": "MEDIUM",
+                    "color": "warning",
                     "value": format_number(lead_scoring_agg["lead_scoring"]["Medium"]),
                     "description": f"{desc_prefix} with a success probability between 50% and 75%",
                     **common_indicator_settings,
                 },
                 {
                     "title": "LOW",
+                    "color": "error",
                     "value": format_number(lead_scoring_agg["lead_scoring"]["Low"]),
                     "description": f"{desc_prefix} with a success probability of less than 50%",
                     **common_indicator_settings,
