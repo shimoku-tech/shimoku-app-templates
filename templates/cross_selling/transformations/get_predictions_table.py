@@ -11,6 +11,7 @@ from utils.utils import read_csv, to_csv, search_string, factors_to_string
 import pandas as pd
 import re
 
+
 def get_lead_scoring(probability_percentage):
     """
     Determine the lead scoring category based on the probability percentage.
@@ -27,6 +28,7 @@ def get_lead_scoring(probability_percentage):
         return "Medium"
     else:
         return "High"
+
 
 def get_usable_premodel_predicted() -> pd.DataFrame:
     """
@@ -52,14 +54,18 @@ def get_usable_premodel_predicted() -> pd.DataFrame:
     regex_product = r"^Product_(.*)"
 
     # Extract probability and product columns
-    col_pred_prob = search_string(regex_probability_product, df_premodel_predicted.columns)
+    col_pred_prob = search_string(
+        regex_probability_product, df_premodel_predicted.columns
+    )
     col_pred_product_buy = search_string(regex_product, df_premodel_predicted.columns)
 
     # Create DataFrame for probability of purchase
     df_premodel_usable_raw_proba = df_premodel_predicted[["sPerson"] + col_pred_prob]
 
     # Create DataFrame for actual product purchase
-    df_premodel_usable_raw_product = df_premodel_predicted[["sPerson"] + col_pred_product_buy]
+    df_premodel_usable_raw_product = df_premodel_predicted[
+        ["sPerson"] + col_pred_product_buy
+    ]
 
     # Pivot probability table
     df_premodel_usable_proba = df_premodel_usable_raw_proba.melt(
@@ -71,12 +77,13 @@ def get_usable_premodel_predicted() -> pd.DataFrame:
         lambda x: re.match(regex_probability_product, x).group(2)
     )
 
-
     # Convert probabilities to percentages
     df_premodel_usable_proba["purchase_probability"] *= 100
 
     # Apply lead scoring
-    df_premodel_usable_proba["lead_scoring"] = df_premodel_usable_proba["purchase_probability"].apply(get_lead_scoring)
+    df_premodel_usable_proba["lead_scoring"] = df_premodel_usable_proba[
+        "purchase_probability"
+    ].apply(get_lead_scoring)
 
     # Pivot product table
     df_premodel_usable_product = df_premodel_usable_raw_product.melt(
@@ -248,9 +255,7 @@ def get_predicted_opportunities():
 
     # Merge personal information with factor data
     df_factors_person = df_factors_with_vals.merge(
-        df_person_data[["sPerson"]],
-        on="sPerson",
-        how="inner"
+        df_person_data[["sPerson"]], on="sPerson", how="inner"
     )
 
     # Combine factor and personal information with pre-model predictions
@@ -258,7 +263,7 @@ def get_predicted_opportunities():
         df_factors_person,
         left_on=["sPerson", "product"],
         right_on=["sPerson", "product_name"],
-        how="inner"
+        how="inner",
     )
 
     # Process and format positive impact factors
@@ -266,7 +271,7 @@ def get_predicted_opportunities():
         factors_to_string,
         axis=1,
         names_col="list_driver_names_y",
-        values_col="list_driver_values_y"
+        values_col="list_driver_values_y",
     )
 
     # Process and format negative impact factors
@@ -274,7 +279,7 @@ def get_predicted_opportunities():
         factors_to_string,
         axis=1,
         names_col="list_barrier_names_y",
-        values_col="list_barrier_values_y"
+        values_col="list_barrier_values_y",
     )
 
     # Drop original factor columns
