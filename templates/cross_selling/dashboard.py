@@ -38,7 +38,6 @@ class Dashboard:
         get_predicted_opportunities()  # Function call to get predicted opportunities
         return True
 
-
     def plot(self):
         """
         Plot the dashboard pages.
@@ -434,8 +433,9 @@ class PredictionsPage(Dashboard):
         )
 
         self.order += 1
-        
+
         return True
+
 
 class HiddenIndicatorsPage(Dashboard):
     """

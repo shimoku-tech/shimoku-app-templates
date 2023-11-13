@@ -10,6 +10,7 @@ modals_css = """
 }
 """
 
+
 def create_title_name_head(title: str, subtitle: str) -> str:
     """
     Función que genera el encabezado de la page
@@ -52,7 +53,7 @@ def create_title_name_head(title: str, subtitle: str) -> str:
 
 def craft_html(css: str, html: str):
     """
-    Combines the given CSS and HTML strings into a single HTML string 
+    Combines the given CSS and HTML strings into a single HTML string
     with the CSS included in a <style> tag in the <head> section.
 
     Args:
