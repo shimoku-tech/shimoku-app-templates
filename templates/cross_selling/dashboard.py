@@ -212,13 +212,13 @@ class PredictionsPage(Dashboard):
         board_id = self.shimoku.boards.get_board(name=self.board_name)["id"]
         indicators = self.get_indicators_by_business(board_id)
 
-        self.headings()
-        self.indicators(indicators)
-        self.info_btn(info_modal_predicted)
-        self.table()
+        self.plot_headings()
+        self.plot_indicators(indicators)
+        self.plot_info_btn(info_modal_predicted)
+        self.plot_table()
         self.shimoku.pop_out_of_menu_path()
 
-    def headings(self):
+    def plot_headings(self):
         """
         Plots the headings for the predictions page.
 
@@ -235,7 +235,7 @@ class PredictionsPage(Dashboard):
         self.order += 1
         return True
 
-    def indicators(self, indicators):
+    def plot_indicators(self, indicators):
         """
         Plots the indicators section on the predictions page.
 
@@ -307,7 +307,7 @@ class PredictionsPage(Dashboard):
 
         return True
 
-    def info_btn(self, modal_html_fn: Callable[[], str], modal_name="info_modal"):
+    def plot_info_btn(self, modal_html_fn: Callable[[], str], modal_name="info_modal"):
         """
         Creates an info button with a modal on the predictions page.
 
@@ -334,7 +334,7 @@ class PredictionsPage(Dashboard):
 
         return True
 
-    def table(self):
+    def plot_table(self):
         """
         Plots a table of leads data on the predictions page.
 
