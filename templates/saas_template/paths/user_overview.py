@@ -44,7 +44,6 @@ class UserOverview(Board):
         )
         self.shimoku.plt.html(
             indicator,
-            # menu_path=self.menu_path,
             order=self.order,
             rows_size=1,
             cols_size=12,
@@ -217,9 +216,7 @@ class UserOverview(Board):
         result_df.fillna(0, inplace=True)
         dict_result_df = result_df.to_dict(orient="records")
 
-        account_type_list = (
-            result_df.columns.tolist()
-        )  # Más costosa: account_type_list = df['account_type'].unique().tolist()
+        account_type_list = (result_df.columns.tolist())
         account_type_list.remove("year_week")
 
         # LINE
