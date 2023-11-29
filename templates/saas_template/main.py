@@ -28,7 +28,7 @@ def main():
     shimoku.workspaces.delete_all_workspace_menu_paths(uuid=getenv("WORKSPACE_ID"))
     shimoku.workspaces.delete_all_workspace_boards(uuid=getenv("WORKSPACE_ID"))
 
-    # # Instantiate and set up the dashboard
+    # Instantiate and set up the dashboard
     board = Board(shimoku)
     board.transform()  # Perform data transformations
     board.plot()  # Plot the dashboard
