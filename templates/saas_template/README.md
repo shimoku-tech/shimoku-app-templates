@@ -1,7 +1,7 @@
 # SaaS template
 
 <p align="center">
-  <img src="img/lead_scoring.png">
+  <img src="img/1.png">
 </p>
 
 ## Getting Started
