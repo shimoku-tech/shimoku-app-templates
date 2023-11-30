@@ -5,7 +5,9 @@
 Welcome to our GitHub repository!
 <br>
 📊 Dive into user engagement analytics with us! 
+<br>
 🚀 Explore metrics & insightful charts. 
+<br>
 🔍 Our Weekly Active Users Bar Chart offers a detailed look at user patterns. Plus, check out our pie chart for Newsletter Subscribers & dynamic line chart for New User Trends. 
 
 <p align="center">
