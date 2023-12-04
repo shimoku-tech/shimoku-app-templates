@@ -1,4 +1,4 @@
-# SaaS template
+# Saas active users overview template
 
 ## Introduction
 
