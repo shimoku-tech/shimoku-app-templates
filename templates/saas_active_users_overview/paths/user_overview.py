@@ -19,7 +19,13 @@ class UserOverview(Board):
 
         self.order = 0  # Initialize order of plotting elements
         self.menu_path = "Users overview"  # Set the menu path for this page
-        self.shimoku.set_menu_path(name=self.menu_path)  # Set the menu path in Shimoku
+
+        # Delete existing menu path if it exists
+        if self.shimoku.menu_paths.get_menu_path(name=self.menu_path):
+            self.shimoku.menu_paths.delete_menu_path(name=self.menu_path)
+
+        # Create the menu path
+        self.shimoku.set_menu_path(name=self.menu_path)
 
     def plot(self):
         """
