@@ -23,7 +23,12 @@ class EcomerceAnalysis(Board):
         super().__init__(self_board.shimoku)
         
         self.order = 0  # Initialize order of plotting elements
-        self.menu_path = "Users overview"  # Set the menu path for this page
+        self.menu_path = "Sales and users"  # Set the menu path for this page
+        
+        # Delete existing menu path if it exists
+        if self.shimoku.menu_paths.get_menu_path(name=self.menu_path):
+            self.shimoku.menu_paths.delete_menu_path(name=self.menu_path)
+        
         self.shimoku.set_menu_path(name=self.menu_path)  # Set the menu path in Shimoku
 
 
@@ -63,7 +68,7 @@ class EcomerceAnalysis(Board):
 
     def plot_header(self):
         indicator = beautiful_indicator(
-            title="Análisis de ventas y usuarios de ecommerce",
+            title="Analysis of sales and ecommerce users",
             href="https://shimoku.io/9698715a-a9d3-4253-851e-30640dce743e/drag-and-drop",
             background_url="https://images.unsplash.com/photo-1516414447565-b14be0adf13e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1973&q=80",
         )
@@ -122,21 +127,21 @@ class EcomerceAnalysis(Board):
         data = [
             {
                 "description": f"{last_month}",
-                "title": "Ventas brutas mes pasado",
+                "title": "Gross sales last month",
                 "value": f"€ {gross_sales_last_month}",
                 "color": "default",
                 "align": "center",
             },
             {
                 "description": f"{last_month}",
-                "title": "Ventas netas mes pasado",
+                "title": "Net sales last month",
                 "value": f"€ {revenue_last_month}",
                 "color": "default",
                 "align": "center",
             },
             {
                 "description": f"{current_month}",
-                "title": "Ventas brutas mes actual",
+                "title": "Gross sales current month",
                 "value": f"€ {gross_sales_current_month}",
                 "color": "default",
                 "align": "center",
@@ -160,7 +165,7 @@ class EcomerceAnalysis(Board):
     def plot_sales_by_weekday(self):
        
         self.shimoku.plt.html(
-            html=super_admin_title(title="Revenue diario acumulado"),
+            html=super_admin_title(title="Accumulated daily revenue"),
             order=self.order,
         )
 
@@ -298,7 +303,7 @@ class EcomerceAnalysis(Board):
 
         self.shimoku.plt.html(
             html=super_admin_title(
-                title=f"To 5 productos más vendidos y clientes más frecuentes del mes anterior ({one_month_before})",
+                title=f"Top 5 best-selling products and most frequent customers of the previous month ({one_month_before})",
             ),
             order=self.order,
         )
@@ -353,7 +358,7 @@ class EcomerceAnalysis(Board):
     def plot_pie_chart(self):
         self.shimoku.plt.html(
             html=super_admin_title(
-                title="Usuarios activos en total y en último semestre"
+                title="Active users in total and in the last semester"
             ),
             order=self.order,
         )

@@ -27,8 +27,8 @@ class Board:
         self.dfs = get_data(file_names)
         self.shimoku = shimoku  # Shimoku client instance
         self.shimoku.set_board(name=self.board_name)  # Setting up the board in Shimoku
-        self.shimoku.boards.update_board(name=self.board_name, is_public=True)
-
+        self.shimoku.boards.update_board(name=self.board_name, is_public=True) # Make the board public
+        
     def transform(self):
         """
         Perform data transformations.
