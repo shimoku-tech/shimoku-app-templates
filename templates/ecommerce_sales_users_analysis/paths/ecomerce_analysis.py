@@ -59,11 +59,11 @@ class EcomerceAnalysis(Board):
         self.df = df
 
         self.plot_header()
-        self.plot_indicators()
-        self.plot_sales_by_weekday()
-        self.plot_bar_chart_prods()
-        self.plot_table_users()
-        self.plot_pie_chart()
+        # self.plot_indicators()
+        # self.plot_sales_by_weekday()
+        # self.plot_bar_chart_prods()
+        # self.plot_table_users()
+        # self.plot_pie_chart()
         self.plot_stacked_bar()
 
     def plot_header(self):
@@ -397,20 +397,20 @@ class EcomerceAnalysis(Board):
 
             df_mask = self.df[month_year_data == n_month_before]
             new_dict = dict()
-            new_dict["Hombres"] = (df_mask["Genero"] == "Male").sum()
-            new_dict["Mujeres"] = (df_mask["Genero"] == "Female").sum()
+            new_dict["Man"] = (df_mask["Genero"] == "Male").sum()
+            new_dict["Woman"] = (df_mask["Genero"] == "Female").sum()
             new_dict["NA"] = (df_mask["Genero"] == "na").sum()
             new_dict["Total"] = len(df_mask["ClientID"])
-            new_dict["Mes"] = n_month_before
+            new_dict["Month"] = n_month_before
             list_for_dict.append(new_dict)
 
         df_active_users = pd.DataFrame(list_for_dict)
-        df_active_users.sort_values("Mes", inplace=True)
+        df_active_users.sort_values("Month", inplace=True)
 
         self.shimoku.plt.stacked_bar(
             data=df_active_users,
-            x="Mes",
-            y=["Total", "Hombres", "Mujeres", "NA"],
+            x="Month",
+            y=["Total", "Man", "Woman", "NA"],
             cols_size=5,
             order=self.order,
         )
