@@ -23,8 +23,9 @@ class Board:
         self.board_name = "Ecommerce Analysis"
         self.df = pd.read_csv("data/data.csv")
         self.shimoku = shimoku  # Shimoku client instance
-        self.shimoku.set_board(name=self.board_name)  # Setting up the board in Shimoku
-
+        self.shimoku.set_board(name=self.board_name)
+        self.shimoku.boards.update_board(name=self.board_name, is_public=True)
+        
     def transform(self):
         pass
 
