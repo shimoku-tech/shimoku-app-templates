@@ -59,11 +59,11 @@ class EcomerceAnalysis(Board):
         self.df = df
 
         self.plot_header()
-        # self.plot_indicators()
-        # self.plot_sales_by_weekday()
-        # self.plot_bar_chart_prods()
-        # self.plot_table_users()
-        # self.plot_pie_chart()
+        self.plot_indicators()
+        self.plot_sales_by_weekday()
+        self.plot_bar_chart_prods()
+        self.plot_table_users()
+        self.plot_pie_chart()
         self.plot_stacked_bar()
 
     def plot_header(self):
@@ -268,6 +268,8 @@ class EcomerceAnalysis(Board):
 
         dict_revenue_by_day = revenue_by_day.to_dict(orient="records")
 
+        print(dict_revenue_by_day)
+
         self.shimoku.plt.line(
             data=dict_revenue_by_day,
             x="Día de la semana",
@@ -296,7 +298,7 @@ class EcomerceAnalysis(Board):
             .sort_values(by="Precio", ascending=False)
             .reset_index()
         )
-        grouped_df.columns = ["Producto", "Total(€)", "Unidades"]
+        grouped_df.columns = ["Product", "Total(€)", "Unidades"]
         grouped_df["Total(€)"] = round(grouped_df["Total(€)"])
         first_five_products = grouped_df.loc[:4]
         first_five_products.sort_values(by="Total(€)", inplace=True)
@@ -313,7 +315,7 @@ class EcomerceAnalysis(Board):
 
         self.shimoku.plt.horizontal_bar(
             data=first_five_products,
-            x="Producto",
+            x="Product",
             y=["Total(€)"],
             order=self.order,
             rows_size=3,
@@ -367,8 +369,6 @@ class EcomerceAnalysis(Board):
         self.order += 1
         df = self.df.copy()
         # Count the occurrences of each gender
-        df["Genero"] = df["Genero"].replace("Male", "Hombres")
-        df["Genero"] = df["Genero"].replace("Female", "Mujeres")
         df["Genero"] = df["Genero"].replace("na", "NA")
         gender_counts = df["Genero"].value_counts()
         gender_df = pd.DataFrame(gender_counts.reset_index())
