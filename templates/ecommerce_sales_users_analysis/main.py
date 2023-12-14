@@ -26,9 +26,6 @@ def main():
     )
     shimoku.set_workspace(getenv("WORKSPACE_ID"))
 
-    # # Delete all existing boards and menu paths in the workspace
-    # shimoku.workspaces.delete_all_workspace_menu_paths(uuid=getenv("WORKSPACE_ID"))
-    # shimoku.workspaces.delete_all_workspace_boards(uuid=getenv("WORKSPACE_ID"))
 
     # Instantiate and set up the dashboard
     board = Board(shimoku)
