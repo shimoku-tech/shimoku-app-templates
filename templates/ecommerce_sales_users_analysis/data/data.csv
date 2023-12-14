@@ -1,4 +1,4 @@
-ClientID,Nombre,Apellido,Fecha_Compra,Email,Genero,Producto,Precio,Costo
+ClientID,Nombre,Apellido,Purchase_Date,Email,Gender,Product,Price,Cost
 "3c118b3b-92e8-4b39-87de-14de1acd25ed","Bethany","Jado","2023-08-04","bjador0@oaic.gov.au","na","Watch","1522,76","505,65"
 "668066db-fc10-4d84-92c4-5e2c70807523","Michaella","Tweedle","2023-01-28","mtweedle4i@hexun.com","Female","Desk Chair","1787,9","780,67"
 "ab22a54e-6d9c-47b4-83a4-ddf1c444ddad","Leonore","Tansill","2023-08-01","ltansillr9@cdbaby.com","Female","Books","1268,17","454,33"
