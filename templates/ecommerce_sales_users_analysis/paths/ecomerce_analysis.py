@@ -40,21 +40,21 @@ class EcomerceAnalysis(Board):
 
         df = pd.read_csv("data/data.csv")
 
-        df["Fecha_Compra"] = pd.to_datetime(df["Fecha_Compra"], format="%Y-%m-%d")
-        df["Month"] = df["Fecha_Compra"].dt.month
-        df["month_year"] = df["Fecha_Compra"].dt.strftime("%Y-%m")
+        df["Purchase_Date"] = pd.to_datetime(df["Purchase_Date"], format="%Y-%m-%d")
+        df["Month"] = df["Purchase_Date"].dt.month
+        df["month_year"] = df["Purchase_Date"].dt.strftime("%Y-%m")
         try:
-            precio_has_comma = df["Precio"].str.contains(",", regex=False).any()
-            cost_has_comma = df["Costo"].str.contains(",", regex=False).any()
+            price_has_comma = df["Price"].str.contains(",", regex=False).any()
+            cost_has_comma = df["Cost"].str.contains(",", regex=False).any()
         except AttributeError:
-            precio_has_comma, cost_has_comma = False, False
+            price_has_comma, cost_has_comma = False, False
             pass
-        if precio_has_comma or cost_has_comma:
-            df["Precio"] = df["Precio"].str.replace(",", ".", regex=True).astype(float)
-            df["Costo"] = df["Costo"].str.replace(",", ".", regex=True).astype(float)
+        if price_has_comma or cost_has_comma:
+            df["Price"] = df["Price"].str.replace(",", ".", regex=True).astype(float)
+            df["Cost"] = df["Cost"].str.replace(",", ".", regex=True).astype(float)
         else:
-            df["Precio"] = df["Precio"].astype(float)
-            df["Costo"] = df["Costo"].astype(float)
+            df["Price"] = df["Price"].astype(float)
+            df["Cost"] = df["Cost"].astype(float)
 
         self.df = df
 
@@ -94,14 +94,14 @@ class EcomerceAnalysis(Board):
         last_month = df_last_month["month_year"].iloc[0]
 
         # get gross sales from last month
-        gross_sales_last_month = round(df_last_month["Precio"].sum())
+        gross_sales_last_month = round(df_last_month["Price"].sum())
         gross_sales_last_month = locale.format_string(
             "%d", gross_sales_last_month, grouping=True
         )
         gross_sales_last_month = gross_sales_last_month.replace(",", ".")
 
         # get revenue from last month
-        df_last_month["revenue"] = df_last_month["Precio"] - df_last_month["Costo"]
+        df_last_month["revenue"] = df_last_month["Price"] - df_last_month["Cost"]
         revenue_last_month = round(df_last_month["revenue"].sum())
         revenue_last_month = locale.format_string(
             "%d", revenue_last_month, grouping=True
@@ -118,7 +118,7 @@ class EcomerceAnalysis(Board):
             current_month = None  # or some appropriate default value
 
         current_month = df_current_month["month_year"].iloc[0]
-        gross_sales_current_month = round(df_current_month["Precio"].sum())
+        gross_sales_current_month = round(df_current_month["Price"].sum())
         gross_sales_current_month = locale.format_string(
             "%d", gross_sales_current_month, grouping=True
         )
@@ -181,11 +181,11 @@ class EcomerceAnalysis(Board):
 
         # Filter data for the current week
         df_last_week = df[
-            (df["Fecha_Compra"] >= start_of_last_week)
-            & (df["Fecha_Compra"] <= end_of_last_week)
+            (df["Purchase_Date"] >= start_of_last_week)
+            & (df["Purchase_Date"] <= end_of_last_week)
         ]
 
-        df_last_week["day_of_week"] = df_last_week["Fecha_Compra"].dt.dayofweek
+        df_last_week["day_of_week"] = df_last_week["Purchase_Date"].dt.dayofweek
         df_last_week["day_of_week"] = df_last_week["day_of_week"].map(
             {
                 0: "Lunes",
@@ -206,7 +206,7 @@ class EcomerceAnalysis(Board):
             "Sábado",
             "Domingo",
         ]
-        df_last_week["revenue"] = round(df_last_week["Precio"] - df_last_week["Costo"])
+        df_last_week["revenue"] = round(df_last_week["Price"] - df_last_week["Cost"])
         revenue_by_day = (
             df_last_week.groupby("day_of_week")["revenue"]
             .sum()
@@ -226,11 +226,11 @@ class EcomerceAnalysis(Board):
 
         # Filter data for the current week
         df_this_week_data = df[
-            (df["Fecha_Compra"] >= start_of_week) & (df["Fecha_Compra"] <= end_of_week)
+            (df["Purchase_Date"] >= start_of_week) & (df["Purchase_Date"] <= end_of_week)
         ]
 
         df_this_week_data["day_of_week"] = df_this_week_data[
-            "Fecha_Compra"
+            "Purchase_Date"
         ].dt.dayofweek
 
         df_this_week_data["day_of_week"] = df_this_week_data["day_of_week"].map(
@@ -254,7 +254,7 @@ class EcomerceAnalysis(Board):
             "Domingo",
         ]
         df_this_week_data["revenue"] = round(
-            df_this_week_data["Precio"] - df_this_week_data["Costo"]
+            df_this_week_data["Price"] - df_this_week_data["Cost"]
         )
         revenue_by_day_this_week = (
             df_this_week_data.groupby("day_of_week")["revenue"]
@@ -293,9 +293,9 @@ class EcomerceAnalysis(Board):
 
         df_last_month = df[month_year_data == one_month_before]
         grouped_df = (
-            df_last_month.groupby("Producto")
-            .agg({"Precio": "sum", "Fecha_Compra": "count"})
-            .sort_values(by="Precio", ascending=False)
+            df_last_month.groupby("Product")
+            .agg({"Price": "sum", "Purchase_Date": "count"})
+            .sort_values(by="Price", ascending=False)
             .reset_index()
         )
         grouped_df.columns = ["Product", "Total(€)", "Unidades"]
@@ -333,8 +333,8 @@ class EcomerceAnalysis(Board):
         df_last_month = df[month_year_data == one_month_before]
         grouped_df = (
             df_last_month.groupby(["ClientID"])
-            .agg({"Email": "first", "Precio": "sum", "Producto": "count"})
-            .sort_values(by="Precio", ascending=False)
+            .agg({"Email": "first", "Price": "sum", "Product": "count"})
+            .sort_values(by="Price", ascending=False)
             .reset_index()
         )
         grouped_df.drop(columns=["ClientID"], inplace=True)
@@ -369,8 +369,8 @@ class EcomerceAnalysis(Board):
         self.order += 1
         df = self.df.copy()
         # Count the occurrences of each gender
-        df["Genero"] = df["Genero"].replace("na", "NA")
-        gender_counts = df["Genero"].value_counts()
+        df["Gender"] = df["Gender"].replace("na", "NA")
+        gender_counts = df["Gender"].value_counts()
         gender_df = pd.DataFrame(gender_counts.reset_index())
         gender_df.columns = ["Gender", "Count"]
         self.shimoku.plt.doughnut(
@@ -397,9 +397,9 @@ class EcomerceAnalysis(Board):
 
             df_mask = self.df[month_year_data == n_month_before]
             new_dict = dict()
-            new_dict["Man"] = (df_mask["Genero"] == "Male").sum()
-            new_dict["Woman"] = (df_mask["Genero"] == "Female").sum()
-            new_dict["NA"] = (df_mask["Genero"] == "na").sum()
+            new_dict["Man"] = (df_mask["Gender"] == "Male").sum()
+            new_dict["Woman"] = (df_mask["Gender"] == "Female").sum()
+            new_dict["NA"] = (df_mask["Gender"] == "na").sum()
             new_dict["Total"] = len(df_mask["ClientID"])
             new_dict["Month"] = n_month_before
             list_for_dict.append(new_dict)
