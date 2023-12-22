@@ -1,9 +1,11 @@
 from board import Board
 import pandas as pd
+from io import StringIO
+
 
 class Overview(Board):
     """
-    This path is responsible for rendering the user overview page.
+    This path is responsible for rendering the overview page.
     """
 
     def __init__(self, self_board: Board):
@@ -21,7 +23,9 @@ class Overview(Board):
 
         # Delete existing menu path if it exists
         if self.shimoku.menu_paths.get_menu_path(name=self.menu_path):
-            self.shimoku.menu_paths.delete_menu_path(name=self.menu_path)
+            self.shimoku.menu_paths.delete_menu_path(
+                name=self.menu_path
+            )
 
         # Create the menu path
         self.shimoku.set_menu_path(name=self.menu_path)
@@ -37,7 +41,6 @@ class Overview(Board):
         self.plot_incremental_sales_by_origin_campaign()
         self.plot_cost_by_product()
 
-
     def plot_header(self):
         title = "Sales Product Performance Dashboard"
 
@@ -46,9 +49,8 @@ class Overview(Board):
             rows_size=1,
             cols_size=12,
             html=self.shimoku.html_components.create_h1_title(
-                title=title,
-                subtitle=""
-            )
+                title=title, subtitle=""
+            ),
         )
 
         self.order += 1
@@ -58,20 +60,22 @@ class Overview(Board):
     def plot_revenue_by_product(self):
         df = self.df_app["main_kpis"]
 
-        revenue_by_product = df[df["title"] == "Revenue by Product"]["value"]
-        revenue_by_product = pd.read_json(revenue_by_product.values[0])
+        revenue_by_product = df[df["title"] == "Revenue by Product"][
+            "value"
+        ]
+        revenue_by_product = pd.read_json(StringIO(revenue_by_product.values[0]))
 
         products_name = df[df["title"] == "Product"]["value"]
-        products_name = pd.read_json(products_name.values[0])
-        products_name["product_name"] = products_name["product_name"].apply(lambda x: x.replace("_", " "))
+        products_name = pd.read_json(StringIO(products_name.values[0]))
+        products_name["product_name"] = products_name[
+            "product_name"
+        ].apply(lambda x: x.replace("_", " "))
 
         data = [
-            {
-                "name": p_name.iloc[0], 
-                "value": revenue_product.iloc[0]
-            } 
-            for (index1, p_name), (index2, revenue_product) 
-            in zip(products_name.iterrows(),revenue_by_product.iterrows())
+            {"name": p_name.iloc[0], "value": revenue_product.iloc[0]}
+            for (index1, p_name), (index2, revenue_product) in zip(
+                products_name.iterrows(), revenue_by_product.iterrows()
+            )
         ]
 
         self.shimoku.plt.doughnut(
@@ -81,60 +85,65 @@ class Overview(Board):
             names="name",
             values="value",
             rows_size=2,
-            cols_size=5
+            cols_size=5,
         )
 
         self.order += 1
-        
+
         return True
-    
+
     def plot_online_vs_in_store_revenues(self):
         df = self.df_app["main_kpis"]
 
         online_revenues = df[df["title"] == "Online Revenues"]["value"]
-        online_revenues = pd.read_json(online_revenues.values[0])
+        online_revenues = pd.read_json(StringIO(online_revenues.values[0]))
 
-        in_store_revenues = df[df["title"] == "In Store Revenues"]["value"]
-        in_store_revenues = pd.read_json(in_store_revenues.values[0])
+        in_store_revenues = df[df["title"] == "In Store Revenues"][
+            "value"
+        ]
+        in_store_revenues = pd.read_json(StringIO(in_store_revenues.values[0]))
 
         data = [
             {
-                "date": online["sale_date"], 
+                "date": online["sale_date"],
                 "Online": online["revenue"],
-                "In-Store": round(in_store["revenue"],3)
-            } 
-            for (index1, online), (index2, in_store) 
-            in zip(online_revenues.iterrows(),in_store_revenues.iterrows())
+                "In-Store": round(in_store["revenue"], 3),
+            }
+            for (index1, online), (index2, in_store) in zip(
+                online_revenues.iterrows(), in_store_revenues.iterrows()
+            )
         ]
 
         self.shimoku.plt.area(
-            title= "Online vs In-Store Revenues",
+            title="Online vs In-Store Revenues",
             data=data,
             order=self.order,
             x="date",
             rows_size=2,
-            cols_size=7
+            cols_size=7,
         )
 
         self.order += 1
 
         return True
-    
+
     def plot_incremental_sales_by_origin_campaign(self):
         df = self.df_app["main_kpis"]
 
-        sales_by_origin_campaign = df[df["title"] == "Incremental Sales by Origin Campaign"]["value"]
-        sales_by_origin_campaign = pd.read_json(sales_by_origin_campaign.values[0])
+        sales_by_origin_campaign = df[
+            df["title"] == "Incremental Sales by Origin Campaign"
+        ]["value"]
+        sales_by_origin_campaign = pd.read_json(StringIO(
+            sales_by_origin_campaign.values[0]
+        ))
 
         data = [
             {
                 "campaign": campaign["origin_campaign"],
-                "incremental sale": campaign["revenue"]
+                "incremental sale": campaign["revenue"],
             }
-            for (index,campaign)
-            in sales_by_origin_campaign.iterrows()
+            for (index, campaign) in sales_by_origin_campaign.iterrows()
         ]
-
 
         self.shimoku.plt.horizontal_bar(
             title="Incremental Sales by Origin Campaign",
@@ -143,7 +152,7 @@ class Overview(Board):
             x="campaign",
             rows_size=2,
             cols_size=5
-        )  
+        )
 
         self.order += 1
 
@@ -153,7 +162,7 @@ class Overview(Board):
         df = self.df_app["main_kpis"]
 
         cost_by_product = df[df["title"] == "Cost by Product"]["value"]
-        cost_by_product = pd.read_json(cost_by_product.values[0])
+        cost_by_product = pd.read_json(StringIO(cost_by_product.values[0]))
 
         self.shimoku.plt.stacked_bar(
             title="Cost by Product",
