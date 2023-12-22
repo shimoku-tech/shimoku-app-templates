@@ -1,13 +1,9 @@
 from os import getenv
 from shimoku_api_python import Client
 from dotenv import load_dotenv
-
 from board import Board
 
-#from freezegun import freeze_time
-#from settings import date
 
-#@freeze_time(date)
 def main():
     """
     Main function to initialize and plot the dashboard.
@@ -21,22 +17,15 @@ def main():
     # Create the Shimoku client with necessary credentials
     shimoku = Client(
         access_token=getenv("API_TOKEN"),
-        universe_id=getenv("UNIVERSE_SOLUTIONS_ID"),
-        verbosity="INFO",
+        universe_id=getenv("UNIVERSE_ID"),
+        verbosity="INFO"
     )
-    shimoku.set_workspace(getenv("WORKSPACE_SOLUTIONS_ID"))
-
-    #shimoku.set_board("Sales Product Performance")
-    #shimoku.set_menu_path('Diagrams')
-    #shimoku.boards.delete_board("Sales Product Performance")
-    #shimoku.boards.get_board("Sales Product Performance")
+    shimoku.set_workspace(getenv("WORKSPACE_ID"))
 
     # Instantiate and set up the dashboard
     board = Board(shimoku)
     board.transform()
     board.plot()
-
-
 
 
 if __name__ == "__main__":

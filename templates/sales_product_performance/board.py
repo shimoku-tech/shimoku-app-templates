@@ -22,9 +22,11 @@ class Board:
         """
 
         file_names = ["data/sales_product_performance.csv"]
-        self.board_name = "Sales Product Performance" # Name of the dashboard
+        self.board_name = (
+            "Sales Product Performance"  # Name of the dashboard
+        )
         self.dfs = get_data(file_names)
-        
+
         self.shimoku = shimoku  # Shimoku client instance
         self.shimoku.set_board(name=self.board_name)
         self.shimoku.boards.update_board(name=self.board_name)
@@ -39,21 +41,45 @@ class Board:
 
         df = self.dfs["sales_product_performance"]
 
-        revenue_by_product = df.groupby("product_name")["revenue"].sum().reset_index()
+        revenue_by_product = (
+            df.groupby("product_name")["revenue"].sum().reset_index()
+        )
 
         online_revenues = df[df["sale_type"] == "Online"]
-        online_revenues = online_revenues.groupby(online_revenues["sale_date"].dt.month)["revenue"].sum().reset_index()
+        online_revenues = (
+            online_revenues.groupby(
+                online_revenues["sale_date"].dt.month
+            )["revenue"]
+            .sum()
+            .reset_index()
+        )
 
         in_store_revenues = df[df["sale_type"] == "In-Store"]
-        in_store_revenues = in_store_revenues.groupby(in_store_revenues["sale_date"].dt.month)["revenue"].sum().reset_index()
+        in_store_revenues = (
+            in_store_revenues.groupby(
+                in_store_revenues["sale_date"].dt.month
+            )["revenue"]
+            .sum()
+            .reset_index()
+        )
 
-        sales_by_origin_campaign = df.groupby("origin_campaign")["revenue"].sum().reset_index()
+        sales_by_origin_campaign = (
+            df.groupby("origin_campaign")["revenue"].sum().reset_index()
+        )
 
         # Agrupar por mes, año y producto, sumando los valores de 'cost'
-        df['month'] = df['sale_date'].dt.month
-        cost_by_product = df.groupby(['month', 'product_name'])['cost'].sum().reset_index()
-        cost_by_product = cost_by_product.pivot_table(index=['month'], columns='product_name', values='cost', aggfunc='sum').reset_index()
-
+        df["month"] = df["sale_date"].dt.month
+        cost_by_product = (
+            df.groupby(["month", "product_name"])["cost"]
+            .sum()
+            .reset_index()
+        )
+        cost_by_product = cost_by_product.pivot_table(
+            index=["month"],
+            columns="product_name",
+            values="cost",
+            aggfunc="sum",
+        ).reset_index()
 
         main_kpis = [
             {
@@ -97,7 +123,7 @@ class Board:
                 "value": cost_by_product.to_json(),
                 "color": "success",
                 "align": "center",
-            }
+            },
         ]
 
         self.df_app = {"main_kpis": pd.DataFrame(main_kpis)}

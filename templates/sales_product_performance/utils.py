@@ -3,11 +3,13 @@ import os
 
 
 def get_data(file_names):
-    #  Returns a dictionary of dataframes, one item for each file of file_names array parameter.
-    #  Example:
-    #  file_names = ['data/active_users.csv', 'data/shop_events.csv', ...]
-    #  dict_dfs ['active_users'] = A dataframe with 'data/active_users.csv' CSV file
-    #  dict_dfs ['shop_events'] = A dataframe with 'data/shop_events.csv' CSV file
+    """
+    Returns a dictionary of dataframes, one item for each file of file_names array parameter.
+    Example:
+    file_names = ['data/active_users.csv', 'data/shop_events.csv', ...]
+    dict_dfs ['active_users'] = A dataframe with 'data/active_users.csv' CSV file
+    dict_dfs ['shop_events'] = A dataframe with 'data/shop_events.csv' CSV file
+    """
 
     dict_dfs = dict()
     for file_name in file_names:
