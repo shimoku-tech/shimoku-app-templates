@@ -2,9 +2,14 @@
 
 ## Introduction
 
+Welcome to our GitHub repository!
+<br>
+📊 Dive into sales product performance analytics with us! 
+<br>
+🚀 Explore metrics & insightful charts. 
 
 <p align="center">
-  <!--<img src="img/1.png">-->
+  <img src="img/capture.png">
 </p>
 
 ## Getting Started
