@@ -25,21 +25,18 @@ def get_data(file_names):
 
     return dict_dfs
 
+
 def groupby_sum(df, groupby_col, sum_col):
-  """
-  Group a DataFrame and sum a specific column.
-  
-  Parameters:
-  df (DataFrame): The DataFrame to group and summarize. 
-  groupby_col (str): The column name to groupby.
-  sum_col (str): The column name to sum.
-   
-  Returns:
-  DataFrame: Groupby DataFrame with summarized column.
-  """
-  
-  return (
-    df.groupby(groupby_col)[sum_col]
-      .sum()
-      .reset_index()
-  )
+    """
+    Group a DataFrame and sum a specific column.
+
+    Parameters:
+    df (DataFrame): The DataFrame to group and summarize.
+    groupby_col (str): The column name to groupby.
+    sum_col (str): The column name to sum.
+
+    Returns:
+    DataFrame: Groupby DataFrame with summarized column.
+    """
+
+    return df.groupby(groupby_col)[sum_col].sum().reset_index()

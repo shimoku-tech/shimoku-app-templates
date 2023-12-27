@@ -23,9 +23,7 @@ class Overview(Board):
 
         # Delete existing menu path if it exists
         if self.shimoku.menu_paths.get_menu_path(name=self.menu_path):
-            self.shimoku.menu_paths.delete_menu_path(
-                name=self.menu_path
-            )
+            self.shimoku.menu_paths.delete_menu_path(name=self.menu_path)
 
         # Create the menu path
         self.shimoku.set_menu_path(name=self.menu_path)
@@ -44,7 +42,7 @@ class Overview(Board):
     def plot_header(self):
         title = "Sales Product Performance Dashboard"
 
-        header_html ="""
+        header_html = """
             <head>
                 <style>
                     .component-title{{
@@ -60,14 +58,12 @@ class Overview(Board):
                     <h1>{}</h1>
                 </div>
             </div>
-        """.format(title)
-        
+        """.format(
+            title
+        )
 
         self.shimoku.plt.html(
-            order=self.order,
-            rows_size=1,
-            cols_size=12,
-            html=header_html
+            order=self.order, rows_size=1, cols_size=12, html=header_html
         )
 
         self.order += 1
@@ -77,16 +73,14 @@ class Overview(Board):
     def plot_revenue_by_product(self):
         df = self.df_app["main_kpis"]
 
-        revenue_by_product = df[df["title"] == "Revenue by Product"][
-            "value"
-        ]
+        revenue_by_product = df[df["title"] == "Revenue by Product"]["value"]
         revenue_by_product = pd.read_json(StringIO(revenue_by_product.values[0]))
 
         products_name = df[df["title"] == "Product"]["value"]
         products_name = pd.read_json(StringIO(products_name.values[0]))
-        products_name["product_name"] = products_name[
-            "product_name"
-        ].apply(lambda x: x.replace("_", " "))
+        products_name["product_name"] = products_name["product_name"].apply(
+            lambda x: x.replace("_", " ")
+        )
 
         data = [
             {"name": p_name.iloc[0], "value": revenue_product.iloc[0]}
@@ -102,7 +96,7 @@ class Overview(Board):
             names="name",
             values="value",
             rows_size=2,
-            cols_size=5,
+            cols_size=5
         )
 
         self.order += 1
@@ -115,9 +109,7 @@ class Overview(Board):
         online_revenues = df[df["title"] == "Online Revenues"]["value"]
         online_revenues = pd.read_json(StringIO(online_revenues.values[0]))
 
-        in_store_revenues = df[df["title"] == "In Store Revenues"][
-            "value"
-        ]
+        in_store_revenues = df[df["title"] == "In Store Revenues"]["value"]
         in_store_revenues = pd.read_json(StringIO(in_store_revenues.values[0]))
 
         data = [
@@ -139,13 +131,7 @@ class Overview(Board):
             x_axis_name="Months in 2023",
             rows_size=2,
             cols_size=7,
-            option_modifications={
-                "yAxis":{
-                    'axisLabel': {
-                        'formatter': '${value}'
-                    }
-                }
-            }
+            option_modifications={"yAxis": {"axisLabel": {"formatter": "${value}"}}}
         )
 
         self.order += 1
@@ -158,9 +144,9 @@ class Overview(Board):
         sales_by_origin_campaign = df[
             df["title"] == "Incremental Sales by Origin Campaign"
         ]["value"]
-        sales_by_origin_campaign = pd.read_json(StringIO(
-            sales_by_origin_campaign.values[0]
-        ))
+        sales_by_origin_campaign = pd.read_json(
+            StringIO(sales_by_origin_campaign.values[0])
+        )
 
         data = [
             {
@@ -170,7 +156,6 @@ class Overview(Board):
             for (index, campaign) in sales_by_origin_campaign.iterrows()
         ]
 
-
         self.shimoku.plt.horizontal_bar(
             title="Incremental Sales by Origin Campaign",
             data=data,
@@ -178,13 +163,7 @@ class Overview(Board):
             x="campaign",
             rows_size=2,
             cols_size=5,
-            option_modifications={
-                "xAxis":{
-                    'axisLabel': {
-                        'formatter': '${value}K'
-                    }
-                }
-            }
+            option_modifications={"xAxis": {"axisLabel": {"formatter": "${value}K"}}}
         )
 
         self.order += 1
@@ -198,9 +177,8 @@ class Overview(Board):
         cost_by_product = pd.read_json(StringIO(cost_by_product.values[0]))
 
         columns_name = cost_by_product.columns.tolist()[1:]
-        new_names = {name: name.replace('_', ' ') for name in columns_name}
-        cost_by_product.rename(columns=new_names,inplace=True)
-
+        new_names = {name: name.replace("_", " ") for name in columns_name}
+        cost_by_product.rename(columns=new_names, inplace=True)
 
         self.shimoku.plt.stacked_bar(
             title="Cost by Product",
@@ -210,16 +188,9 @@ class Overview(Board):
             x_axis_name="Months in 2023",
             rows_size=2,
             cols_size=7,
-            option_modifications={
-                "yAxis":{
-                    'axisLabel': {
-                        'formatter': '${value}'
-                    }
-                }
-            }
+            option_modifications={"yAxis": {"axisLabel": {"formatter": "${value}"}}}
         )
 
         self.order += 1
 
         return True
-
