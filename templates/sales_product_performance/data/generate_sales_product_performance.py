@@ -26,20 +26,17 @@ def generate_data():
     sale_date_list = [random_date(date_ini, date_end) for _ in range(n)]
 
     # product_name
-    product_names = [
-        f"Product_{i}" for i in range(1, total_products + 1)
-    ]
+    product_names = [f"Product_{i}" for i in range(1, total_products + 1)]
     costs = np.round(
-        np.random.uniform(
-            cost_range[0], cost_range[1], size=total_products
-        ), 2
+        np.random.uniform(cost_range[0], cost_range[1], size=total_products), 2
     )
     benefit_factors = np.round(
         np.random.uniform(
             benefit_factor_range[0],
             benefit_factor_range[1],
             size=total_products,
-        ), 2
+        ),
+        2,
     )
     benefits = np.round(costs * benefit_factors, 2)
 
@@ -62,9 +59,7 @@ def generate_data():
     random.shuffle(origin_campaign_list)
 
     # sale_type
-    sale_type_list = ["Online"] * int(n * 0.4) + ["In-Store"] * int(
-        n * 0.6
-    )
+    sale_type_list = ["Online"] * int(n * 0.4) + ["In-Store"] * int(n * 0.6)
     random.shuffle(sale_type_list)
 
     # revenue
@@ -73,9 +68,7 @@ def generate_data():
     )
 
     # cost
-    cost_list = np.array(
-        [products[product]["cost"] for product in product_name_list]
-    )
+    cost_list = np.array([products[product]["cost"] for product in product_name_list])
 
     # Create the DataFrame
     data = {
@@ -91,13 +84,7 @@ def generate_data():
     df.sort_values(by="sale_date", inplace=True)
 
     # Display the DataFrame
-    print(
-        "\n### Output CSV: "
-        + output_file
-        + " ("
-        + str(len(df))
-        + " registers)\n"
-    )
+    print("\n### Output CSV: " + output_file + " (" + str(len(df)) + " registers)\n")
     print(df.head(10))
     print("\n")
 
