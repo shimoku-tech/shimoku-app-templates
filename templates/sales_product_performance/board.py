@@ -1,7 +1,7 @@
 from shimoku_api_python import Client
-from utils import get_data
+from utils import get_data, groupby_sum
 import pandas as pd
-
+import calendar
 
 class Board:
     """
@@ -41,45 +41,37 @@ class Board:
 
         df = self.dfs["sales_product_performance"]
 
-        revenue_by_product = (
-            df.groupby("product_name")["revenue"].sum().reset_index()
-        )
+        #To replace numbers for month names
+        month_names = list(calendar.month_abbr)[1:]
+        month_dict = {i: abbr_name for i, abbr_name in enumerate(month_names, start=1)}
 
+        #Get revenues sum by product
+        revenue_by_product = groupby_sum(df,"product_name","revenue")
+
+        #Get online revenues sum by month
         online_revenues = df[df["sale_type"] == "Online"]
-        online_revenues = (
-            online_revenues.groupby(
-                online_revenues["sale_date"].dt.month
-            )["revenue"]
-            .sum()
-            .reset_index()
-        )
+        online_revenues = groupby_sum(online_revenues,online_revenues["sale_date"].dt.month,"revenue")
+        online_revenues['sale_date'] = online_revenues['sale_date'].replace(month_dict)
 
+        #Get in-store revenues sum by month
         in_store_revenues = df[df["sale_type"] == "In-Store"]
-        in_store_revenues = (
-            in_store_revenues.groupby(
-                in_store_revenues["sale_date"].dt.month
-            )["revenue"]
-            .sum()
-            .reset_index()
-        )
+        in_store_revenues = groupby_sum(in_store_revenues,in_store_revenues["sale_date"].dt.month,"revenue") 
 
-        sales_by_origin_campaign = (
-            df.groupby("origin_campaign")["revenue"].sum().reset_index()
-        )
+        #Get revenues sum by origin campaign
+        sales_by_origin_campaign = groupby_sum(df,"origin_campaign","revenue")
+        sales_by_origin_campaign["revenue_k"] = round(sales_by_origin_campaign["revenue"]/1000)
 
-        # Agrupar por mes, año y producto, sumando los valores de 'cost'
+        #Get costs sum by month and product
         df["month"] = df["sale_date"].dt.month
-        cost_by_product = (
-            df.groupby(["month", "product_name"])["cost"]
-            .sum()
-            .reset_index()
-        )
+        cost_by_product = groupby_sum(df,["month", "product_name"],"cost")
         cost_by_product = cost_by_product.pivot_table(
             index=["month"],
             columns="product_name",
             values="cost",
             aggfunc="sum",
         ).reset_index()
+        cost_by_product['month'] = cost_by_product['month'].replace(month_dict)
+
 
         main_kpis = [
             {
