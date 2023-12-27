@@ -44,13 +44,30 @@ class Overview(Board):
     def plot_header(self):
         title = "Sales Product Performance Dashboard"
 
+        header_html ="""
+            <head>
+                <style>
+                    .component-title{{
+                        height:auto; width:100%;
+                        border-radius:16px; padding:16px;
+                        display:flex; align-items:center;
+                        background-color:var(--chart-C1); color:var(--color-white);
+                    }}
+                </style>
+            </head>  
+            <div class='component-title'>
+                <div class='text-block'>
+                    <h1>{}</h1>
+                </div>
+            </div>
+        """.format(title)
+        
+
         self.shimoku.plt.html(
             order=self.order,
             rows_size=1,
             cols_size=12,
-            html=self.shimoku.html_components.create_h1_title(
-                title=title, subtitle=""
-            ),
+            html=header_html
         )
 
         self.order += 1
@@ -119,8 +136,16 @@ class Overview(Board):
             data=data,
             order=self.order,
             x="date",
+            x_axis_name="Months in 2023",
             rows_size=2,
             cols_size=7,
+            option_modifications={
+                "yAxis":{
+                    'axisLabel': {
+                        'formatter': '${value}'
+                    }
+                }
+            }
         )
 
         self.order += 1
@@ -140,10 +165,11 @@ class Overview(Board):
         data = [
             {
                 "campaign": campaign["origin_campaign"],
-                "incremental sale": campaign["revenue"],
+                "Incremental Sale": campaign["revenue_k"],
             }
             for (index, campaign) in sales_by_origin_campaign.iterrows()
         ]
+
 
         self.shimoku.plt.horizontal_bar(
             title="Incremental Sales by Origin Campaign",
@@ -151,7 +177,14 @@ class Overview(Board):
             order=self.order,
             x="campaign",
             rows_size=2,
-            cols_size=5
+            cols_size=5,
+            option_modifications={
+                "xAxis":{
+                    'axisLabel': {
+                        'formatter': '${value}K'
+                    }
+                }
+            }
         )
 
         self.order += 1
@@ -164,6 +197,11 @@ class Overview(Board):
         cost_by_product = df[df["title"] == "Cost by Product"]["value"]
         cost_by_product = pd.read_json(StringIO(cost_by_product.values[0]))
 
+        columns_name = cost_by_product.columns.tolist()[1:]
+        new_names = {name: name.replace('_', ' ') for name in columns_name}
+        cost_by_product.rename(columns=new_names,inplace=True)
+
+
         self.shimoku.plt.stacked_bar(
             title="Cost by Product",
             data=cost_by_product,
@@ -171,9 +209,17 @@ class Overview(Board):
             x="month",
             x_axis_name="Months in 2023",
             rows_size=2,
-            cols_size=7
+            cols_size=7,
+            option_modifications={
+                "yAxis":{
+                    'axisLabel': {
+                        'formatter': '${value}'
+                    }
+                }
+            }
         )
 
         self.order += 1
 
         return True
+
