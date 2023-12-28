@@ -84,7 +84,24 @@ class Board:
             },
         ]
 
-        self.df_app = {"main_kpis": pd.DataFrame(main_kpis)}
+        # Customers and orders
+        import calendar
+        customers_orders = [
+            {
+                "Month": calendar.month_name[month][:3],
+                "Customer": len(
+                    df_customer_orders["customer_id"][df_customer_orders["order_date"].dt.month == month].unique()
+                ),
+                "Orders": len(
+                    df_customer_orders["order_id"][df_customer_orders["order_date"].dt.month == month].unique()
+                ),
+            }
+        for month in range(1,13)]
+
+        self.df_app = {
+            "main_kpis": pd.DataFrame(main_kpis),
+            "customers_orders": pd.DataFrame(customers_orders),
+        }
 
         return True
 
