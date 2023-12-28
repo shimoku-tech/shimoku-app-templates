@@ -1,0 +1,2 @@
+shimoku-api-python
+python-dotenv
