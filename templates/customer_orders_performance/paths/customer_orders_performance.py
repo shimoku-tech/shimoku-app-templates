@@ -1,4 +1,4 @@
-from utils.utils import convert_dataframe_to_array, beautiful_indicator
+from utils.utils import convert_dataframe_to_array
 from board import Board
 
 
@@ -36,6 +36,8 @@ class customer_orders_performance(Board):
         self.plot_customers_orders()
         self.plot_profit_margin()
         self.plot_top_customers_number_orders()
+        self.plot_customers_number_orders()
+        self.plot_customer_profitability()
 
     def plot_kpi_indicators(self) -> bool:
         """Indicatos plot of Main KPIs
@@ -67,6 +69,7 @@ class customer_orders_performance(Board):
         self.shimoku.plt.line(
             data=self.df_app["customers_orders"],
             order=self.order,
+            title="Customers & Orders",
             rows_size=2,
             cols_size=6,
             x='Month',
@@ -88,6 +91,7 @@ class customer_orders_performance(Board):
         self.shimoku.plt.line_and_bar_charts(
             data=self.df_app["profit_margin"],
             order=self.order,
+            title="Profit margin",
             rows_size=2,
             cols_size=6,
             x='Month',
@@ -104,14 +108,57 @@ class customer_orders_performance(Board):
         return True
 
     def plot_top_customers_number_orders(self):
+        """Bar plot using Top customers by number of orders
+
+        Returns:
+            bool: Execution status
+        """
         self.shimoku.plt.bar(
             data=self.df_app["top_customers"],
             order=self.order,
-            title='Top customers by number of orders',
+            title="Top customers by number of orders",
             rows_size=2,
             cols_size=4,
-            x='Customer',
-            x_axis_name='Customers',
+            x="Customer",
+            x_axis_name="Customers",
+        )
+        self.order += 1
+
+        return True
+
+    def plot_customers_number_orders(self):
+        """Doughnut plot using Customers by number of orders
+
+        Returns:
+            bool: Execution status
+        """
+        self.shimoku.plt.doughnut(
+            data=self.df_app["customers_by_orders"],
+            order=self.order,
+            title="Customers by number of orders",
+            rows_size=2,
+            cols_size=4,
+            names="Orders",
+            values="Customers",
+        )
+        self.order += 1
+
+        return True
+
+    def plot_customer_profitability(self):
+        """Stacked bar plot using Customer Profitability considering Top 5 customers by number of orders
+
+        Returns:
+            bool: Execution status
+        """
+        self.shimoku.plt.stacked_bar(
+            data=self.df_app["customer_profitability"],
+            order=self.order,
+            title="Customer Profitability",
+            cols_size=4,
+            rows_size=2,
+            x="Month",
+            x_axis_name="Month",
         )
         self.order += 1
 

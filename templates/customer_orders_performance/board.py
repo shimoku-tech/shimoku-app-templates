@@ -1,8 +1,6 @@
 from shimoku_api_python import Client
 from utils.utils import get_data
 import pandas as pd
-from datetime import datetime, timedelta
-
 
 class Board:
     """
@@ -58,28 +56,28 @@ class Board:
             {
                 "title": "Revenue",
                 "value": f'{sum(df_customer_orders["order_spend"]):,.0f}€',
-                "color": "default",
+                "color": "success",
                 "align": "center",
             },
             # Total order expenses
             {
                 "title": "Expenses",
                 "value": f'{sum(df_customer_orders["order_cost"]):,.0f}€',
-                "color": "default",
+                "color": "error",
                 "align": "center",
             },
             # Net profit from the order
             {
                 "title": "Net Profit",
                 "value": f'{sum(df_customer_orders["order_spend"] - df_customer_orders["order_cost"]):,.0f}€',
-                "color": "default",
+                "color": "success",
                 "align": "center",
             },
             # The percentage of net profit in relation to revenue
             {
                 "title": "Profit Margin",
                 "value": f'{sum(df_customer_orders["order_spend"] - df_customer_orders["order_cost"]) * 100 / sum(df_customer_orders["order_spend"]):.1f}%',
-                "color": "default",
+                "color": "success",
                 "align": "center",
             },
         ]
@@ -114,9 +112,10 @@ class Board:
         for month in range(1,13)]
 
         # Top 10 customers by number of orders
-        customers_by_orders = df_customer_orders.groupby("customer_id").agg({"order_id":"count"})
-        sorted_customers_by_orders = customers_by_orders.sort_values(by="order_id", ascending=False)
-        top_customers_by_orders = sorted_customers_by_orders.iloc[:10]
+        orders_by_customers = df_customer_orders.groupby("customer_id").agg({"order_id":"count"})
+        orders_by_customers = orders_by_customers.rename(columns={"order_id":"orders_count"})
+        sorted_orders_by_customers = orders_by_customers.sort_values(by="orders_count", ascending=False)
+        top_customers_by_orders = sorted_orders_by_customers.iloc[:10]
 
         top_customers = [
             {
@@ -125,11 +124,40 @@ class Board:
             }
         for customer, orders in zip(top_customers_by_orders.index, top_customers_by_orders.values)]
 
+        # Customers by number of orders
+        customers_by_orders = orders_by_customers.groupby("orders_count").agg({"orders_count":"count"})
+        customers_by_orders = customers_by_orders.rename(columns={"orders_count":"customers_count"})
+        sorted_customers_by_orders = customers_by_orders.sort_values(by="customers_count", ascending=False)
+
+        customers_by_orders = [
+            {
+                "Orders": f"{orders} orders",
+                "Customers": customers[0],
+            }
+        for orders, customers in zip(sorted_customers_by_orders.index, sorted_customers_by_orders.values)]
+
+        # Customer Profitability
+        top3_customer_by_orders = sorted_orders_by_customers.iloc[:5]
+        customer_profitability = [
+            {
+                "Month": calendar.month_name[month][:3],
+            } |
+            {
+                f"Customer {customer}": sum(
+                    df_customer_orders[
+                        (df_customer_orders["order_date"].dt.month == month) & (df_customer_orders["customer_id"] == customer)
+                    ].apply(lambda row: row["order_spend"] - row["order_cost"], axis=1)
+                )
+            for customer in top3_customer_by_orders.index}
+        for month in range(1,13)]
+
         self.df_app = {
             "main_kpis": pd.DataFrame(main_kpis),
             "customers_orders": pd.DataFrame(customers_orders),
             "profit_margin": pd.DataFrame(profit_margin),
             "top_customers": pd.DataFrame(top_customers),
+            "customers_by_orders": pd.DataFrame(customers_by_orders),
+            "customer_profitability": pd.DataFrame(customer_profitability),
         }
 
         return True
