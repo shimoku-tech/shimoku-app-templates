@@ -32,5 +32,20 @@ class customer_orders_performance(Board):
         Plots the user overview page.
         Each method is responsible for plotting a specific section of the page.
         """
+        self.plot_kpi_indicators()
+
+    def plot_kpi_indicators(self):
+        order = self.shimoku.plt.indicator(
+            data=convert_dataframe_to_array(self.df_app["main_kpis"]),
+            order=self.order,
+            rows_size=1,
+            cols_size=12,
+            value="value",
+            header="title",
+            footer="description",
+            color="color",
+            align="align",
+        )
+        self.order += len(self.df_app["main_kpis"]) + 1
 
         return True

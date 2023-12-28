@@ -22,13 +22,13 @@ class Board:
             shimoku (Client): An instance of a Client class for Shimoku API interactions.
         """
 
-        file_names = ["data/active_users.csv"]
+        file_names = ["data/customer_orders_performance.csv"]
         self.board_name = "Financial"  # Name of the dashboard
         self.dfs = get_data(file_names)
         self.shimoku = shimoku  # Shimoku client instance
         self.shimoku.set_board(name=self.board_name)  # Setting up the board in Shimoku
 
-    def transform(self):
+    def transform(self) -> bool:
         """
         Perform data transformations.
 
@@ -36,63 +36,50 @@ class Board:
         required before plotting the data on the dashboard.
         """
 
-        df = self.dfs["active_users"]
+        df_customer_orders = self.dfs["customer_orders_performance"]
 
+        # Main KPIs
         main_kpis = [
+            # Total Customers
             {
-                "title": "Registered Users",
-                "description": "Total of registered users",
-                "value": len(df[df["unregister_date"].isnull()]),
-                "color": "success",
+                "title": "Customers",
+                "value": len(df_customer_orders["customer_id"].unique()),
+                "color": "default",
                 "align": "center",
             },
+            # Total orders
             {
-                "title": "Active Users 24h",
-                "description": "Active Users on last 24h",
-                "value": len(
-                    df[df["last_login_date"] >= (datetime.now() - timedelta(days=1))]
-                ),
-                "color": "success",
+                "title": "Orders",
+                "value": len(df_customer_orders["order_id"].unique()),
+                "color": "default",
                 "align": "center",
             },
+            # Total order revenue
             {
-                "title": "WAU",
-                "description": "Weekly Active Users",
-                "value": len(
-                    df[df["last_login_date"] >= (datetime.now() - timedelta(days=7))]
-                ),
-                "color": "success",
+                "title": "Revenue",
+                "value": f'{sum(df_customer_orders["order_spend"]):,.0f}€',
+                "color": "default",
                 "align": "center",
             },
+            # Total order expenses
             {
-                "title": "MAU",
-                "description": "Monthly Active Users",
-                "value": len(
-                    df[df["last_login_date"] >= (datetime.now() - timedelta(days=30))]
-                ),
-                "color": "success",
+                "title": "Expenses",
+                "value": f'{sum(df_customer_orders["order_cost"]):,.0f}€',
+                "color": "default",
                 "align": "center",
             },
+            # Net profit from the order
             {
-                "title": "New Users",
-                "description": "New Users in the last 30 days",
-                "value": len(
-                    df[df["register_date"] >= (datetime.now() - timedelta(days=30))]
-                ),
-                "color": "success",
+                "title": "Net Profit",
+                "value": f'{sum(df_customer_orders["order_spend"] - df_customer_orders["order_cost"]):,.0f}€',
+                "color": "default",
                 "align": "center",
             },
+            # The percentage of net profit in relation to revenue
             {
-                "title": "Subscribers",
-                "description": "Total active newsletter subscribers",
-                "value": len(
-                    df[
-                        (df["subscription_date"].notnull())
-                        & (df["unsubscription_date"].isnull())
-                        & (df["unregister_date"].isnull())
-                    ]
-                ),
-                "color": "success",
+                "title": "Profit Margin",
+                "value": f'{sum(df_customer_orders["order_spend"] - df_customer_orders["order_cost"]) * 100 / sum(df_customer_orders["order_spend"]):.1f}%',
+                "color": "default",
                 "align": "center",
             },
         ]
