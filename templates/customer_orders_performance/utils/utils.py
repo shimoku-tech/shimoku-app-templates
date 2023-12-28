@@ -1,6 +1,5 @@
 import pandas as pd
 import os
-from re import sub
 
 
 def get_data(file_names):
@@ -36,38 +35,3 @@ def convert_dataframe_to_array(
         new_data.append(new_dict)
 
     return new_data
-
-
-def plot_beautiful_title(self, order, title, href, background_url):
-    # HTML - Beatiful indicator
-    indicator = beautiful_indicator(
-        title=title, href=href, background_url=background_url
-    )
-    self.shimoku.plt.html(
-        indicator,
-        # menu_path=self.menu_path,
-        order=order,
-        rows_size=1,
-        cols_size=12,
-    )
-
-    return order + 1
-
-
-def beautiful_indicator(title, background_url, href):
-    if not background_url:
-        background_url: str = "https://uploads-ssl.webflow.com/619f9fe98661d321dc3beec7/62a07a6d9e984908a5aca6a1_shim-anomaly-bg-s.jpg"
-
-    title_style: str = sub(r"\s+", "", title)
-    return (
-        f"<head>"
-        f"<style>.{title_style}{{height:121px; width:100%; border-radius:8px; padding:45px; background-position: center; background-size: cover; background-image: url('{background_url}'); color:#FFFFFF;}}</style>"
-        f"</head>"
-        f"<a href='{href}'>"
-        f"<div class='{title_style}'>"
-        f"<h3>"
-        f"{title}"
-        f"</h3>"
-        f"</div>"
-        f"</a>"
-    )

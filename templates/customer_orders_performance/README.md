@@ -8,7 +8,8 @@ Welcome to our GitHub repository!
 <br>
 🚀 Explore metrics & insightful charts.
 <br>
-🔍 Our Weekly Active Users Bar Chart offers a detailed look at user patterns. Plus, check out our pie chart for Newsletter Subscribers & dynamic line chart for New User Trends.
+
+![Screanshot 1](img/customer_orders_performance.png)
 
 ## Getting Started
 
