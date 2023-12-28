@@ -1,8 +1,9 @@
 import pandas as pd
 import os
+from typing import List
 
 
-def get_data(file_names):
+def get_data(file_names: List[str]):
     """
     Returns a dictionary of dataframes, one item for each file of file_names array parameter.
     Example:
@@ -26,7 +27,7 @@ def get_data(file_names):
     return dict_dfs
 
 
-def groupby_sum(df, groupby_col, sum_col):
+def groupby_sum(df: pd.DataFrame, groupby_col: str, sum_col: str):
     """
     Group a DataFrame and sum a specific column.
 

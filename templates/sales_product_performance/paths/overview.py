@@ -40,6 +40,13 @@ class Overview(Board):
         self.plot_cost_by_product()
 
     def plot_header(self):
+        """
+        Plots the header section.
+
+        Returns:
+            True if the operation is successful.
+        """
+
         title = "Sales Product Performance Dashboard"
 
         header_html = """
@@ -71,6 +78,13 @@ class Overview(Board):
         return True
 
     def plot_revenue_by_product(self):
+        """
+        Plots a doughnut for Revenue by Product KPI.
+
+        Returns:
+            True if the operation is successful.
+        """
+
         df = self.df_app["main_kpis"]
 
         revenue_by_product = df[df["title"] == "Revenue by Product"]["value"]
@@ -104,6 +118,13 @@ class Overview(Board):
         return True
 
     def plot_online_vs_in_store_revenues(self):
+        """
+        Plots an area for Online vs In-Store Revenues KPI
+
+        Returns:
+            True if the operation is successful.
+        """
+
         df = self.df_app["main_kpis"]
 
         online_revenues = df[df["title"] == "Online Revenues"]["value"]
@@ -139,6 +160,13 @@ class Overview(Board):
         return True
 
     def plot_incremental_sales_by_origin_campaign(self):
+        """
+        Plots a horizontal bar for Incremental Sales by Origin Campaign KPI
+
+        Returns:
+            True if the operation is successful.
+        """
+
         df = self.df_app["main_kpis"]
 
         sales_by_origin_campaign = df[
@@ -171,6 +199,13 @@ class Overview(Board):
         return True
 
     def plot_cost_by_product(self):
+        """
+        Plots a stacked bar for Cost by Product KPI
+
+        Returns:
+            True if the operation is successful.
+        """
+
         df = self.df_app["main_kpis"]
 
         cost_by_product = df[df["title"] == "Cost by Product"]["value"]

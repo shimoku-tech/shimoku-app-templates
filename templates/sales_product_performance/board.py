@@ -10,7 +10,7 @@ class Board:
 
     Attributes:
         board_name (str): Name of the dashboard.
-        dfs (DFs): An instance of a DFs class for handling data frames.
+        dfs (Dataframe): Dataframe where is loaded csv data.
         shimoku (Client): An instance of a Client class for Shimoku API interactions.
     """
 
@@ -44,29 +44,29 @@ class Board:
         month_names = list(calendar.month_abbr)[1:]
         month_dict = {i: abbr_name for i, abbr_name in enumerate(month_names, start=1)}
 
-        # Get revenues sum by product
+        # Sum revenue by product
         revenue_by_product = groupby_sum(df, "product_name", "revenue")
 
-        # Get online revenues sum by month
+        # Sum online sales revenue by month
         online_revenues = df[df["sale_type"] == "Online"]
         online_revenues = groupby_sum(
             online_revenues, online_revenues["sale_date"].dt.month, "revenue"
         )
         online_revenues["sale_date"] = online_revenues["sale_date"].replace(month_dict)
 
-        # Get in-store revenues sum by month
+        # Sum in-store sales revenue by month
         in_store_revenues = df[df["sale_type"] == "In-Store"]
         in_store_revenues = groupby_sum(
             in_store_revenues, in_store_revenues["sale_date"].dt.month, "revenue"
         )
 
-        # Get revenues sum by origin campaign
+        # Sum revenue by origin campaign
         sales_by_origin_campaign = groupby_sum(df, "origin_campaign", "revenue")
         sales_by_origin_campaign["revenue_k"] = round(
             sales_by_origin_campaign["revenue"] / 1000
         )
 
-        # Get costs sum by month and product
+        # Sum product costs by month and pivot the data
         df["month"] = df["sale_date"].dt.month
         cost_by_product = groupby_sum(df, ["month", "product_name"], "cost")
         cost_by_product = cost_by_product.pivot_table(
@@ -76,6 +76,7 @@ class Board:
             aggfunc="sum",
         ).reset_index()
         cost_by_product["month"] = cost_by_product["month"].replace(month_dict)
+
 
         main_kpis = [
             {
@@ -128,11 +129,11 @@ class Board:
 
     def plot(self):
         """
-        A method to plot user overview.
+        A method to plot overview.
 
-        This method utilizes the UserOverview class from the paths.user_overview
-        module to create and display a plot related to the user. It assumes that
-        UserOverview requires a reference to the instance of the class from which
+        This method utilizes the Overview class from the paths.overview
+        module to create and display a plot related to the sales product performance. It assumes that
+        Overview requires a reference to the instance of the class from which
         this method is called.
 
         Args:
@@ -142,9 +143,9 @@ class Board:
         None. The function is used for its side effect of plotting data.
 
         Note:
-        - This method imports the UserOverview class within the function scope
+        - This method imports the Overview class within the function scope
           to avoid potential circular dependencies.
-        - Ensure that the UserOverview class has access to all necessary data
+        - Ensure that the Overview class has access to all necessary data
           through the passed instance.
         """
 
