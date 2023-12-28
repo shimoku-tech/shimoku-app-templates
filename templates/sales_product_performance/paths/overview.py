@@ -110,7 +110,7 @@ class Overview(Board):
             names="name",
             values="value",
             rows_size=2,
-            cols_size=5
+            cols_size=5,
         )
 
         self.order += 1
@@ -223,7 +223,7 @@ class Overview(Board):
             x_axis_name="Months in 2023",
             rows_size=2,
             cols_size=7,
-            option_modifications={"yAxis": {"axisLabel": {"formatter": "${value}"}}}
+            option_modifications={"yAxis": {"axisLabel": {"formatter": "{value}%"}}}
         )
 
         self.order += 1

@@ -2,7 +2,7 @@ from shimoku_api_python import Client
 from utils import get_data, groupby_sum
 import pandas as pd
 import calendar
-
+import numpy as np
 
 class Board:
     """
@@ -66,9 +66,16 @@ class Board:
             sales_by_origin_campaign["revenue"] / 1000
         )
 
-        # Sum product costs by month and pivot the data
+        # Calculate monthly product cost percentages and pivot the data.
         df["month"] = df["sale_date"].dt.month
         cost_by_product = groupby_sum(df, ["month", "product_name"], "cost")
+        total_cost_by_month = df.groupby("month")["cost"].sum()
+        cost_by_product["cost"] = cost_by_product.apply(
+            lambda row: round(
+                row["cost"] / total_cost_by_month[row["month"]] * 100
+            ),
+            axis=1,
+        )
         cost_by_product = cost_by_product.pivot_table(
             index=["month"],
             columns="product_name",
@@ -76,6 +83,12 @@ class Board:
             aggfunc="sum",
         ).reset_index()
         cost_by_product["month"] = cost_by_product["month"].replace(month_dict)
+
+        #Adjusts the values so that the sum of each row is exactly 100
+        for i, row in cost_by_product.iterrows():
+            row_sum = row[1:].sum()
+            diff = 100 - row_sum
+            cost_by_product.iloc[i, np.random.randint(1, len(row))] += diff
 
 
         main_kpis = [
