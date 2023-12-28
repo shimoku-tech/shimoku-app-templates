@@ -15,7 +15,7 @@ benefit_factor_range = (1.3, 1.5)
 
 
 def generate_data():
-    def random_date(start_date, end_date):
+    def random_date(start_date: datetime, end_date: datetime):
         return start_date + timedelta(
             days=random.randint(0, (end_date - start_date).days)
         )
