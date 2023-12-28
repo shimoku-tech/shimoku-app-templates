@@ -113,10 +113,23 @@ class Board:
             }
         for month in range(1,13)]
 
+        # Top 10 customers by number of orders
+        customers_by_orders = df_customer_orders.groupby("customer_id").agg({"order_id":"count"})
+        sorted_customers_by_orders = customers_by_orders.sort_values(by="order_id", ascending=False)
+        top_customers_by_orders = sorted_customers_by_orders.iloc[:10]
+
+        top_customers = [
+            {
+                "Customer": customer,
+                "Orders": orders[0],
+            }
+        for customer, orders in zip(top_customers_by_orders.index, top_customers_by_orders.values)]
+
         self.df_app = {
             "main_kpis": pd.DataFrame(main_kpis),
             "customers_orders": pd.DataFrame(customers_orders),
             "profit_margin": pd.DataFrame(profit_margin),
+            "top_customers": pd.DataFrame(top_customers),
         }
 
         return True

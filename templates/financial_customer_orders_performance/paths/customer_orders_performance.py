@@ -35,6 +35,7 @@ class customer_orders_performance(Board):
         self.plot_kpi_indicators()
         self.plot_customers_orders()
         self.plot_profit_margin()
+        self.plot_top_customers_number_orders()
 
     def plot_kpi_indicators(self) -> bool:
         """Indicatos plot of Main KPIs
@@ -97,6 +98,20 @@ class customer_orders_performance(Board):
             line_suffix='%',
             bar_axis_name='€',
             bar_suffix='€'
+        )
+        self.order += 1
+
+        return True
+
+    def plot_top_customers_number_orders(self):
+        self.shimoku.plt.bar(
+            data=self.df_app["top_customers"],
+            order=self.order,
+            title='Top customers by number of orders',
+            rows_size=2,
+            cols_size=4,
+            x='Customer',
+            x_axis_name='Customers',
         )
         self.order += 1
 
