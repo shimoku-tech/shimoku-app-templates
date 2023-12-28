@@ -36,7 +36,12 @@ class customer_orders_performance(Board):
         self.plot_customers_orders()
         self.plot_profit_margin()
 
-    def plot_kpi_indicators(self):
+    def plot_kpi_indicators(self) -> bool:
+        """Indicatos plot of Main KPIs
+
+        Returns:
+            bool: Execution status
+        """
         self.shimoku.plt.indicator(
             data=convert_dataframe_to_array(self.df_app["main_kpis"]),
             order=self.order,
@@ -52,11 +57,15 @@ class customer_orders_performance(Board):
 
         return True
 
-    def plot_customers_orders(self):
+    def plot_customers_orders(self) -> bool:
+        """Line plot of customer and orders over each month
+
+        Returns:
+            bool: Execution status
+        """
         self.shimoku.plt.line(
             data=self.df_app["customers_orders"],
             order=self.order,
-            # title="Customers & Orders",
             rows_size=2,
             cols_size=6,
             x='Month',
@@ -64,6 +73,30 @@ class customer_orders_performance(Board):
             option_modifications={
                 'toolbox': {'show': True}
             },
+        )
+        self.order += 1
+
+        return True
+
+    def plot_profit_margin(self) -> bool:
+        """Line and Bar plot using profit margin compute from revenues and expenses over each month
+
+        Returns:
+            bool: Execution status
+        """
+        self.shimoku.plt.line_and_bar_charts(
+            data=self.df_app["profit_margin"],
+            order=self.order,
+            rows_size=2,
+            cols_size=6,
+            x='Month',
+            x_axis_name='Month',
+            bar_names=['Expenses', 'Revenues'],
+            line_names=['Profit Margin'],
+            line_axis_name='Profit Margin',
+            line_suffix='%',
+            bar_axis_name='€',
+            bar_suffix='€'
         )
         self.order += 1
 

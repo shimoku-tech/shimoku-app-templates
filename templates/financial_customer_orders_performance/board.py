@@ -98,9 +98,25 @@ class Board:
             }
         for month in range(1,13)]
 
+        # Profit Margin
+        profit_margin = [
+            {
+                "Month": calendar.month_name[month][:3],
+                "Expenses": sum(df_customer_orders["order_cost"][df_customer_orders["order_date"].dt.month == month]),
+                "Revenues": sum(df_customer_orders["order_spend"][df_customer_orders["order_date"].dt.month == month]),
+                "Profit Margin": sum(
+                        df_customer_orders["order_spend"][df_customer_orders["order_date"].dt.month == month] -
+                        df_customer_orders["order_cost"][df_customer_orders["order_date"].dt.month == month]
+                    )
+                    * 100 / sum(df_customer_orders["order_spend"][df_customer_orders["order_date"].dt.month == month]
+                ),
+            }
+        for month in range(1,13)]
+
         self.df_app = {
             "main_kpis": pd.DataFrame(main_kpis),
             "customers_orders": pd.DataFrame(customers_orders),
+            "profit_margin": pd.DataFrame(profit_margin),
         }
 
         return True
