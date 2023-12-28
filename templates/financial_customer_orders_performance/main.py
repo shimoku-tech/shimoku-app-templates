@@ -1,4 +1,3 @@
-import argparse
 from os import getenv
 from shimoku_api_python import Client
 from dotenv import load_dotenv
