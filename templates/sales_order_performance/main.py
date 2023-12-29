@@ -2,7 +2,7 @@ import argparse
 from os import getenv
 from shimoku_api_python import Client
 
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 
 from board import Board
 
@@ -15,11 +15,15 @@ def main():
     and then creates and plots a new dashboard.
     """
     # Load environment variables
-    # load_dotenv()
+    load_dotenv()
 
     # Create the Shimoku client with necessary credentials
-    shimoku = Client(local_port=8080, verbosity="INFO")
-    shimoku.set_workspace()
+    shimoku = Client(
+        access_token=getenv("API_TOKEN"),
+        universe_id=getenv("UNIVERSE_ID"),
+        verbosity="INFO",
+    )
+    shimoku.set_workspace(getenv("WORKSPACE_ID"))
 
     # Instantiate and set up the dashboard
     board = Board(shimoku)
