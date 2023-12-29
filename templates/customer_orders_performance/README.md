@@ -33,7 +33,7 @@ Follow these steps to set up the project locally.
 git clone https://github.com/shimoku-tech/shimoku-app-templates.git
 ```
 ```
-cd templates/saas_active_users_overview
+cd templates/customer_orders_performance
 ```
 
 Create a virtual environment:
