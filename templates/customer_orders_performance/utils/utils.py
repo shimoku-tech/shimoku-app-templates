@@ -3,11 +3,15 @@ import os
 
 
 def get_data(file_names):
-    #  Returns a dictionary of dataframes, one item for each file of file_names array parameter.
-    #  Example:
-    #  file_names = ['data/active_users.csv', 'data/shop_events.csv', ...]
-    #  dict_dfs ['active_users'] = A dataframe with 'data/active_users.csv' CSV file
-    #  dict_dfs ['shop_events'] = A dataframe with 'data/shop_events.csv' CSV file
+    """Returns a dictionary of dataframes, one item for each file of file_names array parameter.
+    Example:
+    file_names = ['data/active_users.csv', 'data/shop_events.csv', ...]
+    dict_dfs ['active_users'] = A dataframe with 'data/active_users.csv' CSV file
+    dict_dfs ['shop_events'] = A dataframe with 'data/shop_events.csv' CSV file
+
+    Args:
+        dict_dfs (dict): A dictionary of dataframes.
+    """
 
     dict_dfs = dict()
     for file_name in file_names:
@@ -24,9 +28,16 @@ def get_data(file_names):
     return dict_dfs
 
 
-def convert_dataframe_to_array(
-    df,
-):  ## -> hace lo mismo que df.to_dict(orient="records")
+def convert_dataframe_to_array(df):
+    """Return a list, convert a dataframe to a list.
+
+    Args:
+        df (pd.DataFrame): A dataFrame to convert.
+
+    Returns:
+        new_data (List): A List with the dataframe information.
+    """
+    ## -> hace lo mismo que df.to_dict(orient="records")
     columns_to_include = df.columns.tolist()  # Obtener la lista de nombres de columnas
     new_data = []
 
