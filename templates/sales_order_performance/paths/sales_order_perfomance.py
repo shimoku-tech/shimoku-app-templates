@@ -1,5 +1,6 @@
 from board import Board
 
+
 class SalesOrderPerformance(Board):
     """
     This class represents a Sales Order Performance dashboard.
@@ -36,9 +37,8 @@ class SalesOrderPerformance(Board):
         self.shimoku.plt.html(
             order=self.order,
             html=self.shimoku.html_components.create_h1_title(
-                title='Sales Orders Performance',
-                subtitle=''
-            )
+                title="Sales Orders Performance", subtitle=""
+            ),
         )
         self.order += 1
 
@@ -53,10 +53,26 @@ class SalesOrderPerformance(Board):
 
         # Display indicators
         indicator_data = [
-            {"title": "Income", "align": "center", "value": f"${round(income_total, 0)}"},
-            {"title": "Expenses", "align": "center", "value": f"${round(spend_total, 0)}"},
-            {"title": "Net Profit", "align": "center", "value": f"${round(net_profit, 0)}"},
-            {"title": "Average Profit per order", "align": "center", "value": f"${round(average_profit_per_order, 0)}"},
+            {
+                "title": "Income",
+                "align": "center",
+                "value": f"${round(income_total, 0)}",
+            },
+            {
+                "title": "Expenses",
+                "align": "center",
+                "value": f"${round(spend_total, 0)}",
+            },
+            {
+                "title": "Net Profit",
+                "align": "center",
+                "value": f"${round(net_profit, 0)}",
+            },
+            {
+                "title": "Average Profit per order",
+                "align": "center",
+                "value": f"${round(average_profit_per_order, 0)}",
+            },
         ]
 
         self.shimoku.plt.indicator(data=indicator_data, order=self.order)
@@ -72,11 +88,21 @@ class SalesOrderPerformance(Board):
         self.shimoku.plt.set_bentobox(cols_size=24, rows_size=3)
 
         # Display bar chart
-        self.shimoku.plt.bar(data=net_profit_by_month[["Income", "Expenses", "Month"]], order=self.order, x='Month', rows_size=30)
+        self.shimoku.plt.bar(
+            data=net_profit_by_month[["Income", "Expenses", "Month"]],
+            order=self.order,
+            x="Month",
+            rows_size=30,
+        )
         self.order += 1
 
         # Display line chart
-        self.shimoku.plt.line(data=net_profit_by_month[["Net Profit", "Month"]], order=self.order, x='Month', rows_size=30)
+        self.shimoku.plt.line(
+            data=net_profit_by_month[["Net Profit", "Month"]],
+            order=self.order,
+            x="Month",
+            rows_size=30,
+        )
 
         # Pop out of bentobox
         self.shimoku.plt.pop_out_of_bentobox()

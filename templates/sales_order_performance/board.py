@@ -6,11 +6,6 @@ class Board:
     """
     A class representing a Dashboard for displaying various data visualizations.
 
-    Attributes:
-        board_name (str): Name of the dashboard.
-        df (DF): An instance of a DF class for handling data frames.
-        shimoku (Client): An instance of a Client class for Shimoku API interactions.
-        results (dict): A dictionary to store processed data for use in plotting.
     """
 
     def __init__(self, shimoku: Client):
