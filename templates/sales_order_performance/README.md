@@ -22,6 +22,7 @@ Follow these steps to set up the project locally.
 
 ```
 git clone https://github.com/shimoku-tech/shimoku-app-templates.git
+```
 
 ```
 cd templates/sales_order_performance
