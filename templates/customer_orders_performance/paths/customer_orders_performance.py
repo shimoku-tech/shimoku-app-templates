@@ -4,7 +4,7 @@ from board import Board
 
 class customer_orders_performance(Board):
     """
-    This path is responsible for rendering the user overview page.
+    This path is responsible for rendering the customer orders performance page.
     """
 
     def __init__(self, self_board: Board):
