@@ -1,4 +1,4 @@
-from utils.utils import convert_dataframe_to_array
+from utils.utils import convert_dataframe_to_array, beautiful_indicator
 from board import Board
 
 
@@ -32,12 +32,32 @@ class customer_orders_performance(Board):
         Plots the user overview page.
         Each method is responsible for plotting a specific section of the page.
         """
+        self.plot_header()
         self.plot_kpi_indicators()
         self.plot_customers_orders()
         self.plot_profit_margin()
         self.plot_top_customers_number_orders()
         self.plot_customers_number_orders()
         self.plot_customer_profitability()
+
+    def plot_header(self):
+        """Header plot of the menu path
+
+        Returns:
+            bool: Execution status
+        """
+        title = "Customer Orders Performance"
+
+        indicator = beautiful_indicator(title=title)
+        self.shimoku.plt.html(
+            indicator,
+            order=self.order,
+            rows_size=1,
+            cols_size=12,
+        )
+        self.order += 1
+
+        return True
 
     def plot_kpi_indicators(self) -> bool:
         """Indicatos plot of Main KPIs
