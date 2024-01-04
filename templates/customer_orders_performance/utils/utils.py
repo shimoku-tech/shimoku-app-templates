@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+from re import sub
 
 
 def get_data(file_names):
@@ -17,10 +18,10 @@ def get_data(file_names):
     for file_name in file_names:
         df = pd.read_csv(file_name)
 
-        # Encuentra las columnas que contienen "_date" en su nombre
+        # Finds the columns containing "_date" in their name
         columnas_fecha = [col for col in df.columns if "_date" in col]
 
-        # Convierte las columnas identificadas con "_date" a datetime
+        # Convert columns identified with "_date" to datetime
         df[columnas_fecha] = df[columnas_fecha].apply(pd.to_datetime)
 
         dict_dfs[os.path.splitext(os.path.basename(file_name))[0]] = df
@@ -37,8 +38,8 @@ def convert_dataframe_to_array(df):
     Returns:
         new_data (List): A List with the dataframe information.
     """
-    ## -> hace lo mismo que df.to_dict(orient="records")
-    columns_to_include = df.columns.tolist()  # Obtener la lista de nombres de columnas
+    # Get list of column names
+    columns_to_include = df.columns.tolist()
     new_data = []
 
     for index, row in df.iterrows():
@@ -46,3 +47,41 @@ def convert_dataframe_to_array(df):
         new_data.append(new_dict)
 
     return new_data
+
+def beautiful_header(title):
+    """Return a HTML structure to plot the header on the menu path
+
+    Args:
+        title (str): title of the header in the menu path
+
+    Returns:
+        str: HTML structure to plot the header
+    """
+    return (
+        "<head>"
+        "<style>"  # Styles title
+        ".component-title{height:auto; width:100%; "
+        "border-radius:16px; padding:16px;"
+        "display:flex; align-items:center;"
+        "background-color:var(--chart-C1); color:var(--color-white);}"
+        "</style>"
+        # Start icons style
+        "<style>.big-icon-banner"
+        "{width:48px; height: 48px; display: flex;"
+        "margin-right: 16px;"
+        "justify-content: center;"
+        "align-items: center;"
+        "background-size: contain;"
+        "background-position: center;"
+        "background-repeat: no-repeat;"
+        "background-image: url('https://uploads-ssl.webflow.com/619f9fe98661d321dc3beec7/63594ccf3f311a98d72faff7_suite-customer-b.svg');}"
+        "</style>"
+        # End icons style
+        "<style>.base-white{color:var(--color-white);}</style>"
+        "</head>"  # Styles subtitle
+        "<div class='component-title'>"
+        "<div class='big-icon-banner'></div>"
+        "<div class='text-block'>"
+        "<h1>" + title + "</h1>"
+        "</div>"
+    )
