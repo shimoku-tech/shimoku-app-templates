@@ -1,4 +1,5 @@
 from board import Board
+from utils.components import create_title_name_head
 
 
 class SalesOrderPerformance(Board):
@@ -18,11 +19,12 @@ class SalesOrderPerformance(Board):
         self.df_app = self_board.results
         self.order = 0  # Initialize order of plotting elements
         self.menu_path = "Overview"  # Set the menu path for this page
-        
-        # Delete existing menu path if it exists
-        if self.shimoku.menu_paths.get_menu_path(name=self.menu_path):
+
+        if self.shimoku.menu_paths.get_menu_path(
+            name=self.menu_path
+        ):  # Delete existing menu path if it exists
             self.shimoku.menu_paths.delete_menu_path(name=self.menu_path)
-            
+
         self.shimoku.set_menu_path(name=self.menu_path)  # Set the menu path in Shimoku
 
     def plot(self):
@@ -38,13 +40,15 @@ class SalesOrderPerformance(Board):
         """
         Plot the header section of the dashboard.
         """
-        # Create Sales Orders Performance title
+        #Create Sales Orders Performance title
         self.shimoku.plt.html(
-            order=self.order,
-            html=self.shimoku.html_components.create_h1_title(
-                title="Sales Orders Performance", subtitle=""
+            html=create_title_name_head(
+                title="Sales Order Performance",
+                subtitle="",
             ),
+            order=self.order,
         )
+
         self.order += 1
 
     def plot_kpi_indicators(self):
@@ -80,7 +84,9 @@ class SalesOrderPerformance(Board):
             },
         ]
 
-        self.shimoku.plt.indicator(data=indicator_data, order=self.order)
+        self.shimoku.plt.indicator(
+            data=indicator_data, order=self.order, color="success"
+        )
         self.order += len(indicator_data)
 
     def plot_charts(self):
@@ -98,6 +104,7 @@ class SalesOrderPerformance(Board):
             order=self.order,
             x="Month",
             rows_size=30,
+            padding="2",
         )
         self.order += 1
 
@@ -107,6 +114,7 @@ class SalesOrderPerformance(Board):
             order=self.order,
             x="Month",
             rows_size=30,
+            padding="2",
         )
 
         # Pop out of bentobox
