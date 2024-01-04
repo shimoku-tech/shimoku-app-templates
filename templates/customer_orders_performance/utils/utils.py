@@ -18,10 +18,10 @@ def get_data(file_names):
     for file_name in file_names:
         df = pd.read_csv(file_name)
 
-        # Encuentra las columnas que contienen "_date" en su nombre
+        # Finds the columns containing "_date" in their name
         columnas_fecha = [col for col in df.columns if "_date" in col]
 
-        # Convierte las columnas identificadas con "_date" a datetime
+        # Convert columns identified with "_date" to datetime
         df[columnas_fecha] = df[columnas_fecha].apply(pd.to_datetime)
 
         dict_dfs[os.path.splitext(os.path.basename(file_name))[0]] = df
@@ -38,7 +38,7 @@ def convert_dataframe_to_array(df):
     Returns:
         new_data (List): A List with the dataframe information.
     """
-    # Obtener la lista de nombres de columnas
+    # Get list of column names
     columns_to_include = df.columns.tolist()
     new_data = []
 
