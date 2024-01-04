@@ -1,6 +1,7 @@
 from board import Board
 import pandas as pd
 from io import StringIO
+from utils import beautiful_indicator
 
 
 class Overview(Board):
@@ -39,6 +40,7 @@ class Overview(Board):
         self.plot_incremental_sales_by_origin_campaign()
         self.plot_cost_by_product()
 
+
     def plot_header(self):
         """
         Plots the header section.
@@ -49,33 +51,18 @@ class Overview(Board):
 
         title = "Sales Product Performance Dashboard"
 
-        header_html = """
-            <head>
-                <style>
-                    .component-title{{
-                        height:auto; width:100%;
-                        border-radius:16px; padding:16px;
-                        display:flex; align-items:center;
-                        background-color:var(--chart-C1); color:var(--color-white);
-                    }}
-                </style>
-            </head>  
-            <div class='component-title'>
-                <div class='text-block'>
-                    <h1>{}</h1>
-                </div>
-            </div>
-        """.format(
-            title
-        )
-
+        indicator = beautiful_indicator(title=title)
         self.shimoku.plt.html(
-            order=self.order, rows_size=1, cols_size=12, html=header_html
+            indicator,
+            order=self.order,
+            rows_size=1,
+            cols_size=12
         )
 
         self.order += 1
 
         return True
+
 
     def plot_revenue_by_product(self):
         """

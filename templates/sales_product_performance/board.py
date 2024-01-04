@@ -23,12 +23,14 @@ class Board:
         """
 
         file_names = ["data/sales_product_performance.csv"]
-        self.board_name = "Sales Product Performance"  # Name of the dashboard
+        # Name of the dashboard
+        self.board_name = "Sales Product Performance"  
         self.dfs = get_data(file_names)
 
-        self.shimoku = shimoku  # Shimoku client instance
+        # Shimoku client instance
+        self.shimoku = shimoku  
         self.shimoku.set_board(name=self.board_name)
-        self.shimoku.boards.update_board(name=self.board_name)
+        self.shimoku.boards.update_board(name=self.board_name, is_public=True)
 
     def transform(self):
         """
