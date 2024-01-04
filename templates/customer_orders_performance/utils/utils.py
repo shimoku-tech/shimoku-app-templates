@@ -38,8 +38,8 @@ def convert_dataframe_to_array(df):
     Returns:
         new_data (List): A List with the dataframe information.
     """
-    ## -> hace lo mismo que df.to_dict(orient="records")
-    columns_to_include = df.columns.tolist()  # Obtener la lista de nombres de columnas
+    # Obtener la lista de nombres de columnas
+    columns_to_include = df.columns.tolist()
     new_data = []
 
     for index, row in df.iterrows():
@@ -48,8 +48,15 @@ def convert_dataframe_to_array(df):
 
     return new_data
 
-def beautiful_indicator(title):
-    # title_style: str = sub(r"\s+", "", title)
+def beautiful_header(title):
+    """Return a HTML structure to plot the header on the menu path
+
+    Args:
+        title (str): title of the header in the menu path
+
+    Returns:
+        str: HTML structure to plot the header
+    """
     return (
         "<head>"
         "<style>"  # Styles title

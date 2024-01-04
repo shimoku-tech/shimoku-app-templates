@@ -1,4 +1,4 @@
-from utils.utils import convert_dataframe_to_array, beautiful_indicator
+from utils.utils import convert_dataframe_to_array, beautiful_header
 from board import Board
 
 
@@ -48,7 +48,7 @@ class customer_orders_performance(Board):
         """
         title = "Customer Orders Performance"
 
-        indicator = beautiful_indicator(title=title)
+        indicator = beautiful_header(title=title)
         self.shimoku.plt.html(
             indicator,
             order=self.order,
