@@ -18,6 +18,11 @@ class SalesOrderPerformance(Board):
         self.df_app = self_board.results
         self.order = 0  # Initialize order of plotting elements
         self.menu_path = "Overview"  # Set the menu path for this page
+        
+        # Delete existing menu path if it exists
+        if self.shimoku.menu_paths.get_menu_path(name=self.menu_path):
+            self.shimoku.menu_paths.delete_menu_path(name=self.menu_path)
+            
         self.shimoku.set_menu_path(name=self.menu_path)  # Set the menu path in Shimoku
 
     def plot(self):
