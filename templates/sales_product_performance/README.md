@@ -8,7 +8,7 @@ Welcome to our GitHub repository!
 <br>
 🚀 Explore metrics & insightful charts.
 
-Dive into our Dashboard: [Sales Product Performance Dashboard](https://shimoku.io/0d3fba0c-90c1-41aa-a3b7-187adc55ea62/overview?shared=true&token=56b388bd-ab3d-11ee-bc1e-990ca51218f0)
+Experience Our Dashboard: [Sales Product Performance Dashboard](https://shimoku.io/0d3fba0c-90c1-41aa-a3b7-187adc55ea62/overview?shared=true&token=56b388bd-ab3d-11ee-bc1e-990ca51218f0)
 
 <p align="center">
   <img src="img/capture.png">
