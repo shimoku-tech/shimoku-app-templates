@@ -2,6 +2,8 @@
 
 This dashboard showcases the capabilities of the Shimoku SDK using the context of Sales Order Performance. The dataset revolves around sales orders, expenses, and the visualization of monthly income and expenses, along with the corresponding profits, over time. The analysis provides a comprehensive view of the financial performance on a month-to-month basis.
 
+Experiencie our Dashboard: [Sales Orders Performance Dashboard](https://shimoku.io/c5553c8c-c960-4090-853d-df8b9501af3f/overview?shared=true&token=ad53cec2-ab31-11ee-a2d5-517a12806ea2) 
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
