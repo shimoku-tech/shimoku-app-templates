@@ -1,10 +1,10 @@
-# Saas active users overview template
+# Customer Orders Performance template
 
 ## Introduction
 
 Welcome to our GitHub repository!
 <br>
-📊 Dive into user engagement analytics with us!
+📊 Dive into customer orders analytics with us!
 <br>
 🚀 Explore metrics & insightful charts.
 <br>

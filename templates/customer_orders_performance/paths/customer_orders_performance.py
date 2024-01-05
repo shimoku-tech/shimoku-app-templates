@@ -2,7 +2,7 @@ from utils.utils import convert_dataframe_to_array, beautiful_header
 from board import Board
 
 
-class customer_orders_performance(Board):
+class CustomerOrdersPerformance(Board):
     """
     This path is responsible for rendering the customer orders performance page.
     """
@@ -29,7 +29,7 @@ class customer_orders_performance(Board):
 
     def plot(self):
         """
-        Plots the user overview page.
+        Plots the customer orders performance page.
         Each method is responsible for plotting a specific section of the page.
         """
         self.plot_header()
