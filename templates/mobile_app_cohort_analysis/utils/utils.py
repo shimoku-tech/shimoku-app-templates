@@ -1,9 +1,10 @@
 import pandas as pd
 import os
 from re import sub
+from shimoku_api_python import ShimokuPalette
 
 
-def get_data(file_names):
+def get_data(file_names: list):
     """Returns a dictionary of dataframes, one item for each file of file_names array parameter.
     Example:
     file_names = ['data/active_users.csv', 'data/shop_events.csv', ...]
@@ -29,7 +30,7 @@ def get_data(file_names):
     return dict_dfs
 
 
-def convert_dataframe_to_array(df):
+def convert_dataframe_to_array(df: pd.DataFrame):
     """Return a list, convert a dataframe to a list.
 
     Args:
@@ -48,7 +49,7 @@ def convert_dataframe_to_array(df):
 
     return new_data
 
-def beautiful_header(title):
+def beautiful_header(title: str) -> str:
     """Return a HTML structure to plot the header on the menu path
 
     Args:
@@ -85,3 +86,24 @@ def beautiful_header(title):
         "<h1>" + title + "</h1>"
         "</div>"
     )
+
+def categories(df: pd.DataFrame) -> str:
+    total = df["value"].apply('sum')
+
+    sections = [
+        ("<div style='display: flex; justify-content: center; flex-wrap: wrap;column-gap: 5%;'>"
+        f"<div "
+        f"style='display: flex;"
+        f"justify-content: center;"
+        f"background-color: {ShimokuPalette['CHART_C%d'%(1 + index%10)].value};"
+        f"width: 40%;"
+        f"border-radius: 10px;'>"
+        f"{row['name']}"
+        f"</div>"
+        f"<div>{compute_percent(row['value'], total):.1f}% ({row['value']})</div>"
+        "</div>")
+    for index, row in df.iterrows()]
+    return "".join(sections)
+
+def compute_percent(value: float, total: float) -> float:
+    return value * 100 / total
