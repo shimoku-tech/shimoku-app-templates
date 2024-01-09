@@ -8,7 +8,7 @@ import numpy as np
 total_data = 1000
 output_file = "social_media_shares.csv"
 date_ini = datetime(2023, 1, 1)
-date_end = datetime.now() 
+date_end = datetime.now()
 share_range = (0, 1000)
 
 def generate_data():
@@ -17,7 +17,6 @@ def generate_data():
         return start_date + timedelta(
             days=random.randint(0, (end_date - start_date).days)
         )
-
 
     n = total_data
 
@@ -40,11 +39,7 @@ def generate_data():
 
     # post_shares
     post_shares_list = np.random.randint(share_range[0], share_range[1], size=n)
-    
 
-  
-
-    
     # Create the DataFrame
     data = {
         "post_date": post_date_list,
@@ -56,16 +51,14 @@ def generate_data():
     df = pd.DataFrame(data)
 
     # Display the DataFrame
-    print("\n### Output CSV: " + output_file + " (" + str(len(df)) + " registers)\n")    
+    print("\n### Output CSV: " + output_file + " (" + str(len(df)) + " registers)\n")
     print(df.head(10))
     print("\n")
 
     # Save the dataframe to CSV
     df.to_csv(output_file, index=False)
 
-    
     return df
-
 
 if __name__ == "__main__":
     generate_data()
