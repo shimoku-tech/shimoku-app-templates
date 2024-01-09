@@ -87,3 +87,15 @@ Once the installation is done, and environment variables are set, you can run th
 ```
 python3 main.py
 ```
+
+## Generation of data
+
+The data was randomly generated using the `generate_data` function located in `data/generate_customer_orders_performance.py`
+
+If you want to generate new dataframes please go to data folder, import and run the function
+
+```python
+from data.generate_customer_orders_performance import generate_data
+# updates .csv files in data/ folder with new data
+generate_data()
+```
