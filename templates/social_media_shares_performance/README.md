@@ -9,7 +9,7 @@ Welcome to our GitHub repository!
 🚀 Explore metrics & insightful charts.
 <br>
 
-<!-- ![Screanshot 1](img/) -->
+![Dashboard Social Media Shares Performance](img/social_media_shares_performance.png)
 
 ## Getting Started
 
