@@ -1,2 +1,2 @@
-shimoku-api-python
-python-dotenv
+shimoku-api-python==1.4.2
+python-dotenv==1.0.0
