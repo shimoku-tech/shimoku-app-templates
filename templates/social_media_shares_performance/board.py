@@ -46,15 +46,71 @@ class Board:
         main_kpis = [
             # Total Customers
             {
-                "title": "Customers",
-                "value": df_social_media.shape[0],
+                "title": "Facebook Shares",
+                "value": df_social_media[df_social_media["post_social_media"] == "Facebook"].shape[0],
+                "color": "default",
+                "align": "center",
+            },
+            # Total Customers
+            {
+                "title": "Twitter Retweets",
+                "value": df_social_media[df_social_media["post_social_media"] == "Twitter"].shape[0],
+                "color": "default",
+                "align": "center",
+            },
+            # Total Customers
+            {
+                "title": "Yuotube",
+                "value": df_social_media[df_social_media["post_social_media"] == "YouTube"].shape[0],
                 "color": "default",
                 "align": "center",
             },
         ]
 
+        # Social Media Post
+        import calendar
+        social_media_posts = [
+            {
+                "Month": calendar.month_name[month][:3],
+                "Facebook": df_social_media[
+                    (df_social_media["post_date"].dt.month == month) &
+                    (df_social_media["post_social_media"] == "Facebook")
+                ].shape[0],
+                "Twitter": df_social_media[
+                    (df_social_media["post_date"].dt.month == month) &
+                    (df_social_media["post_social_media"] == "Twitter")
+                ].shape[0],
+                "YouTube": df_social_media[
+                    (df_social_media["post_date"].dt.month == month) &
+                    (df_social_media["post_social_media"] == "YouTube")
+                ].shape[0],
+            }
+        for month in range(10,13)]
+
+        # Shares by Social Media
+        share_by_social_media = [
+            {
+                "Month": calendar.month_name[month][:3],
+                "Facebook": df_social_media[
+                    (df_social_media["post_date"].dt.month == month) &
+                    (df_social_media["post_social_media"] == "Facebook")
+                ]["post_shares"].sum(),
+                "Twitter": df_social_media[
+                    (df_social_media["post_date"].dt.month == month) &
+                    (df_social_media["post_social_media"] == "Twitter")
+                ]["post_shares"].sum(),
+                "YouTube": df_social_media[
+                    (df_social_media["post_date"].dt.month == month) &
+                    (df_social_media["post_social_media"] == "YouTube")
+                ]["post_shares"].sum(),
+            }
+        for month in range(1,13)]
+
+        # Dictionary of the dataframes
         self.df_app = {
             "main_kpis": pd.DataFrame(main_kpis),
+            "social_media_posts": pd.DataFrame(social_media_posts),
+            "share_by_social_media": pd.DataFrame(share_by_social_media),
         }
 
         return True
