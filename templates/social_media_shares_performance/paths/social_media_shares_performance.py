@@ -59,6 +59,11 @@ class SocialMediaSharesPerformance(Board):
         return True
 
     def plot_posts(self) -> bool:
+        """Bar plot of Social Media Posts
+
+        Returns:
+            bool: Execution status
+        """
         self.shimoku.plt.bar(
             data=self.df_app["social_media_posts"],
             order=self.order,
@@ -94,6 +99,11 @@ class SocialMediaSharesPerformance(Board):
         return True
 
     def plot_posts_source(self) -> bool:
+        """Line plot of Shares by social Media
+
+        Returns:
+            bool: Execution status
+        """
         self.shimoku.plt.line(
             data=self.df_app["share_by_social_media"],
             order=self.order,
