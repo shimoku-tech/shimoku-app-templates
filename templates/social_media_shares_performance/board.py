@@ -44,24 +44,30 @@ class Board:
 
         # Main KPIs
         main_kpis = [
-            # Total Customers
+            # Total Facebook Shares
             {
                 "title": "Facebook Shares",
-                "value": df_social_media[df_social_media["post_social_media"] == "Facebook"].shape[0],
+                "value": df_social_media[
+                    df_social_media["post_social_media"] == "Facebook"
+                ]["post_shares"].sum(),
                 "color": "default",
                 "align": "center",
             },
-            # Total Customers
+            # Total Twitter Retweets
             {
                 "title": "Twitter Retweets",
-                "value": df_social_media[df_social_media["post_social_media"] == "Twitter"].shape[0],
+                "value": df_social_media[
+                    df_social_media["post_social_media"] == "Twitter"
+                ]["post_shares"].sum(),
                 "color": "default",
                 "align": "center",
             },
-            # Total Customers
+            # Total Youtube Shares
             {
-                "title": "Yuotube",
-                "value": df_social_media[df_social_media["post_social_media"] == "YouTube"].shape[0],
+                "title": "Youtube Shares",
+                "value": df_social_media[
+                    df_social_media["post_social_media"] == "YouTube"
+                ]["post_shares"].sum(),
                 "color": "default",
                 "align": "center",
             },
