@@ -1,6 +1,7 @@
 from shimoku_api_python import Client
 from utils.utils import get_data, compute_percent
 import pandas as pd
+import datetime as dt
 
 class Board:
     """
@@ -43,7 +44,8 @@ class Board:
         df_active_users = self.dfs["active_users"]
 
         # Main KPIs
-        weeks = df_active_users.apply(lambda row: row.last_login_date - row.register_date, axis=1).dt.days / 7
+        activity_days = df_active_users.apply(lambda row: row.last_login_date - row.register_date, axis=1).dt.days
+        activity_weeks = activity_days / 7
 
         main_kpis = [
             # Total users
@@ -59,7 +61,7 @@ class Board:
                 "title": "Average Life Time",
                 "description": "",
                 "value": "%d weeks"%(
-                    sum(weeks) / df_active_users.shape[0]
+                    sum(activity_weeks) / df_active_users.shape[0]
                 ),
                 "color": "default",
                 "align": "center",
@@ -109,11 +111,11 @@ class Board:
             } |
             {
                 gender_name: compute_percent(
-                    sum(weeks[df_active_users["gender"] == gender_name] >= week),
+                    sum(activity_weeks[df_active_users["gender"] == gender_name] >= week),
                     df_active_users[df_active_users["gender"] == gender_name].shape[0],
                 )
             for gender_name in df_active_users["gender"].unique()}
-        for week in range(0,int(sum(weeks) / df_active_users.shape[0]) + 3)]
+        for week in range(0,int(sum(activity_weeks) / df_active_users.shape[0]) + 3)]
 
         # Age
         ## Age - Pie Chart
@@ -140,11 +142,11 @@ class Board:
             } |
             {
                 f"{age_range['min']} - {age_range['max']}" if age_range["min"] != 61 else f"Above {age_range['min']}": compute_percent(
-                    sum(weeks[df_active_users["age"].isin(range(age_range["min"], age_range["max"]))] >= week),
+                    sum(activity_weeks[df_active_users["age"].isin(range(age_range["min"], age_range["max"]))] >= week),
                     sum(df_active_users["age"].isin(range(age_range["min"], age_range["max"]))),
                 )
             for age_range in age_ranges}
-        for week in range(0,int(sum(weeks) / df_active_users.shape[0]) + 3)]
+        for week in range(0,int(sum(activity_weeks) / df_active_users.shape[0]) + 3)]
 
         # Adquisitions source
         ## Adquisitions source - Pier Chart
@@ -165,13 +167,32 @@ class Board:
             } |
             {
                 source_name: compute_percent(
-                    sum(weeks[df_active_users["acquisition_source"] == source_name] >= week),
+                    sum(activity_weeks[df_active_users["acquisition_source"] == source_name] >= week),
                     df_active_users[df_active_users["acquisition_source"] == source_name].shape[0],
                 )
             for source_name in df_active_users["acquisition_source"].unique()}
-        for week in range(0,int(sum(weeks) / df_active_users.shape[0]) + 3)]
+        for week in range(0,int(sum(activity_weeks) / df_active_users.shape[0]) + 3)]
 
+        ## Acquisition source - table
+        reference_date = df_active_users["register_date"].min()
 
+        user_per_day = [
+            {
+                "Day (Date)": reference_date + dt.timedelta(days=day),
+                "Users": df_active_users[
+                    df_active_users["register_date"] == reference_date + dt.timedelta(days=day)
+                ].shape[0]
+            }
+        for day in range(7)]
+
+        source_table_chart = [
+            user_per_day[row_day] |
+            {
+                f"{columns_day}D": compute_percent(sum(activity_days[
+                    df_active_users["register_date"] == user_per_day[row_day]["Day (Date)"]
+                ] >= columns_day), user_per_day[row_day]["Users"])
+            for columns_day in range(1, 8)}
+        for row_day in range(7)]
 
 
 
@@ -183,6 +204,7 @@ class Board:
             "age_line_chart": pd.DataFrame(age_line_chart),
             "source_pie_chart": pd.DataFrame(source_pie_chart),
             "source_line_chart": pd.DataFrame(source_line_chart),
+            "source_table_chart": pd.DataFrame(source_table_chart),
         }
 
         return True

@@ -223,5 +223,16 @@ class CohortAnalysis(Board):
         )
         self.order += 1
 
+        # Table Chart
+        self.shimoku.plt.table(
+            data=self.df_app["source_table_chart"],
+            order=self.order,
+            cols_size = 12,
+            rows_size = 4,
+            # categorical_columns=['filtA', 'filtB'],
+        )
+        self.order += 1
+
+
         self.shimoku.plt.pop_out_of_tabs_group()
         return True
