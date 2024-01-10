@@ -13,9 +13,14 @@ modals_css = """
 
 def create_title_name_head(title: str, subtitle: str) -> str:
     """
-    Función que genera el encabezado de la page
-    page_name: variable que define el nombre de la pagina para el  encabezado
-    devuelve el html para plotear.
+    Function that generates the page header.
+    
+    Args:
+        title (str): The main title for the page header.
+        subtitle (str): The subtitle or additional text for the header.
+
+    Returns:
+        str: The HTML content to be plotted as the header.
     """
     html = (
         "<head>"

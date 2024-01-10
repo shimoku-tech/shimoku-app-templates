@@ -1,8 +1,9 @@
 import pandas as pd
 import os
+from typing import List
 
 
-def get_data(file_names):
+def get_data(file_names: List[str]):
     """
     Loads multiple CSV files into a dictionary of pandas DataFrames.
 
@@ -20,7 +21,7 @@ def get_data(file_names):
     return dict_dfs
 
 
-def process_sales_data(df):
+def process_sales_data(df: pd.DataFrame):
     """
     Process sales orders performance data.
 
@@ -139,7 +140,7 @@ def process_sales_data(df):
     return results
 
 
-def get_status(value):
+def get_status(value: float):
     """
     Determine the status based on a given value.
 
@@ -157,7 +158,7 @@ def get_status(value):
         return "error"
 
 
-def get_column_name_by_value(data_dict, value_to_find):
+def get_column_name_by_value(data_dict: dict, value_to_find: str):
     """
     Find the column name in a dictionary of data based on its value.
 
