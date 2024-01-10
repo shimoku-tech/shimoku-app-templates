@@ -54,6 +54,8 @@ class CustomerSatisfactionPerformance(Board):
             ),
             order=self.order,
         )
+
+        # Increment the order
         self.order += 1
         return True
 
@@ -61,16 +63,20 @@ class CustomerSatisfactionPerformance(Board):
         """
         Plot the Key Performance Indicators (KPI) section of the dashboard.
 
-        Returns: True if the operation is successful.
+        Returns:
+            bool: True if the operation is successful.
         """
+        # Extract KPI data from the DataFrame
         total_customers = self.df_app["Total Customers"]
         customers_with_returns = self.df_app["Customers with Returns"]
         total_orders = self.df_app["Total Orders"]
         orders_with_returns = self.df_app["Orders with Returns"]
 
+        # Determine the status of customers and orders with returns
         customers_with_returns_status = get_status(customers_with_returns)
         orders_with_returns_status = get_status(orders_with_returns)
 
+        # Prepare data for KPI indicators
         indicator_data = [
             {
                 "title": "Customers",
@@ -85,11 +91,16 @@ class CustomerSatisfactionPerformance(Board):
                 "color": "default",
             },
         ]
+
+        # Plot the first KPI indicator for Customers
         self.shimoku.plt.indicator(
             cols_size=3, data=indicator_data[0], order=self.order, color="color"
         )
+
+        # Increment the order
         self.order += 1
 
+        # Plot the Shimoku gauge for Customers with Returns
         self.shimoku.plt.shimoku_gauge(
             cols_size=3,
             value=customers_with_returns,
@@ -99,14 +110,22 @@ class CustomerSatisfactionPerformance(Board):
             is_percentage=True,
             color=customers_with_returns_status,
         )
+
+        # Increment the order
         self.order += 1
+
+        # Plot the KPI indicator for Orders
         self.shimoku.plt.indicator(
             cols_size=3,
             data=indicator_data[1],
             order=self.order,
             color="color",
         )
+
+        # Increment the order
         self.order += 1
+
+        # Plot the Shimoku gauge for Orders with Returns
         self.shimoku.plt.shimoku_gauge(
             cols_size=3,
             value=orders_with_returns,
@@ -116,20 +135,28 @@ class CustomerSatisfactionPerformance(Board):
             is_percentage=True,
             color=orders_with_returns_status,
         )
+
+        # Increment the order
         self.order += 1
+
         return True
 
     def plot_customer_satisfaction(self):
         """
         Plot the Customer Satisfaction section of the dashboard.
 
-        Returns: True if the operation is successful.
+        Returns:
+            bool: True if the operation is successful.
         """
+        # Extract customer satisfaction data from the Dict
         customer_satisfaction = self.df_app["Customer Satisfaction"]
+
+        # Convert customer satisfaction data to a DataFrame for plotting
         customer_satisfaction = pd.DataFrame(
             list(customer_satisfaction.items()), columns=["status", "value"]
         )
 
+        # Plot a rose chart to visualize customer satisfaction
         self.shimoku.plt.rose(
             data=customer_satisfaction,
             values="value",
@@ -139,7 +166,10 @@ class CustomerSatisfactionPerformance(Board):
             cols_size=4,
             title="Customer Satisfaction",
         )
+
+        # Increment the order
         self.order += 1
+
         return True
 
     def plot_orders_satisfaction(self):
@@ -149,11 +179,15 @@ class CustomerSatisfactionPerformance(Board):
         Returns: True if the operation is successful.
         """
 
+        # Extract the "Order Satisfaction" data from the Dict
         orders_satisfaction = self.df_app["Order Satisfaction"]
+
+        # Create a new DataFrame with two columns: "date" and "Rate"
         orders_satisfaction = pd.DataFrame(
             list(orders_satisfaction.items()), columns=["date", "Rate"]
         )
 
+        # Plot a segmented line chart to visualize orders satisfaction
         self.shimoku.plt.segmented_line(
             data=orders_satisfaction,
             order=self.order,
@@ -162,12 +196,29 @@ class CustomerSatisfactionPerformance(Board):
             x="date",
             y="Rate",
             title="Orders Satisfaction",
-            marking_lines=[0, 1, 2, 3, 4, 5],
-            range_colors=["green", "yellow", "orange", "red", "purple", "maroon"],
+            marking_lines=[
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+            ],
+            range_colors=[
+                "green",
+                "yellow",
+                "orange",
+                "red",
+                "purple",
+                "maroon",
+            ],
             x_axis_name="Date",
             y_axis_name="Rate",
         )
+
+        # Increment the order
         self.order += 1
+
         return True
 
     def plot_revenue_indicators(self):
@@ -176,10 +227,13 @@ class CustomerSatisfactionPerformance(Board):
 
         Returns: True if the operation is successful.
         """
+
+        # Extract relevant data columns from the Dict
         total_revenue = self.df_app["Total Revenue"]
         revenue_lost = self.df_app["Revenue Lost"]
         real_revenue = self.df_app["Real Revenue"]
 
+        # Create a list of dictionaries to represent the indicator data
         indicator_data = [
             {
                 "title": "Revenue",
@@ -200,10 +254,15 @@ class CustomerSatisfactionPerformance(Board):
                 "color": "success",
             },
         ]
+
+        # Plot the indicator data
         self.shimoku.plt.indicator(
             cols_size=6, data=indicator_data, order=self.order, color="color"
         )
+
+        # Increment the order
         self.order += len(indicator_data)
+
         return True
 
     def plot_orders_returned_orders(self):
@@ -212,8 +271,14 @@ class CustomerSatisfactionPerformance(Board):
 
         Returns: True if the operation is successful.
         """
+
+        # Extract the "Monthly Metrics" data from the Dict
         monthly_metrics = self.df_app["Monthly Metrics"]
+
+        # Create a new DataFrame from the extracted data
         monthly_metrics_df = pd.DataFrame(monthly_metrics)
+
+        # Reset the index of the DataFrame and rename the columns for clarity
         monthly_metrics_df.reset_index(inplace=True)
         monthly_metrics_df.rename(columns={"index": "Month"}, inplace=True)
         monthly_metrics_df.rename(
@@ -224,6 +289,7 @@ class CustomerSatisfactionPerformance(Board):
             inplace=True,
         )
 
+        # Plot a line chart for "Orders" and "Returned Orders" over time
         self.shimoku.plt.line(
             title="Orders & Returned Orders",
             data=monthly_metrics_df[["Orders", "Returned Orders", "Month"]],
@@ -232,7 +298,10 @@ class CustomerSatisfactionPerformance(Board):
             rows_size=4,
             cols_size=6,
         )
+
+        # Increment the order
         self.order += 1
+
         return True
 
     def plot_revenue_analysis(self):
@@ -241,16 +310,26 @@ class CustomerSatisfactionPerformance(Board):
 
         Returns: True if the operation is successful.
         """
+
+        # Extract the "Monthly Metrics" data from the Dict
         monthly_metrics = self.df_app["Monthly Metrics"]
+
+        # Create a new DataFrame from the extracted data
         monthly_metrics_df = pd.DataFrame(monthly_metrics)
+
+        # Reset the index of the DataFrame and rename the columns for clarity
         monthly_metrics_df.reset_index(inplace=True)
         monthly_metrics_df.rename(columns={"index": "Month"}, inplace=True)
+
+        # Round the "Monthly Real Revenue" and "Monthly Revenue Lost" columns to integers
         monthly_metrics_df["Monthly Real Revenue"] = monthly_metrics_df[
             "Monthly Real Revenue"
         ].round(0)
         monthly_metrics_df["Monthly Revenue Lost"] = monthly_metrics_df[
             "Monthly Revenue Lost"
         ].round(0)
+
+        # Rename the columns for consistency in the plot
         monthly_metrics_df.rename(
             columns={
                 "Monthly Real Revenue": "Real Revenue",
@@ -259,6 +338,7 @@ class CustomerSatisfactionPerformance(Board):
             inplace=True,
         )
 
+        # Plot a stacked bar chart for "Real Revenue" and "Revenue Lost" over time
         self.shimoku.plt.stacked_bar(
             cols_size=6,
             rows_size=3,
@@ -268,5 +348,8 @@ class CustomerSatisfactionPerformance(Board):
             show_values=["Real Revenue"],
             title="Revenue Analysis",
         )
+
+        # Increment the order
         self.order += 1
+
         return True
