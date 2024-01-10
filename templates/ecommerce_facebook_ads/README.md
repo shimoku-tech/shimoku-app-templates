@@ -34,7 +34,7 @@ Follow these steps to set up the project locally.
 git clone https://github.com/shimoku-tech/shimoku-app-templates.git
 ```
 ```
-cd templates/sales_product_performance
+cd templates/ecommerce_facebook_ads
 ```
 
 Create a virtual environment:
@@ -95,7 +95,7 @@ The data was randomly generated using the `generate_data` function located in `d
 If you want to generate new dataframes please go to data folder, import and run the function
 
 ```python
-from data.generate_sales_product_performance import generate_data
+from data.generate_facebook_ads import generate_data
 # updates .csv files in data/ folder with new data
 generate_data()
 ```
