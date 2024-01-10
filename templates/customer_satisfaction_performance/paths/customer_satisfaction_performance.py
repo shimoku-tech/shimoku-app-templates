@@ -15,7 +15,7 @@ class CustomerSatisfactionPerformance(Board):
         """
         Initializes the CustomerSatisfactionPerformance instance.
 
-        Parameters:
+        Args:
             self_board (Board): An instance of the Board class.
         """
         super().__init__(self_board.shimoku)
@@ -45,7 +45,7 @@ class CustomerSatisfactionPerformance(Board):
         """
         Plot the header section of the dashboard.
 
-        Returns: True if the operation is successful.    
+        Returns: True if the operation is successful.
         """
         self.shimoku.plt.html(
             html=create_title_name_head(
@@ -60,7 +60,7 @@ class CustomerSatisfactionPerformance(Board):
     def plot_kpi_indicators(self):
         """
         Plot the Key Performance Indicators (KPI) section of the dashboard.
-        
+
         Returns: True if the operation is successful.
         """
         total_customers = self.df_app["Total Customers"]
@@ -145,10 +145,10 @@ class CustomerSatisfactionPerformance(Board):
     def plot_orders_satisfaction(self):
         """
         Plot the Orders Satisfaction section of the dashboard.
-        
+
         Returns: True if the operation is successful.
         """
-        
+
         orders_satisfaction = self.df_app["Order Satisfaction"]
         orders_satisfaction = pd.DataFrame(
             list(orders_satisfaction.items()), columns=["date", "Rate"]

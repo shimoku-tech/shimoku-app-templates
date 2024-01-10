@@ -14,7 +14,7 @@ modals_css = """
 def create_title_name_head(title: str, subtitle: str) -> str:
     """
     Function that generates the page header.
-    
+
     Args:
         title (str): The main title for the page header.
         subtitle (str): The subtitle or additional text for the header.
