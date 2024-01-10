@@ -44,6 +44,8 @@ class CustomerSatisfactionPerformance(Board):
     def plot_header(self):
         """
         Plot the header section of the dashboard.
+
+        Returns: True if the operation is successful.    
         """
         self.shimoku.plt.html(
             html=create_title_name_head(
@@ -53,10 +55,13 @@ class CustomerSatisfactionPerformance(Board):
             order=self.order,
         )
         self.order += 1
+        return True
 
     def plot_kpi_indicators(self):
         """
         Plot the Key Performance Indicators (KPI) section of the dashboard.
+        
+        Returns: True if the operation is successful.
         """
         total_customers = self.df_app["Total Customers"]
         customers_with_returns = self.df_app["Customers with Returns"]
@@ -112,10 +117,13 @@ class CustomerSatisfactionPerformance(Board):
             color=orders_with_returns_status,
         )
         self.order += 1
+        return True
 
     def plot_customer_satisfaction(self):
         """
         Plot the Customer Satisfaction section of the dashboard.
+
+        Returns: True if the operation is successful.
         """
         customer_satisfaction = self.df_app["Customer Satisfaction"]
         customer_satisfaction = pd.DataFrame(
@@ -132,11 +140,15 @@ class CustomerSatisfactionPerformance(Board):
             title="Customer Satisfaction",
         )
         self.order += 1
+        return True
 
     def plot_orders_satisfaction(self):
         """
         Plot the Orders Satisfaction section of the dashboard.
+        
+        Returns: True if the operation is successful.
         """
+        
         orders_satisfaction = self.df_app["Order Satisfaction"]
         orders_satisfaction = pd.DataFrame(
             list(orders_satisfaction.items()), columns=["date", "Rate"]
@@ -156,10 +168,13 @@ class CustomerSatisfactionPerformance(Board):
             y_axis_name="Rate",
         )
         self.order += 1
+        return True
 
     def plot_revenue_indicators(self):
         """
         Plot the Revenue Indicators section of the dashboard.
+
+        Returns: True if the operation is successful.
         """
         total_revenue = self.df_app["Total Revenue"]
         revenue_lost = self.df_app["Revenue Lost"]
@@ -189,10 +204,13 @@ class CustomerSatisfactionPerformance(Board):
             cols_size=6, data=indicator_data, order=self.order, color="color"
         )
         self.order += len(indicator_data)
+        return True
 
     def plot_orders_returned_orders(self):
         """
         Plot the Orders & Returned Orders section of the dashboard.
+
+        Returns: True if the operation is successful.
         """
         monthly_metrics = self.df_app["Monthly Metrics"]
         monthly_metrics_df = pd.DataFrame(monthly_metrics)
@@ -215,10 +233,13 @@ class CustomerSatisfactionPerformance(Board):
             cols_size=6,
         )
         self.order += 1
+        return True
 
     def plot_revenue_analysis(self):
         """
         Plot the Revenue Analysis section of the dashboard.
+
+        Returns: True if the operation is successful.
         """
         monthly_metrics = self.df_app["Monthly Metrics"]
         monthly_metrics_df = pd.DataFrame(monthly_metrics)
@@ -248,3 +269,4 @@ class CustomerSatisfactionPerformance(Board):
             title="Revenue Analysis",
         )
         self.order += 1
+        return True
