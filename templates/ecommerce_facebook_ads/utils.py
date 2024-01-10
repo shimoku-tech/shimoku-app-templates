@@ -7,10 +7,10 @@ def get_data(file_names: List[str]):
     """
     Parameters:
     file_names (List[str]): List of paths for .csv files
-    
+
     Returns:
     Dictionary of dataframes, one item for each file of file_names array parameter.
-    
+
     Example:
     file_names = ['data/active_users.csv', 'data/shop_events.csv', ...]
     dict_dfs ['active_users'] = A dataframe with 'data/active_users.csv' CSV file
@@ -30,6 +30,7 @@ def get_data(file_names: List[str]):
         dict_dfs[os.path.splitext(os.path.basename(file_name))[0]] = df
 
     return dict_dfs
+
 
 def beautiful_indicator(title: str):
     """

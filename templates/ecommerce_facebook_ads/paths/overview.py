@@ -25,7 +25,7 @@ class Overview(Board):
         # Delete existing menu path if it exists
         if self.shimoku.menu_paths.get_menu_path(name=self.menu_path):
             self.shimoku.menu_paths.delete_menu_path(name=self.menu_path)
-        
+
         # Create the menu path
         self.shimoku.set_menu_path(name=self.menu_path)
 
@@ -39,7 +39,6 @@ class Overview(Board):
         self.plot_kpi_ad_reach()
         self.plot_kpi_ad_clicks()
 
-
     def plot_header(self):
         """
         Plots the header section.
@@ -51,17 +50,11 @@ class Overview(Board):
         title = "Facebook Ads Dashboard"
 
         indicator = beautiful_indicator(title=title)
-        self.shimoku.plt.html(
-            indicator,
-            order=self.order,
-            rows_size=1,
-            cols_size=12
-        )
+        self.shimoku.plt.html(indicator, order=self.order, rows_size=1, cols_size=12)
 
         self.order += 1
 
         return True
-
 
     def plot_kpi_indicators(self):
         """
@@ -79,41 +72,38 @@ class Overview(Board):
         indicator_data = [
             {
                 "title": "Ad Spend",
-                "description":"vs previous year",
+                "description": "vs previous year",
                 "align": "center",
                 "value": f"${ad_spend}",
-                "color":"black"
+                "color": "black",
             },
             {
                 "title": "Cost Per Thousand (CPM)",
-                "description":"vs previous year",
+                "description": "vs previous year",
                 "align": "center",
                 "value": f"${cpm}",
-                "color":"black"
+                "color": "black",
             },
             {
                 "title": "Cost Per Click (CPC)",
-                "description":"vs previous year",
+                "description": "vs previous year",
                 "align": "center",
                 "value": f"${cpc}",
-                "color":"black"
+                "color": "black",
             },
             {
                 "title": "Click-Through Rate (CTR)",
-                "description":"vs previous year",
+                "description": "vs previous year",
                 "align": "center",
                 "value": f"{ctr}%",
-                "color":"black"
-            }
+                "color": "black",
+            },
         ]
 
-        self.shimoku.plt.indicator(
-            data=indicator_data, order=self.order
-        )
+        self.shimoku.plt.indicator(data=indicator_data, order=self.order)
 
         self.order += len(indicator_data)
         return True
-
 
     def plot_kpi_ad_reach(self):
         """
@@ -125,14 +115,16 @@ class Overview(Board):
         ad_reach = self.df_app["ad_name_by_month"]
 
         self.shimoku.plt.stacked_bar(
-            data = ad_reach, x="month",
-            order=self.order, title="Ad Reach",
-            rows_size=2,cols_size=6
+            data=ad_reach,
+            x="month",
+            order=self.order,
+            title="Ad Reach",
+            rows_size=2,
+            cols_size=6,
         )
 
         self.order += 1
         return True
-
 
     def plot_kpi_ad_clicks(self):
         """
@@ -144,8 +136,13 @@ class Overview(Board):
         ad_clicks = self.df_app["ad_clicks"]
 
         self.shimoku.plt.line(
-            data=ad_clicks,x="impression_date",order=self.order,
-            rows_size=2,cols_size=6,title="Ad Clicks",variant="clean"
+            data=ad_clicks,
+            x="impression_date",
+            order=self.order,
+            rows_size=2,
+            cols_size=6,
+            title="Ad Clicks",
+            variant="clean",
         )
 
         self.order += 1
