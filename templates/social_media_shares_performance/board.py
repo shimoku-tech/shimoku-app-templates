@@ -1,6 +1,7 @@
 from shimoku_api_python import Client
 from utils.utils import get_data
 import pandas as pd
+import calendar
 
 class Board:
     """
@@ -74,7 +75,6 @@ class Board:
         ]
 
         # Social Media Post
-        import calendar
         social_media_posts = [
             {
                 "Month": calendar.month_name[month][:3],
