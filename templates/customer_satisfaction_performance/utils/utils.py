@@ -7,7 +7,7 @@ def get_data(file_names: List[str]):
     """
     Loads multiple CSV files into a dictionary of pandas DataFrames.
 
-    Parameters:
+    Args:
     file_names (list of str): List of paths to CSV files.
 
     Returns:
