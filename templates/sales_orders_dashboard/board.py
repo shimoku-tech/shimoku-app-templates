@@ -51,6 +51,12 @@ class Board:
 
         Returns:
         None. The function is used for its side effect of plotting data.
+
+        Note:
+        - This method imports the SalesOrdersDashboard class within the function scope
+          to avoid potential circular dependencies.
+        - Ensure that the SalesOrdersDashboard class has access to all necessary data
+          through the passed instance.
         """
 
         from paths.sales_orders_dashboard import (
