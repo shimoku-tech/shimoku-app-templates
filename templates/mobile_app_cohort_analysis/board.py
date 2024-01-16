@@ -44,14 +44,12 @@ class Board:
 
         df_active_users = self.dfs["active_users"]
 
-        # Main KPIs
-        week_range = 9
         activity_weeks = df_active_users.apply(lambda row:
             row.unregister_date - row.register_date if pd.notna(row.unregister_date) else dt.datetime.now() - row.register_date,
             axis=1,
         ).dt.days / 7
-        reference_date = df_active_users["register_date"].min()
 
+        # Main KPIs
         main_kpis = [
             # Total users
             {
@@ -97,9 +95,14 @@ class Board:
             },
         ]
 
-        # All
-        ## ALL - Line Chart
-        all_line_chart = [
+
+        week_range = 9
+        reference_date = df_active_users["register_date"].min()
+
+
+        # All section
+        ## ALL section - Users Life Time
+        all_life_time = [
             {
                 "week":f"W{week}",
                 'users': compute_percent(
@@ -109,7 +112,7 @@ class Board:
             }
         for week in range(0,int(sum(activity_weeks) / df_active_users.shape[0]) + 3)]
 
-        ## ALL - table
+        ## ALL section - Cohort Analysis
         user_per_week = [
             {
                 "Week (Date)": reference_date + dt.timedelta(days=7*week),
@@ -120,24 +123,23 @@ class Board:
             }
         for week in range(week_range)]
 
-        all_table_chart = [
+        all_cohort = [
             user_per_week[row_week] |
             {
-                f"W{columns_week}": "%.2f"%(compute_percent(
-                    sum(activity_weeks[
-                        df_active_users["register_date"].between(
+                f"W{columns_week}": (compute_percent(
+                    sum(activity_weeks[df_active_users["register_date"].between(
                         reference_date + dt.timedelta(days=7*row_week),
                         reference_date + dt.timedelta(days= 7*(row_week + 1))
                     )] >= columns_week),
                     user_per_week[row_week]["Users"],
-                )) + "%" if columns_week + row_week < week_range + 1 else "--"
+                )) if columns_week + row_week < week_range + 1 else 0
             for columns_week in range(week_range + 1)}
         for row_week in range(week_range)]
 
 
-        # Gender
-        ## Gender - Pie Chart
-        gender_pie_chart = [
+        # Gender section
+        ## Gender section - Gender Category
+        gender_category = [
             {
                 'name': gender_name,
                 'value': df_active_users[
@@ -146,8 +148,8 @@ class Board:
             }
         for gender_name in df_active_users["gender"].unique()]
 
-        ## Gender - Line Chart
-        gender_line_chart = [
+        ## Gender section - Users Life Time by Gender
+        gender_life_time = [
             {
                 "week":f"W{week}",
             } |
@@ -160,40 +162,38 @@ class Board:
         for week in range(0,int(sum(activity_weeks) / df_active_users.shape[0]) + 3)]
 
 
-        ## Gender - table
-        gender_per_week = {
-            gender: [
+        ## Gender section - Cohort Analysis by Gender
+        gender_cohort = {}
+        for gender_name in df_active_users["gender"].unique():
+            # Generate date and total user
+            gender_per_week = [
                 {
                     "Week (Date)": reference_date + dt.timedelta(days=7*week),
-                    "Users": sum(
-                        df_active_users["register_date"].between(
+                    "Users": sum(df_active_users["register_date"].between(
                             reference_date + dt.timedelta(days=7*week),
                             reference_date + dt.timedelta(days= 7*(week + 1)),
-                        ) & (df_active_users["gender"] == gender),
+                        ) & (df_active_users["gender"] == gender_name)
                     ),
                 }
             for week in range(week_range)]
-        for gender in df_active_users["gender"].unique()}
 
-        gender_table_chart = {
-            gender : [
-                gender_per_week[gender][row_week] |
+            gender_cohort[gender_name] = [gender_per_week[row_week] |
                 {
-                    f"W{columns_week}": "%.2f"%(compute_percent(
+                    f"W{columns_week}": compute_percent(
                         sum(activity_weeks[
                             df_active_users["register_date"].between(
                                 reference_date + dt.timedelta(days=7*row_week),
                                 reference_date + dt.timedelta(days= 7*(row_week + 1))
-                            ) & (df_active_users["gender"] == gender)
+                            ) & (df_active_users["gender"] == gender_name)
                         ] >= columns_week),
-                        gender_per_week[gender][row_week]["Users"],
-                    )) + "%" if columns_week + row_week < week_range + 1 else "--"
+                        gender_per_week[row_week]["Users"],
+                    ) if columns_week + row_week < week_range + 1 else 0
                 for columns_week in range(week_range + 1)}
             for row_week in range(week_range)]
-        for gender in df_active_users["gender"].unique()}
 
-        # Age
-        ## Age - Pie Chart
+
+        # Age section
+        ## Age section - Age Category
         age_ranges = [
             {"name": "18 - 25", "min": 18, "max": 26},
             {"name": "26 - 40", "min": 26, "max": 41},
@@ -201,7 +201,7 @@ class Board:
             {"name": "Above 61", "min": 61, "max": 200},
         ]
 
-        age_pie_chart = [
+        age_category = [
             {
                 'name': age_range["name"],
                 'value': df_active_users[
@@ -210,8 +210,8 @@ class Board:
             }
         for age_range in age_ranges]
 
-        ## Age - Line Chart
-        age_line_chart = [
+        ## Age section - Users Life Time by Age
+        age_life_time = [
             {
                 "week":f"W{week}",
             } |
@@ -224,42 +224,38 @@ class Board:
         for week in range(0,int(sum(activity_weeks) / df_active_users.shape[0]) + 3)]
 
 
-        ## Age - table
-        age_per_week = {
-            age_range["name"]: [
+        ## Age section - Cohort Analysis by Age
+        age_cohort = {}
+        for age_range in age_ranges:
+            age_per_week = [
                 {
                     "Week (Date)": reference_date + dt.timedelta(days=7*week),
-                    "Users": sum(
-                        df_active_users["register_date"].between(
+                    "Users": sum(df_active_users["register_date"].between(
                             reference_date + dt.timedelta(days=7*week),
                             reference_date + dt.timedelta(days= 7*(week + 1)),
                         ) & (df_active_users["age"].isin(range(age_range["min"], age_range["max"]))),
                     ),
                 }
             for week in range(week_range)]
-        for age_range in age_ranges}
 
-        age_table_chart = {
-            age_range["name"] : [
-                age_per_week[age_range["name"]][row_week] |
+            age_cohort[age_range["name"]] = [
+                age_per_week[row_week] |
                 {
-                    f"W{columns_week}": "%.2f"%(compute_percent(
-                        sum(activity_weeks[
-                            df_active_users["register_date"].between(
+                    f"W{columns_week}": compute_percent(
+                        sum(activity_weeks[df_active_users["register_date"].between(
                                 reference_date + dt.timedelta(days=7*row_week),
                                 reference_date + dt.timedelta(days= 7*(row_week + 1))
                             ) & (df_active_users["age"].isin(range(age_range["min"], age_range["max"])))
                         ] >= columns_week),
-                        age_per_week[age_range["name"]][row_week]["Users"],
-                    )) + "%" if columns_week + row_week < week_range + 1 else "--"
+                        age_per_week[row_week]["Users"],
+                    ) if columns_week + row_week < week_range + 1 else 0
                 for columns_week in range(week_range + 1)}
             for row_week in range(week_range)]
-        for age_range in age_ranges}
 
 
-        # Adquisitions source
-        ## Adquisitions source - Pier Chart
-        source_pie_chart = [
+        # Adquisitions Source section
+        ## Adquisitions Source section - Adquisitions Source Category
+        source_category = [
             {
                 'name': source_name,
                 'value': df_active_users[
@@ -269,8 +265,8 @@ class Board:
         for source_name in df_active_users["acquisition_source"].unique()]
 
 
-        ## Adquisitions source - Line Chart
-        source_line_chart = [
+        ## Adquisitions Source section - Line Chart
+        source_life_time = [
             {
                 "week":f"W{week}",
             } |
@@ -282,9 +278,10 @@ class Board:
             for source_name in df_active_users["acquisition_source"].unique()}
         for week in range(0,int(sum(activity_weeks) / df_active_users.shape[0]) + 3)]
 
-        ## Acquisition source - table
-        source_per_week = {
-            source_name: [
+        ## Acquisition Source section - table
+        source_cohort = {}
+        for source_name in df_active_users["acquisition_source"].unique():
+            source_per_week = [
                 {
                     "Week (Date)": reference_date + dt.timedelta(days=7*week),
                     "Users": sum(
@@ -295,46 +292,46 @@ class Board:
                     ),
                 }
             for week in range(week_range)]
-        for source_name in df_active_users["acquisition_source"].unique()}
 
-        source_table_chart = {
-            source_name : [
-                source_per_week[source_name][row_week] |
+
+            source_cohort[source_name] = [
+                source_per_week[row_week] |
                 {
-                    f"W{columns_week}": "%.2f"%(compute_percent(
-                        sum(activity_weeks[
-                            df_active_users["register_date"].between(
+                    f"W{columns_week}": compute_percent(
+                        sum(activity_weeks[df_active_users["register_date"].between(
                                 reference_date + dt.timedelta(days=7*row_week),
                                 reference_date + dt.timedelta(days= 7*(row_week + 1))
                             ) & (df_active_users["acquisition_source"] == source_name)
                         ] >= columns_week),
-                        source_per_week[source_name][row_week]["Users"],
-                    )) + "%" if columns_week + row_week < week_range + 1 else "--"
+                        source_per_week[row_week]["Users"],
+                    ) if columns_week + row_week < week_range + 1 else 0
                 for columns_week in range(week_range + 1)}
             for row_week in range(week_range)]
-        for source_name in df_active_users["acquisition_source"].unique()}
 
 
-
+        # Saved as Dataframe to plot
         self.df_app = {
             "main_kpis": pd.DataFrame(main_kpis),
-            "all_line_chart": pd.DataFrame(all_line_chart),
-            "all_table_chart": pd.DataFrame(all_table_chart),
-            "gender_pie_chart": pd.DataFrame(gender_pie_chart),
-            "gender_line_chart": pd.DataFrame(gender_line_chart),
-            "age_pie_chart": pd.DataFrame(age_pie_chart),
-            "age_line_chart": pd.DataFrame(age_line_chart),
-            "source_pie_chart": pd.DataFrame(source_pie_chart),
-            "source_line_chart": pd.DataFrame(source_line_chart),
+            "all_life_time": pd.DataFrame(all_life_time),
+            "all_cohort": pd.DataFrame(all_cohort),
+            "gender_category": pd.DataFrame(gender_category),
+            "gender_life_time": pd.DataFrame(gender_life_time),
+            "age_category": pd.DataFrame(age_category),
+            "age_life_time": pd.DataFrame(age_life_time),
+            "source_category": pd.DataFrame(source_category),
+            "source_life_time": pd.DataFrame(source_life_time),
         }
+
         self.df_app |= {
-            f"gender_table_chart_{gender_name}" : pd.DataFrame(gender_table_chart[gender_name])
+            f"gender_cohort_{gender_name}" : pd.DataFrame(gender_cohort[gender_name])
         for gender_name in df_active_users["gender"].unique()}
+
         self.df_app |= {
-            f"age_table_chart_{age_range['name']}" : pd.DataFrame(age_table_chart[age_range["name"]])
+            f"age_cohort_{age_range['name']}" : pd.DataFrame(age_cohort[age_range["name"]])
         for age_range in age_ranges}
+
         self.df_app |= {
-            f"source_table_chart_{source_name}" : pd.DataFrame(source_table_chart[source_name])
+            f"source_cohort_{source_name}" : pd.DataFrame(source_cohort[source_name])
         for source_name in df_active_users["acquisition_source"].unique()}
 
         return True

@@ -1,4 +1,4 @@
-from utils.utils import convert_dataframe_to_array, beautiful_header, categories
+from utils.utils import convert_dataframe_to_array, beautiful_header, categories, cohort_colors
 from board import Board
 
 
@@ -100,10 +100,11 @@ class CohortAnalysis(Board):
 
         # Lie chart
         self.shimoku.plt.line(
-            data = self.df_app["all_line_chart"],
+            data = self.df_app["all_life_time"],
             order = self.order,
             cols_size = 10,
             rows_size = 3,
+            title = "Users Life Time",
             x = "week",
             x_axis_name="Weeks",
         )
@@ -111,13 +112,16 @@ class CohortAnalysis(Board):
 
         # Table Chart
         self.shimoku.plt.table(
-            data=self.df_app["all_table_chart"],
+            data=self.df_app["all_cohort"],
             order=self.order,
             cols_size = 10,
             rows_size = 4,
             title="Cohort Analysis",
             initial_sort_column="Week (Date)",
             sort_descending=False,
+            label_columns={
+                f"W{index}": cohort_colors()
+            for index in range(self.df_app["all_cohort"].columns.shape[0] - 2)},
             columns_options={
                 "Week (Date)": {"width": 110},
                 "Users": {"width": 80},
@@ -135,7 +139,7 @@ class CohortAnalysis(Board):
 
         # pie chart
         self.shimoku.plt.pie(
-            data = self.df_app["gender_pie_chart"],
+            data = self.df_app["gender_category"],
             order = self.order,
             cols_size = 24,
             rows_size = 21,
@@ -151,10 +155,10 @@ class CohortAnalysis(Board):
             cols_size = 24,
             rows_size = 10,
             padding="0,2,1,2",
-            html = categories(self.df_app["gender_pie_chart"].sort_values(
+            html = categories(self.df_app["gender_category"].sort_values(
                 by=["value"],
                 ascending=False,
-            ))
+            )),
         )
         self.order += 1
 
@@ -163,11 +167,13 @@ class CohortAnalysis(Board):
 
         # Lie chart
         self.shimoku.plt.line(
-            data = self.df_app["gender_line_chart"],
+            data = self.df_app["gender_life_time"],
             order = self.order,
             cols_size = 6,
             rows_size = 3,
+            title = "Users Life Time",
             x = "week",
+            x_axis_name="Weeks",
         )
         self.order += 1
 
@@ -175,7 +181,7 @@ class CohortAnalysis(Board):
         self.shimoku.plt.set_bentobox(cols_size=12, rows_size=5)
 
         # Table Tabs
-        for gender in self.df_app["gender_pie_chart"].name.unique():
+        for gender in self.df_app["gender_category"].name.unique():
             self.shimoku.plt.set_tabs_index(
                 ("Gender Tabs", gender),
                 order=self.order,
@@ -188,15 +194,21 @@ class CohortAnalysis(Board):
             self.order += 1
 
             # Table Chart
-
             self.shimoku.plt.table(
-                data=self.df_app[f"gender_table_chart_{gender}"],
+                data=self.df_app[f"gender_cohort_{gender}"],
                 order=self.order,
                 cols_size = 24,
                 rows_size = 4,
                 title="Cohort Analysis",
                 initial_sort_column="Week (Date)",
                 sort_descending=False,
+                label_columns={
+                    f"W{index}": cohort_colors()
+                for index in range(self.df_app[f"gender_cohort_{gender}"].columns.shape[0] - 2)},
+                columns_options={
+                    "Week (Date)": {"width": 110},
+                    "Users": {"width": 80},
+                },
             )
             self.order += 1
 
@@ -215,7 +227,7 @@ class CohortAnalysis(Board):
 
         # pie chart
         self.shimoku.plt.pie(
-            data = self.df_app["age_pie_chart"],
+            data = self.df_app["age_category"],
             order = self.order,
             cols_size = 24,
             rows_size = 18,
@@ -231,10 +243,10 @@ class CohortAnalysis(Board):
             cols_size = 24,
             rows_size = 10,
             padding="0,2,1,2",
-            html = categories(self.df_app["age_pie_chart"].sort_values(
+            html = categories(self.df_app["age_category"].sort_values(
                 by=["value"],
                 ascending=False,
-            ))
+            )),
         )
         self.order += 1
 
@@ -243,11 +255,13 @@ class CohortAnalysis(Board):
 
         # Lie chart
         self.shimoku.plt.line(
-            data = self.df_app["age_line_chart"],
+            data = self.df_app["age_life_time"],
             order = self.order,
             cols_size = 6,
             rows_size = 3,
+            title = "Users Life Time",
             x = "week",
+            x_axis_name="Weeks",
         )
         self.order += 1
 
@@ -255,7 +269,7 @@ class CohortAnalysis(Board):
         self.shimoku.plt.set_bentobox(cols_size=12, rows_size=5)
 
         # Table Tabs
-        for age_range in self.df_app["age_pie_chart"].name.unique():
+        for age_range in self.df_app["age_category"].name.unique():
             self.shimoku.plt.set_tabs_index(
                 ("Age Tabs", age_range),
                 order=self.order,
@@ -265,13 +279,20 @@ class CohortAnalysis(Board):
             self.order += 1
 
             self.shimoku.plt.table(
-                data=self.df_app[f"age_table_chart_{age_range}"],
+                data=self.df_app[f"age_cohort_{age_range}"],
                 order=self.order,
                 cols_size = 24,
                 rows_size = 4,
                 title="Cohort Analysis",
                 initial_sort_column="Week (Date)",
                 sort_descending=False,
+                label_columns={
+                    f"W{index}": cohort_colors()
+                for index in range(self.df_app[f"age_cohort_{age_range}"].columns.shape[0] - 2)},
+                columns_options={
+                    "Week (Date)": {"width": 110},
+                    "Users": {"width": 80},
+                },
             )
             self.order += 1
             self.order += 1
@@ -290,7 +311,7 @@ class CohortAnalysis(Board):
 
         # Pie chart
         self.shimoku.plt.pie(
-            data = self.df_app["source_pie_chart"],
+            data = self.df_app["source_category"],
             order = self.order,
             cols_size = 24,
             rows_size = 21,
@@ -306,7 +327,7 @@ class CohortAnalysis(Board):
             cols_size = 24,
             rows_size = 10,
             padding="0,2,1,2",
-            html = categories(self.df_app["source_pie_chart"].sort_values(
+            html = categories(self.df_app["source_category"].sort_values(
                 by=["value"],
                 ascending=False,
             ))
@@ -318,11 +339,13 @@ class CohortAnalysis(Board):
 
         # Line chart
         self.shimoku.plt.line(
-            data = self.df_app["source_line_chart"],
+            data = self.df_app["source_life_time"],
             order = self.order,
             cols_size = 6,
             rows_size = 3,
+            title = "Users Life Time",
             x = "week",
+            x_axis_name="Weeks",
         )
         self.order += 1
 
@@ -331,7 +354,7 @@ class CohortAnalysis(Board):
         self.shimoku.plt.set_bentobox(cols_size=12, rows_size=6)
 
         # Table Tabs
-        for source in self.df_app["source_pie_chart"].name.unique():
+        for source in self.df_app["source_category"].name.unique():
             self.shimoku.plt.set_tabs_index(
                 ("Acquisition Source Tabs", source),
                 order=self.order,
@@ -344,13 +367,20 @@ class CohortAnalysis(Board):
 
             # Table Chart
             self.shimoku.plt.table(
-                data=self.df_app[f"source_table_chart_{source}"],
+                data=self.df_app[f"source_cohort_{source}"],
                 order=self.order,
                 cols_size = 24,
                 rows_size = 4,
                 title="Cohort Analysis",
                 initial_sort_column="Week (Date)",
                 sort_descending=False,
+                label_columns={
+                    f"W{index}": cohort_colors()
+                for index in range(self.df_app[f"source_cohort_{source}"].columns.shape[0] - 2)},
+                columns_options={
+                    "Week (Date)": {"width": 110},
+                    "Users": {"width": 80},
+                },
             )
             self.order += 1
 

@@ -100,10 +100,19 @@ def categories(df: pd.DataFrame) -> str:
         f"border-radius: 10px;'>"
         f"{row['name']}"
         f"</div>"
-        f"<div>{compute_percent(row['value'], total):.1f}% ({row['value']})</div>"
+        f"<div>{compute_percent(row['value'], total):05.2f}% ({row['value']:03d})</div>"
         "</div>")
     for index, row in df.iterrows()]
     return "".join(sections)
 
 def compute_percent(value: float, total: float) -> float:
     return value * 100 / total if total != 0 else 0
+
+def cohort_colors():
+    return {
+        (0, 10): "#eaffed",
+        (10, 20): "#d0fdd7",
+        (20, 30): "#9bfab0",
+        (30, 50): "#64c27b",
+        (50, 100): "#2a8c4a",
+    }
