@@ -106,4 +106,4 @@ def categories(df: pd.DataFrame) -> str:
     return "".join(sections)
 
 def compute_percent(value: float, total: float) -> float:
-    return value * 100 / total
+    return value * 100 / total if total != 0 else 0
