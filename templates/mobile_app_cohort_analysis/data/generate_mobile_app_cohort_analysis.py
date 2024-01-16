@@ -41,7 +41,7 @@ def generate_data():
     register_dates = [random_date(date_ini, date_end) for _ in range(n)]
 
     unregister_dates = [
-        random_date(register_dates[i], date_end) if random.random() < 0.1 else None
+        random_date(register_dates[i], date_end) if random.random() < 0.9 else None
         for i in range(n)
     ]
 
@@ -56,7 +56,7 @@ def generate_data():
                 # Generate a date within a window of X days backward from date_end
                 days_to_past = timedelta(days=60)
                 start_window = date_end - days_to_past
-                last_login_dates.append(random_date(start_window, date_end))
+                last_login_dates.append(random_date(max(register_dates[i], start_window), date_end))
             else:
                 # Choose a date between register_dates[i] and date_end, generate a date within the window of register_dates[i] to date_end
                 last_login_dates.append(random_date(register_dates[i], date_end))
