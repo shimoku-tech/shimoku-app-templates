@@ -50,13 +50,13 @@ def convert_dataframe_to_array(df: pd.DataFrame):
     return new_data
 
 def beautiful_header(title: str) -> str:
-    """Return a HTML structure to plot the header on the menu path
+    """Return a HTML structure to plot the header on the menu path.
 
     Args:
-        title (str): title of the header in the menu path
+        title (str): title of the header in the menu path.
 
     Returns:
-        str: HTML structure to plot the header
+        str: HTML structure to plot the header.
     """
     return (
         "<head>"
@@ -88,6 +88,15 @@ def beautiful_header(title: str) -> str:
     )
 
 def categories(df: pd.DataFrame) -> str:
+    """Return a string of the HTML structure with the differents categories used on the
+    Category section for each tab.
+
+    Args:
+        df (pd.DataFrame): dataframe which contains the categories and the users count.
+
+    Returns:
+        str: string of the HTML structure with the differents categories.
+    """
     total = df["value"].apply('sum')
 
     sections = [
@@ -106,9 +115,24 @@ def categories(df: pd.DataFrame) -> str:
     return "".join(sections)
 
 def compute_percent(value: float, total: float) -> float:
+    """Compute the percentage value.
+
+    Args:
+        value (float): fraction of the total value.
+        total (float): total value.
+
+    Returns:
+        float: percentage value.
+    """
     return value * 100 / total if total != 0 else 0
 
-def cohort_colors():
+def cohort_colors() -> dict:
+    """Return a dictionary which contains the range for each percentage as key and
+    the color to each range as value.
+
+    Returns:
+        dict: dictionary with a range and colors.
+    """
     return {
         (0, 10): "#eaffed",
         (10, 20): "#d0fdd7",
