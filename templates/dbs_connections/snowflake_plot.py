@@ -1,7 +1,7 @@
 import pandas as pd
 from sqlalchemy import create_engine
 from snowflake.sqlalchemy import URL
-from aux import init_sdk
+from app_shimoku import init_sdk
 
 # TODO set your snowflake connection
 url = URL(

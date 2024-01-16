@@ -8,7 +8,7 @@ import pandas as pd
 
 import shimoku_api_python as shimoku
 
-from aux import (
+from utils import (
     data_html_real_time, data_indicator_real_time_events,
     data_indicator_real_time_time_session,
     data_html_summary, data_line_sessions_date,

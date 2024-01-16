@@ -4,7 +4,7 @@ import pandas as pd
 
 from typing import List, Dict, Union
 from os import getenv
-from aux import get_data
+from utils import get_data
 
 
 #--------------------AUXILIARY FUNCTIONS--------------------#

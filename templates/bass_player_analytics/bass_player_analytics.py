@@ -1,7 +1,7 @@
 from os import getenv
 from typing import List, Dict, Tuple
 import pandas as pd
-from aux import get_data
+from utils import get_data
 from copy import deepcopy
 import shimoku_api_python as shimoku
 

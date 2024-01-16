@@ -1,6 +1,6 @@
 import pandas
 from sqlalchemy import create_engine
-from aux import init_sdk
+from app_shimoku import init_sdk
 
 # Get data from a MySQL database
 connection_string = 'mysql+pymysql://user:password@host/db'  # TODO set the user, pass, host, db
