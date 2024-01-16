@@ -9,13 +9,37 @@ output_file = "active_users.csv"
 date_ini = datetime(2023, 1, 1)
 date_end = datetime.now() # Current date
 
-def generate_data():
+def generate_data() -> pd.DataFrame:
+    """Generate a CSV file with a data fake
+    """
+    def random_date(start_date: datetime, end_date: datetime) -> datetime:
+        """Generate a random date between two dates using a uniform distribution.
 
-    def random_date(start_date, end_date):
+        Args:
+            start_date (datetime): start date
+            end_date (datetime): end date
+
+        Returns:
+            datetime: random date
+        """
         return start_date + timedelta(
             days=random.randint(0, (end_date - start_date).days)
         )
 
+    def random_pareto(start_date: datetime, end_date: datetime) -> datetime:
+        """Generate a random date between two dates using a pareto distribution.
+
+        Args:
+            start_date (datetime): start date
+            end_date (datetime): end date
+
+        Returns:
+            datetime: random date
+        """
+        max_timedelta = end_date - start_date
+        return start_date + timedelta(
+            days=min((random.paretovariate(1) - 1) * 7, max_timedelta.days)
+        )
     n = total_data
 
     user_ids = [
@@ -41,7 +65,7 @@ def generate_data():
     register_dates = [random_date(date_ini, date_end) for _ in range(n)]
 
     unregister_dates = [
-        random_date(register_dates[i], date_end) if random.random() < 0.9 else None
+        random_pareto(register_dates[i], date_end) if random.random() < 0.8 else None
         for i in range(n)
     ]
 
