@@ -36,6 +36,7 @@ class CohortAnalysis(Board):
         """
         self.plot_header()
         self.plot_kpi_indicators()
+        self.set_tabs()
         self.plot_all()
         self.plot_gender()
         self.plot_age()
@@ -49,9 +50,8 @@ class CohortAnalysis(Board):
         """
         title = "Mobile App - Cohort Analysis"
 
-        indicator = beautiful_header(title=title)
         self.shimoku.plt.html(
-            indicator,
+            beautiful_header(title=title),
             order = self.order,
             rows_size = 1,
             cols_size = 12,
@@ -81,13 +81,54 @@ class CohortAnalysis(Board):
 
         return True
 
+    def set_tabs(self):
+        self.shimoku.plt.set_tabs_index(("Charts", "All"),
+            order=self.order,
+            just_labels=True, cols_size = 22,
+            rows_size = 10,
+            padding='0,1,0,1',
+        )
+        self.shimoku.plt.change_current_tab("Gender")
+        self.shimoku.plt.change_current_tab("Age")
+        self.shimoku.plt.change_current_tab("Acquisition Source")
+        self.order += 1
+
+        return True
+
     def plot_all(self) -> bool:
-        self.shimoku.plt.set_tabs_index(('Charts', 'All'), order=self.order, just_labels=True)
+        self.shimoku.plt.change_current_tab("All")
+
+        # Lie chart
+        self.shimoku.plt.line(
+            data = self.df_app["all_line_chart"],
+            order = self.order,
+            cols_size = 10,
+            rows_size = 3,
+            x = "week",
+            x_axis_name="Weeks",
+        )
+        self.order += 1
+
+        # Table Chart
+        self.shimoku.plt.table(
+            data=self.df_app["all_table_chart"],
+            order=self.order,
+            cols_size = 10,
+            rows_size = 4,
+            title="Cohort Analysis",
+            initial_sort_column="Week (Date)",
+            sort_descending=False,
+            columns_options={
+                "Week (Date)": {"width": 110},
+                "Users": {"width": 80},
+            },
+        )
+        self.order += 1
 
         return True
 
     def plot_gender(self) -> bool:
-        self.shimoku.plt.change_current_tab('Gender')
+        self.shimoku.plt.change_current_tab("Gender")
 
         # Set bentobox size
         self.shimoku.plt.set_bentobox(cols_size=4, rows_size=3)
@@ -98,11 +139,10 @@ class CohortAnalysis(Board):
             order = self.order,
             cols_size = 24,
             rows_size = 21,
-            names = 'name',
-            values = 'value',
-            padding='2,2,2,2',
+            names = "name",
+            values = "value",
+            padding="2,2,2,2",
         )
-
         self.order += 1
 
         # Html
@@ -110,7 +150,7 @@ class CohortAnalysis(Board):
             order = self.order,
             cols_size = 24,
             rows_size = 10,
-            padding='0,2,1,2',
+            padding="0,2,1,2",
             html = categories(self.df_app["gender_pie_chart"].sort_values(
                 by=["value"],
                 ascending=False,
@@ -125,16 +165,50 @@ class CohortAnalysis(Board):
         self.shimoku.plt.line(
             data = self.df_app["gender_line_chart"],
             order = self.order,
-            cols_size = 8,
+            cols_size = 6,
             rows_size = 3,
-            x = 'week',
+            x = "week",
         )
         self.order += 1
+
+        # Set bentobox size
+        self.shimoku.plt.set_bentobox(cols_size=12, rows_size=5)
+
+        # Table Tabs
+        for gender in self.df_app["gender_pie_chart"].name.unique():
+            self.shimoku.plt.set_tabs_index(
+                ("Gender Tabs", gender),
+                order=self.order,
+                just_labels=True,
+                cols_size = 24,
+                rows_size = 6,
+                padding='0,0,0,0',
+                parent_tabs_index=("Charts", "Gender"),
+            )
+            self.order += 1
+
+            # Table Chart
+
+            self.shimoku.plt.table(
+                data=self.df_app[f"gender_table_chart_{gender}"],
+                order=self.order,
+                cols_size = 24,
+                rows_size = 4,
+                title="Cohort Analysis",
+                initial_sort_column="Week (Date)",
+                sort_descending=False,
+            )
+            self.order += 1
+
+        self.shimoku.plt.set_tabs_index(tabs_index=("Charts", "Gender"))
+
+        # Pop out of bentobox
+        self.shimoku.plt.pop_out_of_bentobox()
 
         return True
 
     def plot_age(self) -> bool:
-        self.shimoku.plt.change_current_tab('Age')
+        self.shimoku.plt.change_current_tab("Age")
 
         # Set bentobox size
         self.shimoku.plt.set_bentobox(cols_size=4, rows_size=3)
@@ -145,9 +219,9 @@ class CohortAnalysis(Board):
             order = self.order,
             cols_size = 24,
             rows_size = 18,
-            names = 'name',
-            values = 'value',
-            padding='2,2,2,2',
+            names = "name",
+            values = "value",
+            padding="2,2,2,2",
         )
         self.order += 1
 
@@ -156,7 +230,7 @@ class CohortAnalysis(Board):
             order = self.order,
             cols_size = 24,
             rows_size = 10,
-            padding='0,2,1,2',
+            padding="0,2,1,2",
             html = categories(self.df_app["age_pie_chart"].sort_values(
                 by=["value"],
                 ascending=False,
@@ -171,16 +245,45 @@ class CohortAnalysis(Board):
         self.shimoku.plt.line(
             data = self.df_app["age_line_chart"],
             order = self.order,
-            cols_size = 8,
+            cols_size = 6,
             rows_size = 3,
-            x = 'week',
+            x = "week",
         )
         self.order += 1
+
+        # Set bentobox size
+        self.shimoku.plt.set_bentobox(cols_size=12, rows_size=5)
+
+        # Table Tabs
+        for age_range in self.df_app["age_pie_chart"].name.unique():
+            self.shimoku.plt.set_tabs_index(
+                ("Age Tabs", age_range),
+                order=self.order,
+                just_labels=True,
+                parent_tabs_index=("Charts", "Age"),
+            )
+            self.order += 1
+
+            self.shimoku.plt.table(
+                data=self.df_app[f"age_table_chart_{age_range}"],
+                order=self.order,
+                cols_size = 24,
+                rows_size = 4,
+                title="Cohort Analysis",
+                initial_sort_column="Week (Date)",
+                sort_descending=False,
+            )
+            self.order += 1
+            self.order += 1
+
+        # Pop out of bentobox
+        self.shimoku.plt.pop_out_of_bentobox()
+        self.shimoku.plt.set_tabs_index(tabs_index=("Charts", "Age"))
 
         return True
 
     def plot_acquisition_source(self) -> bool:
-        self.shimoku.plt.change_current_tab('Acquisition Source')
+        self.shimoku.plt.change_current_tab("Acquisition Source")
 
         # Set bentobox size
         self.shimoku.plt.set_bentobox(cols_size=4, rows_size=3)
@@ -191,9 +294,9 @@ class CohortAnalysis(Board):
             order = self.order,
             cols_size = 24,
             rows_size = 21,
-            names = 'name',
-            values = 'value',
-            padding='2,2,2,2',
+            names = "name",
+            values = "value",
+            padding="2,2,2,2",
         )
         self.order += 1
 
@@ -202,7 +305,7 @@ class CohortAnalysis(Board):
             order = self.order,
             cols_size = 24,
             rows_size = 10,
-            padding='0,2,1,2',
+            padding="0,2,1,2",
             html = categories(self.df_app["source_pie_chart"].sort_values(
                 by=["value"],
                 ascending=False,
@@ -217,22 +320,43 @@ class CohortAnalysis(Board):
         self.shimoku.plt.line(
             data = self.df_app["source_line_chart"],
             order = self.order,
-            cols_size = 8,
+            cols_size = 6,
             rows_size = 3,
-            x = 'week',
-        )
-        self.order += 1
-
-        # Table Chart
-        self.shimoku.plt.table(
-            data=self.df_app["source_table_chart"],
-            order=self.order,
-            cols_size = 12,
-            rows_size = 4,
-            # categorical_columns=['filtA', 'filtB'],
+            x = "week",
         )
         self.order += 1
 
 
+        # Set bentobox size
+        self.shimoku.plt.set_bentobox(cols_size=12, rows_size=6)
+
+        # Table Tabs
+        for source in self.df_app["source_pie_chart"].name.unique():
+            self.shimoku.plt.set_tabs_index(
+                ("Acquisition Source Tabs", source),
+                order=self.order,
+                just_labels=True,
+                cols_size = 24,
+                rows_size = 5,
+                parent_tabs_index=("Charts", "Acquisition Source"),
+            )
+            self.order += 1
+
+            # Table Chart
+            self.shimoku.plt.table(
+                data=self.df_app[f"source_table_chart_{source}"],
+                order=self.order,
+                cols_size = 24,
+                rows_size = 4,
+                title="Cohort Analysis",
+                initial_sort_column="Week (Date)",
+                sort_descending=False,
+            )
+            self.order += 1
+
+        # Pop out of bentobox
+        self.shimoku.plt.pop_out_of_bentobox()
+
+        self.shimoku.plt.set_tabs_index(tabs_index=("Charts", "Acquisition Source"))
         self.shimoku.plt.pop_out_of_tabs_group()
         return True
