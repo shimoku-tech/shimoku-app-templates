@@ -360,5 +360,5 @@ class Board:
 
         from paths.cohort_analysis import CohortAnalysis
 
-        UO = CohortAnalysis(self)
-        UO.plot()
+        CA = CohortAnalysis(self)
+        CA.plot()

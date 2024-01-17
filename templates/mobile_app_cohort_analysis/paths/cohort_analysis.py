@@ -9,7 +9,7 @@ class CohortAnalysis(Board):
 
     def __init__(self, self_board: Board):
         """
-        Initializes the HiddenIndicatorsPage with a shimoku client instance.
+        Initializes CohortAnalysis instance.
 
         Parameters:
             shimoku: An instance of the Shimoku client.
