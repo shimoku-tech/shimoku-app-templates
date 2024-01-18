@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 total_data = 1000
 output_file = "active_users.csv"
 date_ini = datetime(2023, 1, 1)
-date_end = datetime.now() # Current date
+date_end = datetime(2023, 4, 30)
 
 def generate_data() -> pd.DataFrame:
     """Generate a CSV file with a data fake
