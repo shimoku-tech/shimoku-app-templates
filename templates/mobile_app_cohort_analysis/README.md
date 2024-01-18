@@ -9,7 +9,7 @@ Welcome to our GitHub repository!
 🚀 Explore metrics & insightful charts.
 
 
-<!-- ![]() -->
+![Cohort Analysis](img/cohort_analysis.png)
 
 ## Getting Started
 
