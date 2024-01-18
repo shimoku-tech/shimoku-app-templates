@@ -89,8 +89,9 @@ class CohortAnalysis(Board):
         """
         self.shimoku.plt.set_tabs_index(("Charts", "All"),
             order=self.order,
-            just_labels=True, cols_size = 22,
-            rows_size = 10,
+            just_labels=True,
+            cols_size = 22,
+            rows_size = 11,
             padding='0,1,0,1',
         )
         self.shimoku.plt.change_current_tab("Gender")
@@ -112,6 +113,8 @@ class CohortAnalysis(Board):
         # User life time - line chart
         self.plot_users_life_time("all_life_time", 10)
 
+        # Plot the tile and description about Cohort Analysis
+        self.plot_title_cohort_analysis()
         # Cohort analysis by gender - table chart
         self.plot_cohort_analysis(f"all_cohort")
 
@@ -138,15 +141,18 @@ class CohortAnalysis(Board):
         self.plot_users_life_time("gender_life_time")
 
         # Set bentobox size
-        self.shimoku.plt.set_bentobox(cols_size=12, rows_size=5)
+        self.shimoku.plt.set_bentobox(cols_size=12, rows_size=6)
+        # Plot the tile and description about Cohort Analysis
+        self.plot_title_cohort_analysis()
         # Plot cohort analysis table in a diferent tab
         for gender in self.df_app["gender_category"].name.unique():
             self.shimoku.plt.set_tabs_index(
                 ("Gender Tabs", gender),
                 order=self.order,
-                just_labels=True,
                 cols_size = 24,
                 rows_size = 6,
+                just_labels=True,
+                padding="0,1,0,1",
                 parent_tabs_index=("Charts", "Gender"),
             )
             self.order += 1
@@ -183,13 +189,18 @@ class CohortAnalysis(Board):
         self.plot_users_life_time("age_life_time")
 
         # Set bentobox size
-        self.shimoku.plt.set_bentobox(cols_size=12, rows_size=5)
+        self.shimoku.plt.set_bentobox(cols_size=12, rows_size=6)
+        # Plot the tile and description about Cohort Analysis
+        self.plot_title_cohort_analysis()
         # Plot cohort analysis table in a diferent tab
         for age_range in self.df_app["age_category"].name.unique():
             self.shimoku.plt.set_tabs_index(
                 ("Age Tabs", age_range),
                 order=self.order,
+                cols_size = 24,
+                rows_size = 6,
                 just_labels=True,
+                padding="0,1,0,1",
                 parent_tabs_index=("Charts", "Age"),
             )
             self.order += 1
@@ -227,14 +238,17 @@ class CohortAnalysis(Board):
 
         # Set bentobox size
         self.shimoku.plt.set_bentobox(cols_size=12, rows_size=6)
+        # Plot the tile and description about Cohort Analysis
+        self.plot_title_cohort_analysis()
         # Plot cohort analysis table in a diferent tab
         for source in self.df_app["source_category"].name.unique():
             self.shimoku.plt.set_tabs_index(
                 ("Acquisition Source Tabs", source),
                 order=self.order,
-                just_labels=True,
                 cols_size = 24,
-                rows_size = 5,
+                rows_size = 6,
+                just_labels=True,
+                padding="0,1,0,1",
                 parent_tabs_index=("Charts", "Acquisition Source"),
             )
             self.order += 1
@@ -253,7 +267,7 @@ class CohortAnalysis(Board):
 
         return True
 
-    def plot_category(self, dataframe_name: str, ):
+    def plot_category(self, dataframe_name: str) -> bool:
         """Function basic to plot the category section for each tab
 
         Args:
@@ -289,7 +303,7 @@ class CohortAnalysis(Board):
 
         return True
 
-    def plot_users_life_time(self, dataframe_name: str, cols_size: int = 6):
+    def plot_users_life_time(self, dataframe_name: str, cols_size: int = 6) -> bool:
         """Function basic to plot the User Life Time section for each tab
 
         Args:
@@ -313,7 +327,25 @@ class CohortAnalysis(Board):
 
         return True
 
-    def plot_cohort_analysis(self, dataframe_name: str):
+    def plot_title_cohort_analysis(self) -> bool:
+        """Plot the title and description on the Cohort Analysis section using
+        a HTMl structure.
+
+        Returns:
+            bool: Execution status
+        """
+        self.shimoku.plt.html(
+            html=self.shimoku.html_components.create_h1_title('Cohort Analysis', "This section displays a table where the 'Week (Date)' column indicates the week in which the follow-up of a group of users is initiated. Columns 'W0' to 'W9' represent the percentage of those users who remain active in the weeks following their initial registration, allowing analysis of user retention over time."),
+            order=self.order,
+            cols_size=24,
+            rows_size=1,
+            padding="0,0,0,0"
+        )
+        self.order += 1
+
+        return True
+
+    def plot_cohort_analysis(self, dataframe_name: str) -> bool:
         """Function basic to plot the Cohort Analysis section for each tab
 
         Args:
@@ -328,7 +360,6 @@ class CohortAnalysis(Board):
             order=self.order,
             cols_size = 24,
             rows_size = 4,
-            title="Cohort Analysis",
             initial_sort_column="Week (Date)",
             sort_descending=False,
             label_columns={

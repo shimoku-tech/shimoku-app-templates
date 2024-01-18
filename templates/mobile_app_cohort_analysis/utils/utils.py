@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 from re import sub
+import datetime as dt
 from shimoku_api_python import ShimokuPalette
 
 
@@ -140,3 +141,82 @@ def cohort_colors() -> dict:
         (30, 50): "#64c27b",
         (50, 100): "#2a8c4a",
     }
+
+def generate_category(
+    df_users:pd.DataFrame,
+    column_name: str,
+) -> list:
+
+    return [
+        {
+            'name': category,
+            'value': df_users[df_users[column_name] == category].shape[0],
+        }
+    for category in df_users[column_name].unique()]
+
+def generate_life_time(
+    df_users: pd.DataFrame,
+    activity_weeks: pd.DataFrame,
+    filter_flag: bool=False,
+    column_name: str="",
+) -> list:
+    if filter_flag:
+        return [
+            {
+                "week":f"W{week}",
+            } |
+            {
+                category: compute_percent(
+                    sum(activity_weeks[df_users[column_name] == category] >= week),
+                    df_users[df_users[column_name] == category].shape[0],
+                )
+            for category in df_users[column_name].unique()}
+        for week in range(0,int(sum(activity_weeks) / df_users.shape[0]) + 3)]
+    else:
+        return [
+            {
+                "week":f"W{week}",
+                'users': compute_percent(sum(activity_weeks >= week), df_users.shape[0]),
+            }
+        for week in range(0,int(sum(activity_weeks) / df_users.shape[0]) + 3)]
+
+def cohort_analysis(
+    df_users: pd.DataFrame,
+    activity_weeks: pd.DataFrame,
+    week_range: int,
+    reference_date: dt.datetime,
+    filter_flag: bool=False,
+    column_name: str="",
+    column_option: str=""
+) -> list:
+    user_per_week = [
+        {
+            "Week (Date)": reference_date + dt.timedelta(days=7*week),
+            "Users": sum(users_by_weeks_by_category(df_users,reference_date,week,filter_flag, column_name, column_option)),
+        }
+    for week in range(week_range)]
+
+    return [user_per_week[row_week] |
+        {
+            f"W{columns_week}": compute_percent(
+                sum(activity_weeks[
+                    users_by_weeks_by_category(df_users, reference_date,row_week, filter_flag, column_name, column_option)
+                ] >= columns_week),
+                user_per_week[row_week]["Users"],
+            ) if columns_week + row_week < week_range + 1 else 0
+        for columns_week in range(week_range + 1)}
+    for row_week in range(week_range)]
+
+def users_by_weeks_by_category(
+    df_users: pd.DataFrame,
+    reference_date: dt.datetime,
+    week: int,
+    filter_flag: bool=False,
+    column_name: str="",
+    column_option: str="",
+) -> pd.DataFrame:
+    filter_date = df_users["register_date"].between(
+        reference_date + dt.timedelta(days=7*week),
+        reference_date + dt.timedelta(days= 7*(week + 1)),
+    )
+    return filter_date & (df_users[column_name] == column_option) if filter_flag else filter_date

@@ -1,5 +1,5 @@
 from shimoku_api_python import Client
-from utils.utils import get_data, compute_percent
+from utils.utils import get_data, compute_percent, cohort_analysis, generate_category, generate_life_time
 import pandas as pd
 import datetime as dt
 import numpy as np
@@ -102,94 +102,24 @@ class Board:
 
         # All section
         ## ALL section - Users Life Time
-        all_life_time = [
-            {
-                "week":f"W{week}",
-                'users': compute_percent(
-                    sum(activity_weeks >= week),
-                    df_active_users.shape[0],
-                )
-            }
-        for week in range(0,int(sum(activity_weeks) / df_active_users.shape[0]) + 3)]
+        all_life_time = generate_life_time(df_active_users, activity_weeks)
 
         ## ALL section - Cohort Analysis
-        user_per_week = [
-            {
-                "Week (Date)": reference_date + dt.timedelta(days=7*week),
-                "Users": sum(df_active_users["register_date"].between(
-                    reference_date + dt.timedelta(days=7*week),
-                    reference_date + dt.timedelta(days= 7*(week + 1)),
-                )),
-            }
-        for week in range(week_range)]
-
-        all_cohort = [
-            user_per_week[row_week] |
-            {
-                f"W{columns_week}": (compute_percent(
-                    sum(activity_weeks[df_active_users["register_date"].between(
-                        reference_date + dt.timedelta(days=7*row_week),
-                        reference_date + dt.timedelta(days= 7*(row_week + 1))
-                    )] >= columns_week),
-                    user_per_week[row_week]["Users"],
-                )) if columns_week + row_week < week_range + 1 else 0
-            for columns_week in range(week_range + 1)}
-        for row_week in range(week_range)]
+        all_cohort = cohort_analysis(df_active_users, activity_weeks, week_range, reference_date)
 
 
         # Gender section
         ## Gender section - Gender Category
-        gender_category = [
-            {
-                'name': gender_name,
-                'value': df_active_users[
-                    df_active_users["gender"] == gender_name
-                ].shape[0],
-            }
-        for gender_name in df_active_users["gender"].unique()]
+        gender_category = generate_category(df_active_users, "gender")
 
         ## Gender section - Users Life Time by Gender
-        gender_life_time = [
-            {
-                "week":f"W{week}",
-            } |
-            {
-                gender_name: compute_percent(
-                    sum(activity_weeks[df_active_users["gender"] == gender_name] >= week),
-                    df_active_users[df_active_users["gender"] == gender_name].shape[0],
-                )
-            for gender_name in df_active_users["gender"].unique()}
-        for week in range(0,int(sum(activity_weeks) / df_active_users.shape[0]) + 3)]
-
+        gender_life_time = generate_life_time(df_active_users, activity_weeks, True, "gender")
 
         ## Gender section - Cohort Analysis by Gender
         gender_cohort = {}
         for gender_name in df_active_users["gender"].unique():
-            # Generate date and total user
-            gender_per_week = [
-                {
-                    "Week (Date)": reference_date + dt.timedelta(days=7*week),
-                    "Users": sum(df_active_users["register_date"].between(
-                            reference_date + dt.timedelta(days=7*week),
-                            reference_date + dt.timedelta(days= 7*(week + 1)),
-                        ) & (df_active_users["gender"] == gender_name)
-                    ),
-                }
-            for week in range(week_range)]
+            gender_cohort[gender_name] = cohort_analysis(df_active_users, activity_weeks, week_range, reference_date, True, "gender", gender_name)
 
-            gender_cohort[gender_name] = [gender_per_week[row_week] |
-                {
-                    f"W{columns_week}": compute_percent(
-                        sum(activity_weeks[
-                            df_active_users["register_date"].between(
-                                reference_date + dt.timedelta(days=7*row_week),
-                                reference_date + dt.timedelta(days= 7*(row_week + 1))
-                            ) & (df_active_users["gender"] == gender_name)
-                        ] >= columns_week),
-                        gender_per_week[row_week]["Users"],
-                    ) if columns_week + row_week < week_range + 1 else 0
-                for columns_week in range(week_range + 1)}
-            for row_week in range(week_range)]
 
 
         # Age section
@@ -255,59 +185,15 @@ class Board:
 
         # Adquisitions Source section
         ## Adquisitions Source section - Adquisitions Source Category
-        source_category = [
-            {
-                'name': source_name,
-                'value': df_active_users[
-                    df_active_users["acquisition_source"] == source_name
-                ].shape[0],
-            }
-        for source_name in df_active_users["acquisition_source"].unique()]
-
+        source_category = generate_category(df_active_users, "acquisition_source")
 
         ## Adquisitions Source section - Line Chart
-        source_life_time = [
-            {
-                "week":f"W{week}",
-            } |
-            {
-                source_name: compute_percent(
-                    sum(activity_weeks[df_active_users["acquisition_source"] == source_name] >= week),
-                    df_active_users[df_active_users["acquisition_source"] == source_name].shape[0],
-                )
-            for source_name in df_active_users["acquisition_source"].unique()}
-        for week in range(0,int(sum(activity_weeks) / df_active_users.shape[0]) + 3)]
+        source_life_time = generate_life_time(df_active_users, activity_weeks, True, "acquisition_source")
 
         ## Acquisition Source section - table
         source_cohort = {}
         for source_name in df_active_users["acquisition_source"].unique():
-            source_per_week = [
-                {
-                    "Week (Date)": reference_date + dt.timedelta(days=7*week),
-                    "Users": sum(
-                        df_active_users["register_date"].between(
-                            reference_date + dt.timedelta(days=7*week),
-                            reference_date + dt.timedelta(days= 7*(week + 1)),
-                        ) & (df_active_users["acquisition_source"] == source_name),
-                    ),
-                }
-            for week in range(week_range)]
-
-
-            source_cohort[source_name] = [
-                source_per_week[row_week] |
-                {
-                    f"W{columns_week}": compute_percent(
-                        sum(activity_weeks[df_active_users["register_date"].between(
-                                reference_date + dt.timedelta(days=7*row_week),
-                                reference_date + dt.timedelta(days= 7*(row_week + 1))
-                            ) & (df_active_users["acquisition_source"] == source_name)
-                        ] >= columns_week),
-                        source_per_week[row_week]["Users"],
-                    ) if columns_week + row_week < week_range + 1 else 0
-                for columns_week in range(week_range + 1)}
-            for row_week in range(week_range)]
-
+            source_cohort[source_name] = cohort_analysis(df_active_users, activity_weeks, week_range, reference_date, True, "acquisition_source", source_name)
 
         # Saved as Dataframe to plot
         self.df_app = {
