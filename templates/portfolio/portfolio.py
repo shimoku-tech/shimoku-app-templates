@@ -2,6 +2,7 @@
 """
 
 from os import getenv
+from dotenv import load_dotenv
 
 import datetime as dt
 import pandas as pd
@@ -20,6 +21,9 @@ from utils import (
     data_html_boxbutton, data_html_revenue_prediction,
     data_html_panel, data_html_beautiful_indicator_stock_suite,
 )
+
+# Load environment variables
+load_dotenv()
 
 api_key: str = getenv('API_TOKEN')
 universe_id: str = getenv('UNIVERSE_ID')
@@ -159,3 +163,5 @@ s.plt.html(
 )
 
 s.workspaces.change_menu_order(uuid=workspace_id, menu_order=['Portfolio'])
+
+s.run()

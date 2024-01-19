@@ -10,3 +10,4 @@ df = pandas.read_sql_query('SELECT MEASURE(total_sum) total, status from orders 
 # Load data to Shimoku
 s = init_sdk()
 s.plt.line(data=df, x='status', y=['total'], menu_path='SQL', order=0)
+s.run()

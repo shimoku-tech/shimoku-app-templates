@@ -19,3 +19,4 @@ df = pd.read_csv(file, header=14, delimiter="\t", low_memory=False)
 # Load data to Shimoku
 s = init_sdk()
 s.plt.line(data=df, x='status', y=['total'], menu_path='S3', order=0)
+s.run()

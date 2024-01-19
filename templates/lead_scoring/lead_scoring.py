@@ -4,6 +4,7 @@ import pandas as pd
 
 from typing import List, Dict, Union
 from os import getenv
+from dotenv import load_dotenv
 from utils import get_data
 
 
@@ -170,6 +171,9 @@ def next_best_product_table(
 
 
 def main():
+    # Load environment variables
+    load_dotenv()
+
     #--------------- GET THE DATA DICTIONARY ----------------#
     data = get_data('data/Leads.csv')
 

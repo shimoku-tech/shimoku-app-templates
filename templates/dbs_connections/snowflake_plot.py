@@ -23,3 +23,4 @@ df = pd.read_sql(query, connection)
 # Load data to Shimoku
 s = init_sdk()
 s.plt.line(data=df, x='status', y=['total'], menu_path='Snowflake', order=0)
+s.run()

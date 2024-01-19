@@ -1,4 +1,5 @@
 from os import getenv
+from dotenv import load_dotenv
 from typing import List, Dict, Tuple
 import pandas as pd
 from utils import get_data
@@ -211,6 +212,9 @@ def song_tab(s: shimoku.Client, name: str, url: str, data: Dict):
 
 
 def main():
+    # Load environment variables
+    load_dotenv()
+    
     s = shimoku.Client(
         access_token=getenv('API_TOKEN'),
         universe_id=getenv('UNIVERSE_ID'),
