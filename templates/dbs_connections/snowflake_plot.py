@@ -1,7 +1,7 @@
 import pandas as pd
 from sqlalchemy import create_engine
 from snowflake.sqlalchemy import URL
-from aux import init_sdk
+from app_shimoku import init_sdk
 
 # TODO set your snowflake connection
 url = URL(
@@ -23,3 +23,4 @@ df = pd.read_sql(query, connection)
 # Load data to Shimoku
 s = init_sdk()
 s.plt.line(data=df, x='status', y=['total'], menu_path='Snowflake', order=0)
+s.run()

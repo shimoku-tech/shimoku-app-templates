@@ -2,7 +2,7 @@ from os import getenv, environ
 
 import boto3
 import pandas as pd
-from aux import init_sdk
+from app_shimoku import init_sdk
 
 environ["AWS_ACCESS_KEY_ID"] = getenv('AWS_ACCESS_KEY_ID')
 environ["AWS_SECRET_ACCESS_KEY"] = getenv('AWS_SECRET_ACCESS_KEY')
@@ -19,3 +19,4 @@ df = pd.read_csv(file, header=14, delimiter="\t", low_memory=False)
 # Load data to Shimoku
 s = init_sdk()
 s.plt.line(data=df, x='status', y=['total'], menu_path='S3', order=0)
+s.run()
