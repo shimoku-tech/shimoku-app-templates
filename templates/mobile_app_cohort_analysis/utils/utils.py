@@ -146,7 +146,15 @@ def generate_category(
     df_users:pd.DataFrame,
     column_name: str,
 ) -> list:
+    """Generate a list of dictiorany with the category and its respective users number
 
+    Args:
+        df_users (pd.DataFrame): Dataframe with the data users
+        column_name (str): Column name to filter the data
+
+    Returns:
+        list: List of dictionary with the category and users number
+    """
     return [
         {
             'name': category,
@@ -160,6 +168,17 @@ def generate_life_time(
     filter_flag: bool=False,
     column_name: str="",
 ) -> list:
+    """Return the Users Life Time by category if the filter_flag is True.
+
+    Args:
+        df_users (pd.DataFrame): Dataframe with the data users
+        column_name (str): Column name to filter the data
+        activity_weeks (pd.DataFrame): Dataframe with the users activity in weeks
+        filter_flag (bool, optional): Flag to filter the data. Defaults to False.
+
+    Returns:
+        list: List of dictionary with users life time by category
+    """
     if filter_flag:
         return [
             {
@@ -189,6 +208,20 @@ def cohort_analysis(
     column_name: str="",
     column_option: str=""
 ) -> list:
+    """Return the Cohort Analysis consider all the data or grouping by category
+
+    Args:
+        df_users (pd.DataFrame): Dataframe with the data users.
+        activity_weeks (pd.DataFrame): Dataframe with the users activity in weeks.
+        week_range (int): week range to consider in the filter.
+        reference_date (dt.datetime): reference data to filter the data.
+        filter_flag (bool, optional): Flag to filter the data. Defaults to False.
+        column_name (str): Column name to filter the data. Defaults to ""-
+        column_option (str, optional): Category option to filter the data. Defaults to "".
+
+    Returns:
+        list: List of dictionary of the cohort analysis
+    """
     user_per_week = [
         {
             "Week (Date)": reference_date + dt.timedelta(days=7*week),
@@ -215,6 +248,19 @@ def users_by_weeks_by_category(
     column_name: str="",
     column_option: str="",
 ) -> pd.DataFrame:
+    """Return a Dataframe with the boolean value if a users will be considering in the filter.
+
+    Args:
+        df_users (pd.DataFrame): Dataframe with the data users.
+        reference_date (dt.datetime): reference data to filter the data.
+        week (int): number week to consider in the filter.
+        filter_flag (bool, optional): Flag to filter the data. Defaults to False.
+        column_name (str): Column name to filter the data. Defaults to ""-
+        column_option (str, optional): Category option to filter the data. Defaults to "".
+
+    Returns:
+        pd.DataFrame: Boolean series if a users will be considering in the filter
+    """
     filter_date = df_users["register_date"].between(
         reference_date + dt.timedelta(days=7*week),
         reference_date + dt.timedelta(days= 7*(week + 1)),
