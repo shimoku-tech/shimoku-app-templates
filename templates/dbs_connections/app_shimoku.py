@@ -1,8 +1,12 @@
 from os import getenv
+from dotenv import load_dotenv
 import shimoku_api_python as shimoku
 
 
 def init_sdk() -> shimoku.Client:
+    # Load environment variables
+    load_dotenv()
+    
     api_key: str = getenv('API_TOKEN')
     universe_id: str = getenv('UNIVERSE_ID')
     workspace_id: str = getenv('WORKSPACE_ID')
