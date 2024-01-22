@@ -1,10 +1,11 @@
 import os
-from typing import List
+from typing import List, Dict, Union, Any, Optional
 from datetime import datetime
 import pandas as pd
+from pandas import DataFrame
 
 
-def format_store_id(number):
+def format_store_id(number: int) -> str:
     """
     Formats a store identifier.
 
@@ -17,7 +18,9 @@ def format_store_id(number):
     return f"Store {number}"
 
 
-def prepare_pivot(df, index, columns, values, unique_stores):
+def prepare_pivot(
+    df: DataFrame, index: str, columns: str, values: str, unique_stores: List[str]
+) -> DataFrame:
     """
     Prepares a pivoted DataFrame with cumulative sales.
 
@@ -26,7 +29,7 @@ def prepare_pivot(df, index, columns, values, unique_stores):
         index (str): Name of the column to be used as an index in the pivot.
         columns (str): Name of the column to be used as columns in the pivot.
         values (str): Name of the column to be used for values in the pivot.
-        unique_stores (array): Array of unique store_ids to reindex the DataFrame.
+        unique_stores (list): List of unique store_ids to reindex the DataFrame.
 
     Returns:
         DataFrame: Pivoted DataFrame with cumulative sales and columns for all store_ids.
@@ -56,15 +59,15 @@ def prepare_pivot(df, index, columns, values, unique_stores):
     return df_pivot
 
 
-def get_data(file_names: List[str]):
+def get_data(file_names: List[str]) -> Dict[str, DataFrame]:
     """
     Loads multiple CSV files into a dictionary of pandas DataFrames.
 
     Args:
-    file_names (list of str): List of paths to CSV files.
+        file_names (list of str): List of paths to CSV files.
 
     Returns:
-    dict: A dictionary mapping file base names (without extension) to their corresponding DataFrames.
+        dict: A dictionary mapping file base names (without extension) to their corresponding DataFrames.
     """
     dict_dfs = dict()
     for file_name in file_names:
@@ -74,8 +77,9 @@ def get_data(file_names: List[str]):
     return dict_dfs
 
 
-def process_retail_data(df: pd.DataFrame):
-    """Processes retail sales data.
+def process_retail_data(df: pd.DataFrame) -> Dict[str, Any]:
+    """
+    Processes retail sales data.
 
     Args:
         df (DataFrame): DataFrame with the following columns:
@@ -86,7 +90,7 @@ def process_retail_data(df: pd.DataFrame):
             - 'sales_amount' (float): Sale amount.
 
     Returns:
-        dict: A dictionary containing KPIs and DataFrames for charts.
+        Dict[str, Any]: A dictionary containing KPIs and DataFrames for charts.
     """
     # Convert 'sale_date' to datetime and set as index
     df["sale_date"] = pd.to_datetime(df["sale_date"])
@@ -218,16 +222,18 @@ def process_retail_data(df: pd.DataFrame):
     return results
 
 
-def get_column_name_by_value(data_dict: dict, value_to_find):
+def get_column_name_by_value(
+    data_dict: dict[str, Any], value_to_find: Any
+) -> Optional[str]:
     """
     Find the key (column name) in a dictionary of data based on its value.
 
     Args:
-        data_dict (dict): A dictionary where values are to be searched.
-        value_to_find: The value to search for in the dictionary.
+        data_dict (dict[str, Any]): A dictionary where values are to be searched.
+        value_to_find (Any): The value to search for in the dictionary.
 
     Returns:
-        str or None: The column name (key) if found, or None if not found.
+        Optional[str]: The column name (key) if found, or None if not found.
     """
     for column_name, column_data in data_dict.items():
         if column_data is value_to_find:

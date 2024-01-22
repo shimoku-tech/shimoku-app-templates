@@ -1,5 +1,6 @@
 from board import Board
 from utils.components import create_title_name_head, format_raw_options
+from typing import Dict, Any, List, Union
 
 
 class RetailerDashboard(Board):
@@ -38,7 +39,7 @@ class RetailerDashboard(Board):
         self.plot_tabs("Current Month")
         self.plot_tabs("Current Year")
 
-    def plot_header(self):
+    def plot_header(self) -> bool:
         """
         Creates and plots the dashboard header.
 
@@ -50,7 +51,7 @@ class RetailerDashboard(Board):
         self.order += 1
         return True
 
-    def plot_kpi_indicators(self):
+    def plot_kpi_indicators(self) -> bool:
         """
         Plots the KPI (Key Performance Indicator) indicators section.
 
@@ -58,22 +59,22 @@ class RetailerDashboard(Board):
             bool: True if the operation is successful.
         """
 
-        kpi_data = []
+        kpi_data: List[Dict[str, Union[str, Any]]] = []
 
-        # Definir las columnas de interés
+        # Define the columns of interest
         columns = ["Stores", "Total Sales", "Average Sales", "Users", "Average Sales "]
 
         for column in columns:
             valor = self.df_app[column]["Value"]
             description = self.df_app[column]["Description"]
 
-            # Agregar un nuevo elemento al diccionario para cada columna
+            # Add a new dictionary element for each column
             kpi_data.append(
                 {
                     "title": column,
                     "align": "center",
                     "value": f"{round(valor, 0)}" + (" €" if "Sales" in column else ""),
-                    # Añadir "€" solo a las columnas de ventas
+                    # Add "€" only to sales columns
                     "color": "default",
                     "description": description,
                 }
@@ -86,7 +87,7 @@ class RetailerDashboard(Board):
         self.order += len(kpi_data)
         return True
 
-    def create_tabs(self):
+    def create_tabs(self) -> bool:
         """
         Creates the tabs for switching between temporalities.
 
@@ -106,7 +107,7 @@ class RetailerDashboard(Board):
         self.order += 1
         return True
 
-    def plot_tabs(self, temporality):
+    def plot_tabs(self, temporality: str) -> bool:
         """
         Plots the data for the specified temporality.
 
@@ -126,7 +127,7 @@ class RetailerDashboard(Board):
         self.shimoku.plt.set_tabs_index(tabs_index=(self.tabs_group_name, temporality))
         return True
 
-    def plot_sales_by_store(self, temporality):
+    def plot_sales_by_store(self, temporality: str) -> bool:
         """
         Plots the sales by store data.
 
@@ -148,7 +149,7 @@ class RetailerDashboard(Board):
         self.order += 1
         return True
 
-    def plot_sales_percentage_by_store(self, temporality):
+    def plot_sales_percentage_by_store(self, temporality: str) -> bool:
         """
         Plots the sales percentage by store data.
 
@@ -173,7 +174,7 @@ class RetailerDashboard(Board):
         self.order += 1
         return True
 
-    def plot_sales_accumulated_by_store(self, temporality):
+    def plot_sales_accumulated_by_store(self, temporality: str) -> bool:
         """
         Plots the accumulated sales by store data.
 

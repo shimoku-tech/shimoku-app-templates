@@ -1,4 +1,5 @@
 import json
+from pandas import DataFrame
 
 modals_css = """
 .modal-article .h-top-space {
@@ -58,7 +59,7 @@ def create_title_name_head(title: str, subtitle: str) -> str:
     return html
 
 
-def format_raw_options(sales_by_store):
+def format_raw_options(sales_by_store: DataFrame) -> str:
     """
     Formats the raw options for the ECharts configuration.
 
