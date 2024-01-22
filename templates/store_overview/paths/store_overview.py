@@ -27,7 +27,7 @@ class RetailerDashboard(Board):
             self.shimoku.menu_paths.delete_menu_path(name=self.menu_path)
         self.shimoku.set_menu_path(name=self.menu_path)
 
-    def plot_order(self):
+    def plot(self):
         """
         Plots the dashboard in the specified order.
         """

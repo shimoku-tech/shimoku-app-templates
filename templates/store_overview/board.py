@@ -63,4 +63,4 @@ class Board:
         )
 
         store_overview = RetailerDashboard(self)
-        store_overview.plot_order()
+        store_overview.plot()
