@@ -2,11 +2,11 @@ import pandas as pd
 import random
 from datetime import datetime, timedelta
 import numpy as np
-from typing import Dict, List
+from typing import Dict, List, Union, Optional
 import os
 
 
-def format_store_id(number):
+def format_store_id(number: int) -> str:
     """
     Formats a store identifier.
 
@@ -19,7 +19,7 @@ def format_store_id(number):
     return f"Store {number}"
 
 
-def format_product_id(number):
+def format_product_id(number: int) -> str:
     """
     Formats a store identifier.
 
@@ -32,7 +32,14 @@ def format_product_id(number):
     return f"Product {number}"
 
 
-def prepare_pivot(df, index, columns, values, unique_stores=None, unique_products=None):
+def prepare_pivot(
+    df: pd.DataFrame,
+    index: str,
+    columns: str,
+    values: str,
+    unique_stores: list = None,
+    unique_products: list = None,
+) -> pd.DataFrame:
     """
     Prepares a pivoted DataFrame with cumulative sales.
 
@@ -88,7 +95,7 @@ def prepare_pivot(df, index, columns, values, unique_stores=None, unique_product
     return df_pivot
 
 
-def get_data(file_names: List[str]):
+def get_data(file_names: List[str]) -> Dict[str, pd.DataFrame]:
     """
     Loads multiple CSV files into a dictionary of pandas DataFrames.
 
@@ -211,9 +218,9 @@ def process_retail_data(df: pd.DataFrame) -> Dict[str, any]:
         unique_stores=unique_stores,
     )
     new_values_weekly = [f"Day {day}" for day in df_weekly_pivot["sale_date"].dt.day]
-    df_weekly_pivot[
-        "sale_date"
-    ] = new_values_weekly  # Group by 'store_id' and weeks for the current month.
+    df_weekly_pivot["sale_date"] = (
+        new_values_weekly  # Group by 'store_id' and weeks for the current month.
+    )
     df_weekly_pivot = df_weekly_pivot.rename(columns={"sale_date": "Current Week"})
 
     df_monthly_sorted = current_month.sort_values(by="sale_date").set_index("sale_date")
@@ -332,7 +339,9 @@ def process_retail_data(df: pd.DataFrame) -> Dict[str, any]:
     return results
 
 
-def get_column_name_by_value(data_dict: dict, value_to_find):
+def get_column_name_by_value(
+    data_dict: dict, value_to_find: Union[str, pd.DataFrame]
+) -> Optional[str]:
     """
     Find the key (column name) in a dictionary of data based on its value.
 
