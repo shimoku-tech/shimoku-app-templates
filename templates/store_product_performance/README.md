@@ -2,6 +2,8 @@
 
 The Store Product Performance Dashboard, crafted using the Shimoku SDK, offers dynamic and real-time insights into the sales achievements and customer interactions of a retail network. With intuitive interactive tabs, users can deftly navigate between weekly, monthly, and yearly data views, impacting the presentation of three essential visual components: a bar chart detailing sales by store, a pie chart illustrating the sales distribution, and a trend line graph that follows the cumulative sales over time. These elements are crucial in delivering a thorough understanding of sales patterns over time, the operational vitality of each store, and the behavior patterns of the clientele. Designed to enhance sales tactics and pinpoint areas for expansion, the dashboard is an indispensable instrument for corporate executives to track business metrics and craft strategies based on solid data analysis.
 
+Experiencie our Dashboard: [Store Product Performance](https://shimoku.io/b4c8a527-a376-4190-a6d8-3e69c6fe8cd1/store-product-overview?shared=true&token=9830a9c2-c4f8-11ee-a81e-f4c88a8a3fad) 
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
