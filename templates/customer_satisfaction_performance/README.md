@@ -2,6 +2,8 @@
 
 This dashboard showcases the capabilities of the Shimoku SDK within the context of the Customer Satisfaction Performance. The dataset focuses on customer satisfaction metrics, including order ratings. The dashboard provides insights into customer satisfaction, order performance, revenue analysis, and more, all on a month-to-month basis. It offers a comprehensive view of customer satisfaction and business performance over time.
 
+Experiencie our Dashboard: [Customer Satisfaction Performance Dashboard](https://shimoku.io/07c15316-4817-4ec4-aa6f-6fe0446b6efc/customer-satisfaction-performance?shared=true&token=c90443cf-c510-11ee-8fa6-f4c88a8a3fad) 
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
