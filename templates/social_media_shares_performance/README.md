@@ -3,11 +3,12 @@
 ## Introduction
 
 Welcome to our GitHub repository!
-<br>
+
 📊 Dive into social media shares analytics with us!
-<br>
+
 🚀 Explore metrics & insightful charts.
-<br>
+
+📈 See our dashboard: [Social Media Shares Performance Template](https://shimoku.io/44647fc3-9f79-4de3-8143-1ac8501d1e16/social-media-shares-performance?shared=true&token=24a786b2-c4f5-11ee-951c-00155d9e011f)
 
 ![Dashboard Social Media Shares Performance](img/social_media_shares_performance.png)
 

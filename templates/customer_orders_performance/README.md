@@ -3,12 +3,12 @@
 ## Introduction
 
 Welcome to our GitHub repository!
-<br>
+
 📊 Dive into customer orders analytics with us!
-<br>
+
 🚀 Explore metrics & insightful charts.
-<br>
-📈 See our dashboard [Customer Orders Performance](https://shimoku.io/46d100a4-ed9c-4783-9865-486ef3322bc4/customer-orders-performance?shared=true&token=13aa58cc-ab31-11ee-97ce-00155d148f4c)
+
+📈 See our dashboard [Customer Orders Performance Template](https://shimoku.io/82535397-e791-4559-9e49-cbe983c2f8ba/customer-orders-performance?shared=true&token=c274a6da-c4f6-11ee-88fa-00155d9e011f)
 
 ![Screanshot 1](img/customer_orders_performance.png)
 

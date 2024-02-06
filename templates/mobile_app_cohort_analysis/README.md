@@ -8,6 +8,7 @@ Welcome to our GitHub repository!
 
 🚀 Explore metrics & insightful charts.
 
+📈 See our dashboard: [Mobile App - Cohort Analysis Template](https://shimoku.io/0ba365c0-5097-430b-a3e9-9a4be5f2132d/cohort-analysis?shared=true&token=4a65d2fc-c511-11ee-88c0-00155d9e011f)
 
 ![Cohort Analysis](img/cohort_analysis.png)
 
