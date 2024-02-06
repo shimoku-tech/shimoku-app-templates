@@ -3,6 +3,8 @@
 
 The Sales Orders Dashboard, designed with the Shimoku SDK, provides a succinct overview of sales dynamics and customer purchasing behaviors. It aims to demonstrate the company's sales force efficiency, market penetration, and customer spending patterns. The main objective is to track the health of sales operations and identify trends or areas needing attention. By presenting data on the number of accounts, monthly orders, average spending, and growth rate, alongside segmented sales performance in the electronics, food and nutrition, and household items sectors, as well as a comparison between national and international sales, the dashboard delivers a strategic view into the business's performance and customer engagement across different markets and regions.
 
+Experiencie our Dashboard: [Sales Orders Dashboard](https://shimoku.io/274b7154-05b1-49b5-87fa-1d52e84efff6/sales-orders-dashboard?shared=true&token=b324a48b-c4f1-11ee-97f3-f4c88a8a3fad) 
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
