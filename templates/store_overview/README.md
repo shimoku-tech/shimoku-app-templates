@@ -3,6 +3,9 @@
 
 
 The Store Overview Dashboard, designed with the Shimoku SDK, provides a real-time, adaptable analysis of sales performance and customer engagement within a retail chain. It features interactive tabs that allow users to seamlessly switch views between weekly, monthly, and yearly sales data, affecting the display of three critical visual components: a bar chart of sales users by store, a pie chart breaking down sales percentages, and a line graph tracking accumulated sales. This functionality ensures a comprehensive understanding of the temporal sales trends, operational health, and customer activity across the stores. Aimed at optimizing sales strategies and identifying growth opportunities, the dashboard serves as a crucial tool for business leaders to monitor performance and make data-driven decisions.
+
+Experiencie our Dashboard: [Retail Store Overview](https://shimoku.io/ca7a4445-5044-49b1-8eb4-1f58d0a41ccc/store-overview?shared=true&token=bdbf2e75-c511-11ee-9510-f4c88a8a3fad) 
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
