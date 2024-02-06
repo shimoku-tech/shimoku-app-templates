@@ -31,6 +31,8 @@ def main():
     # Plot the dashboard
     board.plot()
 
+    shimoku.run()
+
 
 if __name__ == "__main__":
     main()
