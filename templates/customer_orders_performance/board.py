@@ -21,11 +21,16 @@ class Board:
         """
 
         file_names = ["data/customer_orders_performance.csv"]
-        self.board_name = "Financial"  # Name of the dashboard
+        # Name of the dashboard
+        self.board_name = "Financial"
+        # Get data from CSV files
         self.dfs = get_data(file_names)
-        self.shimoku = shimoku  # Shimoku client instance
-        self.shimoku.set_board(name=self.board_name)  # Setting up the board in Shimoku
-        self.shimoku.boards.update_board(name=self.board_name, is_public=True) # Make the board public
+        # Shimoku client instance
+        self.shimoku = shimoku
+        # Setting up the board in Shimoku
+        self.shimoku.set_board(name=self.board_name)
+        # Make the board public
+        self.shimoku.boards.update_board(name=self.board_name, is_public=True)
 
     def transform(self) -> bool:
         """
@@ -187,5 +192,5 @@ class Board:
 
         from paths.customer_orders_performance import CustomerOrdersPerformance
 
-        UO = CustomerOrdersPerformance(self)
-        UO.plot()
+        CO = CustomerOrdersPerformance(self)
+        CO.plot()

@@ -9,7 +9,7 @@ class CustomerOrdersPerformance(Board):
 
     def __init__(self, self_board: Board):
         """
-        Initializes the HiddenIndicatorsPage with a shimoku client instance.
+        Initializes the CustomerOrdersPerformance with a shimoku client instance.
 
         Parameters:
             shimoku: An instance of the Shimoku client.
@@ -17,8 +17,10 @@ class CustomerOrdersPerformance(Board):
         super().__init__(self_board.shimoku)
         self.df_app = self_board.df_app
 
-        self.order = 0  # Initialize order of plotting elements
-        self.menu_path = "Customer Orders Performance"  # Set the menu path for this page
+        # Initialize order of plotting elements
+        self.order = 0
+        # Set the menu path for this page
+        self.menu_path = "Customer Orders Performance"
 
         # Delete existing menu path if it exists
         if self.shimoku.menu_paths.get_menu_path(name=self.menu_path):
@@ -40,7 +42,7 @@ class CustomerOrdersPerformance(Board):
         self.plot_customers_number_orders()
         self.plot_customer_profitability()
 
-    def plot_header(self):
+    def plot_header(self) -> bool:
         """Header plot of the menu path
 
         Returns:
@@ -127,7 +129,7 @@ class CustomerOrdersPerformance(Board):
 
         return True
 
-    def plot_top_customers_number_orders(self):
+    def plot_top_customers_number_orders(self) -> bool:
         """Bar plot using Top customers by number of orders
 
         Returns:
@@ -146,7 +148,7 @@ class CustomerOrdersPerformance(Board):
 
         return True
 
-    def plot_customers_number_orders(self):
+    def plot_customers_number_orders(self) -> bool:
         """Doughnut plot using Customers by number of orders
 
         Returns:
@@ -165,7 +167,7 @@ class CustomerOrdersPerformance(Board):
 
         return True
 
-    def plot_customer_profitability(self):
+    def plot_customer_profitability(self) -> bool:
         """Stacked bar plot using Customer Profitability considering Top 5 customers by number of orders
 
         Returns:
