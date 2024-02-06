@@ -9,7 +9,7 @@ class SocialMediaSharesPerformance(Board):
 
     def __init__(self, self_board: Board):
         """
-        Initializes the HiddenIndicatorsPage with a shimoku client instance.
+        Initializes the SocialMediaSharesPerformance with a shimoku client instance.
 
         Parameters:
             shimoku: An instance of the Shimoku client.
@@ -39,7 +39,7 @@ class SocialMediaSharesPerformance(Board):
         self.plot_kpi_indicators()
         self.plot_posts_source()
 
-    def plot_header(self):
+    def plot_header(self) -> bool:
         """Header plot of the menu path
 
         Returns:
