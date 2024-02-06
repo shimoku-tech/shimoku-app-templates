@@ -39,6 +39,9 @@ class Board:
 
         df = self.dfs["active_users"]
 
+        # Note: The DataFrame only contains data for 2023; there are no data for the year 2024 or beyond, for updates modify generate_data.py.
+        date_reference = datetime(2023, 11, 30) #datetime.now()
+
         main_kpis = [
             {
                 "title": "Registered Users",
@@ -50,36 +53,28 @@ class Board:
             {
                 "title": "Active Users 24h",
                 "description": "Active Users on last 24h",
-                "value": len(
-                    df[df["last_login_date"] >= (datetime.now() - timedelta(days=1))]
-                ),
+                "value": len(df[df["last_login_date"] >= (date_reference - timedelta(days=1))]),
                 "color": "success",
                 "align": "center",
             },
             {
                 "title": "WAU",
                 "description": "Weekly Active Users",
-                "value": len(
-                    df[df["last_login_date"] >= (datetime.now() - timedelta(days=7))]
-                ),
+                "value": len(df[df["last_login_date"] >= (date_reference - timedelta(days=7))]),
                 "color": "success",
                 "align": "center",
             },
             {
                 "title": "MAU",
                 "description": "Monthly Active Users",
-                "value": len(
-                    df[df["last_login_date"] >= (datetime.now() - timedelta(days=30))]
-                ),
+                "value": len(df[df["last_login_date"] >= (date_reference - timedelta(days=30))]),
                 "color": "success",
                 "align": "center",
             },
             {
                 "title": "New Users",
                 "description": "New Users in the last 30 days",
-                "value": len(
-                    df[df["register_date"] >= (datetime.now() - timedelta(days=30))]
-                ),
+                "value": len(df[df["register_date"] >= (date_reference - timedelta(days=30))]),
                 "color": "success",
                 "align": "center",
             },
