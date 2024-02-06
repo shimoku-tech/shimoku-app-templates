@@ -1,3 +1,3 @@
-model_id,delivery_days,subject
-A,01/24/2024 01/30/2024 02/02/2024 02/05/2024,"Shimoku, la Inteligencia Artificial (IA) en la que se apoyan empresas como Amazon"
-B,01/24/2024 01/31/2024 02/03/2024 02/05/2024,"Shimoku, tu proyecto llave en mano de Inteligencia Artificial (IA) para sacarle el máximo partido a tu software"
+id,name,subject
+4YEHNSZ1,ModelA,"Shimoku, la Inteligencia Artificial (IA) en la que se apoyan empresas como Amazon"
+XDUM4Q9T,ModelB,"Shimoku, tu proyecto llave en mano de Inteligencia Artificial (IA) para sacarle el máximo partido a tu software"

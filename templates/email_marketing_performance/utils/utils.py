@@ -2,7 +2,6 @@ import pandas as pd
 import os
 from re import sub
 import datetime as dt
-from shimoku_api_python import ShimokuPalette
 
 
 def get_data(file_names: list) -> dict:
@@ -61,29 +60,182 @@ def beautiful_header(title: str) -> str:
     """
     return (
         "<head>"
-        "<style>"  # Styles title
-        ".component-title{height:auto; width:100%; "
-        "border-radius:16px; padding:16px;"
-        "display:flex; align-items:center;"
-        "background-color:var(--chart-C1); color:var(--color-white);}"
-        "</style>"
-        # Start icons style
-        "<style>.big-icon-banner"
-        "{width:48px; height: 48px; display: flex;"
-        "margin-right: 16px;"
-        "justify-content: center;"
-        "align-items: center;"
-        "background-size: contain;"
-        "background-position: center;"
-        "background-repeat: no-repeat;"
-        "background-image: url('https://uploads-ssl.webflow.com/619f9fe98661d321dc3beec7/63594ccf3f311a98d72faff7_suite-customer-b.svg');}"
-        "</style>"
-        # End icons style
-        "<style>.base-white{color:var(--color-white);}</style>"
-        "</head>"  # Styles subtitle
+            # Styles title
+            "<style>"
+                ".component-title{height:auto; width:100%; "
+                "border-radius:16px; padding:16px;"
+                "display:flex; align-items:center;"
+                "background-color:var(--chart-C1); color:var(--color-white);}"
+            "</style>"
+            # Start icons style
+            "<style>.big-icon-banner"
+                "{width:48px; height: 48px; display: flex;"
+                "margin-right: 16px;"
+                "justify-content: center;"
+                "align-items: center;"
+                "background-size: contain;"
+                "background-position: center;"
+                "background-repeat: no-repeat;"
+                "background-image: url('https://uploads-ssl.webflow.com/619f9fe98661d321dc3beec7/63594ccf3f311a98d72faff7_suite-customer-b.svg');}"
+            "</style>"
+        "</head>"
         "<div class='component-title'>"
-        "<div class='big-icon-banner'></div>"
-        "<div class='text-block'>"
-        "<h1>" + title + "</h1>"
+            "<div class='big-icon-banner'></div>"
+            "<div class='text-block'>"
+                "<h1>" + title + "</h1>"
+            "</div>"
         "</div>"
     )
+
+def beautiful_section(title: str) -> str:
+    """Return a HTML structure to plot the title section.
+
+    Args:
+        title (str): title of the header in the menu path.
+
+    Returns:
+        str: HTML structure to plot the header.
+    """
+    return (
+        "<head>"
+            # Styles title
+            "<style>"
+                ".component-title{height:auto; width:100%; "
+                "border-radius:16px; padding:16px;"
+                "display:flex; align-items:center;"
+                "background-color:var(--chart-C1); color:var(--color-white);}"
+            "</style>"
+            "<style>.base-white{color:var(--color-white);}</style>"
+        "</head>"  # Styles subtitle
+        "<div class='text-block'>"
+            "<h1>" + title + "</h1>"
+        "</div>"
+    )
+
+def compute_percent(value: float, total: float) -> float:
+    """Compute the percentage value.
+
+    Args:
+        value (float): fraction of the total value.
+        total (float): total value.
+
+    Returns:
+        float: percentage value.
+    """
+    return round(value * 100 / total if total != 0 else 0, 1)
+
+def html_overview(name: str, value: float) -> str:
+    """_summary_
+
+    Args:
+        name (str): _description_
+        value (float): _description_
+
+    Returns:
+        str: _description_
+    """
+    return ("<div style='display: flex; justify-content: center; flex-wrap: wrap;column-gap: 5%;'>"
+        f"<div "
+        f"style='display: flex;"
+        f"justify-content: left;"
+        f"width: 60%;"
+        f"border-radius: 10px;'>"
+            f"- Emails {name}"
+        f"</div>"
+        f"<div>{value:d}</div>"
+        "</div>")
+
+def overview_section(df: pd.DataFrame) -> str:
+    """Return a string of the HTML structure with the differents categories used on the
+    Category section for each tab.
+
+    Args:
+        df (pd.DataFrame): dataframe which contains the categories and the users count.
+
+    Returns:
+        str: string of the HTML structure with the differents categories.
+    """
+
+    sections = []
+    sections += [
+        (
+            "<div style='border-width: 0 0px 8px 0px; border-bottom-color: blue;'>"
+                f"Contactos Realizados"
+            f"</div>"
+        )
+    ]
+    total = df["value"].apply('sum')
+    sections += [html_overview("- Emails enviados", total)]
+    sections += [html_overview(row["name"], row["value"]) for _, row in df.iterrows()]
+    sections += [
+        (
+            "<div style='display: flex; justify-content: center; flex-wrap: wrap;column-gap: 5%;'>"
+                "<div style='width: 65%;'>"
+                    "Total"
+                "</div>"
+                f"<div>{total:d}</div>"
+            "</div>"
+        )
+    ]
+
+    return "".join(sections)
+
+
+def html_results(
+        info: dict,
+        # df: pd.DataFrame,
+    ) -> str:
+
+    return (
+        "<div>"
+            "<div>"
+                f"{info['title']}"
+            "</div>"
+            "<div>"
+                f"{info['description']}"
+            "</div>"
+        "</div>"
+        "<div>"
+            "<div>"
+                "<div>"
+                    f"Total {info['title'].replace('_Rate', 's')}"
+                "</div>"
+                "<div>"
+                    f"{info['title']} (%)"
+                "</div>"
+            "</div>"
+            "<div>"
+                "<div>"
+                    "0"
+                "</div>"
+                "<div>"
+                    "0"
+                "</div>"
+            "</div>"
+        "</div>"
+    )
+
+def results_section() -> str:
+    information = {
+        "open": {
+            "title": "Open Rate",
+            "description": "Ratio de apertura de emails",
+        },
+        "click": {
+            "title": "Click Rate",
+            "description": "Han hecho click en alguno de los enlaces que contenía el mail",
+        },
+        "answer": {
+            "title": "Answer Rate",
+            "description": "Tasa de respuestas del envío realizado",
+        },
+        "rebound": {
+            "title": "Rebound Rate",
+            "description": "Cantidad de mails que no han llegado al destinario",
+        },
+    }
+
+    sections = []
+    sections += [html_results(information[key]) for key in information]
+
+    return "".join(sections)

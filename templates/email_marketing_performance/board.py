@@ -1,5 +1,5 @@
 from shimoku_api_python import Client
-from utils.utils import get_data
+from utils.utils import get_data, compute_percent
 import pandas as pd
 import datetime as dt
 import numpy as np
@@ -47,21 +47,40 @@ class Board:
         df_email = self.dfs["email"]
 
 
+        # Delivery Emails
+        df_delivery_emails = [
+            {
+                "name": "Entregados",
+                "value" : df_email[df_email["rebound_flag"]==False].shape[0],
+                "percentage": compute_percent(
+                    df_email[df_email["rebound_flag"]==False].shape[0],
+                    df_email.shape[0]
+                ),
+            },
+            {
+                "name": "Rebotados",
+                "value" : df_email[df_email["rebound_flag"]].shape[0],
+                "percentage": compute_percent(
+                    df_email[df_email["rebound_flag"]].shape[0],
+                    df_email.shape[0]
+                ),
+            }
+        ]
+
         # Main KPIs
         main_kpis = [
             # Total users
             {
-                "title": "Users",
-                "description": "Total Users",
+                "title": "Open Rate",
                 "value": 0,
-                "color": "default",
-                "align": "center",
             },
         ]
 
 
         # Saved as Dataframe to plot
         self.df_app = {
+            "models": df_model,
+            "delivery_emails": pd.DataFrame(df_delivery_emails),
             "main_kpis": pd.DataFrame(main_kpis),
         }
 
@@ -90,6 +109,17 @@ class Board:
         """
 
         from paths.email_marketing_performance import EmailMarketingPerformance
+        from paths.modelA import ModelA
+        from paths.modelB import ModelB
 
+        # OverView
         EM = EmailMarketingPerformance(self)
         EM.plot()
+
+        # Model A
+        MA = ModelA(self)
+        MA.plot()
+
+        # Model B
+        MB = ModelB(self)
+        MB.plot()

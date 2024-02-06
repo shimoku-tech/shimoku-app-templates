@@ -2,7 +2,7 @@ from utils.components import Components
 from board import Board
 
 
-class EmailMarketingPerformance(Board, Components):
+class ModelA(Board, Components):
     """
     This path is responsible for rendering the Email Marketing Performance page.
     """
@@ -20,7 +20,7 @@ class EmailMarketingPerformance(Board, Components):
         # Initialize order of plotting elements
         self.order = 0
         # Set the menu path for this page
-        self.menu_path = "Overview"
+        self.menu_path = "Model A"
 
         # Delete existing menu path if it exists
         if self.shimoku.menu_paths.get_menu_path(name=self.menu_path):
@@ -31,11 +31,13 @@ class EmailMarketingPerformance(Board, Components):
 
     def plot(self):
         """
-        Plots the Email Marketing Performance page.
+        Plots the Email Marketing Performance pag e.
         Each method is responsible for plotting a specific section of the page.
         """
-        self.plot_header("Email Marketing Performance")
+        self.plot_header(self.menu_path)
         self.plot_title_section("PUNTO DE PARTIDA")
+        self.plot_description_section("A")
+        self.plot_dates_secuence()
         self.plot_resumen("delivery_emails")
         self.plot_pie("Contactos Realizados", "delivery_emails")
         self.plot_title_section("RESULTADOS")
