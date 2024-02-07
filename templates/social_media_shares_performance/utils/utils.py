@@ -3,7 +3,7 @@ import os
 from re import sub
 
 
-def get_data(file_names: list):
+def get_data(file_names: list) -> dict:
     """Returns a dictionary of dataframes, one item for each file of file_names array parameter.
     Example:
     file_names = ['data/active_users.csv', 'data/shop_events.csv', ...]
@@ -29,7 +29,7 @@ def get_data(file_names: list):
     return dict_dfs
 
 
-def convert_dataframe_to_array(df: pd.DataFrame):
+def convert_dataframe_to_array(df: pd.DataFrame) -> list:
     """Return a list, convert a dataframe to a list.
 
     Args:
@@ -48,7 +48,7 @@ def convert_dataframe_to_array(df: pd.DataFrame):
 
     return new_data
 
-def beautiful_header(title: str):
+def beautiful_header(title: str) -> str:
     """Return a HTML structure to plot the header on the menu path
 
     Args:

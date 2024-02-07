@@ -145,5 +145,5 @@ class Board:
 
         from paths.social_media_shares_performance import SocialMediaSharesPerformance
 
-        UO = SocialMediaSharesPerformance(self)
-        UO.plot()
+        SM = SocialMediaSharesPerformance(self)
+        SM.plot()

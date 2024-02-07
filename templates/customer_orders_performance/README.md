@@ -1,13 +1,14 @@
-# Saas active users overview template
+# Customer Orders Performance template
 
 ## Introduction
 
 Welcome to our GitHub repository!
-<br>
-📊 Dive into user engagement analytics with us!
-<br>
+
+📊 Dive into customer orders analytics with us!
+
 🚀 Explore metrics & insightful charts.
-<br>
+
+📈 See our dashboard [Customer Orders Performance Template](https://shimoku.io/82535397-e791-4559-9e49-cbe983c2f8ba/customer-orders-performance?shared=true&token=c274a6da-c4f6-11ee-88fa-00155d9e011f)
 
 ![Screanshot 1](img/customer_orders_performance.png)
 
@@ -85,4 +86,16 @@ Once the installation is done, and environment variables are set, you can run th
 
 ```
 python3 main.py
+```
+
+## Generation of data
+
+The data was randomly generated using the `generate_data` function located in `data/generate_customer_orders_performance.py`
+
+If you want to generate new dataframes please go to data folder, import and run the function
+
+```python
+from data.generate_customer_orders_performance import generate_data
+# updates .csv files in data/ folder with new data
+generate_data()
 ```

@@ -3,7 +3,7 @@ import os
 from re import sub
 
 
-def get_data(file_names):
+def get_data(file_names: list) -> dict:
     """Returns a dictionary of dataframes, one item for each file of file_names array parameter.
     Example:
     file_names = ['data/active_users.csv', 'data/shop_events.csv', ...]
@@ -11,6 +11,8 @@ def get_data(file_names):
     dict_dfs ['shop_events'] = A dataframe with 'data/shop_events.csv' CSV file
 
     Args:
+        file_names (list): a list of file names CSV.
+    Returns:
         dict_dfs (dict): A dictionary of dataframes.
     """
 
@@ -29,7 +31,7 @@ def get_data(file_names):
     return dict_dfs
 
 
-def convert_dataframe_to_array(df):
+def convert_dataframe_to_array(df: pd.DataFrame) -> list:
     """Return a list, convert a dataframe to a list.
 
     Args:
@@ -48,14 +50,14 @@ def convert_dataframe_to_array(df):
 
     return new_data
 
-def beautiful_header(title):
-    """Return a HTML structure to plot the header on the menu path
+def beautiful_header(title: str) -> str:
+    """Return a HTML structure to plot the header on the menu path.
 
     Args:
-        title (str): title of the header in the menu path
+        title (str): title of the header in the menu path.
 
     Returns:
-        str: HTML structure to plot the header
+        str: HTML structure to plot the header.
     """
     return (
         "<head>"

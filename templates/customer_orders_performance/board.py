@@ -21,11 +21,16 @@ class Board:
         """
 
         file_names = ["data/customer_orders_performance.csv"]
-        self.board_name = "Financial"  # Name of the dashboard
+        # Name of the dashboard
+        self.board_name = "Financial"
+        # Get data from CSV files
         self.dfs = get_data(file_names)
-        self.shimoku = shimoku  # Shimoku client instance
-        self.shimoku.set_board(name=self.board_name)  # Setting up the board in Shimoku
-        self.shimoku.boards.update_board(name=self.board_name, is_public=True) # Make the board public
+        # Shimoku client instance
+        self.shimoku = shimoku
+        # Setting up the board in Shimoku
+        self.shimoku.set_board(name=self.board_name)
+        # Make the board public
+        self.shimoku.boards.update_board(name=self.board_name, is_public=True)
 
     def transform(self) -> bool:
         """
@@ -165,11 +170,11 @@ class Board:
 
     def plot(self):
         """
-        A method to plot user overview.
+        A method to plot customer orders performance.
 
-        This method utilizes the UserOverview class from the paths.user_overview
+        This method utilizes the CustomerOrdersPerformance class from the paths.customer_orders_performance
         module to create and display a plot related to the user. It assumes that
-        UserOverview requires a reference to the instance of the class from which
+        CustomerOrdersPerformance requires a reference to the instance of the class from which
         this method is called.
 
         Args:
@@ -179,13 +184,13 @@ class Board:
         None. The function is used for its side effect of plotting data.
 
         Note:
-        - This method imports the UserOverview class within the function scope
+        - This method imports the CustomerOrdersPerformance class within the function scope
           to avoid potential circular dependencies.
-        - Ensure that the UserOverview class has access to all necessary data
+        - Ensure that the CustomerOrdersPerformance class has access to all necessary data
           through the passed instance.
         """
 
-        from paths.customer_orders_performance import customer_orders_performance
+        from paths.customer_orders_performance import CustomerOrdersPerformance
 
-        UO = customer_orders_performance(self)
-        UO.plot()
+        CO = CustomerOrdersPerformance(self)
+        CO.plot()

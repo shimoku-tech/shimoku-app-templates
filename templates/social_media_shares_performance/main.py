@@ -19,6 +19,7 @@ def main():
     shimoku = Client(
         access_token=getenv("API_TOKEN"),
         universe_id=getenv("UNIVERSE_ID"),
+        async_execution=True,
         verbosity="INFO",
     )
     shimoku.set_workspace(getenv("WORKSPACE_ID"))
@@ -29,6 +30,8 @@ def main():
     board.transform()
     # Plot the dashboard
     board.plot()
+
+    shimoku.run()
 
 
 if __name__ == "__main__":
