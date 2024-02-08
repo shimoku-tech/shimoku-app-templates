@@ -7,6 +7,9 @@ Welcome to our GitHub repository!
 📊 Dive into sales product performance analytics with us! 
 <br>
 🚀 Explore metrics & insightful charts. 
+<br>
+📈 See our dashboard [eCommerce - Sales Product Performance](https://shimoku.io/a2771688-f696-46b1-9d6a-464e854a7a61/overview?shared=true&token=03b0c41a-c4f7-11ee-9543-50e549d07122)
+
 
 <p align="center">
   <img src="img/capture.png">
