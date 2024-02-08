@@ -3,11 +3,11 @@
 ## Introduction
 
 Welcome to our GitHub repository!
-<br>
-📊 Dive into facebook ads analytics with us! 
-<br>
+
+📊 Dive into ecommerce facebook ads analytics with us! 
+
 🚀 Explore metrics & insightful charts. 
-<br>
+
 📈 See our dashboard [eCommerce - Facebook Ads](https://shimoku.io/e62c4b45-4807-4f26-96a5-477981eb7b48/ad-metrics?shared=true&token=4ac65d00-c520-11ee-9525-50e549d07122)
 
 
