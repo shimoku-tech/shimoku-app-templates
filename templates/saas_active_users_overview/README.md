@@ -9,6 +9,8 @@ Welcome to our GitHub repository!
 🚀 Explore metrics & insightful charts. 
 <br>
 🔍 Our Weekly Active Users Bar Chart offers a detailed look at user patterns. Plus, check out our pie chart for Newsletter Subscribers & dynamic line chart for New User Trends. 
+<br>
+📈 See our dashboard [SaaS - Active Users Overview](https://shimoku.io/5491c564-93be-4536-89be-c1cbf4108b3f/users-overview?shared=true&token=706fdb5b-c513-11ee-a004-50e549d07122)
 
 <p align="center">
   <img src="img/1.png">
