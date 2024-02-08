@@ -3,11 +3,11 @@
 ## Introduction
 
 Welcome to our GitHub repository!
-<br>
-📊 Ecommerce sales users analysis with us! 
-<br>
+
+📊 Dive into ecommerce sales users analysis with us! 
+
 🚀 Explore metrics & insightful charts. 
-<br>
+
 📈 See our dashboard [eCommerce - Sales & Users Analysis](https://shimoku.io/dd66b898-2fa7-4350-a2a8-6e21d450629d/sales-and-users?shared=true&token=723b0001-6e12-11ee-95e7-9f0e43470bb4)
 
 
