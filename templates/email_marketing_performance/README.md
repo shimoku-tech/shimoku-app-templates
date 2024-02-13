@@ -8,12 +8,13 @@ Welcome to our GitHub repository!
 
 🚀 Explore metrics & insightful charts.
 
+📈 See our dashboard [Email Marketing Performance Template](https://shimoku.io/dac14dbb-226c-474d-8e5b-e0990bcbd5ef/overview?shared=true&token=50162748-caa6-11ee-a068-00155d66fd83)
 
-<!-- ![Email Marketing Performance](img/email_marketing_performance.png) -->
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
 
 ## Prerequisites
 
@@ -23,9 +24,11 @@ Before you begin, ensure you have met the following requirements:
 
 - pip (Python Package Installer), should come installed with Python.
 
+
 ## Installation
 
 Follow these steps to set up the project locally.
+
 
 ### Clone the repository:
 
@@ -98,3 +101,8 @@ from data.generate_email_marketing_performance import generate_data
 # updates .csv files in data/ folder with new data
 generate_data()
 ```
+
+## Screenshots
+
+![Email Marketing Performance](img/email_marketing_performance.png)
+![Email Marketing Performance](img/email_marketing_performance_campaign.png)
