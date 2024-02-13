@@ -1,5 +1,9 @@
 from shimoku_api_python import Client
-from utils.utils import get_data, compute_percent
+from utils.utils import (
+    get_data,
+    genenerate_data_by_campaign,
+    generate_tables_by_campaign,
+)
 import pandas as pd
 import datetime as dt
 import numpy as np
@@ -22,7 +26,13 @@ class Board:
             shimoku (Client): An instance of a Client class for Shimoku API interactions.
         """
 
-        file_names = ["data/client.csv", "data/email.csv", "data/model.csv"]
+        file_names = [
+            "data/campaign.csv",
+            "data/model.csv",
+            "data/client.csv",
+            "data/campaign_model.csv",
+            "data/email.csv",
+        ]
         # Name of the dashboard
         self.board_name = "Email Marketing Performance"
         # Get data from CSV files
@@ -34,6 +44,9 @@ class Board:
         # Make the board public
         self.shimoku.boards.update_board(name=self.board_name, is_public=True)
 
+        # if self.shimoku.boards.get_board(name=self.board_name):
+        #     self.shimoku.boards.remove_all_menu_paths_from_board(name=self.board_name)
+
     def transform(self) -> bool:
         """
         Perform data transformations.
@@ -42,47 +55,48 @@ class Board:
         required before plotting the data on the dashboard.
         """
 
-        df_client = self.dfs["client"]
+        df_campaign = self.dfs["campaign"]
         df_model = self.dfs["model"]
+        df_client = self.dfs["client"]
+        df_campaign_model = self.dfs["campaign_model"]
         df_email = self.dfs["email"]
 
+        dataframe_general_name = ["overview", "open", "click", "answer", "rebound"]
 
-        # Delivery Emails
-        df_delivery_emails = [
-            {
-                "name": "Entregados",
-                "value" : df_email[df_email["rebound_flag"]==False].shape[0],
-                "percentage": compute_percent(
-                    df_email[df_email["rebound_flag"]==False].shape[0],
-                    df_email.shape[0]
-                ),
-            },
-            {
-                "name": "Rebotados",
-                "value" : df_email[df_email["rebound_flag"]].shape[0],
-                "percentage": compute_percent(
-                    df_email[df_email["rebound_flag"]].shape[0],
-                    df_email.shape[0]
-                ),
+        dfs_overview = genenerate_data_by_campaign(df_email)
+
+        dfs_campaign = {}
+        for _, row in df_campaign_model.iterrows():
+            df_email_filter = df_email[df_email["id_campaign_model"] == row["id"]]
+            df_client_filter = df_client[df_client["id"].isin(df_email_filter["id_client"].unique())]
+
+            df_table_open, df_table_click = generate_tables_by_campaign(df_client_filter, df_email)
+            dfs_campaign |= {
+                row["id"] : genenerate_data_by_campaign(df_email_filter)
             }
-        ]
-
-        # Main KPIs
-        main_kpis = [
-            # Total users
-            {
-                "title": "Open Rate",
-                "value": 0,
-            },
-        ]
+            dfs_campaign |= {
+                f"table_open_{row['id']}" : df_table_open,
+                f"table_click_{row['id']}" : df_table_click,
+            }
 
 
         # Saved as Dataframe to plot
         self.df_app = {
-            "models": df_model,
-            "delivery_emails": pd.DataFrame(df_delivery_emails),
-            "main_kpis": pd.DataFrame(main_kpis),
+            "campaign": df_campaign,
+            "model": df_model,
+            "campaign_model": df_campaign_model,
         }
+
+        self.df_app |= {
+            section: pd.DataFrame(dfs_overview[section])
+        for section in dataframe_general_name}
+
+        self.df_app |= {
+            f"{row['id_campaign']}_{row['id_model']}_{section}": pd.DataFrame(dfs_campaign[row["id"]][section])
+        for section in dataframe_general_name for _, row in df_campaign_model.iterrows()}
+        self.df_app |= {
+            f"{row['id_campaign']}_{row['id_model']}_table_{table}": dfs_campaign[f"table_{table}_{row['id']}"]
+        for table in ["open", "click"] for _, row in df_campaign_model.iterrows()}
 
         return True
 
@@ -109,17 +123,14 @@ class Board:
         """
 
         from paths.email_marketing_performance import EmailMarketingPerformance
-        from paths.modelA import ModelA
-        from paths.modelB import ModelB
+        from paths.campaign import Campaign
 
         # OverView
         EM = EmailMarketingPerformance(self)
         EM.plot()
 
-        # Model A
-        MA = ModelA(self)
-        MA.plot()
-
-        # Model B
-        MB = ModelB(self)
-        MB.plot()
+        df_campaign = self.dfs["campaign"]
+        for _, row in df_campaign.iterrows():
+            # Campaign
+            CM = Campaign(self, row["id"], row["name"])
+            CM.plot()

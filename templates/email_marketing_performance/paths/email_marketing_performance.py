@@ -2,20 +2,20 @@ from utils.components import Components
 from board import Board
 
 
-class EmailMarketingPerformance(Board, Components):
+class EmailMarketingPerformance(Components):
     """
     This path is responsible for rendering the Email Marketing Performance page.
     """
 
-    def __init__(self, self_board: Board):
+    def __init__(self, board: Board):
         """
         Initializes EmailMarketingPerformance instance.
 
         Parameters:
             shimoku: An instance of the Shimoku client.
         """
-        super().__init__(self_board.shimoku)
-        self.df_app = self_board.df_app
+        self.shimoku = board.shimoku
+        self.df_app = board.df_app
 
         # Initialize order of plotting elements
         self.order = 0
@@ -35,13 +35,13 @@ class EmailMarketingPerformance(Board, Components):
         Each method is responsible for plotting a specific section of the page.
         """
         self.plot_header("Email Marketing Performance")
-        self.plot_title_section("PUNTO DE PARTIDA")
-        self.plot_resumen("delivery_emails")
-        self.plot_pie("Contactos Realizados", "delivery_emails")
-        self.plot_title_section("RESULTADOS")
-        self.plot_results()
-        self.plot_title_section("REPRESENTACIÓN GRÁFICA")
-        self.plot_pie("Open Rate", "delivery_emails")
-        self.plot_pie("Click Rate", "delivery_emails")
-        self.plot_pie("Answer Rate", "delivery_emails")
-        self.plot_pie("Rebound Rate", "delivery_emails")
+
+        self.plot_resumen("overview")
+        self.plot_pie("Contacts Achieved", "overview", False, "right")
+
+        self.plot_results("open", "click", "answer", "rebound")
+
+        self.plot_pie("Open Rate", "open", True, "left")
+        self.plot_pie("Click Rate", "click", True, "right")
+        self.plot_pie("Answer Rate", "answer", True, "left")
+        self.plot_pie("Rebound Rate", "rebound", True, "right")
