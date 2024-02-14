@@ -34,13 +34,17 @@ class EmailMarketingPerformance(Components):
         Plots the Email Marketing Performance page.
         Each method is responsible for plotting a specific section of the page.
         """
+        # Header
         self.plot_header("Email Marketing Performance")
 
+        # Resume
         self.plot_resumen("overview")
         self.plot_pie("Contacts Achieved", "overview", False, "right")
 
+        # Results
         self.plot_results("open", "click", "answer", "rebound")
 
+        # Results Pie Charts
         self.plot_pie("Open Rate", "open", True, "left")
         self.plot_pie("Click Rate", "click", True, "right")
         self.plot_pie("Answer Rate", "answer", True, "left")

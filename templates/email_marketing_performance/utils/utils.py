@@ -200,10 +200,15 @@ def overview_section(df: pd.DataFrame) -> str:
     return "".join(sections)
 
 
-def html_results(
-        info: dict,
-        # df: pd.DataFrame,
-    ) -> str:
+def html_results(info: dict) -> str:
+    """Return a HTML structure of the results row sections
+
+    Args:
+        info (dict): Results row information
+
+    Returns:
+        str: HTML structure of the results row sections
+    """
 
     return (
         "<div class='row'>"
@@ -223,8 +228,20 @@ def html_results(
     )
 
 def results_section(
-        df_open, df_click, df_answer, df_rebound
+        df_open: pd.DataFrame, df_click: pd.DataFrame,
+        df_answer: pd.DataFrame, df_rebound: pd.DataFrame
 ) -> str:
+    """Return a HTML structure of Results section
+
+    Args:
+        df_open (pd.DataFrame): dataframe with the open
+        df_click (pd.DataFrame): dataframe with the click
+        df_answer (pd.DataFrame): dataframe with the answer
+        df_rebound (pd.DataFrame): dataframe with the rebound
+
+    Returns:
+        str: HTML structure of Results section
+    """
     information = {
         "open": {
             "title": "Open Rate",
@@ -296,7 +313,18 @@ def results_section(
     return "".join(sections)
 
 
-def generate_pie_plot_dict_two_option(names_list, value, total):
+def generate_pie_plot_dict_two_option(names_list: list, value: float, total: float):
+    """Return a data structure with two option
+
+    Args:
+        names_list (list): option list names
+        value (float): principal value
+        total (float): total value
+
+    Returns:
+        list: data structure with to option
+    """
+
     return [
         {
             "name": names_list[0],
@@ -311,8 +339,15 @@ def generate_pie_plot_dict_two_option(names_list, value, total):
     ]
 
 
-def generate_indicators_delivery_days(delivery_days: str) -> str:
+def generate_indicators_delivery_days(delivery_days: str) -> list:
+    """Return a data structure for a indicators charts
 
+    Args:
+        delivery_days (str): string with the delivery days
+
+    Returns:
+        list: Data structure for a indicators charts
+    """
     days_values = [
         f"{pd.to_datetime(day).day_name()} {pd.to_datetime(day).day}"
     for day in delivery_days.split(" ")]
@@ -354,7 +389,17 @@ def generate_indicators_delivery_days(delivery_days: str) -> str:
 
     return data
 
-def get_campaign_model(campaign_id, model, campaign_model):
+def get_campaign_model(campaign_id: str, model: pd.DataFrame, campaign_model: pd.DataFrame) -> pd.DataFrame:
+    """Return a filter model and campaign_model dataframe by campaign_id
+
+    Args:
+        campaign_id (str): campaign id
+        model (pd.DataFrame): dataframe of model
+        campaign_model (pd.DataFrame): dataframe of campaign_model
+
+    Returns:
+        pd.DataFrame: filter dataframe by campaign_id
+    """
     campaign_model = campaign_model[campaign_model["id_campaign"] == campaign_id]
     model = model[model["id"].isin(campaign_model.id_model)]
 
@@ -392,8 +437,16 @@ def genenerate_data_by_campaign(df_email):
         ),
     }
 
-def generate_tables_by_campaign(df_client, df_email):
+def generate_tables_by_campaign(df_client: pd.DataFrame, df_email: pd.DataFrame):
+    """Return a data structure of client information with a emails openend and click numbers counts
 
+    Args:
+        df_client (pd.DataFrame): client dataframe
+        df_email (pd.DataFrame): email dataframe
+
+    Returns:
+        pd.DataFrame: data structure of client information
+    """
     df_open = pd.DataFrame(columns=["Contact Name", "Last Name", "Company"])
 
     df_open[["Contact Name", "Last Name", "Company"]] = df_client[["first_name", "last_name", "company_name"]]
@@ -412,5 +465,14 @@ def generate_tables_by_campaign(df_client, df_email):
 
     return drop_values(df_open, "Opens"), drop_values(df_click, "Clicks")
 
-def drop_values(df, table):
+def drop_values(df: pd.DataFrame, table: str):
+    """Drop rows with null and zero values
+
+    Args:
+        df (pd.DataFrame): dataframe to clean
+        table (str): columns name
+
+    Returns:
+        pd.DataFrame: dataframe cleaned
+    """
     return df[df[f"Nº of {table}"].notnull() & (df[f"Nº of {table}"]!=0)]

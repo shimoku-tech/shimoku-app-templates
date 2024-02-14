@@ -37,12 +37,15 @@ class Campaign(Components):
         Each method is responsible for plotting a specific section of the page.
         """
 
+        # Header
         self.plot_header(self.menu_path)
 
-        campaign_model = self.df_app["campaign_model"]
+        # Filter model and campaign_model
         model = self.df_app["model"]
-
+        campaign_model = self.df_app["campaign_model"]
         campaign_model, model = get_campaign_model(self.menu_path_id, model, campaign_model)
+
+        # Iteration over each email model
         for _, row in model.iterrows():
             self.shimoku.plt.set_tabs_index(
                 ("Models", row["name"]),
@@ -52,6 +55,7 @@ class Campaign(Components):
             )
             self.order += 1
 
+            # Define all the dataframe names
             overview_name = f"{self.menu_path_id}_{row['id']}_overview"
             open_name = f"{self.menu_path_id}_{row['id']}_open"
             click_name = f"{self.menu_path_id}_{row['id']}_click"
@@ -60,19 +64,25 @@ class Campaign(Components):
             table_open = f"{self.menu_path_id}_{row['id']}_table_open"
             table_click = f"{self.menu_path_id}_{row['id']}_table_click"
 
+            # Emanil subject
             self.plot_description_section(row["subject"])
 
+            # Email delivery days
             self.plot_dates_secuence(campaign_model[campaign_model["id_model"] == row["id"]]["delivery_days"])
 
+            # Resume
             self.plot_resumen(overview_name)
             self.plot_pie("Contacts Achieved", overview_name)
 
+            # Results
             self.plot_results(open_name, click_name, answer_name, rebound_name)
 
+            # Results Pie Charts
             self.plot_pie("Open Rate", open_name, True, "left")
             self.plot_pie("Click Rate", click_name, True, "right")
             self.plot_pie("Answer Rate", answer_name, True, "left")
             self.plot_pie("Rebound Rate", rebound_name, True, "right")
 
+            # Client Table by email opened and email clicked
             self.plot_table(table_open, "Opens")
             self.plot_table(table_click, "Clicks")
