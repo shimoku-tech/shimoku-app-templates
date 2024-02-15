@@ -212,7 +212,7 @@ if __name__ == "__main__":
 
     #----------------- DRIVERS & DRIVERS INSIGHTS ----------------#
     drivers_barriers_insights(
-        menu_path='drivers_barriers', nrows=8,
+        menu_path='drivers_barriers', nrows=10,
         openai_api_key=openai_api_key, openai_org_id=openai_org_id)
 
     #----------------- GENERIC INSIGHTS ----------------#
