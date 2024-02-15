@@ -1,0 +1,3 @@
+numpy==1.26.3
+pandas==2.1.4
+shimoku-api-python==1.6

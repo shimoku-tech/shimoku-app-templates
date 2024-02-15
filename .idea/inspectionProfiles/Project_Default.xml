@@ -1,0 +1,70 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyArgumentEqualDefaultInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+    <inspection_tool class="PyAugmentAssignmentInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+    <inspection_tool class="PyClassicStyleClassInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="PyCompatibilityInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ourVersions">
+        <value>
+          <list size="2">
+            <item index="0" class="java.lang.String" itemvalue="2.7" />
+            <item index="1" class="java.lang.String" itemvalue="3.12" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyMandatoryEncodingInspection" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="PyMissingOrEmptyDocstringInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+    <inspection_tool class="PyMissingTypeHintsInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="41">
+            <item index="0" class="java.lang.String" itemvalue="rfpimp" />
+            <item index="1" class="java.lang.String" itemvalue="pdpbox" />
+            <item index="2" class="java.lang.String" itemvalue="eli5" />
+            <item index="3" class="java.lang.String" itemvalue="dython" />
+            <item index="4" class="java.lang.String" itemvalue="boto3" />
+            <item index="5" class="java.lang.String" itemvalue="scikit_learn" />
+            <item index="6" class="java.lang.String" itemvalue="imblearn" />
+            <item index="7" class="java.lang.String" itemvalue="PDPbox" />
+            <item index="8" class="java.lang.String" itemvalue="category_encoders" />
+            <item index="9" class="java.lang.String" itemvalue="numpy" />
+            <item index="10" class="java.lang.String" itemvalue="imbalanced-learn" />
+            <item index="11" class="java.lang.String" itemvalue="scikit-learn" />
+            <item index="12" class="java.lang.String" itemvalue="voluptuous" />
+            <item index="13" class="java.lang.String" itemvalue="mailchimp3" />
+            <item index="14" class="java.lang.String" itemvalue="requests" />
+            <item index="15" class="java.lang.String" itemvalue="pickle" />
+            <item index="16" class="java.lang.String" itemvalue="turicreate" />
+            <item index="17" class="java.lang.String" itemvalue="holidays" />
+            <item index="18" class="java.lang.String" itemvalue="murmurhash3" />
+            <item index="19" class="java.lang.String" itemvalue="woocommerce" />
+            <item index="20" class="java.lang.String" itemvalue="forestci" />
+            <item index="21" class="java.lang.String" itemvalue="xmltodict" />
+            <item index="22" class="java.lang.String" itemvalue="scipy" />
+            <item index="23" class="java.lang.String" itemvalue="mailchimp-marketing" />
+            <item index="24" class="java.lang.String" itemvalue="pytest" />
+            <item index="25" class="java.lang.String" itemvalue="lifetimes" />
+            <item index="26" class="java.lang.String" itemvalue="sentry_sdk" />
+            <item index="27" class="java.lang.String" itemvalue="ShopifyAPI" />
+            <item index="28" class="java.lang.String" itemvalue="pandas" />
+            <item index="29" class="java.lang.String" itemvalue="pandera" />
+            <item index="30" class="java.lang.String" itemvalue="shap" />
+            <item index="31" class="java.lang.String" itemvalue="dropbox" />
+            <item index="32" class="java.lang.String" itemvalue="dynamodb-json" />
+            <item index="33" class="java.lang.String" itemvalue="hubspot-api-client" />
+            <item index="34" class="java.lang.String" itemvalue="klaviyo" />
+            <item index="35" class="java.lang.String" itemvalue="openpyxl" />
+            <item index="36" class="java.lang.String" itemvalue="pyarrow" />
+            <item index="37" class="java.lang.String" itemvalue="sklearn" />
+            <item index="38" class="java.lang.String" itemvalue="lightgbm" />
+            <item index="39" class="java.lang.String" itemvalue="category_enconder" />
+            <item index="40" class="java.lang.String" itemvalue="pandas-1.5.2" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

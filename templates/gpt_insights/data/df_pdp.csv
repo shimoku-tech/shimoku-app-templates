@@ -1,0 +1,1171 @@
+column_target,class,name_feature,value_feature,pd
+Coverage,Basic,Education,Bachelor,0.6093374846896387
+Coverage,Basic,Education,College,0.6093516744280969
+Coverage,Basic,Education,Doctor,0.6093316599328304
+Coverage,Basic,Education,High School or Below,0.6093516744280969
+Coverage,Basic,Education,Master,0.609333759214591
+Coverage,Extended,Education,Bachelor,0.30020574261103605
+Coverage,Extended,Education,College,0.30020590645220674
+Coverage,Extended,Education,Doctor,0.30020839164508467
+Coverage,Extended,Education,High School or Below,0.30020590645220674
+Coverage,Extended,Education,Master,0.30020539167642196
+Coverage,Premium,Education,Bachelor,0.09045677269932677
+Coverage,Premium,Education,College,0.09044241911969667
+Coverage,Premium,Education,Doctor,0.09045994842208194
+Coverage,Premium,Education,High School or Below,0.09044241911969667
+Coverage,Premium,Education,Master,0.09046084910898913
+Coverage,Basic,Vehicle Size,Large,0.6093553694287364
+Coverage,Basic,Vehicle Size,Medsize,0.6093427421629484
+Coverage,Basic,Vehicle Size,Small,0.6093433344763661
+Coverage,Extended,Vehicle Size,Large,0.30020656972910814
+Coverage,Extended,Vehicle Size,Medsize,0.3002057123982018
+Coverage,Extended,Vehicle Size,Small,0.3002059645282862
+Coverage,Premium,Vehicle Size,Large,0.09043806084215453
+Coverage,Premium,Vehicle Size,Medsize,0.09045154543885159
+Coverage,Premium,Vehicle Size,Small,0.0904507009953528
+Coverage,Basic,State,Arizona,0.6093446329172971
+Coverage,Basic,State,California,0.6093446329172971
+Coverage,Basic,State,Nevada,0.6093420995150766
+Coverage,Basic,State,Oregon,0.6093446329172971
+Coverage,Basic,State,Washington,0.6093446329172971
+Coverage,Extended,State,Arizona,0.300205836425905
+Coverage,Extended,State,California,0.300205836425905
+Coverage,Extended,State,Nevada,0.30020560227105725
+Coverage,Extended,State,Oregon,0.300205836425905
+Coverage,Extended,State,Washington,0.300205836425905
+Coverage,Premium,State,Arizona,0.0904495306567998
+Coverage,Premium,State,California,0.0904495306567998
+Coverage,Premium,State,Nevada,0.09045229821386805
+Coverage,Premium,State,Oregon,0.0904495306567998
+Coverage,Premium,State,Washington,0.0904495306567998
+Coverage,Basic,EmploymentStatus,Disabled,0.6093325251333035
+Coverage,Basic,EmploymentStatus,Employed,0.6093479335232103
+Coverage,Basic,EmploymentStatus,Medical Leave,0.6093462296009361
+Coverage,Basic,EmploymentStatus,Retired,0.6093762799146364
+Coverage,Basic,EmploymentStatus,Unemployed,0.609334991843612
+Coverage,Extended,EmploymentStatus,Disabled,0.3001991694259712
+Coverage,Extended,EmploymentStatus,Employed,0.30020402607433627
+Coverage,Extended,EmploymentStatus,Medical Leave,0.3002062824644902
+Coverage,Extended,EmploymentStatus,Retired,0.30020540232418585
+Coverage,Extended,EmploymentStatus,Unemployed,0.3002096575101478
+Coverage,Premium,EmploymentStatus,Disabled,0.09046830544072532
+Coverage,Premium,EmploymentStatus,Employed,0.09044804040245684
+Coverage,Premium,EmploymentStatus,Medical Leave,0.09044748793457436
+Coverage,Premium,EmploymentStatus,Retired,0.09041831776117559
+Coverage,Premium,EmploymentStatus,Unemployed,0.09045535064624682
+Coverage,Basic,Gender,F,0.6093375126718452
+Coverage,Basic,Gender,M,0.6093490732407307
+Coverage,Extended,Gender,F,0.30020627141313944
+Coverage,Extended,Gender,M,0.3002054184232389
+Coverage,Premium,Gender,F,0.0904562159150164
+Coverage,Premium,Gender,M,0.09044550833603023
+Coverage,Basic,Location Code,Rural,0.6091860596378614
+Coverage,Basic,Location Code,Suburban,0.6094277967276298
+Coverage,Basic,Location Code,Urban,0.6092766103074392
+Coverage,Extended,Location Code,Rural,0.3002122762952729
+Coverage,Extended,Location Code,Suburban,0.3002012869730222
+Coverage,Extended,Location Code,Urban,0.3002050142689998
+Coverage,Premium,Location Code,Rural,0.0906016640668652
+Coverage,Premium,Location Code,Suburban,0.09037091629935061
+Coverage,Premium,Location Code,Urban,0.0905183754235666
+Coverage,Basic,Marital Status,Divorced,0.6093399813961705
+Coverage,Basic,Marital Status,Married,0.609335678929068
+Coverage,Basic,Marital Status,Single,0.6093545577069117
+Coverage,Extended,Marital Status,Divorced,0.3002060892070081
+Coverage,Extended,Marital Status,Married,0.3002055941922029
+Coverage,Extended,Marital Status,Single,0.300206395458762
+Coverage,Premium,Marital Status,Divorced,0.0904539293968191
+Coverage,Premium,Marital Status,Married,0.09045872687872997
+Coverage,Premium,Marital Status,Single,0.09043904683432363
+Coverage,Basic,Policy Type,Corporate Auto,0.6093451401688222
+Coverage,Basic,Policy Type,Personal Auto,0.6093441215154398
+Coverage,Basic,Policy Type,Special Auto,0.6093441215154398
+Coverage,Extended,Policy Type,Corporate Auto,0.3002046540100181
+Coverage,Extended,Policy Type,Personal Auto,0.300206110296863
+Coverage,Extended,Policy Type,Special Auto,0.300206110296863
+Coverage,Premium,Policy Type,Corporate Auto,0.09045020582116109
+Coverage,Premium,Policy Type,Personal Auto,0.09044976818769787
+Coverage,Premium,Policy Type,Special Auto,0.09044976818769787
+Coverage,Basic,Sales Channel,Agent,0.6093367921678616
+Coverage,Basic,Sales Channel,Branch,0.609348996244977
+Coverage,Basic,Sales Channel,Call Center,0.609348996244977
+Coverage,Basic,Sales Channel,Web,0.6093502863662466
+Coverage,Extended,Sales Channel,Agent,0.3002070740507208
+Coverage,Extended,Sales Channel,Branch,0.3002053144386371
+Coverage,Extended,Sales Channel,Call Center,0.3002053144386371
+Coverage,Extended,Sales Channel,Web,0.3002034286015571
+Coverage,Premium,Sales Channel,Agent,0.0904561337814174
+Coverage,Premium,Sales Channel,Branch,0.09044568931638698
+Coverage,Premium,Sales Channel,Call Center,0.09044568931638698
+Coverage,Premium,Sales Channel,Web,0.09044628503219877
+Coverage,Basic,Vehicle Class,Four-Door Car,0.439532187704721
+Coverage,Basic,Vehicle Class,Luxury Car,0.6896728095280653
+Coverage,Basic,Vehicle Class,Luxury SUV,0.6950087910603289
+Coverage,Basic,Vehicle Class,SUV,0.6561904375845995
+Coverage,Basic,Vehicle Class,Sports Car,0.6534901903702751
+Coverage,Basic,Vehicle Class,Two-Door Car,0.4389836868159176
+Coverage,Extended,Vehicle Class,Four-Door Car,0.28047438333819097
+Coverage,Extended,Vehicle Class,Luxury Car,0.29773344134500357
+Coverage,Extended,Vehicle Class,Luxury SUV,0.29666953888173364
+Coverage,Extended,Vehicle Class,SUV,0.29607998094252796
+Coverage,Extended,Vehicle Class,Sports Car,0.2986780706606865
+Coverage,Extended,Vehicle Class,Two-Door Car,0.2866681741515679
+Coverage,Premium,Vehicle Class,Four-Door Car,0.2799934289570872
+Coverage,Premium,Vehicle Class,Luxury Car,0.012593749126933921
+Coverage,Premium,Vehicle Class,Luxury SUV,0.008321670057938184
+Coverage,Premium,Vehicle Class,SUV,0.04772958147287481
+Coverage,Premium,Vehicle Class,Sports Car,0.04783173896903603
+Coverage,Premium,Vehicle Class,Two-Door Car,0.2743481390325157
+Coverage,Basic,Customer Lifetime Value,2473.6628256800004,0.6137636425529939
+Coverage,Basic,Customer Lifetime Value,3149.3005987634488,0.6101896526671154
+Coverage,Basic,Customer Lifetime Value,3824.9383718468966,0.6097298186155974
+Coverage,Basic,Customer Lifetime Value,4500.5761449303445,0.6097851289983867
+Coverage,Basic,Customer Lifetime Value,5176.213918013793,0.6097062208992368
+Coverage,Basic,Customer Lifetime Value,5851.851691097241,0.6095140720773876
+Coverage,Basic,Customer Lifetime Value,6527.4894641806895,0.6092005505089608
+Coverage,Basic,Customer Lifetime Value,7203.127237264137,0.6093544357971832
+Coverage,Basic,Customer Lifetime Value,7878.765010347585,0.6093966033606608
+Coverage,Basic,Customer Lifetime Value,8554.402783431033,0.6092617837080888
+Coverage,Basic,Customer Lifetime Value,9230.040556514483,0.6089610429362632
+Coverage,Basic,Customer Lifetime Value,9905.67832959793,0.6087634384632006
+Coverage,Basic,Customer Lifetime Value,10581.316102681378,0.6087358995154754
+Coverage,Basic,Customer Lifetime Value,11256.953875764826,0.6086234964677272
+Coverage,Basic,Customer Lifetime Value,11932.591648848273,0.6088329877026065
+Coverage,Basic,Customer Lifetime Value,12608.229421931723,0.6088329877026065
+Coverage,Basic,Customer Lifetime Value,13283.86719501517,0.608825694983954
+Coverage,Basic,Customer Lifetime Value,13959.50496809862,0.6087502248664137
+Coverage,Basic,Customer Lifetime Value,14635.142741182066,0.6089209771977231
+Coverage,Basic,Customer Lifetime Value,15310.780514265516,0.6087478282021666
+Coverage,Basic,Customer Lifetime Value,15986.418287348963,0.6088439196672075
+Coverage,Basic,Customer Lifetime Value,16662.05606043241,0.6088372095069631
+Coverage,Basic,Customer Lifetime Value,17337.69383351586,0.6088372095069631
+Coverage,Basic,Customer Lifetime Value,18013.331606599306,0.6088372095069631
+Coverage,Basic,Customer Lifetime Value,18688.969379682756,0.6088372095069631
+Coverage,Basic,Customer Lifetime Value,19364.607152766202,0.6088372095069631
+Coverage,Basic,Customer Lifetime Value,20040.24492584965,0.6088372095069631
+Coverage,Basic,Customer Lifetime Value,20715.8826989331,0.6088372095069631
+Coverage,Basic,Customer Lifetime Value,21391.520472016546,0.6088372095069631
+Coverage,Basic,Customer Lifetime Value,22067.158245099996,0.6088372095069631
+Coverage,Extended,Customer Lifetime Value,2473.6628256800004,0.29973174413272924
+Coverage,Extended,Customer Lifetime Value,3149.3005987634488,0.3003475775022754
+Coverage,Extended,Customer Lifetime Value,3824.9383718468966,0.3002331576352504
+Coverage,Extended,Customer Lifetime Value,4500.5761449303445,0.30008443131050405
+Coverage,Extended,Customer Lifetime Value,5176.213918013793,0.3002128627926553
+Coverage,Extended,Customer Lifetime Value,5851.851691097241,0.30020513142169686
+Coverage,Extended,Customer Lifetime Value,6527.4894641806895,0.30029743185556335
+Coverage,Extended,Customer Lifetime Value,7203.127237264137,0.3002439977149922
+Coverage,Extended,Customer Lifetime Value,7878.765010347585,0.3002125215798637
+Coverage,Extended,Customer Lifetime Value,8554.402783431033,0.30017051723703697
+Coverage,Extended,Customer Lifetime Value,9230.040556514483,0.3002488577993927
+Coverage,Extended,Customer Lifetime Value,9905.67832959793,0.30037675321435026
+Coverage,Extended,Customer Lifetime Value,10581.316102681378,0.3003753307009913
+Coverage,Extended,Customer Lifetime Value,11256.953875764826,0.3002797385395718
+Coverage,Extended,Customer Lifetime Value,11932.591648848273,0.30018678466157384
+Coverage,Extended,Customer Lifetime Value,12608.229421931723,0.30018678466157384
+Coverage,Extended,Customer Lifetime Value,13283.86719501517,0.3001986917625257
+Coverage,Extended,Customer Lifetime Value,13959.50496809862,0.3002037487958352
+Coverage,Extended,Customer Lifetime Value,14635.142741182066,0.3002676839108005
+Coverage,Extended,Customer Lifetime Value,15310.780514265516,0.3002614551095924
+Coverage,Extended,Customer Lifetime Value,15986.418287348963,0.30026156784501185
+Coverage,Extended,Customer Lifetime Value,16662.05606043241,0.30026204160451353
+Coverage,Extended,Customer Lifetime Value,17337.69383351586,0.30026204160451353
+Coverage,Extended,Customer Lifetime Value,18013.331606599306,0.30026204160451353
+Coverage,Extended,Customer Lifetime Value,18688.969379682756,0.30026204160451353
+Coverage,Extended,Customer Lifetime Value,19364.607152766202,0.30026204160451353
+Coverage,Extended,Customer Lifetime Value,20040.24492584965,0.30026204160451353
+Coverage,Extended,Customer Lifetime Value,20715.8826989331,0.30026204160451353
+Coverage,Extended,Customer Lifetime Value,21391.520472016546,0.30026204160451353
+Coverage,Extended,Customer Lifetime Value,22067.158245099996,0.30026204160451353
+Coverage,Premium,Customer Lifetime Value,2473.6628256800004,0.08650461331428036
+Coverage,Premium,Customer Lifetime Value,3149.3005987634488,0.08946276983060801
+Coverage,Premium,Customer Lifetime Value,3824.9383718468966,0.09003702374915497
+Coverage,Premium,Customer Lifetime Value,4500.5761449303445,0.09013043969110923
+Coverage,Premium,Customer Lifetime Value,5176.213918013793,0.09008091630810794
+Coverage,Premium,Customer Lifetime Value,5851.851691097241,0.09028079650091315
+Coverage,Premium,Customer Lifetime Value,6527.4894641806895,0.09050201763547776
+Coverage,Premium,Customer Lifetime Value,7203.127237264137,0.09040156648782455
+Coverage,Premium,Customer Lifetime Value,7878.765010347585,0.09039087505947682
+Coverage,Premium,Customer Lifetime Value,8554.402783431033,0.09056769905487369
+Coverage,Premium,Customer Lifetime Value,9230.040556514483,0.09079009926434174
+Coverage,Premium,Customer Lifetime Value,9905.67832959793,0.09085980832245014
+Coverage,Premium,Customer Lifetime Value,10581.316102681378,0.09088876978353203
+Coverage,Premium,Customer Lifetime Value,11256.953875764826,0.09109676499270337
+Coverage,Premium,Customer Lifetime Value,11932.591648848273,0.09098022763581838
+Coverage,Premium,Customer Lifetime Value,12608.229421931723,0.09098022763581838
+Coverage,Premium,Customer Lifetime Value,13283.86719501517,0.09097561325352238
+Coverage,Premium,Customer Lifetime Value,13959.50496809862,0.09104602633775305
+Coverage,Premium,Customer Lifetime Value,14635.142741182066,0.09081133889147802
+Coverage,Premium,Customer Lifetime Value,15310.780514265516,0.09099071668824402
+Coverage,Premium,Customer Lifetime Value,15986.418287348963,0.09089451248777825
+Coverage,Premium,Customer Lifetime Value,16662.05606043241,0.09090074888852073
+Coverage,Premium,Customer Lifetime Value,17337.69383351586,0.09090074888852073
+Coverage,Premium,Customer Lifetime Value,18013.331606599306,0.09090074888852073
+Coverage,Premium,Customer Lifetime Value,18688.969379682756,0.09090074888852073
+Coverage,Premium,Customer Lifetime Value,19364.607152766202,0.09090074888852073
+Coverage,Premium,Customer Lifetime Value,20040.24492584965,0.09090074888852073
+Coverage,Premium,Customer Lifetime Value,20715.8826989331,0.09090074888852073
+Coverage,Premium,Customer Lifetime Value,21391.520472016546,0.09090074888852073
+Coverage,Premium,Customer Lifetime Value,22067.158245099996,0.09090074888852073
+Coverage,Basic,Income,0.0,0.6093915929113467
+Coverage,Basic,Income,3117.4927586206886,0.6093915929113467
+Coverage,Basic,Income,6234.985517241377,0.6093839696154505
+Coverage,Basic,Income,9352.478275862066,0.6093839696154505
+Coverage,Basic,Income,12469.971034482754,0.609376297256438
+Coverage,Basic,Income,15587.463793103443,0.609362867866765
+Coverage,Basic,Income,18704.95655172413,0.6093587978297488
+Coverage,Basic,Income,21822.44931034482,0.6093493784133753
+Coverage,Basic,Income,24939.94206896551,0.6093032728381632
+Coverage,Basic,Income,28057.4348275862,0.6093075112556695
+Coverage,Basic,Income,31174.927586206886,0.6093083129954595
+Coverage,Basic,Income,34292.42034482757,0.6093083129954595
+Coverage,Basic,Income,37409.91310344826,0.6093083129954595
+Coverage,Basic,Income,40527.405862068954,0.6093083129954595
+Coverage,Basic,Income,43644.89862068964,0.6093083129954595
+Coverage,Basic,Income,46762.39137931033,0.60929730842551
+Coverage,Basic,Income,49879.88413793102,0.6092984183219136
+Coverage,Basic,Income,52997.37689655171,0.6092984183219136
+Coverage,Basic,Income,56114.8696551724,0.6092984183219136
+Coverage,Basic,Income,59232.36241379308,0.6092963588332319
+Coverage,Basic,Income,62349.85517241377,0.6092963588332319
+Coverage,Basic,Income,65467.34793103446,0.6092963588332319
+Coverage,Basic,Income,68584.84068965515,0.6092864116159948
+Coverage,Basic,Income,71702.33344827584,0.6092996172924595
+Coverage,Basic,Income,74819.82620689653,0.6093137838976977
+Coverage,Basic,Income,77937.31896551722,0.609307890622662
+Coverage,Basic,Income,81054.81172413791,0.60931491449583
+Coverage,Basic,Income,84172.3044827586,0.6092945621837407
+Coverage,Basic,Income,87289.79724137927,0.6092945621837407
+Coverage,Basic,Income,90407.28999999996,0.6093277385255061
+Coverage,Extended,Income,0.0,0.30020720690420993
+Coverage,Extended,Income,3117.4927586206886,0.30020720690420993
+Coverage,Extended,Income,6234.985517241377,0.3002087689085299
+Coverage,Extended,Income,9352.478275862066,0.3002087689085299
+Coverage,Extended,Income,12469.971034482754,0.300208135074118
+Coverage,Extended,Income,15587.463793103443,0.3002095971448535
+Coverage,Extended,Income,18704.95655172413,0.30020983387235867
+Coverage,Extended,Income,21822.44931034482,0.3002127760300698
+Coverage,Extended,Income,24939.94206896551,0.3002017799092583
+Coverage,Extended,Income,28057.4348275862,0.3002022330080463
+Coverage,Extended,Income,31174.927586206886,0.30020625509736587
+Coverage,Extended,Income,34292.42034482757,0.30020625509736587
+Coverage,Extended,Income,37409.91310344826,0.30020625509736587
+Coverage,Extended,Income,40527.405862068954,0.30020625509736587
+Coverage,Extended,Income,43644.89862068964,0.30020625509736587
+Coverage,Extended,Income,46762.39137931033,0.3002054899423331
+Coverage,Extended,Income,49879.88413793102,0.3002038682271346
+Coverage,Extended,Income,52997.37689655171,0.3002038682271346
+Coverage,Extended,Income,56114.8696551724,0.3002038682271346
+Coverage,Extended,Income,59232.36241379308,0.30020451286126787
+Coverage,Extended,Income,62349.85517241377,0.30020451286126787
+Coverage,Extended,Income,65467.34793103446,0.30020451286126787
+Coverage,Extended,Income,68584.84068965515,0.3002040384883797
+Coverage,Extended,Income,71702.33344827584,0.30020586048684195
+Coverage,Extended,Income,74819.82620689653,0.300204992119137
+Coverage,Extended,Income,77937.31896551722,0.3001992249060915
+Coverage,Extended,Income,81054.81172413791,0.30020310228896513
+Coverage,Extended,Income,84172.3044827586,0.3002059244327394
+Coverage,Extended,Income,87289.79724137927,0.3002059244327394
+Coverage,Extended,Income,90407.28999999996,0.30020129786239813
+Coverage,Premium,Income,0.0,0.09040120018444392
+Coverage,Premium,Income,3117.4927586206886,0.09040120018444392
+Coverage,Premium,Income,6234.985517241377,0.09040726147602093
+Coverage,Premium,Income,9352.478275862066,0.09040726147602093
+Coverage,Premium,Income,12469.971034482754,0.09041556766944327
+Coverage,Premium,Income,15587.463793103443,0.0904275349883804
+Coverage,Premium,Income,18704.95655172413,0.09043136829789222
+Coverage,Premium,Income,21822.44931034482,0.0904378455565564
+Coverage,Premium,Income,24939.94206896551,0.09049494725257802
+Coverage,Premium,Income,28057.4348275862,0.09049025573628276
+Coverage,Premium,Income,31174.927586206886,0.0904854319071738
+Coverage,Premium,Income,34292.42034482757,0.0904854319071738
+Coverage,Premium,Income,37409.91310344826,0.0904854319071738
+Coverage,Premium,Income,40527.405862068954,0.0904854319071738
+Coverage,Premium,Income,43644.89862068964,0.0904854319071738
+Coverage,Premium,Income,46762.39137931033,0.09049720163215555
+Coverage,Premium,Income,49879.88413793102,0.09049771345095393
+Coverage,Premium,Income,52997.37689655171,0.09049771345095393
+Coverage,Premium,Income,56114.8696551724,0.09049771345095393
+Coverage,Premium,Income,59232.36241379308,0.09049912830550316
+Coverage,Premium,Income,62349.85517241377,0.09049912830550316
+Coverage,Premium,Income,65467.34793103446,0.09049912830550316
+Coverage,Premium,Income,68584.84068965515,0.0905095498956278
+Coverage,Premium,Income,71702.33344827584,0.09049452222070184
+Coverage,Premium,Income,74819.82620689653,0.0904812239831671
+Coverage,Premium,Income,77937.31896551722,0.0904928844712469
+Coverage,Premium,Income,81054.81172413791,0.0904819832152099
+Coverage,Premium,Income,84172.3044827586,0.09049951338351817
+Coverage,Premium,Income,87289.79724137927,0.09049951338351817
+Coverage,Premium,Income,90407.28999999996,0.0904709636120957
+Coverage,Basic,Monthly Premium Auto,62.0,0.999790358300368
+Coverage,Basic,Monthly Premium Auto,65.51344827586205,0.999790358300368
+Coverage,Basic,Monthly Premium Auto,69.02689655172409,0.999790358300368
+Coverage,Basic,Monthly Premium Auto,72.54034482758615,0.999790358300368
+Coverage,Basic,Monthly Premium Auto,76.0537931034482,0.005022467883818415
+Coverage,Basic,Monthly Premium Auto,79.56724137931025,0.005022467883818415
+Coverage,Basic,Monthly Premium Auto,83.08068965517229,0.005022467883818415
+Coverage,Basic,Monthly Premium Auto,86.59413793103434,0.005022467883818415
+Coverage,Basic,Monthly Premium Auto,90.1075862068964,0.005022467883818415
+Coverage,Basic,Monthly Premium Auto,93.62103448275845,0.005022467883818415
+Coverage,Basic,Monthly Premium Auto,97.13448275862049,0.005022467883818415
+Coverage,Basic,Monthly Premium Auto,100.64793103448254,0.2978938040081805
+Coverage,Basic,Monthly Premium Auto,104.16137931034459,0.2978938040081805
+Coverage,Basic,Monthly Premium Auto,107.67482758620665,0.2978938040081805
+Coverage,Basic,Monthly Premium Auto,111.18827586206868,0.2978938040081805
+Coverage,Basic,Monthly Premium Auto,114.70172413793074,0.2978938040081805
+Coverage,Basic,Monthly Premium Auto,118.21517241379279,0.2978938040081805
+Coverage,Basic,Monthly Premium Auto,121.72862068965483,0.0005422333292668914
+Coverage,Basic,Monthly Premium Auto,125.24206896551689,0.0005422333292668914
+Coverage,Basic,Monthly Premium Auto,128.75551724137893,0.0005422333292668914
+Coverage,Basic,Monthly Premium Auto,132.26896551724099,0.0005422333292668914
+Coverage,Basic,Monthly Premium Auto,135.78241379310305,0.0005422333292668914
+Coverage,Basic,Monthly Premium Auto,139.29586206896508,0.0005422333292668914
+Coverage,Basic,Monthly Premium Auto,142.8093103448271,0.02237645106877709
+Coverage,Basic,Monthly Premium Auto,146.32275862068917,0.02237645106877709
+Coverage,Basic,Monthly Premium Auto,149.83620689655123,0.02237645106877709
+Coverage,Basic,Monthly Premium Auto,153.3496551724133,0.02237645106877709
+Coverage,Basic,Monthly Premium Auto,156.86310344827533,0.02237645106877709
+Coverage,Basic,Monthly Premium Auto,160.37655172413736,0.02237645106877709
+Coverage,Basic,Monthly Premium Auto,163.88999999999942,0.02237645106877709
+Coverage,Extended,Monthly Premium Auto,62.0,9.635556472471864e-05
+Coverage,Extended,Monthly Premium Auto,65.51344827586205,9.635556472471864e-05
+Coverage,Extended,Monthly Premium Auto,69.02689655172409,9.635556472471864e-05
+Coverage,Extended,Monthly Premium Auto,72.54034482758615,9.635556472471864e-05
+Coverage,Extended,Monthly Premium Auto,76.0537931034482,0.9949318123191112
+Coverage,Extended,Monthly Premium Auto,79.56724137931025,0.9949318123191112
+Coverage,Extended,Monthly Premium Auto,83.08068965517229,0.9949318123191112
+Coverage,Extended,Monthly Premium Auto,86.59413793103434,0.9949318123191112
+Coverage,Extended,Monthly Premium Auto,90.1075862068964,0.9949318123191112
+Coverage,Extended,Monthly Premium Auto,93.62103448275845,0.9949318123191112
+Coverage,Extended,Monthly Premium Auto,97.13448275862049,0.9949318123191112
+Coverage,Extended,Monthly Premium Auto,100.64793103448254,0.0003964411992525805
+Coverage,Extended,Monthly Premium Auto,104.16137931034459,0.0003964411992525805
+Coverage,Extended,Monthly Premium Auto,107.67482758620665,0.0003964411992525805
+Coverage,Extended,Monthly Premium Auto,111.18827586206868,0.0003964411992525805
+Coverage,Extended,Monthly Premium Auto,114.70172413793074,0.0003964411992525805
+Coverage,Extended,Monthly Premium Auto,118.21517241379279,0.0003964411992525805
+Coverage,Extended,Monthly Premium Auto,121.72862068965483,0.9576781696378558
+Coverage,Extended,Monthly Premium Auto,125.24206896551689,0.9576781696378558
+Coverage,Extended,Monthly Premium Auto,128.75551724137893,0.9576781696378558
+Coverage,Extended,Monthly Premium Auto,132.26896551724099,0.9576781696378558
+Coverage,Extended,Monthly Premium Auto,135.78241379310305,0.9576781696378558
+Coverage,Extended,Monthly Premium Auto,139.29586206896508,0.9576781696378558
+Coverage,Extended,Monthly Premium Auto,142.8093103448271,0.00017846673544439796
+Coverage,Extended,Monthly Premium Auto,146.32275862068917,0.00017846673544439796
+Coverage,Extended,Monthly Premium Auto,149.83620689655123,0.00017846673544439796
+Coverage,Extended,Monthly Premium Auto,153.3496551724133,0.00017846673544439796
+Coverage,Extended,Monthly Premium Auto,156.86310344827533,0.00017846673544439796
+Coverage,Extended,Monthly Premium Auto,160.37655172413736,0.00017846673544439796
+Coverage,Extended,Monthly Premium Auto,163.88999999999942,0.00017846673544439796
+Coverage,Premium,Monthly Premium Auto,62.0,0.000113286134906389
+Coverage,Premium,Monthly Premium Auto,65.51344827586205,0.000113286134906389
+Coverage,Premium,Monthly Premium Auto,69.02689655172409,0.000113286134906389
+Coverage,Premium,Monthly Premium Auto,72.54034482758615,0.000113286134906389
+Coverage,Premium,Monthly Premium Auto,76.0537931034482,4.571979707041471e-05
+Coverage,Premium,Monthly Premium Auto,79.56724137931025,4.571979707041471e-05
+Coverage,Premium,Monthly Premium Auto,83.08068965517229,4.571979707041471e-05
+Coverage,Premium,Monthly Premium Auto,86.59413793103434,4.571979707041471e-05
+Coverage,Premium,Monthly Premium Auto,90.1075862068964,4.571979707041471e-05
+Coverage,Premium,Monthly Premium Auto,93.62103448275845,4.571979707041471e-05
+Coverage,Premium,Monthly Premium Auto,97.13448275862049,4.571979707041471e-05
+Coverage,Premium,Monthly Premium Auto,100.64793103448254,0.7017097547925688
+Coverage,Premium,Monthly Premium Auto,104.16137931034459,0.7017097547925688
+Coverage,Premium,Monthly Premium Auto,107.67482758620665,0.7017097547925688
+Coverage,Premium,Monthly Premium Auto,111.18827586206868,0.7017097547925688
+Coverage,Premium,Monthly Premium Auto,114.70172413793074,0.7017097547925688
+Coverage,Premium,Monthly Premium Auto,118.21517241379279,0.7017097547925688
+Coverage,Premium,Monthly Premium Auto,121.72862068965483,0.04177959703287616
+Coverage,Premium,Monthly Premium Auto,125.24206896551689,0.04177959703287616
+Coverage,Premium,Monthly Premium Auto,128.75551724137893,0.04177959703287616
+Coverage,Premium,Monthly Premium Auto,132.26896551724099,0.04177959703287616
+Coverage,Premium,Monthly Premium Auto,135.78241379310305,0.04177959703287616
+Coverage,Premium,Monthly Premium Auto,139.29586206896508,0.04177959703287616
+Coverage,Premium,Monthly Premium Auto,142.8093103448271,0.9774450821957773
+Coverage,Premium,Monthly Premium Auto,146.32275862068917,0.9774450821957773
+Coverage,Premium,Monthly Premium Auto,149.83620689655123,0.9774450821957773
+Coverage,Premium,Monthly Premium Auto,153.3496551724133,0.9774450821957773
+Coverage,Premium,Monthly Premium Auto,156.86310344827533,0.9774450821957773
+Coverage,Premium,Monthly Premium Auto,160.37655172413736,0.9774450821957773
+Coverage,Premium,Monthly Premium Auto,163.88999999999942,0.9774450821957773
+Coverage,Basic,Months Since Last Claim,1.0,0.6093777110176708
+Coverage,Basic,Months Since Last Claim,2.103448275862069,0.6093777110176708
+Coverage,Basic,Months Since Last Claim,3.206896551724138,0.6093668377277162
+Coverage,Basic,Months Since Last Claim,4.310344827586206,0.6093541315705255
+Coverage,Basic,Months Since Last Claim,5.413793103448276,0.6093512468693427
+Coverage,Basic,Months Since Last Claim,6.517241379310345,0.6093551838918037
+Coverage,Basic,Months Since Last Claim,7.620689655172414,0.6093551838918037
+Coverage,Basic,Months Since Last Claim,8.724137931034482,0.6093551838918037
+Coverage,Basic,Months Since Last Claim,9.827586206896552,0.6093551838918037
+Coverage,Basic,Months Since Last Claim,10.931034482758621,0.6093415240321792
+Coverage,Basic,Months Since Last Claim,12.03448275862069,0.6093415240321792
+Coverage,Basic,Months Since Last Claim,13.137931034482758,0.6093415240321792
+Coverage,Basic,Months Since Last Claim,14.241379310344827,0.6093507104130416
+Coverage,Basic,Months Since Last Claim,15.344827586206897,0.6093485596701355
+Coverage,Basic,Months Since Last Claim,16.448275862068964,0.6093485596701355
+Coverage,Basic,Months Since Last Claim,17.551724137931036,0.6093485596701355
+Coverage,Basic,Months Since Last Claim,18.655172413793103,0.6093507328501231
+Coverage,Basic,Months Since Last Claim,19.75862068965517,0.6093452888250505
+Coverage,Basic,Months Since Last Claim,20.862068965517242,0.6093447820892354
+Coverage,Basic,Months Since Last Claim,21.96551724137931,0.6093227351376204
+Coverage,Basic,Months Since Last Claim,23.06896551724138,0.6093227351376204
+Coverage,Basic,Months Since Last Claim,24.17241379310345,0.6093227351376204
+Coverage,Basic,Months Since Last Claim,25.275862068965516,0.6093227351376204
+Coverage,Basic,Months Since Last Claim,26.379310344827587,0.6093227351376204
+Coverage,Basic,Months Since Last Claim,27.482758620689655,0.6093227351376204
+Coverage,Basic,Months Since Last Claim,28.586206896551722,0.6093227351376204
+Coverage,Basic,Months Since Last Claim,29.689655172413794,0.6093227351376204
+Coverage,Basic,Months Since Last Claim,30.79310344827586,0.6093227351376204
+Coverage,Basic,Months Since Last Claim,31.89655172413793,0.6093227351376204
+Coverage,Basic,Months Since Last Claim,33.0,0.609289009197525
+Coverage,Extended,Months Since Last Claim,1.0,0.30020638987068804
+Coverage,Extended,Months Since Last Claim,2.103448275862069,0.30020638987068804
+Coverage,Extended,Months Since Last Claim,3.206896551724138,0.3002057641573737
+Coverage,Extended,Months Since Last Claim,4.310344827586206,0.30020757246433183
+Coverage,Extended,Months Since Last Claim,5.413793103448276,0.30020515994660707
+Coverage,Extended,Months Since Last Claim,6.517241379310345,0.30020581278883623
+Coverage,Extended,Months Since Last Claim,7.620689655172414,0.30020581278883623
+Coverage,Extended,Months Since Last Claim,8.724137931034482,0.30020581278883623
+Coverage,Extended,Months Since Last Claim,9.827586206896552,0.30020581278883623
+Coverage,Extended,Months Since Last Claim,10.931034482758621,0.300206341993703
+Coverage,Extended,Months Since Last Claim,12.03448275862069,0.300206341993703
+Coverage,Extended,Months Since Last Claim,13.137931034482758,0.300206341993703
+Coverage,Extended,Months Since Last Claim,14.241379310344827,0.3002054075553432
+Coverage,Extended,Months Since Last Claim,15.344827586206897,0.30020517098062194
+Coverage,Extended,Months Since Last Claim,16.448275862068964,0.30020517098062194
+Coverage,Extended,Months Since Last Claim,17.551724137931036,0.30020517098062194
+Coverage,Extended,Months Since Last Claim,18.655172413793103,0.300204865344826
+Coverage,Extended,Months Since Last Claim,19.75862068965517,0.3002045425188194
+Coverage,Extended,Months Since Last Claim,20.862068965517242,0.30020579157272737
+Coverage,Extended,Months Since Last Claim,21.96551724137931,0.3002066983625013
+Coverage,Extended,Months Since Last Claim,23.06896551724138,0.3002066983625013
+Coverage,Extended,Months Since Last Claim,24.17241379310345,0.3002066983625013
+Coverage,Extended,Months Since Last Claim,25.275862068965516,0.3002066983625013
+Coverage,Extended,Months Since Last Claim,26.379310344827587,0.3002066983625013
+Coverage,Extended,Months Since Last Claim,27.482758620689655,0.3002066983625013
+Coverage,Extended,Months Since Last Claim,28.586206896551722,0.3002066983625013
+Coverage,Extended,Months Since Last Claim,29.689655172413794,0.3002066983625013
+Coverage,Extended,Months Since Last Claim,30.79310344827586,0.3002066983625013
+Coverage,Extended,Months Since Last Claim,31.89655172413793,0.3002066983625013
+Coverage,Extended,Months Since Last Claim,33.0,0.30020624429361165
+Coverage,Premium,Months Since Last Claim,1.0,0.0904158991116421
+Coverage,Premium,Months Since Last Claim,2.103448275862069,0.0904158991116421
+Coverage,Premium,Months Since Last Claim,3.206896551724138,0.09042739811491363
+Coverage,Premium,Months Since Last Claim,4.310344827586206,0.09043829596514595
+Coverage,Premium,Months Since Last Claim,5.413793103448276,0.09044359318405165
+Coverage,Premium,Months Since Last Claim,6.517241379310345,0.0904390033193649
+Coverage,Premium,Months Since Last Claim,7.620689655172414,0.0904390033193649
+Coverage,Premium,Months Since Last Claim,8.724137931034482,0.0904390033193649
+Coverage,Premium,Months Since Last Claim,9.827586206896552,0.0904390033193649
+Coverage,Premium,Months Since Last Claim,10.931034482758621,0.09045213397412208
+Coverage,Premium,Months Since Last Claim,12.03448275862069,0.09045213397412208
+Coverage,Premium,Months Since Last Claim,13.137931034482758,0.09045213397412208
+Coverage,Premium,Months Since Last Claim,14.241379310344827,0.09044388203161977
+Coverage,Premium,Months Since Last Claim,15.344827586206897,0.09044626934924542
+Coverage,Premium,Months Since Last Claim,16.448275862068964,0.09044626934924542
+Coverage,Premium,Months Since Last Claim,17.551724137931036,0.09044626934924542
+Coverage,Premium,Months Since Last Claim,18.655172413793103,0.09044440180505545
+Coverage,Premium,Months Since Last Claim,19.75862068965517,0.09045016865613534
+Coverage,Premium,Months Since Last Claim,20.862068965517242,0.0904494263380383
+Coverage,Premium,Months Since Last Claim,21.96551724137931,0.09047056649987889
+Coverage,Premium,Months Since Last Claim,23.06896551724138,0.09047056649987889
+Coverage,Premium,Months Since Last Claim,24.17241379310345,0.09047056649987889
+Coverage,Premium,Months Since Last Claim,25.275862068965516,0.09047056649987889
+Coverage,Premium,Months Since Last Claim,26.379310344827587,0.09047056649987889
+Coverage,Premium,Months Since Last Claim,27.482758620689655,0.09047056649987889
+Coverage,Premium,Months Since Last Claim,28.586206896551722,0.09047056649987889
+Coverage,Premium,Months Since Last Claim,29.689655172413794,0.09047056649987889
+Coverage,Premium,Months Since Last Claim,30.79310344827586,0.09047056649987889
+Coverage,Premium,Months Since Last Claim,31.89655172413793,0.09047056649987889
+Coverage,Premium,Months Since Last Claim,33.0,0.09050474650886385
+Coverage,Basic,Months Since Policy Inception,4.0,0.6093555566482532
+Coverage,Basic,Months Since Policy Inception,7.068965517241379,0.6093666395007824
+Coverage,Basic,Months Since Policy Inception,10.137931034482758,0.609357055936708
+Coverage,Basic,Months Since Policy Inception,13.206896551724139,0.609357055936708
+Coverage,Basic,Months Since Policy Inception,16.275862068965516,0.6093330384867142
+Coverage,Basic,Months Since Policy Inception,19.344827586206897,0.6093403866604306
+Coverage,Basic,Months Since Policy Inception,22.413793103448278,0.6093403866604306
+Coverage,Basic,Months Since Policy Inception,25.482758620689655,0.6093507223070375
+Coverage,Basic,Months Since Policy Inception,28.551724137931036,0.6093507223070375
+Coverage,Basic,Months Since Policy Inception,31.620689655172416,0.6093462880881797
+Coverage,Basic,Months Since Policy Inception,34.689655172413794,0.6093383075571601
+Coverage,Basic,Months Since Policy Inception,37.758620689655174,0.6093449063094339
+Coverage,Basic,Months Since Policy Inception,40.827586206896555,0.6093449063094339
+Coverage,Basic,Months Since Policy Inception,43.896551724137936,0.6093449063094339
+Coverage,Basic,Months Since Policy Inception,46.96551724137931,0.6093449063094339
+Coverage,Basic,Months Since Policy Inception,50.03448275862069,0.6093424308733021
+Coverage,Basic,Months Since Policy Inception,53.10344827586207,0.609347222848792
+Coverage,Basic,Months Since Policy Inception,56.17241379310345,0.6093494459834845
+Coverage,Basic,Months Since Policy Inception,59.24137931034483,0.6093751330583981
+Coverage,Basic,Months Since Policy Inception,62.310344827586206,0.6093552401369499
+Coverage,Basic,Months Since Policy Inception,65.37931034482759,0.6093552401369499
+Coverage,Basic,Months Since Policy Inception,68.44827586206897,0.6093530216160451
+Coverage,Basic,Months Since Policy Inception,71.51724137931035,0.6093462870323487
+Coverage,Basic,Months Since Policy Inception,74.58620689655173,0.6093328035918925
+Coverage,Basic,Months Since Policy Inception,77.65517241379311,0.6093328035918925
+Coverage,Basic,Months Since Policy Inception,80.72413793103449,0.6093328035918925
+Coverage,Basic,Months Since Policy Inception,83.79310344827587,0.6093328035918925
+Coverage,Basic,Months Since Policy Inception,86.86206896551724,0.6093335168482158
+Coverage,Basic,Months Since Policy Inception,89.93103448275862,0.609331775083735
+Coverage,Basic,Months Since Policy Inception,93.0,0.6093310287681194
+Coverage,Extended,Months Since Policy Inception,4.0,0.30020800047832014
+Coverage,Extended,Months Since Policy Inception,7.068965517241379,0.3002028567352695
+Coverage,Extended,Months Since Policy Inception,10.137931034482758,0.3002046464037445
+Coverage,Extended,Months Since Policy Inception,13.206896551724139,0.3002046464037445
+Coverage,Extended,Months Since Policy Inception,16.275862068965516,0.30020658335057243
+Coverage,Extended,Months Since Policy Inception,19.344827586206897,0.3002059104444292
+Coverage,Extended,Months Since Policy Inception,22.413793103448278,0.3002059104444292
+Coverage,Extended,Months Since Policy Inception,25.482758620689655,0.300205340585731
+Coverage,Extended,Months Since Policy Inception,28.551724137931036,0.300205340585731
+Coverage,Extended,Months Since Policy Inception,31.620689655172416,0.30020581346275965
+Coverage,Extended,Months Since Policy Inception,34.689655172413794,0.30020544360458407
+Coverage,Extended,Months Since Policy Inception,37.758620689655174,0.30020574793210475
+Coverage,Extended,Months Since Policy Inception,40.827586206896555,0.30020574793210475
+Coverage,Extended,Months Since Policy Inception,43.896551724137936,0.30020574793210475
+Coverage,Extended,Months Since Policy Inception,46.96551724137931,0.30020574793210475
+Coverage,Extended,Months Since Policy Inception,50.03448275862069,0.3002061920251869
+Coverage,Extended,Months Since Policy Inception,53.10344827586207,0.3002065945678463
+Coverage,Extended,Months Since Policy Inception,56.17241379310345,0.3002067017079409
+Coverage,Extended,Months Since Policy Inception,59.24137931034483,0.30020878687083125
+Coverage,Extended,Months Since Policy Inception,62.310344827586206,0.3002071690858381
+Coverage,Extended,Months Since Policy Inception,65.37931034482759,0.3002071690858381
+Coverage,Extended,Months Since Policy Inception,68.44827586206897,0.3002070067299152
+Coverage,Extended,Months Since Policy Inception,71.51724137931035,0.3002064368784288
+Coverage,Extended,Months Since Policy Inception,74.58620689655173,0.30020528236279903
+Coverage,Extended,Months Since Policy Inception,77.65517241379311,0.30020528236279903
+Coverage,Extended,Months Since Policy Inception,80.72413793103449,0.30020528236279903
+Coverage,Extended,Months Since Policy Inception,83.79310344827587,0.30020528236279903
+Coverage,Extended,Months Since Policy Inception,86.86206896551724,0.3002042841929794
+Coverage,Extended,Months Since Policy Inception,89.93103448275862,0.30020391485224845
+Coverage,Extended,Months Since Policy Inception,93.0,0.30020495605710273
+Coverage,Premium,Months Since Policy Inception,4.0,0.09043644287342689
+Coverage,Premium,Months Since Policy Inception,7.068965517241379,0.09043050376394697
+Coverage,Premium,Months Since Policy Inception,10.137931034482758,0.09043829765954521
+Coverage,Premium,Months Since Policy Inception,13.206896551724139,0.09043829765954521
+Coverage,Premium,Months Since Policy Inception,16.275862068965516,0.0904603781627185
+Coverage,Premium,Months Since Policy Inception,19.344827586206897,0.09045370289514562
+Coverage,Premium,Months Since Policy Inception,22.413793103448278,0.09045370289514562
+Coverage,Premium,Months Since Policy Inception,25.482758620689655,0.09044393710723306
+Coverage,Premium,Months Since Policy Inception,28.551724137931036,0.09044393710723306
+Coverage,Premium,Months Since Policy Inception,31.620689655172416,0.09044789844906241
+Coverage,Premium,Months Since Policy Inception,34.689655172413794,0.09045624883825693
+Coverage,Premium,Months Since Policy Inception,37.758620689655174,0.09044934575846296
+Coverage,Premium,Months Since Policy Inception,40.827586206896555,0.09044934575846296
+Coverage,Premium,Months Since Policy Inception,43.896551724137936,0.09044934575846296
+Coverage,Premium,Months Since Policy Inception,46.96551724137931,0.09044934575846296
+Coverage,Premium,Months Since Policy Inception,50.03448275862069,0.09045137710151258
+Coverage,Premium,Months Since Policy Inception,53.10344827586207,0.09044618258336269
+Coverage,Premium,Months Since Policy Inception,56.17241379310345,0.09044385230857437
+Coverage,Premium,Months Since Policy Inception,59.24137931034483,0.09041608007076819
+Coverage,Premium,Months Since Policy Inception,62.310344827586206,0.09043759077721265
+Coverage,Premium,Months Since Policy Inception,65.37931034482759,0.09043759077721265
+Coverage,Premium,Months Since Policy Inception,68.44827586206897,0.09043997165404188
+Coverage,Premium,Months Since Policy Inception,71.51724137931035,0.0904472760892271
+Coverage,Premium,Months Since Policy Inception,74.58620689655173,0.09046191404531041
+Coverage,Premium,Months Since Policy Inception,77.65517241379311,0.09046191404531041
+Coverage,Premium,Months Since Policy Inception,80.72413793103449,0.09046191404531041
+Coverage,Premium,Months Since Policy Inception,83.79310344827587,0.09046191404531041
+Coverage,Premium,Months Since Policy Inception,86.86206896551724,0.0904621989588064
+Coverage,Premium,Months Since Policy Inception,89.93103448275862,0.09046431006401714
+Coverage,Premium,Months Since Policy Inception,93.0,0.09046401517477656
+Coverage,Basic,Number of Open Complaints,0,0.6093444947480762
+Coverage,Basic,Number of Open Complaints,1,0.6093441249715184
+Coverage,Basic,Number of Open Complaints,2,0.6093440838361764
+Coverage,Basic,Number of Open Complaints,3,0.6093429917784123
+Coverage,Basic,Number of Open Complaints,4,0.6093429917784123
+Coverage,Basic,Number of Open Complaints,5,0.6093429917784123
+Coverage,Extended,Number of Open Complaints,0,0.30020557650168317
+Coverage,Extended,Number of Open Complaints,1,0.3002061167456125
+Coverage,Extended,Number of Open Complaints,2,0.3002061692364967
+Coverage,Extended,Number of Open Complaints,3,0.30020771527153045
+Coverage,Extended,Number of Open Complaints,4,0.30020771527153045
+Coverage,Extended,Number of Open Complaints,5,0.30020771527153045
+Coverage,Premium,Number of Open Complaints,0,0.09044992875024242
+Coverage,Premium,Number of Open Complaints,1,0.09044975828287156
+Coverage,Premium,Number of Open Complaints,2,0.09044974692732861
+Coverage,Premium,Number of Open Complaints,3,0.0904492929500607
+Coverage,Premium,Number of Open Complaints,4,0.0904492929500607
+Coverage,Premium,Number of Open Complaints,5,0.0904492929500607
+Coverage,Basic,Number of Policies,1,0.6089264615180947
+Coverage,Basic,Number of Policies,2,0.60954612847608
+Coverage,Basic,Number of Policies,3,0.6094022976112441
+Coverage,Basic,Number of Policies,4,0.6094022976112441
+Coverage,Basic,Number of Policies,5,0.6094022976112441
+Coverage,Basic,Number of Policies,6,0.6094021184486508
+Coverage,Basic,Number of Policies,7,0.6094021184486508
+Coverage,Basic,Number of Policies,8,0.609382930282324
+Coverage,Basic,Number of Policies,9,0.609382930282324
+Coverage,Extended,Number of Policies,1,0.3002350374967845
+Coverage,Extended,Number of Policies,2,0.3001898243814651
+Coverage,Extended,Number of Policies,3,0.30020327697286225
+Coverage,Extended,Number of Policies,4,0.30020327697286225
+Coverage,Extended,Number of Policies,5,0.30020327697286225
+Coverage,Extended,Number of Policies,6,0.3002035012532234
+Coverage,Extended,Number of Policies,7,0.3002035012532234
+Coverage,Extended,Number of Policies,8,0.3002048489325688
+Coverage,Extended,Number of Policies,9,0.3002048489325688
+Coverage,Premium,Number of Policies,1,0.09083850098512268
+Coverage,Premium,Number of Policies,2,0.09026404714245281
+Coverage,Premium,Number of Policies,3,0.09039442541589479
+Coverage,Premium,Number of Policies,4,0.09039442541589479
+Coverage,Premium,Number of Policies,5,0.09039442541589479
+Coverage,Premium,Number of Policies,6,0.09039438029812787
+Coverage,Premium,Number of Policies,7,0.09039438029812787
+Coverage,Premium,Number of Policies,8,0.09041222078510809
+Coverage,Premium,Number of Policies,9,0.09041222078510809
+Coverage,Basic,Total Claim Amount,52.145502440000016,0.6096849795295951
+Coverage,Basic,Total Claim Amount,83.45480921793106,0.6096849795295951
+Coverage,Basic,Total Claim Amount,114.76411599586208,0.6096849795295951
+Coverage,Basic,Total Claim Amount,146.07342277379314,0.6096849795295951
+Coverage,Basic,Total Claim Amount,177.38272955172414,0.6096849795295951
+Coverage,Basic,Total Claim Amount,208.6920363296552,0.6096759442186577
+Coverage,Basic,Total Claim Amount,240.00134310758625,0.6096759442186577
+Coverage,Basic,Total Claim Amount,271.31064988551725,0.609752250715714
+Coverage,Basic,Total Claim Amount,302.6199566634483,0.6098693885524105
+Coverage,Basic,Total Claim Amount,333.92926344137936,0.6098344181135066
+Coverage,Basic,Total Claim Amount,365.23857021931036,0.6096195711279515
+Coverage,Basic,Total Claim Amount,396.5478769972414,0.6096195711279515
+Coverage,Basic,Total Claim Amount,427.8571837751725,0.6096140034512821
+Coverage,Basic,Total Claim Amount,459.1664905531035,0.6096140034512821
+Coverage,Basic,Total Claim Amount,490.4757973310345,0.609467568675966
+Coverage,Basic,Total Claim Amount,521.7851041089655,0.6095007960722698
+Coverage,Basic,Total Claim Amount,553.0944108868965,0.6094874673714269
+Coverage,Basic,Total Claim Amount,584.4037176648276,0.6093309403518622
+Coverage,Basic,Total Claim Amount,615.7130244427586,0.6093392052570014
+Coverage,Basic,Total Claim Amount,647.0223312206896,0.6093392052570014
+Coverage,Basic,Total Claim Amount,678.3316379986206,0.6092934947050825
+Coverage,Basic,Total Claim Amount,709.6409447765517,0.609278952733556
+Coverage,Basic,Total Claim Amount,740.9502515544827,0.6091343755761268
+Coverage,Basic,Total Claim Amount,772.2595583324138,0.6091343755761268
+Coverage,Basic,Total Claim Amount,803.5688651103449,0.6091118866624091
+Coverage,Basic,Total Claim Amount,834.8781718882758,0.6091118866624091
+Coverage,Basic,Total Claim Amount,866.1874786662069,0.6088403072937579
+Coverage,Basic,Total Claim Amount,897.4967854441379,0.6088403072937579
+Coverage,Basic,Total Claim Amount,928.806092222069,0.6088403072937579
+Coverage,Basic,Total Claim Amount,960.115399,0.6088076927591476
+Coverage,Extended,Total Claim Amount,52.145502440000016,0.30019400161997695
+Coverage,Extended,Total Claim Amount,83.45480921793106,0.30019400161997695
+Coverage,Extended,Total Claim Amount,114.76411599586208,0.30019400161997695
+Coverage,Extended,Total Claim Amount,146.07342277379314,0.30019400161997695
+Coverage,Extended,Total Claim Amount,177.38272955172414,0.30019400161997695
+Coverage,Extended,Total Claim Amount,208.6920363296552,0.3001933418711187
+Coverage,Extended,Total Claim Amount,240.00134310758625,0.3001933418711187
+Coverage,Extended,Total Claim Amount,271.31064988551725,0.3001998376309245
+Coverage,Extended,Total Claim Amount,302.6199566634483,0.30018327305364184
+Coverage,Extended,Total Claim Amount,333.92926344137936,0.30018730552380424
+Coverage,Extended,Total Claim Amount,365.23857021931036,0.3002412910698132
+Coverage,Extended,Total Claim Amount,396.5478769972414,0.3002412910698132
+Coverage,Extended,Total Claim Amount,427.8571837751725,0.3002410528400734
+Coverage,Extended,Total Claim Amount,459.1664905531035,0.3002410528400734
+Coverage,Extended,Total Claim Amount,490.4757973310345,0.30017778544682894
+Coverage,Extended,Total Claim Amount,521.7851041089655,0.3001786402598415
+Coverage,Extended,Total Claim Amount,553.0944108868965,0.3001849606532692
+Coverage,Extended,Total Claim Amount,584.4037176648276,0.30027760761828687
+Coverage,Extended,Total Claim Amount,615.7130244427586,0.3002761379424782
+Coverage,Extended,Total Claim Amount,647.0223312206896,0.3002761379424782
+Coverage,Extended,Total Claim Amount,678.3316379986206,0.3002394594906973
+Coverage,Extended,Total Claim Amount,709.6409447765517,0.3002381999945776
+Coverage,Extended,Total Claim Amount,740.9502515544827,0.3001609617511828
+Coverage,Extended,Total Claim Amount,772.2595583324138,0.3001609617511828
+Coverage,Extended,Total Claim Amount,803.5688651103449,0.3001596457392047
+Coverage,Extended,Total Claim Amount,834.8781718882758,0.3001596457392047
+Coverage,Extended,Total Claim Amount,866.1874786662069,0.30023101152319187
+Coverage,Extended,Total Claim Amount,897.4967854441379,0.30023101152319187
+Coverage,Extended,Total Claim Amount,928.806092222069,0.30023101152319187
+Coverage,Extended,Total Claim Amount,960.115399,0.30023412842432146
+Coverage,Premium,Total Claim Amount,52.145502440000016,0.09012101885042709
+Coverage,Premium,Total Claim Amount,83.45480921793106,0.09012101885042709
+Coverage,Premium,Total Claim Amount,114.76411599586208,0.09012101885042709
+Coverage,Premium,Total Claim Amount,146.07342277379314,0.09012101885042709
+Coverage,Premium,Total Claim Amount,177.38272955172414,0.09012101885042709
+Coverage,Premium,Total Claim Amount,208.6920363296552,0.0901307139102251
+Coverage,Premium,Total Claim Amount,240.00134310758625,0.0901307139102251
+Coverage,Premium,Total Claim Amount,271.31064988551725,0.09004791165336241
+Coverage,Premium,Total Claim Amount,302.6199566634483,0.08994733839394828
+Coverage,Premium,Total Claim Amount,333.92926344137936,0.08997827636268912
+Coverage,Premium,Total Claim Amount,365.23857021931036,0.09013913780223606
+Coverage,Premium,Total Claim Amount,396.5478769972414,0.09013913780223606
+Coverage,Premium,Total Claim Amount,427.8571837751725,0.09014494370864558
+Coverage,Premium,Total Claim Amount,459.1664905531035,0.09014494370864558
+Coverage,Premium,Total Claim Amount,490.4757973310345,0.09035464587720665
+Coverage,Premium,Total Claim Amount,521.7851041089655,0.0903205636678901
+Coverage,Premium,Total Claim Amount,553.0944108868965,0.09032757197530278
+Coverage,Premium,Total Claim Amount,584.4037176648276,0.09039145202985772
+Coverage,Premium,Total Claim Amount,615.7130244427586,0.09038465680052517
+Coverage,Premium,Total Claim Amount,647.0223312206896,0.09038465680052517
+Coverage,Premium,Total Claim Amount,678.3316379986206,0.09046704580422238
+Coverage,Premium,Total Claim Amount,709.6409447765517,0.09048284727186963
+Coverage,Premium,Total Claim Amount,740.9502515544827,0.09070466267269052
+Coverage,Premium,Total Claim Amount,772.2595583324138,0.09070466267269052
+Coverage,Premium,Total Claim Amount,803.5688651103449,0.09072846759838325
+Coverage,Premium,Total Claim Amount,834.8781718882758,0.09072846759838325
+Coverage,Premium,Total Claim Amount,866.1874786662069,0.09092868118305002
+Coverage,Premium,Total Claim Amount,897.4967854441379,0.09092868118305002
+Coverage,Premium,Total Claim Amount,928.806092222069,0.09092868118305002
+Coverage,Premium,Total Claim Amount,960.115399,0.09095817881653097
+Churn,False,Education,Bachelor,0.6498545610094715
+Churn,False,Education,College,0.6365209336710699
+Churn,False,Education,Doctor,0.6498545610094715
+Churn,False,Education,High School or Below,0.6250474305588007
+Churn,False,Education,Master,0.6498545610094715
+Churn,True,Education,Bachelor,0.35014543899052847
+Churn,True,Education,College,0.3634790663289301
+Churn,True,Education,Doctor,0.35014543899052847
+Churn,True,Education,High School or Below,0.37495256944119926
+Churn,True,Education,Master,0.35014543899052847
+Churn,False,Vehicle Size,Large,0.6378877596442557
+Churn,False,Vehicle Size,Medsize,0.6378877596442557
+Churn,False,Vehicle Size,Small,0.6423244482965986
+Churn,True,Vehicle Size,Large,0.3621122403557443
+Churn,True,Vehicle Size,Medsize,0.3621122403557443
+Churn,True,Vehicle Size,Small,0.3576755517034013
+Churn,False,State,Arizona,0.6255253887536529
+Churn,False,State,California,0.6912094238431841
+Churn,False,State,Nevada,0.6255253887536529
+Churn,False,State,Oregon,0.592518303342568
+Churn,False,State,Washington,0.6255253887536529
+Churn,True,State,Arizona,0.3744746112463471
+Churn,True,State,California,0.3087905761568159
+Churn,True,State,Nevada,0.3744746112463471
+Churn,True,State,Oregon,0.40748169665743195
+Churn,True,State,Washington,0.3744746112463471
+Churn,False,EmploymentStatus,Disabled,0.6217985676051461
+Churn,False,EmploymentStatus,Employed,0.6495504522502069
+Churn,False,EmploymentStatus,Medical Leave,0.6217985676051461
+Churn,False,EmploymentStatus,Retired,0.6217985676051461
+Churn,False,EmploymentStatus,Unemployed,0.6217985676051461
+Churn,True,EmploymentStatus,Disabled,0.37820143239485393
+Churn,True,EmploymentStatus,Employed,0.35044954774979314
+Churn,True,EmploymentStatus,Medical Leave,0.37820143239485393
+Churn,True,EmploymentStatus,Retired,0.37820143239485393
+Churn,True,EmploymentStatus,Unemployed,0.37820143239485393
+Churn,False,Gender,F,0.6387503759667938
+Churn,False,Gender,M,0.6387503759667938
+Churn,True,Gender,F,0.3612496240332061
+Churn,True,Gender,M,0.3612496240332061
+Churn,False,Location Code,Rural,0.6387503759667938
+Churn,False,Location Code,Suburban,0.6387503759667938
+Churn,False,Location Code,Urban,0.6387503759667938
+Churn,True,Location Code,Rural,0.3612496240332061
+Churn,True,Location Code,Suburban,0.3612496240332061
+Churn,True,Location Code,Urban,0.3612496240332061
+Churn,False,Marital Status,Divorced,0.6387503759667938
+Churn,False,Marital Status,Married,0.6387503759667938
+Churn,False,Marital Status,Single,0.6387503759667938
+Churn,True,Marital Status,Divorced,0.3612496240332061
+Churn,True,Marital Status,Married,0.3612496240332061
+Churn,True,Marital Status,Single,0.3612496240332061
+Churn,False,Policy Type,Corporate Auto,0.6387503759667938
+Churn,False,Policy Type,Personal Auto,0.6387503759667938
+Churn,False,Policy Type,Special Auto,0.6387503759667938
+Churn,True,Policy Type,Corporate Auto,0.3612496240332061
+Churn,True,Policy Type,Personal Auto,0.3612496240332061
+Churn,True,Policy Type,Special Auto,0.3612496240332061
+Churn,False,Sales Channel,Agent,0.6706823957016858
+Churn,False,Sales Channel,Branch,0.6278042958885892
+Churn,False,Sales Channel,Call Center,0.6278042958885892
+Churn,False,Sales Channel,Web,0.5901246963019263
+Churn,True,Sales Channel,Agent,0.32931760429831425
+Churn,True,Sales Channel,Branch,0.37219570411141073
+Churn,True,Sales Channel,Call Center,0.37219570411141073
+Churn,True,Sales Channel,Web,0.4098753036980737
+Churn,False,Vehicle Class,Four-Door Car,0.6193714887720324
+Churn,False,Vehicle Class,Luxury Car,0.6226898507835406
+Churn,False,Vehicle Class,Luxury SUV,0.6226898507835406
+Churn,False,Vehicle Class,SUV,0.6965265148358274
+Churn,False,Vehicle Class,Sports Car,0.6226898507835406
+Churn,False,Vehicle Class,Two-Door Car,0.6226898507835406
+Churn,True,Vehicle Class,Four-Door Car,0.3806285112279676
+Churn,True,Vehicle Class,Luxury Car,0.37731014921645945
+Churn,True,Vehicle Class,Luxury SUV,0.37731014921645945
+Churn,True,Vehicle Class,SUV,0.3034734851641726
+Churn,True,Vehicle Class,Sports Car,0.37731014921645945
+Churn,True,Vehicle Class,Two-Door Car,0.37731014921645945
+Churn,False,Customer Lifetime Value,2473.6628256800004,0.6549611805513429
+Churn,False,Customer Lifetime Value,3149.3005987634488,0.6399995316890668
+Churn,False,Customer Lifetime Value,3824.9383718468966,0.6356074854487574
+Churn,False,Customer Lifetime Value,4500.5761449303445,0.6356074854487574
+Churn,False,Customer Lifetime Value,5176.213918013793,0.6356074854487574
+Churn,False,Customer Lifetime Value,5851.851691097241,0.6356074854487574
+Churn,False,Customer Lifetime Value,6527.4894641806895,0.6356074854487574
+Churn,False,Customer Lifetime Value,7203.127237264137,0.6356074854487574
+Churn,False,Customer Lifetime Value,7878.765010347585,0.6356074854487574
+Churn,False,Customer Lifetime Value,8554.402783431033,0.6356074854487574
+Churn,False,Customer Lifetime Value,9230.040556514483,0.6356074854487574
+Churn,False,Customer Lifetime Value,9905.67832959793,0.6356074854487574
+Churn,False,Customer Lifetime Value,10581.316102681378,0.6356074854487574
+Churn,False,Customer Lifetime Value,11256.953875764826,0.6356074854487574
+Churn,False,Customer Lifetime Value,11932.591648848273,0.6356074854487574
+Churn,False,Customer Lifetime Value,12608.229421931723,0.6356074854487574
+Churn,False,Customer Lifetime Value,13283.86719501517,0.6356074854487574
+Churn,False,Customer Lifetime Value,13959.50496809862,0.6356074854487574
+Churn,False,Customer Lifetime Value,14635.142741182066,0.6356074854487574
+Churn,False,Customer Lifetime Value,15310.780514265516,0.6356074854487574
+Churn,False,Customer Lifetime Value,15986.418287348963,0.6356074854487574
+Churn,False,Customer Lifetime Value,16662.05606043241,0.6356074854487574
+Churn,False,Customer Lifetime Value,17337.69383351586,0.6356074854487574
+Churn,False,Customer Lifetime Value,18013.331606599306,0.6356074854487574
+Churn,False,Customer Lifetime Value,18688.969379682756,0.6356074854487574
+Churn,False,Customer Lifetime Value,19364.607152766202,0.6356074854487574
+Churn,False,Customer Lifetime Value,20040.24492584965,0.6356074854487574
+Churn,False,Customer Lifetime Value,20715.8826989331,0.6356074854487574
+Churn,False,Customer Lifetime Value,21391.520472016546,0.6356074854487574
+Churn,False,Customer Lifetime Value,22067.158245099996,0.6356074854487574
+Churn,True,Customer Lifetime Value,2473.6628256800004,0.3450388194486571
+Churn,True,Customer Lifetime Value,3149.3005987634488,0.36000046831093324
+Churn,True,Customer Lifetime Value,3824.9383718468966,0.3643925145512426
+Churn,True,Customer Lifetime Value,4500.5761449303445,0.3643925145512426
+Churn,True,Customer Lifetime Value,5176.213918013793,0.3643925145512426
+Churn,True,Customer Lifetime Value,5851.851691097241,0.3643925145512426
+Churn,True,Customer Lifetime Value,6527.4894641806895,0.3643925145512426
+Churn,True,Customer Lifetime Value,7203.127237264137,0.3643925145512426
+Churn,True,Customer Lifetime Value,7878.765010347585,0.3643925145512426
+Churn,True,Customer Lifetime Value,8554.402783431033,0.3643925145512426
+Churn,True,Customer Lifetime Value,9230.040556514483,0.3643925145512426
+Churn,True,Customer Lifetime Value,9905.67832959793,0.3643925145512426
+Churn,True,Customer Lifetime Value,10581.316102681378,0.3643925145512426
+Churn,True,Customer Lifetime Value,11256.953875764826,0.3643925145512426
+Churn,True,Customer Lifetime Value,11932.591648848273,0.3643925145512426
+Churn,True,Customer Lifetime Value,12608.229421931723,0.3643925145512426
+Churn,True,Customer Lifetime Value,13283.86719501517,0.3643925145512426
+Churn,True,Customer Lifetime Value,13959.50496809862,0.3643925145512426
+Churn,True,Customer Lifetime Value,14635.142741182066,0.3643925145512426
+Churn,True,Customer Lifetime Value,15310.780514265516,0.3643925145512426
+Churn,True,Customer Lifetime Value,15986.418287348963,0.3643925145512426
+Churn,True,Customer Lifetime Value,16662.05606043241,0.3643925145512426
+Churn,True,Customer Lifetime Value,17337.69383351586,0.3643925145512426
+Churn,True,Customer Lifetime Value,18013.331606599306,0.3643925145512426
+Churn,True,Customer Lifetime Value,18688.969379682756,0.3643925145512426
+Churn,True,Customer Lifetime Value,19364.607152766202,0.3643925145512426
+Churn,True,Customer Lifetime Value,20040.24492584965,0.3643925145512426
+Churn,True,Customer Lifetime Value,20715.8826989331,0.3643925145512426
+Churn,True,Customer Lifetime Value,21391.520472016546,0.3643925145512426
+Churn,True,Customer Lifetime Value,22067.158245099996,0.3643925145512426
+Churn,False,Income,0.0,0.2644440399253676
+Churn,False,Income,3117.4927586206886,0.2644440399253676
+Churn,False,Income,6234.985517241377,0.5787665032517901
+Churn,False,Income,9352.478275862066,0.5787665032517901
+Churn,False,Income,12469.971034482754,0.7621468779660461
+Churn,False,Income,15587.463793103443,0.7621468779660461
+Churn,False,Income,18704.95655172413,0.7666845517113894
+Churn,False,Income,21822.44931034482,0.7666845517113894
+Churn,False,Income,24939.94206896551,0.7666845517113894
+Churn,False,Income,28057.4348275862,0.7666845517113894
+Churn,False,Income,31174.927586206886,0.7666845517113894
+Churn,False,Income,34292.42034482757,0.7666845517113894
+Churn,False,Income,37409.91310344826,0.7666845517113894
+Churn,False,Income,40527.405862068954,0.7666845517113894
+Churn,False,Income,43644.89862068964,0.7666845517113894
+Churn,False,Income,46762.39137931033,0.7666845517113894
+Churn,False,Income,49879.88413793102,0.7666845517113894
+Churn,False,Income,52997.37689655171,0.7666845517113894
+Churn,False,Income,56114.8696551724,0.7666845517113894
+Churn,False,Income,59232.36241379308,0.7666845517113894
+Churn,False,Income,62349.85517241377,0.7666845517113894
+Churn,False,Income,65467.34793103446,0.7666845517113894
+Churn,False,Income,68584.84068965515,0.7666845517113894
+Churn,False,Income,71702.33344827584,0.7666845517113894
+Churn,False,Income,74819.82620689653,0.7666845517113894
+Churn,False,Income,77937.31896551722,0.7666845517113894
+Churn,False,Income,81054.81172413791,0.7666845517113894
+Churn,False,Income,84172.3044827586,0.7809556868462714
+Churn,False,Income,87289.79724137927,0.7809556868462714
+Churn,False,Income,90407.28999999996,0.7809556868462714
+Churn,True,Income,0.0,0.7355559600746324
+Churn,True,Income,3117.4927586206886,0.7355559600746324
+Churn,True,Income,6234.985517241377,0.4212334967482099
+Churn,True,Income,9352.478275862066,0.4212334967482099
+Churn,True,Income,12469.971034482754,0.23785312203395395
+Churn,True,Income,15587.463793103443,0.23785312203395395
+Churn,True,Income,18704.95655172413,0.2333154482886106
+Churn,True,Income,21822.44931034482,0.2333154482886106
+Churn,True,Income,24939.94206896551,0.2333154482886106
+Churn,True,Income,28057.4348275862,0.2333154482886106
+Churn,True,Income,31174.927586206886,0.2333154482886106
+Churn,True,Income,34292.42034482757,0.2333154482886106
+Churn,True,Income,37409.91310344826,0.2333154482886106
+Churn,True,Income,40527.405862068954,0.2333154482886106
+Churn,True,Income,43644.89862068964,0.2333154482886106
+Churn,True,Income,46762.39137931033,0.2333154482886106
+Churn,True,Income,49879.88413793102,0.2333154482886106
+Churn,True,Income,52997.37689655171,0.2333154482886106
+Churn,True,Income,56114.8696551724,0.2333154482886106
+Churn,True,Income,59232.36241379308,0.2333154482886106
+Churn,True,Income,62349.85517241377,0.2333154482886106
+Churn,True,Income,65467.34793103446,0.2333154482886106
+Churn,True,Income,68584.84068965515,0.2333154482886106
+Churn,True,Income,71702.33344827584,0.2333154482886106
+Churn,True,Income,74819.82620689653,0.2333154482886106
+Churn,True,Income,77937.31896551722,0.2333154482886106
+Churn,True,Income,81054.81172413791,0.2333154482886106
+Churn,True,Income,84172.3044827586,0.2190443131537286
+Churn,True,Income,87289.79724137927,0.2190443131537286
+Churn,True,Income,90407.28999999996,0.2190443131537286
+Churn,False,Monthly Premium Auto,62.0,0.7890020816364208
+Churn,False,Monthly Premium Auto,65.51344827586205,0.7890020816364208
+Churn,False,Monthly Premium Auto,69.02689655172409,0.7281628828433304
+Churn,False,Monthly Premium Auto,72.54034482758615,0.7010201046518603
+Churn,False,Monthly Premium Auto,76.0537931034482,0.6832754887328266
+Churn,False,Monthly Premium Auto,79.56724137931025,0.6137607409626756
+Churn,False,Monthly Premium Auto,83.08068965517229,0.6137607409626756
+Churn,False,Monthly Premium Auto,86.59413793103434,0.6137607409626756
+Churn,False,Monthly Premium Auto,90.1075862068964,0.5792845758815317
+Churn,False,Monthly Premium Auto,93.62103448275845,0.5560423304153648
+Churn,False,Monthly Premium Auto,97.13448275862049,0.5560423304153648
+Churn,False,Monthly Premium Auto,100.64793103448254,0.5560423304153648
+Churn,False,Monthly Premium Auto,104.16137931034459,0.5560423304153648
+Churn,False,Monthly Premium Auto,107.67482758620665,0.5560423304153648
+Churn,False,Monthly Premium Auto,111.18827586206868,0.5560423304153648
+Churn,False,Monthly Premium Auto,114.70172413793074,0.5560423304153648
+Churn,False,Monthly Premium Auto,118.21517241379279,0.5560423304153648
+Churn,False,Monthly Premium Auto,121.72862068965483,0.5560423304153648
+Churn,False,Monthly Premium Auto,125.24206896551689,0.5560423304153648
+Churn,False,Monthly Premium Auto,128.75551724137893,0.5560423304153648
+Churn,False,Monthly Premium Auto,132.26896551724099,0.5560423304153648
+Churn,False,Monthly Premium Auto,135.78241379310305,0.5560423304153648
+Churn,False,Monthly Premium Auto,139.29586206896508,0.5560423304153648
+Churn,False,Monthly Premium Auto,142.8093103448271,0.5471585185719707
+Churn,False,Monthly Premium Auto,146.32275862068917,0.5471585185719707
+Churn,False,Monthly Premium Auto,149.83620689655123,0.5471585185719707
+Churn,False,Monthly Premium Auto,153.3496551724133,0.5173565701820972
+Churn,False,Monthly Premium Auto,156.86310344827533,0.5003116564084084
+Churn,False,Monthly Premium Auto,160.37655172413736,0.48339786399463547
+Churn,False,Monthly Premium Auto,163.88999999999942,0.3886853706238804
+Churn,True,Monthly Premium Auto,62.0,0.21099791836357917
+Churn,True,Monthly Premium Auto,65.51344827586205,0.21099791836357917
+Churn,True,Monthly Premium Auto,69.02689655172409,0.2718371171566695
+Churn,True,Monthly Premium Auto,72.54034482758615,0.2989798953481398
+Churn,True,Monthly Premium Auto,76.0537931034482,0.3167245112671734
+Churn,True,Monthly Premium Auto,79.56724137931025,0.38623925903732437
+Churn,True,Monthly Premium Auto,83.08068965517229,0.38623925903732437
+Churn,True,Monthly Premium Auto,86.59413793103434,0.38623925903732437
+Churn,True,Monthly Premium Auto,90.1075862068964,0.4207154241184683
+Churn,True,Monthly Premium Auto,93.62103448275845,0.4439576695846352
+Churn,True,Monthly Premium Auto,97.13448275862049,0.4439576695846352
+Churn,True,Monthly Premium Auto,100.64793103448254,0.4439576695846352
+Churn,True,Monthly Premium Auto,104.16137931034459,0.4439576695846352
+Churn,True,Monthly Premium Auto,107.67482758620665,0.4439576695846352
+Churn,True,Monthly Premium Auto,111.18827586206868,0.4439576695846352
+Churn,True,Monthly Premium Auto,114.70172413793074,0.4439576695846352
+Churn,True,Monthly Premium Auto,118.21517241379279,0.4439576695846352
+Churn,True,Monthly Premium Auto,121.72862068965483,0.4439576695846352
+Churn,True,Monthly Premium Auto,125.24206896551689,0.4439576695846352
+Churn,True,Monthly Premium Auto,128.75551724137893,0.4439576695846352
+Churn,True,Monthly Premium Auto,132.26896551724099,0.4439576695846352
+Churn,True,Monthly Premium Auto,135.78241379310305,0.4439576695846352
+Churn,True,Monthly Premium Auto,139.29586206896508,0.4439576695846352
+Churn,True,Monthly Premium Auto,142.8093103448271,0.45284148142802927
+Churn,True,Monthly Premium Auto,146.32275862068917,0.45284148142802927
+Churn,True,Monthly Premium Auto,149.83620689655123,0.45284148142802927
+Churn,True,Monthly Premium Auto,153.3496551724133,0.4826434298179028
+Churn,True,Monthly Premium Auto,156.86310344827533,0.49968834359159164
+Churn,True,Monthly Premium Auto,160.37655172413736,0.5166021360053645
+Churn,True,Monthly Premium Auto,163.88999999999942,0.6113146293761196
+Churn,False,Months Since Last Claim,1.0,0.570622689776003
+Churn,False,Months Since Last Claim,2.103448275862069,0.6037812393646897
+Churn,False,Months Since Last Claim,3.206896551724138,0.6037812393646897
+Churn,False,Months Since Last Claim,4.310344827586206,0.6037812393646897
+Churn,False,Months Since Last Claim,5.413793103448276,0.6037812393646897
+Churn,False,Months Since Last Claim,6.517241379310345,0.6037812393646897
+Churn,False,Months Since Last Claim,7.620689655172414,0.624513955772592
+Churn,False,Months Since Last Claim,8.724137931034482,0.624513955772592
+Churn,False,Months Since Last Claim,9.827586206896552,0.6325907738181962
+Churn,False,Months Since Last Claim,10.931034482758621,0.6583095026328047
+Churn,False,Months Since Last Claim,12.03448275862069,0.6621418824524876
+Churn,False,Months Since Last Claim,13.137931034482758,0.6621418824524876
+Churn,False,Months Since Last Claim,14.241379310344827,0.6621418824524876
+Churn,False,Months Since Last Claim,15.344827586206897,0.6621418824524876
+Churn,False,Months Since Last Claim,16.448275862068964,0.6621418824524876
+Churn,False,Months Since Last Claim,17.551724137931036,0.6621418824524876
+Churn,False,Months Since Last Claim,18.655172413793103,0.6621418824524876
+Churn,False,Months Since Last Claim,19.75862068965517,0.6621418824524876
+Churn,False,Months Since Last Claim,20.862068965517242,0.6621418824524876
+Churn,False,Months Since Last Claim,21.96551724137931,0.6621418824524876
+Churn,False,Months Since Last Claim,23.06896551724138,0.6621418824524876
+Churn,False,Months Since Last Claim,24.17241379310345,0.6621418824524876
+Churn,False,Months Since Last Claim,25.275862068965516,0.6621418824524876
+Churn,False,Months Since Last Claim,26.379310344827587,0.6621418824524876
+Churn,False,Months Since Last Claim,27.482758620689655,0.6621418824524876
+Churn,False,Months Since Last Claim,28.586206896551722,0.6621418824524876
+Churn,False,Months Since Last Claim,29.689655172413794,0.6621418824524876
+Churn,False,Months Since Last Claim,30.79310344827586,0.6621418824524876
+Churn,False,Months Since Last Claim,31.89655172413793,0.6621418824524876
+Churn,False,Months Since Last Claim,33.0,0.6621418824524876
+Churn,True,Months Since Last Claim,1.0,0.42937731022399706
+Churn,True,Months Since Last Claim,2.103448275862069,0.3962187606353103
+Churn,True,Months Since Last Claim,3.206896551724138,0.3962187606353103
+Churn,True,Months Since Last Claim,4.310344827586206,0.3962187606353103
+Churn,True,Months Since Last Claim,5.413793103448276,0.3962187606353103
+Churn,True,Months Since Last Claim,6.517241379310345,0.3962187606353103
+Churn,True,Months Since Last Claim,7.620689655172414,0.37548604422740794
+Churn,True,Months Since Last Claim,8.724137931034482,0.37548604422740794
+Churn,True,Months Since Last Claim,9.827586206896552,0.3674092261818038
+Churn,True,Months Since Last Claim,10.931034482758621,0.3416904973671952
+Churn,True,Months Since Last Claim,12.03448275862069,0.3378581175475123
+Churn,True,Months Since Last Claim,13.137931034482758,0.3378581175475123
+Churn,True,Months Since Last Claim,14.241379310344827,0.3378581175475123
+Churn,True,Months Since Last Claim,15.344827586206897,0.3378581175475123
+Churn,True,Months Since Last Claim,16.448275862068964,0.3378581175475123
+Churn,True,Months Since Last Claim,17.551724137931036,0.3378581175475123
+Churn,True,Months Since Last Claim,18.655172413793103,0.3378581175475123
+Churn,True,Months Since Last Claim,19.75862068965517,0.3378581175475123
+Churn,True,Months Since Last Claim,20.862068965517242,0.3378581175475123
+Churn,True,Months Since Last Claim,21.96551724137931,0.3378581175475123
+Churn,True,Months Since Last Claim,23.06896551724138,0.3378581175475123
+Churn,True,Months Since Last Claim,24.17241379310345,0.3378581175475123
+Churn,True,Months Since Last Claim,25.275862068965516,0.3378581175475123
+Churn,True,Months Since Last Claim,26.379310344827587,0.3378581175475123
+Churn,True,Months Since Last Claim,27.482758620689655,0.3378581175475123
+Churn,True,Months Since Last Claim,28.586206896551722,0.3378581175475123
+Churn,True,Months Since Last Claim,29.689655172413794,0.3378581175475123
+Churn,True,Months Since Last Claim,30.79310344827586,0.3378581175475123
+Churn,True,Months Since Last Claim,31.89655172413793,0.3378581175475123
+Churn,True,Months Since Last Claim,33.0,0.3378581175475123
+Churn,False,Months Since Policy Inception,4.0,0.6387503759667938
+Churn,False,Months Since Policy Inception,7.068965517241379,0.6387503759667938
+Churn,False,Months Since Policy Inception,10.137931034482758,0.6387503759667938
+Churn,False,Months Since Policy Inception,13.206896551724139,0.6387503759667938
+Churn,False,Months Since Policy Inception,16.275862068965516,0.6387503759667938
+Churn,False,Months Since Policy Inception,19.344827586206897,0.6387503759667938
+Churn,False,Months Since Policy Inception,22.413793103448278,0.6387503759667938
+Churn,False,Months Since Policy Inception,25.482758620689655,0.6387503759667938
+Churn,False,Months Since Policy Inception,28.551724137931036,0.6387503759667938
+Churn,False,Months Since Policy Inception,31.620689655172416,0.6387503759667938
+Churn,False,Months Since Policy Inception,34.689655172413794,0.6387503759667938
+Churn,False,Months Since Policy Inception,37.758620689655174,0.6387503759667938
+Churn,False,Months Since Policy Inception,40.827586206896555,0.6387503759667938
+Churn,False,Months Since Policy Inception,43.896551724137936,0.6387503759667938
+Churn,False,Months Since Policy Inception,46.96551724137931,0.6387503759667938
+Churn,False,Months Since Policy Inception,50.03448275862069,0.6387503759667938
+Churn,False,Months Since Policy Inception,53.10344827586207,0.6387503759667938
+Churn,False,Months Since Policy Inception,56.17241379310345,0.6387503759667938
+Churn,False,Months Since Policy Inception,59.24137931034483,0.6387503759667938
+Churn,False,Months Since Policy Inception,62.310344827586206,0.6387503759667938
+Churn,False,Months Since Policy Inception,65.37931034482759,0.6387503759667938
+Churn,False,Months Since Policy Inception,68.44827586206897,0.6387503759667938
+Churn,False,Months Since Policy Inception,71.51724137931035,0.6387503759667938
+Churn,False,Months Since Policy Inception,74.58620689655173,0.6387503759667938
+Churn,False,Months Since Policy Inception,77.65517241379311,0.6387503759667938
+Churn,False,Months Since Policy Inception,80.72413793103449,0.6387503759667938
+Churn,False,Months Since Policy Inception,83.79310344827587,0.6387503759667938
+Churn,False,Months Since Policy Inception,86.86206896551724,0.6387503759667938
+Churn,False,Months Since Policy Inception,89.93103448275862,0.6387503759667938
+Churn,False,Months Since Policy Inception,93.0,0.6387503759667938
+Churn,True,Months Since Policy Inception,4.0,0.3612496240332061
+Churn,True,Months Since Policy Inception,7.068965517241379,0.3612496240332061
+Churn,True,Months Since Policy Inception,10.137931034482758,0.3612496240332061
+Churn,True,Months Since Policy Inception,13.206896551724139,0.3612496240332061
+Churn,True,Months Since Policy Inception,16.275862068965516,0.3612496240332061
+Churn,True,Months Since Policy Inception,19.344827586206897,0.3612496240332061
+Churn,True,Months Since Policy Inception,22.413793103448278,0.3612496240332061
+Churn,True,Months Since Policy Inception,25.482758620689655,0.3612496240332061
+Churn,True,Months Since Policy Inception,28.551724137931036,0.3612496240332061
+Churn,True,Months Since Policy Inception,31.620689655172416,0.3612496240332061
+Churn,True,Months Since Policy Inception,34.689655172413794,0.3612496240332061
+Churn,True,Months Since Policy Inception,37.758620689655174,0.3612496240332061
+Churn,True,Months Since Policy Inception,40.827586206896555,0.3612496240332061
+Churn,True,Months Since Policy Inception,43.896551724137936,0.3612496240332061
+Churn,True,Months Since Policy Inception,46.96551724137931,0.3612496240332061
+Churn,True,Months Since Policy Inception,50.03448275862069,0.3612496240332061
+Churn,True,Months Since Policy Inception,53.10344827586207,0.3612496240332061
+Churn,True,Months Since Policy Inception,56.17241379310345,0.3612496240332061
+Churn,True,Months Since Policy Inception,59.24137931034483,0.3612496240332061
+Churn,True,Months Since Policy Inception,62.310344827586206,0.3612496240332061
+Churn,True,Months Since Policy Inception,65.37931034482759,0.3612496240332061
+Churn,True,Months Since Policy Inception,68.44827586206897,0.3612496240332061
+Churn,True,Months Since Policy Inception,71.51724137931035,0.3612496240332061
+Churn,True,Months Since Policy Inception,74.58620689655173,0.3612496240332061
+Churn,True,Months Since Policy Inception,77.65517241379311,0.3612496240332061
+Churn,True,Months Since Policy Inception,80.72413793103449,0.3612496240332061
+Churn,True,Months Since Policy Inception,83.79310344827587,0.3612496240332061
+Churn,True,Months Since Policy Inception,86.86206896551724,0.3612496240332061
+Churn,True,Months Since Policy Inception,89.93103448275862,0.3612496240332061
+Churn,True,Months Since Policy Inception,93.0,0.3612496240332061
+Churn,False,Number of Open Complaints,0,0.639969638278545
+Churn,False,Number of Open Complaints,1,0.6357842842195967
+Churn,False,Number of Open Complaints,2,0.6357842842195967
+Churn,False,Number of Open Complaints,3,0.6357842842195967
+Churn,False,Number of Open Complaints,4,0.6357842842195967
+Churn,False,Number of Open Complaints,5,0.5774375095856028
+Churn,True,Number of Open Complaints,0,0.360030361721455
+Churn,True,Number of Open Complaints,1,0.36421571578040335
+Churn,True,Number of Open Complaints,2,0.36421571578040335
+Churn,True,Number of Open Complaints,3,0.36421571578040335
+Churn,True,Number of Open Complaints,4,0.36421571578040335
+Churn,True,Number of Open Complaints,5,0.42256249041439725
+Churn,False,Number of Policies,1,0.6021868750918031
+Churn,False,Number of Policies,2,0.6021868750918031
+Churn,False,Number of Policies,3,0.6964160652119751
+Churn,False,Number of Policies,4,0.6964160652119751
+Churn,False,Number of Policies,5,0.6964160652119751
+Churn,False,Number of Policies,6,0.6964160652119751
+Churn,False,Number of Policies,7,0.6964160652119751
+Churn,False,Number of Policies,8,0.6964160652119751
+Churn,False,Number of Policies,9,0.6964160652119751
+Churn,True,Number of Policies,1,0.3978131249081968
+Churn,True,Number of Policies,2,0.3978131249081968
+Churn,True,Number of Policies,3,0.30358393478802487
+Churn,True,Number of Policies,4,0.30358393478802487
+Churn,True,Number of Policies,5,0.30358393478802487
+Churn,True,Number of Policies,6,0.30358393478802487
+Churn,True,Number of Policies,7,0.30358393478802487
+Churn,True,Number of Policies,8,0.30358393478802487
+Churn,True,Number of Policies,9,0.30358393478802487
+Churn,False,Total Claim Amount,52.145502440000016,0.6666063744394446
+Churn,False,Total Claim Amount,83.45480921793106,0.6666063744394446
+Churn,False,Total Claim Amount,114.76411599586208,0.6666063744394446
+Churn,False,Total Claim Amount,146.07342277379314,0.6666063744394446
+Churn,False,Total Claim Amount,177.38272955172414,0.6666063744394446
+Churn,False,Total Claim Amount,208.6920363296552,0.6613349801072301
+Churn,False,Total Claim Amount,240.00134310758625,0.6613349801072301
+Churn,False,Total Claim Amount,271.31064988551725,0.6613349801072301
+Churn,False,Total Claim Amount,302.6199566634483,0.6613349801072301
+Churn,False,Total Claim Amount,333.92926344137936,0.6613349801072301
+Churn,False,Total Claim Amount,365.23857021931036,0.6613349801072301
+Churn,False,Total Claim Amount,396.5478769972414,0.6613349801072301
+Churn,False,Total Claim Amount,427.8571837751725,0.6613349801072301
+Churn,False,Total Claim Amount,459.1664905531035,0.6278733808807285
+Churn,False,Total Claim Amount,490.4757973310345,0.6129586003251095
+Churn,False,Total Claim Amount,521.7851041089655,0.6129586003251095
+Churn,False,Total Claim Amount,553.0944108868965,0.6129586003251095
+Churn,False,Total Claim Amount,584.4037176648276,0.6129586003251095
+Churn,False,Total Claim Amount,615.7130244427586,0.6129586003251095
+Churn,False,Total Claim Amount,647.0223312206896,0.6129586003251095
+Churn,False,Total Claim Amount,678.3316379986206,0.6129586003251095
+Churn,False,Total Claim Amount,709.6409447765517,0.5965260301864359
+Churn,False,Total Claim Amount,740.9502515544827,0.5965260301864359
+Churn,False,Total Claim Amount,772.2595583324138,0.5902740486531404
+Churn,False,Total Claim Amount,803.5688651103449,0.5902740486531404
+Churn,False,Total Claim Amount,834.8781718882758,0.5902740486531404
+Churn,False,Total Claim Amount,866.1874786662069,0.5902740486531404
+Churn,False,Total Claim Amount,897.4967854441379,0.5902740486531404
+Churn,False,Total Claim Amount,928.806092222069,0.5902740486531404
+Churn,False,Total Claim Amount,960.115399,0.5902740486531404
+Churn,True,Total Claim Amount,52.145502440000016,0.3333936255605554
+Churn,True,Total Claim Amount,83.45480921793106,0.3333936255605554
+Churn,True,Total Claim Amount,114.76411599586208,0.3333936255605554
+Churn,True,Total Claim Amount,146.07342277379314,0.3333936255605554
+Churn,True,Total Claim Amount,177.38272955172414,0.3333936255605554
+Churn,True,Total Claim Amount,208.6920363296552,0.3386650198927698
+Churn,True,Total Claim Amount,240.00134310758625,0.3386650198927698
+Churn,True,Total Claim Amount,271.31064988551725,0.3386650198927698
+Churn,True,Total Claim Amount,302.6199566634483,0.3386650198927698
+Churn,True,Total Claim Amount,333.92926344137936,0.3386650198927698
+Churn,True,Total Claim Amount,365.23857021931036,0.3386650198927698
+Churn,True,Total Claim Amount,396.5478769972414,0.3386650198927698
+Churn,True,Total Claim Amount,427.8571837751725,0.3386650198927698
+Churn,True,Total Claim Amount,459.1664905531035,0.3721266191192715
+Churn,True,Total Claim Amount,490.4757973310345,0.38704139967489043
+Churn,True,Total Claim Amount,521.7851041089655,0.38704139967489043
+Churn,True,Total Claim Amount,553.0944108868965,0.38704139967489043
+Churn,True,Total Claim Amount,584.4037176648276,0.38704139967489043
+Churn,True,Total Claim Amount,615.7130244427586,0.38704139967489043
+Churn,True,Total Claim Amount,647.0223312206896,0.38704139967489043
+Churn,True,Total Claim Amount,678.3316379986206,0.38704139967489043
+Churn,True,Total Claim Amount,709.6409447765517,0.40347396981356415
+Churn,True,Total Claim Amount,740.9502515544827,0.40347396981356415
+Churn,True,Total Claim Amount,772.2595583324138,0.4097259513468596
+Churn,True,Total Claim Amount,803.5688651103449,0.4097259513468596
+Churn,True,Total Claim Amount,834.8781718882758,0.4097259513468596
+Churn,True,Total Claim Amount,866.1874786662069,0.4097259513468596
+Churn,True,Total Claim Amount,897.4967854441379,0.4097259513468596
+Churn,True,Total Claim Amount,928.806092222069,0.4097259513468596
+Churn,True,Total Claim Amount,960.115399,0.4097259513468596
