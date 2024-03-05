@@ -1,5 +1,2 @@
-shimoku-api-python
-shimoku-components-catalog
-scikit-learn
-librosa
-pytube
+shimoku==2.1.1
+python-dotenv==1.0.1
