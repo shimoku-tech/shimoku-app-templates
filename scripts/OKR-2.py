@@ -5,7 +5,7 @@ import pandas as pd
 from subprocess import PIPE, Popen
 
 
-ls_cmd = ["ls", "."]
+ls_cmd = ["ls", "templates"]
 ls_proc = Popen(ls_cmd, stdout=PIPE, stderr=PIPE)
 wc_cmd = ["wc", "-l"]
 wc_proc = Popen(wc_cmd,stdin=ls_proc.stdout, stdout=PIPE)

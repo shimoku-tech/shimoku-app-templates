@@ -140,11 +140,11 @@ class Board:
 
     def plot(self):
         """
-        A method to plot OKR.
+        A method to plot KeyResults.
 
-        This method utilizes the OKR class from the paths. pizza_sales module
-        to create and display a plot related to the social media posts. It assumes
-        that OKR requires a reference to the instance of the class from which
+        This method utilizes the KeyResults class from the paths. key_results module
+        to create and display a plot related to the key results. It assumes
+        that KeyResults requires a reference to the instance of the class from which
         this method is called.
 
         Args:
@@ -154,17 +154,13 @@ class Board:
         None. The function is used for its side effect of plotting data.
 
         Note:
-        - This method imports the OKR class within the function scope
+        - This method imports the KeyResults class within the function scope
           to avoid potential circular dependencies.
-        - Ensure that the OKR class has access to all necessary data
+        - Ensure that the KeyResults class has access to all necessary data
           through the passed instance.
         """
 
-        from paths.okr import OKR
-        from paths.fase2 import Fase2
+        from paths.key_results import KeyResults
 
-        okr2 = OKR(self)
-        okr2.plot()
-
-        Fase2 = Fase2(self)
-        Fase2.plot()
+        KeyResults = KeyResults(self)
+        KeyResults.plot()

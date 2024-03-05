@@ -8,19 +8,14 @@ def main():
     # Load .env file
     load_dotenv()
 
-    # Import enrivomental variable
-    access_token: str = getenv('SHIMOKU_TOKEN')
-    universe_id: str = getenv('UNIVERSE_ID')
-    workspace_id: str = getenv('WORKSPACE_ID')
-
     # Client connection
     shimoku = Client(
-        access_token=access_token,
-        universe_id=universe_id,
+        access_token=getenv('API_TOKEN'),
+        universe_id=getenv('UNIVERSE_ID'),
         async_execution=True,
         verbosity="INFO",
     )
-    shimoku.set_workspace(uuid=workspace_id)
+    shimoku.set_workspace(uuid=getenv('WORKSPACE_ID'))
 
     chart_name = "chart_name"
     dict_charts_name = {

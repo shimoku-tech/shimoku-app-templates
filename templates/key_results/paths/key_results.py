@@ -6,7 +6,7 @@ from utils.utils import (
 )
 from board import Board
 
-class Fase2:
+class KeyResults:
     """
     This path is responsible for rendering the Pizza Sales page.
     """
@@ -25,7 +25,7 @@ class Fase2:
         # Initialize order of plotting elements
         self.order = 0
         # Set the menu path for this page
-        self.menu_path = "Overview Fase 2"
+        self.menu_path = "Overview"
 
         # Delete existing menu path if it exists
         if self.shimoku.menu_paths.get_menu_path(name=self.menu_path):
