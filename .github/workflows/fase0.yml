@@ -22,11 +22,11 @@ jobs:
         run: |
           grep -r -n ".plt." --include="*.py" templates > charts_query.txt
       - name: Execute python script to identify shimoku chart
-        run: python script/rex_plt_shimoku.py
+        run: python scripts/rex_plt_shimoku.py
       - name: Execute python script to identify all the available charts
-        run: python script/cloud_shimoku.py
+        run: python scripts/cloud_shimoku.py
       - name: Execute python script to compute OBJ-1 OKR-2
-        run: python script/OKR-2.py
+        run: python scripts/OKR-2.py
       - name: Upload charts name SDK file
         uses: actions/upload-artifact@v3
         with:

@@ -18,6 +18,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: charts_data
-          path: templates/OKR/data
-      - name: Deploy OKR dashboard
-        run: python templates/OKR/main.py
+          path: templates/key_results/data
+      - name: Deploy key_results dashboard
+        run: python templates/key_results/main.py
