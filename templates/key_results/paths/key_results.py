@@ -140,10 +140,10 @@ class KeyResults:
             sort_descending = True,
             categorical_columns = ["SDK version"],
             columns_options = {
-                "SDK version": {"width": 150},
+                "SDK version": {"width": 120},
                 "Available charts": {"width": 150},
-                "Charts used": {"width": 150},
-                "Percentage used (%)": {"width": 220},
+                "Charts used": {"width": 120},
+                "Percentage used (%)": {"width": 200},
             },
             export_to_csv=False,
             padding="0,1,0,0",

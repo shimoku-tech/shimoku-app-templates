@@ -8,6 +8,7 @@ from utils.utils import (
     add_new_charts,
     compute_percentage,
 )
+from pathlib import Path
 
 
 class Board:
@@ -28,9 +29,9 @@ class Board:
             shimoku (Client): An instance of a Client class for Shimoku API interactions.
         """
 
-        path = "templates/OKR/data/"
+        path = Path(__file__).parent / "data"
         file_names = ['OBJ-1_KR-2.csv', 'charts_frequency.csv', 'data_templates.csv', 'available_charts_SDK_version.csv']
-        file_names = [f"{path}{filename}" for filename in file_names]
+        file_names = [f"{path}/{filename}" for filename in file_names]
 
         # Name of the dashboard
         self.board_name = "OBJ-1 OKR-2"
