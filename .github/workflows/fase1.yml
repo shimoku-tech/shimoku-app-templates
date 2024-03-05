@@ -1,0 +1,30 @@
+name: OKR 2 - fase 1
+run-name: Compute templates data
+
+on:
+  workflow_call:
+    # without output
+
+jobs:
+  generate-inputs-fase1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - name: Execute grep command
+        run: |
+          grep -r -n ".plt." --include="*.py" templates > charts_query.txt
+          grep -r -n "^# " --include="*.md" templates > title_query.txt
+          grep -r -n "shimoku.*==" --include="*.txt" templates > requirements_query.txt
+          grep -r -n "is_public=" --include="*.py" templates > public_query.txt
+          grep -r -n "https://shimoku\.io" --include="*.md" templates > dashboard_url_query.txt
+      - name: Execute python script to identify shimoku chart
+        run: python script/generate_templates_data.py ${{ github.server_url }}/${{ github.repository }}
+      - name: Upload charts name templates file
+        uses: actions/upload-artifact@v3
+        with:
+          name: charts_data
+          path: data_templates.csv

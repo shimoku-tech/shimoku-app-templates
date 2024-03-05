@@ -1,0 +1,16 @@
+name: OKR 2
+run-name: Build and deploy OKR template
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  call-fase-0:
+    uses: ./.github/workflows/fase0.yml
+  call-fase-1:
+    needs: call-fase-0
+    uses: ./.github/workflows/fase1.yml
+  call-fase-2:
+    needs: call-fase-1
+    uses: ./.github/workflows/fase2.yml

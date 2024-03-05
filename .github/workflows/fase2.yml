@@ -1,0 +1,23 @@
+name: OKR 2 - fase 2
+run-name: Plot OKR template on Shimoku
+
+on:
+  workflow_call:
+    # without output
+
+jobs:
+  deploy-okr-template:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - name: Download charts information files
+        uses: actions/download-artifact@v3
+        with:
+          name: charts_data
+          path: templates/OKR/data
+      - name: Deploy OKR dashboard
+        run: python templates/OKR/main.py
