@@ -8,11 +8,11 @@ Welcome to our GitHub repository!
 
 🚀 Explore metrics & insightful charts.
 
-<!-- 📈 See our dashboard [Key Results]() -->
+📈 See our dashboard [Key Results](https://shimoku.io/7d5a1167-577d-485b-b3cf-8df2671d811f/overview?shared=true&token=7ff9947a-db42-11ee-b22a-7a210d2cedd3)
 
-<!-- ![Screanshot 1](img/.png) -->
+![Screanshot 1](img/key_results.png)
 
-<!-- 📅 published on "date" by [@author](https://www.github.com/author) -->
+📅 Published on 2024-03-06 by [@jkahnc](https://www.github.com/jkahnc)
 
 ## Getting Started
 

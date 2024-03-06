@@ -20,7 +20,7 @@ jobs:
           pip install -r requirements.txt --no-cache-dir
       - name: Execute grep command
         run: |
-          grep -r -n ".plt." --include="*.py" templates > charts_query.txt
+          grep -r -n "\.plt\." --include="*.py" templates > charts_query.txt
       - name: Execute python script to identify shimoku chart
         run: python scripts/rex_plt_shimoku.py
       - name: Execute python script to identify all the available charts
