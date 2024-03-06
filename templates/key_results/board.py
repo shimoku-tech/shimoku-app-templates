@@ -104,6 +104,7 @@ class Board:
             for _, row in df_template_notnull[df_template_notnull["version"] == version].iterrows():
                 charts = add_new_charts(charts, row["charts"])
             number_charts.append(len(charts))
+
         df_sdk_by_version = {
             "SDK version": list_versions,
             "Available charts": avaible_charts,
@@ -115,12 +116,19 @@ class Board:
 
         df_templates["dashboard_url"] = df_templates["dashboard_url"].apply(lambda value: "" if pd.isna(value) else value)
         df_templates["version"] = df_templates["version"].apply(lambda value: "" if pd.isna(value) else value)
+        df_templates["public_date"] = df_templates["public_date"].dt.strftime('%d/%m/%Y')
+        df_templates["public_date"] = df_templates["public_date"].apply(lambda value: "" if pd.isna(value) else value)
+        df_templates["analysis_date"] = df_templates["analysis_date"].dt.strftime('%d/%m/%Y')
+        df_templates["analysis_date"] = df_templates["analysis_date"].apply(lambda value: "" if pd.isna(value) else value)
+        df_templates["developer"] = df_templates["developer"].apply(lambda value: "" if pd.isna(value) else value)
 
         df_templates = df_templates.reindex([
             'title',
             'type',
             'stakeholder',
+            'developer',
             'public',
+            'public_date',
             'charts_number',
             'version',
             'analysis_date',

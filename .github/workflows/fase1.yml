@@ -21,6 +21,7 @@ jobs:
           grep -r -n "shimoku.*==" --include="*\.txt" templates > requirements_query.txt
           grep -r -n "is_public=" --include="*\.py" templates > public_query.txt
           grep -r -n "https://shimoku\.io" --include="*\.md" templates > dashboard_url_query.txt
+          grep -r -n "Published on.*by" --include="*\.md" templates > public_date_developer_query.txt
       - name: Execute python script to identify shimoku chart
         run: python scripts/generate_templates_data.py ${{ github.server_url }}/${{ github.repository }}
       - name: Upload charts name templates file
