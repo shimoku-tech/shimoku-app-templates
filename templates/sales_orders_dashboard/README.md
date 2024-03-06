@@ -5,6 +5,8 @@ The Sales Orders Dashboard, designed with the Shimoku SDK, provides a succinct o
 
 Experiencie our Dashboard: [Sales Orders Dashboard](https://shimoku.io/274b7154-05b1-49b5-87fa-1d52e84efff6/sales-orders-dashboard?shared=true&token=b324a48b-c4f1-11ee-97f3-f4c88a8a3fad) 
 
+📅 Published on 2024-02-06 by [@arturolinares24](https://www.github.com/arturolinares24)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.

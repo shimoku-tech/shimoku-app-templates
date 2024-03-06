@@ -4,6 +4,8 @@ This dashboard showcases the capabilities of the Shimoku SDK within the context 
 
 Experiencie our Dashboard: [Customer Satisfaction Performance Dashboard](https://shimoku.io/07c15316-4817-4ec4-aa6f-6fe0446b6efc/customer-satisfaction-performance?shared=true&token=c90443cf-c510-11ee-8fa6-f4c88a8a3fad) 
 
+📅 Published on 2024-02-06 by [@arturolinares24](https://www.github.com/arturolinares24)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.

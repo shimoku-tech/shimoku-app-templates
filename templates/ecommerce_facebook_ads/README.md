@@ -15,6 +15,8 @@ Welcome to our GitHub repository!
   <img src="img/capture.png">
 </p>
 
+📅 Published on 2024-02-06 by [@FelipeIdmeShimoku](https://www.github.com/FelipeIdmeShimoku)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.

@@ -6,6 +6,8 @@ The Store Overview Dashboard, designed with the Shimoku SDK, provides a real-tim
 
 Experiencie our Dashboard: [Retail Store Overview](https://shimoku.io/ca7a4445-5044-49b1-8eb4-1f58d0a41ccc/store-overview?shared=true&token=bdbf2e75-c511-11ee-9510-f4c88a8a3fad) 
 
+📅 Published on 2024-02-06 by [@arturolinares24](https://www.github.com/arturolinares24)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.

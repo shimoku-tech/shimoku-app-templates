@@ -12,6 +12,8 @@ Welcome to our GitHub repository!
 
 ![Screanshot 1](img/customer_orders_performance.png)
 
+📅 Published on 2024-02-06 by [@jkahnc](https://www.github.com/jkahnc)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.

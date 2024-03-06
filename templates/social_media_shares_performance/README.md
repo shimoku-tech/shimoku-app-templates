@@ -12,6 +12,8 @@ Welcome to our GitHub repository!
 
 ![Dashboard Social Media Shares Performance](img/social_media_shares_performance.png)
 
+📅 Published on 2024-02-07 by [@jkahnc](https://github.com/jkahnc)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
