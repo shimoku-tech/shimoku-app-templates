@@ -88,38 +88,38 @@ def process_revenue_by_day(df_week:pd.DataFrame, current_week=False) -> pd.DataF
     df_week["day_of_week"] = df_week["Purchase_Date"].dt.dayofweek
     df_week["day_of_week"] = df_week["day_of_week"].map(
         {
-            0: "Lunes",
-            1: "Martes",
-            2: "Miércoles",
-            3: "Jueves",
-            4: "Viernes",
-            5: "Sábado",
-            6: "Domingo",
+            0: "Monday",
+            1: "Tuesday",
+            2: "Wednesday",
+            3: "Thursday",
+            4: "Friday",
+            5: "Saturday",
+            6: "Sunday",
         }
     )
 
     # Aggregate revenue by day
     cats = [
-        "Lunes",
-        "Martes",
-        "Miércoles",
-        "Jueves",
-        "Viernes",
-        "Sábado",
-        "Domingo",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
     ]
     df_week["revenue"] = round(df_week["Price"] - df_week["Cost"])
     revenue_by_day = (
         df_week.groupby("day_of_week")["revenue"].sum().reindex(cats).reset_index()
     )
-    revenue_by_day.columns = ["Día de la semana", "revenue"]
+    revenue_by_day.columns = ["Days of the week", "revenue"]
     revenue_by_day = revenue_by_day.fillna(0)
 
     # Add cumulative revenue column
     if current_week:
-        revenue_by_day["Semana actual"] = revenue_by_day["revenue"].cumsum()
+        revenue_by_day["Current week"] = revenue_by_day["revenue"].cumsum()
     else:
-        revenue_by_day["Semana pasada"] = revenue_by_day["revenue"].cumsum()
+        revenue_by_day["Last week"] = revenue_by_day["revenue"].cumsum()
 
     return revenue_by_day
 

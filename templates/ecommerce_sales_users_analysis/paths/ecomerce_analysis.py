@@ -156,15 +156,15 @@ class EcommerceAnalysis(Board):
         revenue_by_day = pd.merge(
             revenue_by_day_last_week,
             revenue_by_day_this_week,
-            on="Día de la semana",
+            on="Days of the week",
             how="outer",
         )
         dict_revenue_by_day = revenue_by_day.to_dict(orient="records")
 
         self.shimoku.plt.line(
             data=dict_revenue_by_day,
-            x="Día de la semana",
-            y=["Semana pasada", "Semana actual"],
+            x="Days of the week",
+            y=["Last week", "Current week"],
             order=self.order,
             rows_size=3,
             cols_size=12,
@@ -189,7 +189,7 @@ class EcommerceAnalysis(Board):
             .sort_values(by="Price", ascending=False)
             .reset_index()
         )
-        grouped_df.columns = ["Product", "Total(€)", "Unidades"]
+        grouped_df.columns = ["Product", "Total(€)", "Units"]
         grouped_df["Total(€)"] = round(grouped_df["Total(€)"])
         first_five_products = grouped_df.loc[:4]
         first_five_products.sort_values(by="Total(€)", inplace=True)
@@ -227,7 +227,7 @@ class EcommerceAnalysis(Board):
             .reset_index()
         )
         grouped_df.drop(columns=["ClientID"], inplace=True)
-        grouped_df.columns = ["Email", "Total(€)", "Unidades"]
+        grouped_df.columns = ["Email", "Total(€)", "Units"]
         grouped_df["Total(€)"] = round(grouped_df["Total(€)"])
         first_five_clients = grouped_df.loc[:4]
 
