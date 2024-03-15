@@ -2,13 +2,19 @@ from board import Board
 import pandas as pd
 from shimoku_components_catalog.html_components import beautiful_indicator
 import locale
-from utils import super_admin_title
+from utils import (
+    super_admin_title,
+    filter_data_by_week,
+    process_revenue_by_day,
+    get_last_month_data,
+    get_current_month_data,
+)
 from datetime import datetime
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 
-class EcomerceAnalysis(Board):
+class EcommerceAnalysis(Board):
     """
     This path is responsible for rendering the Ecommerce Analysis path.
     """
@@ -21,16 +27,15 @@ class EcomerceAnalysis(Board):
             shimoku: An instance of the Shimoku client.
         """
         super().__init__(self_board.shimoku)
-        
+
         self.order = 0  # Initialize order of plotting elements
         self.menu_path = "Sales and users"  # Set the menu path for this page
-        
+
         # Delete existing menu path if it exists
         if self.shimoku.menu_paths.get_menu_path(name=self.menu_path):
             self.shimoku.menu_paths.delete_menu_path(name=self.menu_path)
-        
-        self.shimoku.set_menu_path(name=self.menu_path)  # Set the menu path in Shimoku
 
+        self.shimoku.set_menu_path(name=self.menu_path)  # Set the menu path in Shimoku
 
     def plot(self):
         """
@@ -82,47 +87,10 @@ class EcomerceAnalysis(Board):
         return True
 
     def plot_indicators(self):
-        self.df = self.df.copy()
+        df_copy = self.df.copy()
 
-        # for formatting numbers with point
-        locale.setlocale(locale.LC_NUMERIC, "")
-
-
-        month_year_data = self.df["month_year"]
-        one_month_before = (datetime.now() - relativedelta(months=1)).strftime("%Y-%m")
-        df_last_month = self.df[month_year_data == one_month_before]
-        last_month = df_last_month["month_year"].iloc[0]
-
-        # get gross sales from last month
-        gross_sales_last_month = round(df_last_month["Price"].sum())
-        gross_sales_last_month = locale.format_string(
-            "%d", gross_sales_last_month, grouping=True
-        )
-        gross_sales_last_month = gross_sales_last_month.replace(",", ".")
-
-        # get revenue from last month
-        df_last_month["revenue"] = df_last_month["Price"] - df_last_month["Cost"]
-        revenue_last_month = round(df_last_month["revenue"].sum())
-        revenue_last_month = locale.format_string(
-            "%d", revenue_last_month, grouping=True
-        )
-        revenue_last_month = revenue_last_month.replace(",", ".")
-
-        # get gross sales from current month
-        df_current_month = self.df[month_year_data == datetime.today().strftime("%Y-%m")]
-
-        if not df_current_month.empty:
-            df_current_month["month_year"].iloc[0]
-        else:
-            # Handle the case where df_current_month is empty
-            current_month = None  # or some appropriate default value
-
-        current_month = df_current_month["month_year"].iloc[0]
-        gross_sales_current_month = round(df_current_month["Price"].sum())
-        gross_sales_current_month = locale.format_string(
-            "%d", gross_sales_current_month, grouping=True
-        )
-        gross_sales_current_month = gross_sales_current_month.replace(",", ".")
+        last_month, gross_sales_last_month, revenue_last_month = get_last_month_data(df_copy)
+        current_month, gross_sales_current_month = get_current_month_data(df_copy)
 
         data = [
             {
@@ -140,7 +108,7 @@ class EcomerceAnalysis(Board):
                 "align": "center",
             },
             {
-                "description": f"{current_month}",
+                "description": f"{current_month}" if current_month else "N/A",
                 "title": "Gross sales current month",
                 "value": f"€ {gross_sales_current_month}",
                 "color": "default",
@@ -163,112 +131,35 @@ class EcomerceAnalysis(Board):
         return True
 
     def plot_sales_by_weekday(self):
-       
+        # Generate super admin title
         self.shimoku.plt.html(
             html=super_admin_title(title="Accumulated daily revenue"),
             order=self.order,
         )
-
         self.order += 1
 
-        df = self.df.copy()
-        
+        df_copy = self.df.copy()
         current_date = pd.Timestamp(datetime.now().date())
-        end_of_last_week = current_date - pd.DateOffset(days=current_date.dayofweek + 1)
-
-        # Calculate the start of last week (Monday)
-        start_of_last_week = end_of_last_week - pd.DateOffset(days=6)
-
-        # Filter data for the current week
-        df_last_week = df[
-            (df["Purchase_Date"] >= start_of_last_week)
-            & (df["Purchase_Date"] <= end_of_last_week)
-        ]
-
-        df_last_week["day_of_week"] = df_last_week["Purchase_Date"].dt.dayofweek
-        df_last_week["day_of_week"] = df_last_week["day_of_week"].map(
-            {
-                0: "Lunes",
-                1: "Martes",
-                2: "Miércoles",
-                3: "Jueves",
-                4: "Viernes",
-                5: "Sábado",
-                6: "Domingo",
-            }
-        )
-        cats = [
-            "Lunes",
-            "Martes",
-            "Miércoles",
-            "Jueves",
-            "Viernes",
-            "Sábado",
-            "Domingo",
-        ]
-        df_last_week["revenue"] = round(df_last_week["Price"] - df_last_week["Cost"])
-        revenue_by_day = (
-            df_last_week.groupby("day_of_week")["revenue"]
-            .sum()
-            .reindex(cats)
-            .reset_index()
-        )
-        revenue_by_day.columns = ["Día de la semana", "revenue"]
-        revenue_by_day = revenue_by_day.fillna(0)
-
-        # print(revenue_by_day)
-        revenue_by_day["Semana pasada"] = revenue_by_day["revenue"].cumsum()
-
-        # print(revenue_by_day)
-        current_date = pd.Timestamp(datetime.now().date())
+        df_last_week = filter_data_by_week(df_copy, current_date)
+        revenue_by_day_last_week = process_revenue_by_day(df_last_week)
         start_of_week = current_date - pd.DateOffset(days=current_date.dayofweek)
         end_of_week = start_of_week + pd.DateOffset(days=6)
 
-        # Filter data for the current week
-        df_this_week_data = df[
-            (df["Purchase_Date"] >= start_of_week) & (df["Purchase_Date"] <= end_of_week)
+        df_this_week_data = df_copy[
+            (df_copy["Purchase_Date"] >= start_of_week)
+            & (df_copy["Purchase_Date"] <= end_of_week)
         ]
 
-        df_this_week_data["day_of_week"] = df_this_week_data[
-            "Purchase_Date"
-        ].dt.dayofweek
-
-        df_this_week_data["day_of_week"] = df_this_week_data["day_of_week"].map(
-            {
-                0: "Lunes",
-                1: "Martes",
-                2: "Miércoles",
-                3: "Jueves",
-                4: "Viernes",
-                5: "Sábado",
-                6: "Domingo",
-            }
+        revenue_by_day_this_week = process_revenue_by_day(
+            df_this_week_data, current_week=True
         )
-        cats = [
-            "Lunes",
-            "Martes",
-            "Miércoles",
-            "Jueves",
-            "Viernes",
-            "Sábado",
-            "Domingo",
-        ]
-        df_this_week_data["revenue"] = round(
-            df_this_week_data["Price"] - df_this_week_data["Cost"]
+        revenue_by_day = pd.merge(
+            revenue_by_day_last_week,
+            revenue_by_day_this_week,
+            on="Día de la semana",
+            how="outer",
         )
-        revenue_by_day_this_week = (
-            df_this_week_data.groupby("day_of_week")["revenue"]
-            .sum()
-            .reindex(cats)
-            .reset_index()
-        )
-        revenue_by_day_this_week.columns = ["Día de la semana", "revenue"]
-        revenue_by_day_this_week = revenue_by_day_this_week.fillna(0)
-        revenue_by_day["Semana actual"] = revenue_by_day_this_week["revenue"].cumsum()
-
         dict_revenue_by_day = revenue_by_day.to_dict(orient="records")
-
-        print(dict_revenue_by_day)
 
         self.shimoku.plt.line(
             data=dict_revenue_by_day,
@@ -302,7 +193,7 @@ class EcomerceAnalysis(Board):
         grouped_df["Total(€)"] = round(grouped_df["Total(€)"])
         first_five_products = grouped_df.loc[:4]
         first_five_products.sort_values(by="Total(€)", inplace=True)
-
+        
         self.shimoku.plt.html(
             html=super_admin_title(
                 title=f"Top 5 best-selling products and most frequent customers of the previous month ({one_month_before})",
@@ -310,8 +201,6 @@ class EcomerceAnalysis(Board):
             order=self.order,
         )
         self.order += 1
-
-        print(first_five_products)
 
         self.shimoku.plt.horizontal_bar(
             data=first_five_products,
@@ -342,9 +231,6 @@ class EcomerceAnalysis(Board):
         grouped_df["Total(€)"] = round(grouped_df["Total(€)"])
         first_five_clients = grouped_df.loc[:4]
 
-        print(first_five_clients)
-        print(type(first_five_clients))
-
         self.shimoku.plt.table(
             data=first_five_clients,
             order=self.order,
@@ -352,6 +238,7 @@ class EcomerceAnalysis(Board):
             rows_size=3,
             sort_descending=True,
             initial_sort_column="Total(€)",
+            columns_options={"Email": {"width": 270}},
         )
 
         self.order += 1
@@ -393,7 +280,9 @@ class EcomerceAnalysis(Board):
             from dateutil.relativedelta import relativedelta
 
             # Assuming n_month is already defined as an integer representing the number of months
-            n_month_before = (datetime.now() - relativedelta(months=n_month)).strftime("%Y-%m")
+            n_month_before = (datetime.now() - relativedelta(months=n_month)).strftime(
+                "%Y-%m"
+            )
 
             df_mask = self.df[month_year_data == n_month_before]
             new_dict = dict()
@@ -414,6 +303,6 @@ class EcomerceAnalysis(Board):
             cols_size=5,
             order=self.order,
         )
+
         self.order += 1
         return True
-

@@ -1,4 +1,11 @@
-def super_admin_title(title: str):
+import pandas as pd
+from typing import Tuple
+import locale
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
+
+
+def super_admin_title(title: str) -> str:
     css = """
         .title-section {
             --border-radius: 10px;
@@ -48,7 +55,8 @@ def super_admin_title(title: str):
 
     return craft_html(css, html)
 
-def craft_html(css: str, html: str):
+
+def craft_html(css: str, html: str) -> str:
     html = f"""
         <head>
             <style>
@@ -59,3 +67,98 @@ def craft_html(css: str, html: str):
     """
 
     return html
+
+
+def filter_data_by_week(df:pd.DataFrame, current_date:pd.Timestamp) -> pd.DataFrame:
+    # Calculate the start and end of last week
+    end_of_last_week = current_date - pd.DateOffset(days=current_date.dayofweek + 1)
+    start_of_last_week = end_of_last_week - pd.DateOffset(days=6)
+
+    # Filter data for the last week
+    df_last_week = df[
+        (df["Purchase_Date"] >= start_of_last_week)
+        & (df["Purchase_Date"] <= end_of_last_week)
+    ]
+
+    return df_last_week
+
+
+def process_revenue_by_day(df_week:pd.DataFrame, current_week=False) -> pd.DataFrame:
+    # Map day of week to Spanish
+    df_week["day_of_week"] = df_week["Purchase_Date"].dt.dayofweek
+    df_week["day_of_week"] = df_week["day_of_week"].map(
+        {
+            0: "Lunes",
+            1: "Martes",
+            2: "Miércoles",
+            3: "Jueves",
+            4: "Viernes",
+            5: "Sábado",
+            6: "Domingo",
+        }
+    )
+
+    # Aggregate revenue by day
+    cats = [
+        "Lunes",
+        "Martes",
+        "Miércoles",
+        "Jueves",
+        "Viernes",
+        "Sábado",
+        "Domingo",
+    ]
+    df_week["revenue"] = round(df_week["Price"] - df_week["Cost"])
+    revenue_by_day = (
+        df_week.groupby("day_of_week")["revenue"].sum().reindex(cats).reset_index()
+    )
+    revenue_by_day.columns = ["Día de la semana", "revenue"]
+    revenue_by_day = revenue_by_day.fillna(0)
+
+    # Add cumulative revenue column
+    if current_week:
+        revenue_by_day["Semana actual"] = revenue_by_day["revenue"].cumsum()
+    else:
+        revenue_by_day["Semana pasada"] = revenue_by_day["revenue"].cumsum()
+
+    return revenue_by_day
+
+
+def format_number(number:int) -> str:
+    # Format numbers with point
+    locale.setlocale(locale.LC_NUMERIC, "")
+    formatted_number = locale.format_string("%d", number, grouping=True)
+    return formatted_number.replace(",", ".")
+
+
+def get_last_month_data(df:pd.DataFrame) -> Tuple[str, str, str]:
+    # Get data for last month
+    month_year_data = df["month_year"]
+    one_month_before = (datetime.now() - relativedelta(months=1)).strftime("%Y-%m")
+    df_last_month = df[month_year_data == one_month_before]
+    last_month = df_last_month["month_year"].iloc[0]
+
+    gross_sales_last_month = round(df_last_month["Price"].sum())
+    gross_sales_last_month = format_number(gross_sales_last_month)
+
+    df_last_month["revenue"] = df_last_month["Price"] - df_last_month["Cost"]
+    revenue_last_month = round(df_last_month["revenue"].sum())
+    revenue_last_month = format_number(revenue_last_month)
+
+    return last_month, gross_sales_last_month, revenue_last_month
+
+
+def get_current_month_data(df:pd.DataFrame) -> Tuple[str, str]:
+    # Get data for current month
+    month_year_data = df["month_year"]
+    df_current_month = df[month_year_data == datetime.today().strftime("%Y-%m")]
+
+    if not df_current_month.empty:
+        current_month = df_current_month["month_year"].iloc[0]
+        gross_sales_current_month = round(df_current_month["Price"].sum())
+        gross_sales_current_month = format_number(gross_sales_current_month)
+    else:
+        current_month = None
+        gross_sales_current_month = "N/A"
+
+    return current_month, gross_sales_current_month

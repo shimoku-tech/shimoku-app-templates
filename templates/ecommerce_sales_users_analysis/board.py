@@ -25,11 +25,11 @@ class Board:
         self.shimoku = shimoku  # Shimoku client instance
         self.shimoku.set_board(name=self.board_name)
         self.shimoku.boards.update_board(name=self.board_name, is_public=True)
-        
+
     def transform(self):
         pass
 
     def plot(self):
-        from paths.ecomerce_analysis import EcomerceAnalysis
-        EA = EcomerceAnalysis(self)
+        from paths.ecomerce_analysis import EcommerceAnalysis
+        EA = EcommerceAnalysis(self)
         EA.plot()
