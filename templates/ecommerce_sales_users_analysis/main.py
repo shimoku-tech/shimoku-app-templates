@@ -7,6 +7,7 @@ from board import Board
 from freezegun import freeze_time
 from settings import date
 
+
 @freeze_time(date)
 def main():
     """
@@ -23,14 +24,15 @@ def main():
         access_token=getenv("API_TOKEN"),
         universe_id=getenv("UNIVERSE_ID"),
         verbosity="INFO",
+        async_execution=True,
     )
     shimoku.set_workspace(getenv("WORKSPACE_ID"))
-
 
     # Instantiate and set up the dashboard
     board = Board(shimoku)
     board.transform()  # Perform data transformations
     board.plot()  # Plot the dashboard
+    shimoku.run()
 
 
 if __name__ == "__main__":
