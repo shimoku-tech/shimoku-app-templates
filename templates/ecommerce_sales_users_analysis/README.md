@@ -8,7 +8,7 @@ Welcome to our GitHub repository!
 
 🚀 Explore metrics & insightful charts. 
 
-📈 See our dashboard [eCommerce - Sales & Users Analysis](https://shimoku.io/dd66b898-2fa7-4350-a2a8-6e21d450629d/sales-and-users?shared=true&token=723b0001-6e12-11ee-95e7-9f0e43470bb4)
+📈 See our dashboard [eCommerce - Sales & Users Analysis](https://shimoku.io/dd66b898-2fa7-4350-a2a8-6e21d450629d/sales-and-users?shared=true&token=723b0001-6e12-11ee-b20f-0bc43057028a)
 
 
 ## Getting Started
