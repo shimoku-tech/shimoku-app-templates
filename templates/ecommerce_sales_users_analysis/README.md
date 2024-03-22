@@ -4,11 +4,15 @@
 
 Welcome to our GitHub repository!
 
-📊 Dive into ecommerce sales users analysis with us! 
+📊 Dive into ecommerce sales users analysis with us!
 
-🚀 Explore metrics & insightful charts. 
+🚀 Explore metrics & insightful charts.
 
-📈 See our dashboard [eCommerce - Sales & Users Analysis](https://shimoku.io/dd66b898-2fa7-4350-a2a8-6e21d450629d/sales-and-users?shared=true&token=723b0001-6e12-11ee-95e7-9f0e43470bb4)
+📈 See our dashboard [eCommerce - Sales & Users Analysis](https://shimoku.io/dd66b898-2fa7-4350-a2a8-6e21d450629d/sales-and-users?shared=true&token=723b0001-6e12-11ee-b20f-0bc43057028a)
+
+<p align="center">
+  <img src="img/dashboard.png">
+</p>
 
 📅 Published on 2024-02-07 by [@rotorrest](https://www.github.com/rotorrest)
 
@@ -42,17 +46,17 @@ Create a virtual environment:
 ```
 python3 -m venv venv
 ```
-  
+
 On Windows, you might need to use python instead of python3.
 
-Activate the virtual environment: 
+Activate the virtual environment:
 
 On Linux/Mac:
 
 ```
 source venv/bin/activate
 ```
-  
+
 On Windows:
 ```
  .\venv\Scripts\activate
@@ -63,7 +67,7 @@ Install the required packages:
 ```
 pip install -r requirements.txt
 ```
-  
+
 
 ## Configuring Environment Variables
 
