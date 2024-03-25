@@ -4,6 +4,8 @@ The Store Product Performance Dashboard, crafted using the Shimoku SDK, offers d
 
 Experiencie our Dashboard: [Store Product Performance](https://shimoku.io/b4c8a527-a376-4190-a6d8-3e69c6fe8cd1/store-product-overview?shared=true&token=9830a9c2-c4f8-11ee-a81e-f4c88a8a3fad) 
 
+📅 Published on 2024-02-06 by [@arturolinares24](https://www.github.com/arturolinares24)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.

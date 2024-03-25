@@ -4,6 +4,8 @@ This dashboard showcases the capabilities of the Shimoku SDK using the context o
 
 Experiencie our Dashboard: [Sales Order Performance Dashboard](https://shimoku.io/5169f788-389a-485e-a152-7284704ab28c/overview?shared=true&token=234a0835-c4f8-11ee-a60f-f4c88a8a3fad) 
 
+📅 Published on 2024-02-06 by [@arturolinares24](https://www.github.com/arturolinares24)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.

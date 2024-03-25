@@ -12,6 +12,8 @@ Welcome to our GitHub repository!
 
 ![Cohort Analysis](img/cohort_analysis.png)
 
+📅 Published on 2024-02-04 by [@jkahnc](https://www.github.com/jkahnc)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.

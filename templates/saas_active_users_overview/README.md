@@ -16,6 +16,8 @@ Welcome to our GitHub repository!
   <img src="img/1.png">
 </p>
 
+📅 Published on 2023-12-09 by [@rotorrest](https://www.github.com/rotorrest)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
